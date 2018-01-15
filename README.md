@@ -1,6 +1,6 @@
 # Read Mode - Android App
 
-Android app useful for changing the light of your cell phone for a better reading experience.
+Android app useful for changing the light of the screen of your cell phone for a better reading experience.
 
 Features:
 * No Ads 
@@ -8,3 +8,4 @@ Features:
 * You can choose between 6 different colors or no color
 * You can change Color level
 * You can change Brightness level
+* Free
