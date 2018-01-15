@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround"
+    tools:context="autonightmode.mx.com.alanquintero.autonightmode.MainActivity">
+
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_280sdp"
+        android:text="" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/yellow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:buttonTint="@color/yellow"/>
+
+        <RadioButton
+            android:id="@+id/red"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-33dp"
+            android:layout_marginLeft="@dimen/_65sdp"
+            android:buttonTint="@color/red" />
+
+        <RadioButton
+            android:id="@+id/green"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-33dp"
+            android:layout_marginLeft="@dimen/_110sdp"
+            android:buttonTint="@color/green"/>
+
+        <RadioButton
+            android:id="@+id/blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-33dp"
+            android:layout_marginLeft="@dimen/_155sdp"
+            android:buttonTint="@color/blue" />
+
+        <RadioButton
+            android:id="@+id/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_45sdp"
+            android:buttonTint="@color/gray" />
+
+        <RadioButton
+            android:id="@+id/pink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-33dp"
+            android:layout_marginLeft="@dimen/_90sdp"
+            android:buttonTint="@color/pink" />
+
+        <RadioButton
+            android:id="@+id/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-33dp"
+            android:layout_marginLeft="@dimen/_135sdp"
+            android:buttonTint="@color/white" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/colorLevelText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_alignRight="@+id/test"
+        android:text="Color Level"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/colorLevelPercentageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:layout_marginLeft="@dimen/_95sdp"
+        android:layout_alignRight="@+id/test"
+        android:text="(50%)"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <SeekBar
+        android:id="@+id/colorLevelBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_160sdp"
+        android:progress="50"
+        android:layout_alignRight="@+id/test"
+        android:layout_alignLeft="@+id/startNowButton" />
+
+    <TextView
+        android:id="@+id/brightnessLevelText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_200sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_alignRight="@+id/test"
+        android:text="Brightness Level"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/brightnessLevelPercentageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_200sdp"
+        android:layout_marginLeft="@dimen/_130sdp"
+        android:layout_alignRight="@+id/test"
+        android:text="(50%)"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <SeekBar
+        android:id="@+id/brightnessLevelBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_240sdp"
+        android:progress="50"
+        android:layout_alignRight="@+id/test"
+        android:layout_alignLeft="@+id/startNowButton" />
+
+    <Button
+        android:id="@+id/startNowButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_280sdp"
+        android:text="Start Now"
+        android:textStyle="bold"
+        android:layout_alignRight="@+id/test"
+        android:layout_alignLeft="@+id/brightnessLevelText"
+        android:textColor="@color/white"
+        android:background="@color/navyBlue" />
+
+</RelativeLayout>
