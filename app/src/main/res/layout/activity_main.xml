@@ -11,8 +11,8 @@
         android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_280sdp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="280dp"
         android:text="" />
 
     <RadioGroup
@@ -23,8 +23,8 @@
             android:id="@+id/yellow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
             android:buttonTint="@color/yellow"/>
 
         <RadioButton
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-33dp"
-            android:layout_marginLeft="@dimen/_65sdp"
+            android:layout_marginLeft="65dp"
             android:buttonTint="@color/red" />
 
         <RadioButton
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-33dp"
-            android:layout_marginLeft="@dimen/_110sdp"
+            android:layout_marginLeft="110dp"
             android:buttonTint="@color/green"/>
 
         <RadioButton
@@ -48,15 +48,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-33dp"
-            android:layout_marginLeft="@dimen/_155sdp"
+            android:layout_marginLeft="155dp"
             android:buttonTint="@color/blue" />
 
         <RadioButton
             android:id="@+id/gray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginLeft="@dimen/_45sdp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="45dp"
             android:buttonTint="@color/gray" />
 
         <RadioButton
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-33dp"
-            android:layout_marginLeft="@dimen/_90sdp"
+            android:layout_marginLeft="90dp"
             android:buttonTint="@color/pink" />
 
         <RadioButton
@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-33dp"
-            android:layout_marginLeft="@dimen/_135sdp"
+            android:layout_marginLeft="135dp"
             android:buttonTint="@color/white" />
 
     </RadioGroup>
@@ -81,8 +81,8 @@
         android:id="@+id/colorLevelText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_120sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="20dp"
         android:layout_alignRight="@+id/test"
         android:text="Color Level"
         android:textStyle="bold"
@@ -92,8 +92,8 @@
         android:id="@+id/colorLevelPercentageText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_120sdp"
-        android:layout_marginLeft="@dimen/_95sdp"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="95dp"
         android:layout_alignRight="@+id/test"
         android:text="(50%)"
         android:textStyle="bold"
@@ -103,7 +103,7 @@
         android:id="@+id/colorLevelBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_160sdp"
+        android:layout_marginTop="160dp"
         android:progress="50"
         android:layout_alignRight="@+id/test"
         android:layout_alignLeft="@+id/startNowButton" />
@@ -112,8 +112,8 @@
         android:id="@+id/brightnessLevelText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_200sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="20dp"
         android:layout_alignRight="@+id/test"
         android:text="Brightness Level"
         android:textStyle="bold"
@@ -123,8 +123,8 @@
         android:id="@+id/brightnessLevelPercentageText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_200sdp"
-        android:layout_marginLeft="@dimen/_130sdp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="130dp"
         android:layout_alignRight="@+id/test"
         android:text="(50%)"
         android:textStyle="bold"
@@ -134,7 +134,7 @@
         android:id="@+id/brightnessLevelBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_240sdp"
+        android:layout_marginTop="240dp"
         android:progress="50"
         android:layout_alignRight="@+id/test"
         android:layout_alignLeft="@+id/startNowButton" />
@@ -143,7 +143,7 @@
         android:id="@+id/startNowButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_280sdp"
+        android:layout_marginTop="280dp"
         android:text="Start Now"
         android:textStyle="bold"
         android:layout_alignRight="@+id/test"

@@ -1,7 +1,5 @@
 /*****************************************************************
- *
- * Copyright (C) 2018 Alan Quintero <http://alanquintero.com.mx/>
- *
+ * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
 package autonightmode.mx.com.alanquintero.autonightmode;
 
@@ -14,7 +12,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -30,58 +30,73 @@ public class DrawOverAppsService extends Service {
     private SharedPreferences sharedpreferences;
 
     @Override
+    public void onCreate() {
+        // Stop service if no overlay permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            stopSelf();
+            return;
+        }
+
+        // Initialize WindowManager
+        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+
+        // Determine correct window type
+        int windowType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
+
+        mParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT, windowType, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, PixelFormat.TRANSLUCENT);
+
+        sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
+        isLightOn = Boolean.parseBoolean(sharedpreferences.getString(Constants.IS_LIGHT_ON, Constants.VALUE_FALSE));
+        level = Integer.parseInt(sharedpreferences.getString(Constants.COLOR_LEVEL, Constants.VALUE_ZERO));
+        colorSelected = sharedpreferences.getString(Constants.COLOR, Constants.COLOR_WHITE);
+        light = Integer.parseInt(sharedpreferences.getString(Constants.LIGHT_LEVEL, Constants.VALUE_ZERO));
+
+        if (!isLightOn) {
+            mView = new MyLoadView(this);
+            mWindowManager.addView(mView, mParams);
+            startNotification();
+        }
+
+        super.onCreate();
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         isLightOn = Boolean.parseBoolean(sharedpreferences.getString(Constants.IS_LIGHT_ON, Constants.VALUE_FALSE));
         level = Integer.parseInt(sharedpreferences.getString(Constants.COLOR_LEVEL, Constants.VALUE_ZERO));
         colorSelected = sharedpreferences.getString(Constants.COLOR, Constants.COLOR_WHITE);
         light = Integer.parseInt(sharedpreferences.getString(Constants.LIGHT_LEVEL, Constants.VALUE_ZERO));
-        if(isLightOn) {
+
+        if (mWindowManager == null) {
+            // Safety: ensure WindowManager is initialized
+            mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        }
+
+        if (isLightOn) {
             onUpdate();
         }
         return START_STICKY;
     }
 
     @Override
-    public void onCreate() {
-        if(!isLightOn) {
-            mView = new MyLoadView(this);
-            mParams = new WindowManager.LayoutParams(
-                    WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                            | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                            | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
-                    PixelFormat.TRANSLUCENT);
-
-            mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-            mWindowManager.addView(mView, mParams);
-
-            startNotification();
-            super.onCreate();
-        }
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mView != null) {
-            ((WindowManager) getSystemService(WINDOW_SERVICE)).removeView(mView);
+        if (mView != null) {
+            mWindowManager.removeView(mView);
             mView = null;
         }
         stopNotification();
     }
 
     @Override
-    public IBinder onBind(Intent intent)
-    {
+    public IBinder onBind(Intent intent) {
         return null;
     }
 
     public void onUpdate() {
-        if(mView != null) {
-            ((WindowManager) getSystemService(WINDOW_SERVICE)).removeView(mView);
+        if (mView != null) {
+            mWindowManager.removeView(mView);
             mView = null;
         }
         mView = new MyLoadView(this);
@@ -90,17 +105,9 @@ public class DrawOverAppsService extends Service {
 
     public void startNotification() {
         Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent =
-                PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        Notification notification =
-                new Notification.Builder(this)
-                        .setContentTitle(Constants.TEXT_READ_MODE)
-                        .setContentText(Constants.TEXT_READ_MODE_MSG)
-                        .setSmallIcon(R.drawable.moon)
-                        .setContentIntent(pendingIntent)
-                        .setTicker(Constants.TEXT_READ_MODE_MSG)
-                        .build();
+        Notification notification = new Notification.Builder(this).setContentTitle(Constants.TEXT_READ_MODE).setContentText(Constants.TEXT_READ_MODE_MSG).setSmallIcon(R.drawable.moon).setContentIntent(pendingIntent).setTicker(Constants.TEXT_READ_MODE_MSG).build();
 
         startForeground(Constants.NOTIFICATION_ID, notification);
     }
@@ -112,8 +119,7 @@ public class DrawOverAppsService extends Service {
 
     public class MyLoadView extends View {
 
-        public MyLoadView(Context context)
-        {
+        public MyLoadView(Context context) {
             super(context);
         }
 
@@ -148,23 +154,6 @@ public class DrawOverAppsService extends Service {
                 }
             }
         }
-
-        @Override
-        protected void onAttachedToWindow()
-        {
-            super.onAttachedToWindow();
-        }
-
-        @Override
-        protected void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-        }
-
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        }
-
     }
 
 }

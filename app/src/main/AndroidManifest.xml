@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="autonightmode.mx.com.alanquintero.autonightmode">
 
+    <!-- Permission to draw over other apps -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
@@ -13,9 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service android:name=".DrawOverAppsService" android:enabled="true" />
+        <!-- Service for drawing overlays -->
+        <service
+            android:name=".DrawOverAppsService"
+            android:enabled="true"
+            android:exported="false" />
 
-        <activity android:name=".MainActivity">
+        <!-- Main launcher activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

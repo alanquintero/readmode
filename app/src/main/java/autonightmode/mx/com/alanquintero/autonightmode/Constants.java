@@ -1,7 +1,5 @@
 /*****************************************************************
- *
- * Copyright (C) 2018 Alan Quintero <http://alanquintero.com.mx/>
- *
+ * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
 package autonightmode.mx.com.alanquintero.autonightmode;
 
@@ -33,6 +31,6 @@ public class Constants {
     public static final String TEXT_STOP = "Stop Now";
     public static final String TEXT_START = "Start Now";
     public static final String TEXT_PARENTHESES_OPEN = "(";
-    public static final String TEXT_PARENTHESES_CLOSE =  "%)";
+    public static final String TEXT_PARENTHESES_CLOSE = "%)";
 
 }

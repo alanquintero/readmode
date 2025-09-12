@@ -1,9 +1,21 @@
+# Android Studio / IntelliJ
 *.iml
 .gradle
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
+
+# Build / Output
 /build
 /captures
 .externalNativeBuild
+
+# Gradle Wrapper
+gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Misc
+*.log
+*.tmp
+

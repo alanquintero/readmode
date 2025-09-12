@@ -1,7 +1,5 @@
 /*****************************************************************
- *
- * Copyright (C) 2018 Alan Quintero <http://alanquintero.com.mx/>
- *
+ * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
 package autonightmode.mx.com.alanquintero.autonightmode;
 
@@ -9,9 +7,13 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.provider.Settings;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
@@ -25,24 +27,55 @@ public class MainActivity extends AppCompatActivity {
     private int lightLevel = 0;
     private SharedPreferences sharedpreferences;
 
+    private static final int REQUEST_OVERLAY_PERMISSION = 1234;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Check overlay permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(
+                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + getPackageName())
+            );
+            startActivityForResult(intent, REQUEST_OVERLAY_PERMISSION);
+            return;
+        }
+
+        initUI();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_OVERLAY_PERMISSION) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+                // Permission not granted, just finish activity
+                finish();
+            } else {
+                initUI(); // Permission granted, initialize UI
+            }
+        }
+    }
+
+    private void initUI() {
         setContentView(R.layout.activity_main);
 
         // COMPONENTS
-        final SeekBar seekColorBar = (SeekBar) findViewById(R.id.colorLevelBar);
-        final TextView colorLevelText = (TextView) findViewById(R.id.colorLevelPercentageText);
-        final SeekBar seekBrightnessBar = (SeekBar) findViewById(R.id.brightnessLevelBar);
-        final TextView brightnessLevelText = (TextView) findViewById(R.id.brightnessLevelPercentageText);
-        final Button startNowButton = (Button) findViewById(R.id.startNowButton);
-        final RadioButton yellow = (RadioButton) findViewById(R.id.yellow);
-        final RadioButton red = (RadioButton) findViewById(R.id.red);
-        final RadioButton green = (RadioButton) findViewById(R.id.green);
-        final RadioButton blue = (RadioButton) findViewById(R.id.blue);
-        final RadioButton gray = (RadioButton) findViewById(R.id.gray);
-        final RadioButton pink = (RadioButton) findViewById(R.id.pink);
-        final RadioButton white = (RadioButton) findViewById(R.id.white);
+        final SeekBar seekColorBar = findViewById(R.id.colorLevelBar);
+        final TextView colorLevelText = findViewById(R.id.colorLevelPercentageText);
+        final SeekBar seekBrightnessBar = findViewById(R.id.brightnessLevelBar);
+        final TextView brightnessLevelText = findViewById(R.id.brightnessLevelPercentageText);
+        final Button startNowButton = findViewById(R.id.startNowButton);
+        final RadioButton yellow = findViewById(R.id.yellow);
+        final RadioButton red = findViewById(R.id.red);
+        final RadioButton green = findViewById(R.id.green);
+        final RadioButton blue = findViewById(R.id.blue);
+        final RadioButton gray = findViewById(R.id.gray);
+        final RadioButton pink = findViewById(R.id.pink);
+        final RadioButton white = findViewById(R.id.white);
 
         sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         String levelSettings = sharedpreferences.getString(Constants.COLOR_LEVEL, Constants.VALUE_EMPTY);
@@ -51,16 +84,16 @@ public class MainActivity extends AppCompatActivity {
 
         isLightOn = Boolean.parseBoolean(sharedpreferences.getString(Constants.IS_LIGHT_ON, Constants.VALUE_FALSE));
 
-        if(levelSettings != null && !levelSettings.equals(Constants.VALUE_EMPTY)) {
+        if (levelSettings != null && !levelSettings.equals(Constants.VALUE_EMPTY)) {
             seekColorBar.setProgress(Integer.parseInt(levelSettings));
             colorLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + levelSettings + Constants.TEXT_PARENTHESES_CLOSE);
             colorLevel = Integer.parseInt(levelSettings);
         }
 
-        if(lightSettings != null && !lightSettings.equals("")) {
+        if (lightSettings != null && !lightSettings.equals("")) {
             seekBrightnessBar.setProgress(Integer.parseInt(lightSettings));
             brightnessLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + lightSettings + Constants.TEXT_PARENTHESES_CLOSE);
-            colorLevel = Integer.parseInt(levelSettings);
+            lightLevel = Integer.parseInt(lightSettings);
         }
 
         switch (colorSettings) {
@@ -90,29 +123,27 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-
         // *** START NOW ***
-        startNowButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (!isLightOn) {
-                    colorLevel = seekColorBar.getProgress();
-                    lightLevel = seekBrightnessBar.getProgress();
-                    startLightService();
-                    changeStartNowButtonText(startNowButton);
-                } else {
-                    stopLightService();
-                    changeStartNowButtonText(startNowButton);
-                }
+        startNowButton.setOnClickListener(v -> {
+            if (!isLightOn) {
+                colorLevel = seekColorBar.getProgress();
+                lightLevel = seekBrightnessBar.getProgress();
+                startLightService();
+                changeStartNowButtonText(startNowButton);
+            } else {
+                stopLightService();
+                changeStartNowButtonText(startNowButton);
             }
         });
         changeStartNowButtonText(startNowButton);
 
-
-        // *** COLOR LEVEL ***
+        // SeekBars
         seekColorBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onStopTrackingTouch(SeekBar bar) { }
+            public void onStopTrackingTouch(SeekBar bar) {
+            }
 
-            public void onStartTrackingTouch(SeekBar bar) { }
+            public void onStartTrackingTouch(SeekBar bar) {
+            }
 
             public void onProgressChanged(SeekBar bar, int paramInt, boolean paramBoolean) {
                 colorLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + paramInt + Constants.TEXT_PARENTHESES_CLOSE);
@@ -122,11 +153,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // *** BRIGHTNESS LEVEL ***
         seekBrightnessBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onStopTrackingTouch(SeekBar bar) { }
+            public void onStopTrackingTouch(SeekBar bar) {
+            }
 
-            public void onStartTrackingTouch(SeekBar bar) { }
+            public void onStartTrackingTouch(SeekBar bar) {
+            }
 
             public void onProgressChanged(SeekBar bar, int paramInt, boolean paramBoolean) {
                 brightnessLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + paramInt + Constants.TEXT_PARENTHESES_CLOSE);
@@ -136,72 +168,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        // *** RadioButtons ***
-
-        // * YELLOW *
-        yellow.setOnClickListener((new View.OnClickListener() {
-            public void onClick(View v) {
-                saveProperty(Constants.COLOR, Constants.COLOR_YELLOW);
-                startLightService();
-                changeStartNowButtonText(startNowButton);
-            }
-        }));
-
-        // * RED *
-        red.setOnClickListener((new View.OnClickListener() {
-            public void onClick(View v) {
-                saveProperty(Constants.COLOR, Constants.COLOR_RED);
-                startLightService();
-                changeStartNowButtonText(startNowButton);
-            }
-        }));
-
-        // * GREEN *
-        green.setOnClickListener((new View.OnClickListener() {
-            public void onClick(View v) {
-                saveProperty(Constants.COLOR, Constants.COLOR_GREEN);
-                startLightService();
-                changeStartNowButtonText(startNowButton);
-            }
-        }));
-
-        // * BLUE *
-        blue.setOnClickListener((new View.OnClickListener() {
-            public void onClick(View v) {
-                saveProperty(Constants.COLOR, Constants.COLOR_BLUE);
-                startLightService();
-                changeStartNowButtonText(startNowButton);
-            }
-        }));
-
-        // * GRAY *
-        gray.setOnClickListener((new View.OnClickListener() {
-            public void onClick(View v) {
-                saveProperty(Constants.COLOR, Constants.COLOR_GRAY);
-                startLightService();
-                changeStartNowButtonText(startNowButton);
-            }
-        }));
-
-        // * PINK *
-        pink.setOnClickListener((new View.OnClickListener() {
-            public void onClick(View v) {
-                saveProperty(Constants.COLOR, Constants.COLOR_PINK);
-                startLightService();
-                changeStartNowButtonText(startNowButton);
-            }
-        }));
-
-        // * WHITE *
-        white.setOnClickListener((new View.OnClickListener() {
-            public void onClick(View v) {
-                saveProperty(Constants.COLOR, Constants.COLOR_WHITE);
-                startLightService();
-                changeStartNowButtonText(startNowButton);
-            }
-        }));
-
+        // RadioButtons
+        yellow.setOnClickListener(v -> {
+            saveProperty(Constants.COLOR, Constants.COLOR_YELLOW);
+            startLightService();
+            changeStartNowButtonText(startNowButton);
+        });
+        red.setOnClickListener(v -> {
+            saveProperty(Constants.COLOR, Constants.COLOR_RED);
+            startLightService();
+            changeStartNowButtonText(startNowButton);
+        });
+        green.setOnClickListener(v -> {
+            saveProperty(Constants.COLOR, Constants.COLOR_GREEN);
+            startLightService();
+            changeStartNowButtonText(startNowButton);
+        });
+        blue.setOnClickListener(v -> {
+            saveProperty(Constants.COLOR, Constants.COLOR_BLUE);
+            startLightService();
+            changeStartNowButtonText(startNowButton);
+        });
+        gray.setOnClickListener(v -> {
+            saveProperty(Constants.COLOR, Constants.COLOR_GRAY);
+            startLightService();
+            changeStartNowButtonText(startNowButton);
+        });
+        pink.setOnClickListener(v -> {
+            saveProperty(Constants.COLOR, Constants.COLOR_PINK);
+            startLightService();
+            changeStartNowButtonText(startNowButton);
+        });
+        white.setOnClickListener(v -> {
+            saveProperty(Constants.COLOR, Constants.COLOR_WHITE);
+            startLightService();
+            changeStartNowButtonText(startNowButton);
+        });
     }
 
     @Override
@@ -213,6 +215,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startLightService() {
+        // Only start service if overlay permission granted
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            return;
+        }
+
         isLightOn = true;
         saveProperty(Constants.IS_LIGHT_ON, Constants.VALUE_TRUE);
         saveProperty(Constants.LIGHT_LEVEL, String.valueOf(lightLevel));
@@ -227,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
     private void stopLightService() {
         isLightOn = false;
         saveProperty(Constants.IS_LIGHT_ON, Constants.VALUE_FALSE);
-        if(intentLight != null) {
+        if (intentLight != null) {
             stopService(intentLight);
         } else {
             stopService(new Intent(MainActivity.this, DrawOverAppsService.class));
@@ -257,5 +264,4 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(property, value);
         editor.commit();
     }
-
 }
