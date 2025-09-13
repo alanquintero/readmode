@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/spinnerBackground" /> <!-- dynamic attribute -->
+            <stroke android:width="2dp" android:color="?attr/spinnerBorder" />
+            <corners android:radius="8dp" />
+            <padding android:bottom="4dp" android:left="8dp" android:right="8dp" android:top="4dp" />
+        </shape>
+    </item>
+</selector>

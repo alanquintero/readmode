@@ -7,6 +7,8 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,9 +16,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.provider.Settings;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, REQUEST_OVERLAY_PERMISSION);
             return;
         }
+
+        setupStatusBarColor();
+
 
         initUI();
     }
@@ -69,13 +78,65 @@ public class MainActivity extends AppCompatActivity {
         final SeekBar seekBrightnessBar = findViewById(R.id.brightnessLevelBar);
         final TextView brightnessLevelText = findViewById(R.id.brightnessLevelPercentageText);
         final Button startNowButton = findViewById(R.id.startNowButton);
-        final RadioButton yellow = findViewById(R.id.yellow);
-        final RadioButton red = findViewById(R.id.red);
-        final RadioButton green = findViewById(R.id.green);
-        final RadioButton blue = findViewById(R.id.blue);
-        final RadioButton gray = findViewById(R.id.gray);
-        final RadioButton pink = findViewById(R.id.pink);
-        final RadioButton white = findViewById(R.id.white);
+        final Spinner colorSpinner = findViewById(R.id.colorSpinner);
+
+        // Color names and corresponding hex codes
+        String[] colors = {"None", "Soft Beige", "Light Gray", "Pale Yellow", "Warm Sepia", "Soft Blue", "Custom"};
+        final String[] colorHex = {"NONE", "#F5F5DC", "#E6E6E6", "#FFFFD2", "#F4ECD3", "#DCEBFF", "CUSTOM"};
+        int[] colorValues = {
+                Color.WHITE,            // NONE
+                Color.parseColor("#F5F5DC"),  // Beige
+                Color.parseColor("#E6E6E6"),  // Light Gray
+                Color.parseColor("#FFFFD2"),  // Light Yellow
+                Color.parseColor("#F4ECD3"),  // Light Cream
+                Color.parseColor("#DCEBFF"),  // Pale Blue
+                Color.WHITE             // CUSTOM
+        };
+
+        // Adapter for dropdown
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, colors) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getView(position, convertView, parent);
+                view.setBackgroundColor(colorValues[position]); // Color for selected item
+                view.setTextColor(Color.BLACK); // Text color
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getDropDownView(position, convertView, parent);
+                view.setBackgroundColor(colorValues[position]); // Color for dropdown item
+                view.setTextColor(Color.BLACK);
+                return view;
+            }
+        };
+
+        colorSpinner.setAdapter(adapter);
+
+        // Listen for selection
+        colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedColor = colorHex[position];
+                if (selectedColor.equals("NONE")) {
+                    saveProperty(Constants.COLOR, selectedColor);
+                    stopLightService();
+                    changeStartNowButtonText(startNowButton);
+                } else if (selectedColor.equals("CUSTOM")) {
+                    // TODO: Open a color picker dialog
+                } else {
+                    // Apply selected color
+                    saveProperty(Constants.COLOR, selectedColor);
+                    startLightService();
+                    changeStartNowButtonText(startNowButton);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         String levelSettings = sharedpreferences.getString(Constants.COLOR_LEVEL, Constants.VALUE_EMPTY);
@@ -96,32 +157,6 @@ public class MainActivity extends AppCompatActivity {
             lightLevel = Integer.parseInt(lightSettings);
         }
 
-        switch (colorSettings) {
-            case Constants.COLOR_YELLOW:
-                yellow.setChecked(true);
-                break;
-            case Constants.COLOR_RED:
-                red.setChecked(true);
-                break;
-            case Constants.COLOR_GREEN:
-                green.setChecked(true);
-                break;
-            case Constants.COLOR_BLUE:
-                blue.setChecked(true);
-                break;
-            case Constants.COLOR_GRAY:
-                gray.setChecked(true);
-                break;
-            case Constants.COLOR_PINK:
-                pink.setChecked(true);
-                break;
-            case Constants.COLOR_WHITE:
-                white.setChecked(true);
-                break;
-            default:
-                white.setChecked(true);
-                break;
-        }
 
         // *** START NOW ***
         startNowButton.setOnClickListener(v -> {
@@ -166,43 +201,6 @@ public class MainActivity extends AppCompatActivity {
                 startLightService();
                 changeStartNowButtonText(startNowButton);
             }
-        });
-
-        // RadioButtons
-        yellow.setOnClickListener(v -> {
-            saveProperty(Constants.COLOR, Constants.COLOR_YELLOW);
-            startLightService();
-            changeStartNowButtonText(startNowButton);
-        });
-        red.setOnClickListener(v -> {
-            saveProperty(Constants.COLOR, Constants.COLOR_RED);
-            startLightService();
-            changeStartNowButtonText(startNowButton);
-        });
-        green.setOnClickListener(v -> {
-            saveProperty(Constants.COLOR, Constants.COLOR_GREEN);
-            startLightService();
-            changeStartNowButtonText(startNowButton);
-        });
-        blue.setOnClickListener(v -> {
-            saveProperty(Constants.COLOR, Constants.COLOR_BLUE);
-            startLightService();
-            changeStartNowButtonText(startNowButton);
-        });
-        gray.setOnClickListener(v -> {
-            saveProperty(Constants.COLOR, Constants.COLOR_GRAY);
-            startLightService();
-            changeStartNowButtonText(startNowButton);
-        });
-        pink.setOnClickListener(v -> {
-            saveProperty(Constants.COLOR, Constants.COLOR_PINK);
-            startLightService();
-            changeStartNowButtonText(startNowButton);
-        });
-        white.setOnClickListener(v -> {
-            saveProperty(Constants.COLOR, Constants.COLOR_WHITE);
-            startLightService();
-            changeStartNowButtonText(startNowButton);
         });
     }
 
@@ -262,6 +260,29 @@ public class MainActivity extends AppCompatActivity {
     private void saveProperty(final String property, String value) {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(property, value);
-        editor.commit();
+        editor.apply();
+    }
+
+    private void setupStatusBarColor() {
+        int lightModeColor = Color.parseColor(Constants.STATUS_BAR_LIGHT_BACKGROUND_COLOR); // light background
+        int darkModeColor = Color.parseColor(Constants.STATUS_BAR_DARK_BACKGROUND_COLOR);  // dark gray, not pure black
+
+        int currentNightMode = getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+
+        if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
+            // Light mode
+            getWindow().setStatusBarColor(lightModeColor);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+        } else {
+            // Dark mode
+            getWindow().setStatusBarColor(darkModeColor);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                // Remove light status bar flag to make icons white
+                getWindow().getDecorView().setSystemUiVisibility(0);
+            }
+        }
     }
 }

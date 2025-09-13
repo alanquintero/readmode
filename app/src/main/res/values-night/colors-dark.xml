@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Background color for Dark Mode -->
+    <color name="backGround">#121212</color>
+
+    <!-- Text colors -->
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="textSecondary">#BBBBBB</color>
+
+    <color name="colorPrimary">#90CAF9</color>
+    <color name="colorOnPrimary">#000000</color>
+
+    <!-- Button -->
+    <color name="banner_background">#B0B0B0</color>
+</resources>

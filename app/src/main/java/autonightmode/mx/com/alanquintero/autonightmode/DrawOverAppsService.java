@@ -129,26 +129,23 @@ public class DrawOverAppsService extends Service {
             if (colorSelected != null) {
                 canvas.drawARGB(150 - light, 0, 0, 0);
                 switch (colorSelected) {
-                    case Constants.COLOR_YELLOW:
-                        canvas.drawARGB(120, 255, 212, 120 - level);
+                    case Constants.COLOR_SOFT_BEIGE:
+                        canvas.drawARGB(120, 245, 245, 220 - level);
                         break;
-                    case Constants.COLOR_RED:
-                        canvas.drawARGB(120, 255, 20, 150 - level);
+                    case Constants.COLOR_LIGHT_GRAY:
+                        canvas.drawARGB(120, 230, 230, 230 - level);
                         break;
-                    case Constants.COLOR_GREEN:
-                        canvas.drawARGB(120, 10, 255, 150 - level);
+                    case Constants.COLOR_PALE_YELLOW:
+                        canvas.drawARGB(120, 255, 255, 210 - level);
                         break;
-                    case Constants.COLOR_BLUE:
-                        canvas.drawARGB(120, 100, 212, 150 - level);
+                    case Constants.COLOR_WARM_SEPIA:
+                        canvas.drawARGB(120, 244, 236, 211 - level);
                         break;
-                    case Constants.COLOR_GRAY:
-                        canvas.drawARGB(120, 50, 50, 150 - level);
+                    case Constants.COLOR_SOFT_BLUE:
+                        canvas.drawARGB(120, 220, 235, 255 - level);
                         break;
-                    case Constants.COLOR_PINK:
-                        canvas.drawARGB(120, 255, 120, 150 - level);
-                        break;
-                    case Constants.COLOR_WHITE:
-                        break;
+                    case Constants.COLOR_CUSTOM:
+                    case Constants.COLOR_NONE:
                     default:
                         break;
                 }

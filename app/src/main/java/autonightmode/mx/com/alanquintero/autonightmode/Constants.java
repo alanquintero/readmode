@@ -5,13 +5,20 @@ package autonightmode.mx.com.alanquintero.autonightmode;
 
 public class Constants {
 
-    public static final String COLOR_YELLOW = "YELLOW";
-    public static final String COLOR_RED = "RED";
-    public static final String COLOR_GREEN = "GREEN";
-    public static final String COLOR_BLUE = "BLUE";
-    public static final String COLOR_GRAY = "GRAY";
-    public static final String COLOR_PINK = "PINK";
+    public static final String COLOR_NONE = "none";
+    public static final String COLOR_SOFT_BEIGE = "#F5F5DC";
+    public static final String COLOR_LIGHT_GRAY = "#E6E6E6";
+    public static final String COLOR_PALE_YELLOW = "#FFFFD2";
+    public static final String COLOR_WARM_SEPIA = "#F4ECD3";
+
+    public static final String COLOR_SOFT_BLUE = "#DCEBFF";
+
+    public static final String COLOR_CUSTOM = "custom";
+
     public static final String COLOR_WHITE = "WHITE";
+
+    public static final String STATUS_BAR_LIGHT_BACKGROUND_COLOR = "#FDFDFD";
+    public static final String STATUS_BAR_DARK_BACKGROUND_COLOR = "#121212";
 
     public static final int NOTIFICATION_ID = 10;
 

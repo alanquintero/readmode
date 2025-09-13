@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#303F9F</color>
-    <color name="backGround">#CCE5FF</color>
-    <color name="black">#000000</color>
-    <color name="yellow">#FFFF00</color>
-    <color name="red">#FF0000</color>
-    <color name="green">#00994C</color>
-    <color name="blue">#3399FF</color>
-    <color name="navyBlue">#0080FF</color>
-    <color name="gray">#A0A0A0</color>
-    <color name="pink">#FF99FF</color>
-    <color name="white">#FFFFFF</color>
+    <!-- Background color for Light Mode -->
+    <color name="backGround">#F9F9F9</color>
+
+    <!-- Text colors -->
+    <color name="textPrimary">#000000</color>
+    <color name="textSecondary">#555555</color>
+
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <!-- Banner -->
+    <color name="banner_background">#424242</color>
+
+    <!-- Spinner -->
+    <color name="spinner_bg_light">#FFFFFF</color>
+    <color name="spinner_bg_dark">#222222</color>
+    <color name="spinner_border_light">#999999</color>
+    <color name="spinner_border_dark">#BBBBBB</color>
+
+    <!-- Button -->
+    <color name="button_background">#43A047</color>
 </resources>
