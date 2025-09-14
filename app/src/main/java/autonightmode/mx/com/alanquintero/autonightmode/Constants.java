@@ -34,11 +34,6 @@ public class Constants {
 
     public static final String PREF_BRIGHTNESS = "BRIGHTNESS";
 
-    public static final String VALUE_ZERO = "0";
-    public static final String VALUE_FALSE = "false";
-    public static final String VALUE_TRUE = "true";
-    public static final String VALUE_EMPTY = "";
-
     public static final String TEXT_READ_MODE = "Read Mode";
     public static final String TEXT_READ_MODE_MSG = "Read Mode is running";
 
@@ -47,5 +42,7 @@ public class Constants {
     public static final int DEFAULT_COLOR_DROPDOWN_POSITION = 0;
     public static final int DEFAULT_BRIGHTNESS = 50;
     public static final int DEFAULT_COLOR_INTENSITY = 50;
+
+    public static final String DEFAULT_TEXT_COLOR = "#000000"; // Black
 
 }

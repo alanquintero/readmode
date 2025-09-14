@@ -9,7 +9,7 @@
     <string name="color_pale_yellow">Pale Yellow</string>
     <string name="color_warm_sepia">Warm Sepia</string>
     <string name="color_soft_blue">Soft Blue</string>
-    <string name="color_custom">Custom</string>
+    <string name="color_custom">● Custom</string>
     <!-- Custom color -->
     <string name="color_red">Red</string>
     <string name="color_green">Green</string>

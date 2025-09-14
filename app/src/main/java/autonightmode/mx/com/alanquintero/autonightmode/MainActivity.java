@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private int brightness = 0;
 
     private int dropDownPosition = 0;
+
+    private String customColor = Constants.DEFAULT_TEXT_COLOR;
     private SharedPreferences sharedPreferences;
 
     private static final int REQUEST_OVERLAY_PERMISSION = 1234;
@@ -129,7 +131,21 @@ public class MainActivity extends AppCompatActivity {
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 TextView view = (TextView) super.getDropDownView(position, convertView, parent);
                 view.setBackgroundColor(colorsForDropdownItems[position]); // Color for dropdown item
-                view.setTextColor(Color.BLACK);
+                if (position == colorsForDropdownItems.length - 1) {
+                    int color = Color.parseColor(customColor);
+                    // Calculate brightness
+                    int r = Color.red(color);
+                    int g = Color.green(color);
+                    int b = Color.blue(color);
+                    double brightness = (0.299 * r + 0.587 * g + 0.114 * b); // Perceived brightness
+                    if (brightness > 200) { // very light color
+                        view.setTextColor(Color.BLACK); // fallback
+                    } else {
+                        view.setTextColor(color);
+                    }
+                } else {
+                    view.setTextColor(Color.BLACK);
+                }
                 return view;
             }
         };
@@ -152,8 +168,9 @@ public class MainActivity extends AppCompatActivity {
                     changeBtnStartStopText(btnStartStop);
                 } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
                     openCustomColorDialog(btnStartStop);
+                    adapter.notifyDataSetChanged();
                 } else {
-                    // Apply selected color'
+                    // Apply selected color
                     saveProperty(Constants.PREF_COLOR, selectedColor);
                     startLightService();
                     changeBtnStartStopText(btnStartStop);
@@ -294,6 +311,7 @@ public class MainActivity extends AppCompatActivity {
                     saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
                     startLightService();
                     changeBtnStartStopText(btnStartStop);
+                    customColor = chosenColorHex;
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
