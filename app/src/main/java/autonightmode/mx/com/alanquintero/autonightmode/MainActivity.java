@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.provider.Settings;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView colorLevelText = findViewById(R.id.colorLevelPercentageText);
         final SeekBar seekBrightnessBar = findViewById(R.id.brightnessLevelBar);
         final TextView brightnessLevelText = findViewById(R.id.brightnessLevelPercentageText);
-        final Button startNowButton = findViewById(R.id.startNowButton);
+        final Button btnStartStop = findViewById(R.id.btnStartStop);
         final Spinner colorSpinner = findViewById(R.id.colorSpinner);
 
         // Color names and corresponding hex codes
@@ -123,14 +125,14 @@ public class MainActivity extends AppCompatActivity {
                 if (selectedColor.equals("NONE")) {
                     saveProperty(Constants.COLOR, selectedColor);
                     stopLightService();
-                    changeStartNowButtonText(startNowButton);
+                    changeBtnStartStopText(btnStartStop);
                 } else if (selectedColor.equals("CUSTOM")) {
                     openCustomColorDialog();
                 } else {
                     // Apply selected color
                     saveProperty(Constants.COLOR, selectedColor);
                     startLightService();
-                    changeStartNowButtonText(startNowButton);
+                    changeBtnStartStopText(btnStartStop);
                 }
             }
 
@@ -160,18 +162,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         // *** START NOW ***
-        startNowButton.setOnClickListener(v -> {
-            if (!isLightOn) {
-                colorLevel = seekColorBar.getProgress();
-                lightLevel = seekBrightnessBar.getProgress();
-                startLightService();
-                changeStartNowButtonText(startNowButton);
+        btnStartStop.setOnClickListener(v -> {
+            if (btnStartStop.isEnabled()) {
+                Toast.makeText(this, R.string.select_a_color_first, Toast.LENGTH_SHORT).show();
             } else {
-                stopLightService();
-                changeStartNowButtonText(startNowButton);
+                if (!isLightOn) {
+                    colorLevel = seekColorBar.getProgress();
+                    lightLevel = seekBrightnessBar.getProgress();
+                    startLightService();
+                    changeBtnStartStopText(btnStartStop);
+                } else {
+                    stopLightService();
+                    changeBtnStartStopText(btnStartStop);
+                }
             }
         });
-        changeStartNowButtonText(startNowButton);
+        changeBtnStartStopText(btnStartStop);
 
         // SeekBars
         seekColorBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -185,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 colorLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + paramInt + Constants.TEXT_PARENTHESES_CLOSE);
                 colorLevel = paramInt;
                 startLightService();
-                changeStartNowButtonText(startNowButton);
+                changeBtnStartStopText(btnStartStop);
             }
         });
 
@@ -200,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 brightnessLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + paramInt + Constants.TEXT_PARENTHESES_CLOSE);
                 lightLevel = paramInt;
                 startLightService();
-                changeStartNowButtonText(startNowButton);
+                changeBtnStartStopText(btnStartStop);
             }
         });
     }
@@ -303,11 +309,15 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private void changeStartNowButtonText(Button startNowButton) {
+    private void changeBtnStartStopText(Button btnStartStop) {
         if (isLightOn) {
-            startNowButton.setText(Constants.TEXT_STOP);
+            btnStartStop.setText(R.string.stop);
+            btnStartStop.setBackgroundTintList(
+                    ContextCompat.getColorStateList(this, R.color.stop_color));
         } else {
-            startNowButton.setText(Constants.TEXT_START);
+            btnStartStop.setText(R.string.start);
+            btnStartStop.setBackgroundTintList(
+                    ContextCompat.getColorStateList(this, R.color.start_color));
         }
     }
 

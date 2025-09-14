@@ -35,8 +35,6 @@ public class Constants {
 
     public static final String TEXT_READ_MODE = "Read Mode";
     public static final String TEXT_READ_MODE_MSG = "Read Mode is running";
-    public static final String TEXT_STOP = "Stop Now";
-    public static final String TEXT_START = "Start Now";
     public static final String TEXT_PARENTHESES_OPEN = "(";
     public static final String TEXT_PARENTHESES_CLOSE = "%)";
 

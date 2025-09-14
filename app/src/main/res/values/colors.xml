@@ -20,5 +20,8 @@
     <color name="spinner_border_dark">#BBBBBB</color>
 
     <!-- Button -->
-    <color name="button_background">#43A047</color>
+    <color name="start_color">#4CAF50</color> <!-- green -->
+    <color name="stop_color">#F44336</color> <!-- red -->
+    <color name="gray_disabled">#BDBDBD</color>
+    <color name="button_text_color">#FFFFFF</color> <!-- white -->
 </resources>
