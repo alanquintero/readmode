@@ -90,9 +90,12 @@ public class MainActivity extends AppCompatActivity {
         // Shared Preferences
         sharedPreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         int prefColorDropdownPosition = sharedPreferences.getInt(Constants.PREF_COLOR_DROPDOWN, Constants.DEFAULT_COLOR_DROPDOWN_POSITION);
-        String prefColor = sharedPreferences.getString(Constants.PREF_COLOR, Constants.COLOR_WHITE);
         int prefColorIntensity = sharedPreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
         int prefBrightness = sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
+
+        // Disabling the bars
+        seekColorBar.setEnabled(false);
+        seekBrightnessBar.setEnabled(false);
 
         // Color names and corresponding hex codes
         final String colorNone = getString(R.string.color_none);
@@ -156,6 +159,13 @@ public class MainActivity extends AppCompatActivity {
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    seekColorBar.setEnabled(false);
+                    seekBrightnessBar.setEnabled(false);
+                } else {
+                    seekColorBar.setEnabled(true);
+                    seekBrightnessBar.setEnabled(true);
+                }
                 if (isDropDownInitializing[0]) {
                     // Ignore the initial selection triggered by setSelection
                     isDropDownInitializing[0] = false;
