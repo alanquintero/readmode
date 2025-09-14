@@ -109,6 +109,14 @@
             android:layout_height="wrap_content"
             android:progress="50" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/customColorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btn_custom_color"
+            android:text="@string/custom_color"
+            android:visibility="gone" />
+
         <!-- Start Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnStartStop"

@@ -28,6 +28,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class MainActivity extends AppCompatActivity {
 
     private boolean isReadModeOn = false;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int dropDownPosition = 0;
 
+    private String prefCustomColor = Constants.COLOR_WHITE;
     private String customColor = Constants.DEFAULT_TEXT_COLOR;
     private SharedPreferences sharedPreferences;
 
@@ -86,12 +89,14 @@ public class MainActivity extends AppCompatActivity {
         final TextView brightnessLevelText = findViewById(R.id.brightnessLevelPercentageText);
         final Button btnStartStop = findViewById(R.id.btnStartStop);
         final Spinner colorSpinner = findViewById(R.id.colorSpinner);
+        final Button customColorButton = findViewById(R.id.customColorButton);
 
         // Shared Preferences
         sharedPreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         int prefColorDropdownPosition = sharedPreferences.getInt(Constants.PREF_COLOR_DROPDOWN, Constants.DEFAULT_COLOR_DROPDOWN_POSITION);
         int prefColorIntensity = sharedPreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
         int prefBrightness = sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
+        prefCustomColor = sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.COLOR_WHITE);
 
         // Disabling the bars
         seekColorBar.setEnabled(false);
@@ -117,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 Color.parseColor(Constants.COLOR_SOFT_BLUE),  // Soft Blue
                 Color.WHITE             // CUSTOM
         };
+        final int customColorPosition = colorsForDropdownItems.length - 1;
 
         // Flag to ignore initial selection
         final boolean[] isDropDownInitializing = {true};
@@ -176,14 +182,17 @@ public class MainActivity extends AppCompatActivity {
                 if (selectedColor.equals(Constants.COLOR_NONE)) {
                     stopLightService();
                     changeBtnStartStopText(btnStartStop);
+                    customColorButton.setVisibility(View.GONE);
                 } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
-                    openCustomColorDialog(btnStartStop);
+                    openCustomColorDialog(colorSpinner, btnStartStop);
+                    customColorButton.setVisibility(View.VISIBLE);
                     adapter.notifyDataSetChanged();
                 } else {
                     // Apply selected color
                     saveProperty(Constants.PREF_COLOR, selectedColor);
                     startLightService();
                     changeBtnStartStopText(btnStartStop);
+                    customColorButton.setVisibility(View.GONE);
                 }
                 saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
             }
@@ -193,10 +202,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        customColorButton.setOnClickListener(v -> openCustomColorDialog(colorSpinner, btnStartStop));
+
         // Set selection if found
         if (prefColorDropdownPosition >= 0) {
             dropDownPosition = prefColorDropdownPosition;
             colorSpinner.setSelection(prefColorDropdownPosition);
+            if (prefColorDropdownPosition == customColorPosition) {
+                customColorButton.setVisibility(View.VISIBLE);
+            }
         }
 
         isReadModeOn = sharedPreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
@@ -272,7 +286,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void openCustomColorDialog(final Button btnStartStop) {
+    private void openCustomColorDialog(final Spinner colorSpinner, final Button btnStartStop) {
+        stopLightService();
+
         // Inflate the dialog layout
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_color_picker, null);
         final View colorPreview = dialogView.findViewById(R.id.colorPreview);
@@ -280,8 +296,8 @@ public class MainActivity extends AppCompatActivity {
         final SeekBar seekGreen = dialogView.findViewById(R.id.seekGreen);
         final SeekBar seekBlue = dialogView.findViewById(R.id.seekBlue);
 
-        // Initial color (optional)
-        int initialColor = Color.WHITE;
+        // Initial color
+        int initialColor = Color.parseColor(prefCustomColor);
         seekRed.setProgress(Color.red(initialColor));
         seekGreen.setProgress(Color.green(initialColor));
         seekBlue.setProgress(Color.blue(initialColor));
@@ -323,7 +339,10 @@ public class MainActivity extends AppCompatActivity {
                     changeBtnStartStopText(btnStartStop);
                     customColor = chosenColorHex;
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // Set dropdown to first option (No color)
+                    colorSpinner.setSelection(0);
+                })
                 .show();
     }
 

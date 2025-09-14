@@ -10,6 +10,9 @@
     <color name="colorPrimary">#90CAF9</color>
     <color name="colorOnPrimary">#000000</color>
 
-    <!-- Button -->
+    <!-- Banner -->
     <color name="banner_background">#B0B0B0</color>
+
+    <!-- Buttons -->
+    <color name="btn_custom_color">#505050</color>
 </resources>

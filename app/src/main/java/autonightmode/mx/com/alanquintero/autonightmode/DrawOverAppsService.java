@@ -148,7 +148,7 @@ public class DrawOverAppsService extends Service {
                         break;
                     case Constants.CUSTOM_COLOR:
                         final String customColor = sharedpreferences.getString(Constants.PREF_CUSTOM_COLOR, "");
-                        if(!customColor.isEmpty()) {
+                        if (!customColor.isEmpty()) {
                             int color = Color.parseColor(customColor);
                             int alpha = 120;
                             int red = Color.red(color);
