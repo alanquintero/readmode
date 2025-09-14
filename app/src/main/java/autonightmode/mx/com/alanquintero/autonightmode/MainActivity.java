@@ -4,6 +4,7 @@
 package autonightmode.mx.com.alanquintero.autonightmode;
 
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     stopLightService();
                     changeStartNowButtonText(startNowButton);
                 } else if (selectedColor.equals("CUSTOM")) {
-                    // TODO: Open a color picker dialog
+                    openCustomColorDialog();
                 } else {
                     // Apply selected color
                     saveProperty(Constants.COLOR, selectedColor);
@@ -210,6 +211,59 @@ public class MainActivity extends AppCompatActivity {
             stopLightService();
         }
         super.onDestroy();
+    }
+
+    private void openCustomColorDialog() {
+        // Inflate the dialog layout
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_color_picker, null);
+        final View colorPreview = dialogView.findViewById(R.id.colorPreview);
+        final SeekBar seekRed = dialogView.findViewById(R.id.seekRed);
+        final SeekBar seekGreen = dialogView.findViewById(R.id.seekGreen);
+        final SeekBar seekBlue = dialogView.findViewById(R.id.seekBlue);
+
+        // Initial color (optional)
+        int initialColor = Color.WHITE;
+        seekRed.setProgress(Color.red(initialColor));
+        seekGreen.setProgress(Color.green(initialColor));
+        seekBlue.setProgress(Color.blue(initialColor));
+        colorPreview.setBackgroundColor(initialColor);
+
+        // Update preview when SeekBars change
+        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                int color = Color.rgb(seekRed.getProgress(), seekGreen.getProgress(), seekBlue.getProgress());
+                colorPreview.setBackgroundColor(color);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        };
+
+        seekRed.setOnSeekBarChangeListener(listener);
+        seekGreen.setOnSeekBarChangeListener(listener);
+        seekBlue.setOnSeekBarChangeListener(listener);
+
+        // Build the dialog
+        new AlertDialog.Builder(this)
+                .setTitle("Choose Custom Color")
+                .setView(dialogView)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    int red = seekRed.getProgress();
+                    int green = seekGreen.getProgress();
+                    int blue = seekBlue.getProgress();
+                    String chosenColorHex = String.format("#%02X%02X%02X", red, green, blue);
+                    saveProperty(Constants.COLOR, chosenColorHex);
+                    startLightService();
+                    //changeStartNowButtonText(startNowButton);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void startLightService() {

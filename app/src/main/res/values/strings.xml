@@ -9,6 +9,10 @@
     <string name="color_warm_sepia">Warm Sepia</string>
     <string name="color_soft_blue">Soft Blue</string>
     <string name="color_custom">Custom</string>
+    <!-- custom color -->
+    <string name="color_red">Red</string>
+    <string name="color_green">Green</string>
+    <string name="color_blue">Blue</string>
 
     <!-- labels -->
     <string name="select_color">Select a color</string>
