@@ -13,7 +13,7 @@ public class Constants {
 
     public static final String COLOR_SOFT_BLUE = "#DCEBFF";
 
-    public static final String COLOR_CUSTOM = "custom";
+    public static final String CUSTOM_COLOR = "CUSTOM_COLOR";
 
     public static final String COLOR_WHITE = "WHITE";
 
@@ -23,13 +23,16 @@ public class Constants {
     public static final int NOTIFICATION_ID = 10;
 
     public static final String SETTINGS = "SETTINGS";
-    public static final String COLOR_LEVEL = "COLOR_LEVEL";
-    public static final String IS_LIGHT_ON = "IS_LIGHT_ON";
+    public static final String PREF_IS_READ_MODE_ON = "IS_READ_MODE_ON";
 
     public static final String PREF_COLOR_DROPDOWN = "COLOR_DROPDOWN";
-    public static final String COLOR = "COLOR";
+    public static final String PREF_COLOR = "COLOR";
 
-    public static final String LIGHT_LEVEL = "LIGHT_LEVEL";
+    public static final String PREF_CUSTOM_COLOR = "CUSTOM_COLOR";
+
+    public static final String PREF_COLOR_INTENSITY = "COLOR_INTENSITY";
+
+    public static final String PREF_BRIGHTNESS = "BRIGHTNESS";
 
     public static final String VALUE_ZERO = "0";
     public static final String VALUE_FALSE = "false";
@@ -38,7 +41,11 @@ public class Constants {
 
     public static final String TEXT_READ_MODE = "Read Mode";
     public static final String TEXT_READ_MODE_MSG = "Read Mode is running";
-    public static final String TEXT_PARENTHESES_OPEN = "(";
-    public static final String TEXT_PARENTHESES_CLOSE = "%)";
+
+
+    public static final boolean DEFAULT_IS_READ_MODE_ENABLED = false;
+    public static final int DEFAULT_COLOR_DROPDOWN_POSITION = 0;
+    public static final int DEFAULT_BRIGHTNESS = 50;
+    public static final int DEFAULT_COLOR_INTENSITY = 50;
 
 }

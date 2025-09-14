@@ -63,7 +63,7 @@
                 android:id="@+id/colorLevelPercentageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/default_percentage_value"
+                android:text="@string/color_intensity"
                 android:textColor="@color/textPrimary"
                 android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                 android:id="@+id/brightnessLevelPercentageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/default_percentage_value"
+                android:text="@string/brightness_level"
                 android:textColor="@color/textPrimary"
                 android:textStyle="bold" />
 

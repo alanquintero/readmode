@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
@@ -20,10 +21,11 @@ import android.view.WindowManager;
 
 public class DrawOverAppsService extends Service {
 
-    private int level = 0;
-    private int light = 0;
-    private boolean isLightOn = false;
-    private String colorSelected;
+    private boolean isReadModeEnabled = Constants.DEFAULT_IS_READ_MODE_ENABLED;
+    private int colorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
+
+    private int brightness = Constants.DEFAULT_BRIGHTNESS;
+    private String color;
     private View mView;
     private WindowManager.LayoutParams mParams;
     private WindowManager mWindowManager;
@@ -46,12 +48,12 @@ public class DrawOverAppsService extends Service {
         mParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT, windowType, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, PixelFormat.TRANSLUCENT);
 
         sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
-        isLightOn = Boolean.parseBoolean(sharedpreferences.getString(Constants.IS_LIGHT_ON, Constants.VALUE_FALSE));
-        level = Integer.parseInt(sharedpreferences.getString(Constants.COLOR_LEVEL, Constants.VALUE_ZERO));
-        colorSelected = sharedpreferences.getString(Constants.COLOR, Constants.COLOR_WHITE);
-        light = Integer.parseInt(sharedpreferences.getString(Constants.LIGHT_LEVEL, Constants.VALUE_ZERO));
+        isReadModeEnabled = sharedpreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
+        colorIntensity = sharedpreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
+        // colorSelected = sharedpreferences.getString(Constants.COLOR, Constants.COLOR_WHITE);
+        brightness = sharedpreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
 
-        if (!isLightOn) {
+        if (!isReadModeEnabled) {
             mView = new MyLoadView(this);
             mWindowManager.addView(mView, mParams);
             startNotification();
@@ -63,17 +65,17 @@ public class DrawOverAppsService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
-        isLightOn = Boolean.parseBoolean(sharedpreferences.getString(Constants.IS_LIGHT_ON, Constants.VALUE_FALSE));
-        level = Integer.parseInt(sharedpreferences.getString(Constants.COLOR_LEVEL, Constants.VALUE_ZERO));
-        colorSelected = sharedpreferences.getString(Constants.COLOR, Constants.COLOR_WHITE);
-        light = Integer.parseInt(sharedpreferences.getString(Constants.LIGHT_LEVEL, Constants.VALUE_ZERO));
+        isReadModeEnabled = sharedpreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
+        colorIntensity = sharedpreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
+        color = sharedpreferences.getString(Constants.PREF_COLOR, Constants.COLOR_WHITE);
+        brightness = sharedpreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
 
         if (mWindowManager == null) {
             // Safety: ensure WindowManager is initialized
             mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         }
 
-        if (isLightOn) {
+        if (isReadModeEnabled) {
             onUpdate();
         }
         return START_STICKY;
@@ -126,25 +128,35 @@ public class DrawOverAppsService extends Service {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            if (colorSelected != null) {
-                canvas.drawARGB(150 - light, 0, 0, 0);
-                switch (colorSelected) {
+            if (color != null) {
+                canvas.drawARGB(150 - brightness, 0, 0, 0);
+                switch (color) {
                     case Constants.COLOR_SOFT_BEIGE:
-                        canvas.drawARGB(120, 245, 245, 220 - level);
+                        canvas.drawARGB(120, 245, 245, 220 - colorIntensity);
                         break;
                     case Constants.COLOR_LIGHT_GRAY:
-                        canvas.drawARGB(120, 230, 230, 230 - level);
+                        canvas.drawARGB(120, 230, 230, 230 - colorIntensity);
                         break;
                     case Constants.COLOR_PALE_YELLOW:
-                        canvas.drawARGB(120, 255, 255, 210 - level);
+                        canvas.drawARGB(120, 255, 255, 210 - colorIntensity);
                         break;
                     case Constants.COLOR_WARM_SEPIA:
-                        canvas.drawARGB(120, 244, 236, 211 - level);
+                        canvas.drawARGB(120, 244, 236, 211 - colorIntensity);
                         break;
                     case Constants.COLOR_SOFT_BLUE:
-                        canvas.drawARGB(120, 220, 235, 255 - level);
+                        canvas.drawARGB(120, 220, 235, 255 - colorIntensity);
                         break;
-                    case Constants.COLOR_CUSTOM:
+                    case Constants.CUSTOM_COLOR:
+                        final String customColor = sharedpreferences.getString(Constants.PREF_CUSTOM_COLOR, "");
+                        if(!customColor.isEmpty()) {
+                            int color = Color.parseColor(customColor);
+                            int alpha = 120;
+                            int red = Color.red(color);
+                            int green = Color.green(color);
+                            int blue = Color.blue(color);
+                            canvas.drawARGB(alpha, red, green, blue - colorIntensity);
+                        }
+                        break;
                     case Constants.COLOR_NONE:
                     default:
                         break;

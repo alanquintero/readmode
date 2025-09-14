@@ -19,7 +19,8 @@
     <string name="select_color">Select a color</string>
     <string name="intensity">Color Intensity</string>
     <string name="brightness">Brightness</string>
-    <string name="default_percentage_value">(50%)</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
 
     <!-- Button -->
     <string name="start">Start</string>

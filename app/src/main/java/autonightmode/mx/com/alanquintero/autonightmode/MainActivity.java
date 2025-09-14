@@ -87,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Shared Preferences
         sharedPreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
-        int prefColorDropdownPosition = sharedPreferences.getInt(Constants.PREF_COLOR_DROPDOWN, 0);
-        String colorSettings = sharedPreferences.getString(Constants.COLOR, Constants.COLOR_WHITE);
-        String levelSettings = sharedPreferences.getString(Constants.COLOR_LEVEL, Constants.VALUE_EMPTY);
-        String lightSettings = sharedPreferences.getString(Constants.LIGHT_LEVEL, Constants.VALUE_EMPTY);
+        int prefColorDropdownPosition = sharedPreferences.getInt(Constants.PREF_COLOR_DROPDOWN, Constants.DEFAULT_COLOR_DROPDOWN_POSITION);
+        String prefColor = sharedPreferences.getString(Constants.PREF_COLOR, Constants.COLOR_WHITE);
+        int prefColorIntensity = sharedPreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
+        int prefBrightness = sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
 
         // Color names and corresponding hex codes
         final String colorNone = getString(R.string.color_none);
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         final String colorCustom = getString(R.string.color_custom);
 
         final String[] colors = {colorNone, colorSoftBeige, colorLightGray, colorPaleYellow, colorWarmSepia, colorSoftBlue, colorCustom};
-        final String[] colorHex = {Constants.COLOR_NONE, Constants.COLOR_SOFT_BEIGE, Constants.COLOR_LIGHT_GRAY, Constants.COLOR_PALE_YELLOW, Constants.COLOR_WARM_SEPIA, Constants.COLOR_SOFT_BLUE, Constants.COLOR_CUSTOM};
+        final String[] colorHex = {Constants.COLOR_NONE, Constants.COLOR_SOFT_BEIGE, Constants.COLOR_LIGHT_GRAY, Constants.COLOR_PALE_YELLOW, Constants.COLOR_WARM_SEPIA, Constants.COLOR_SOFT_BLUE, Constants.CUSTOM_COLOR};
         final int[] colorsForDropdownItems = {
                 Color.TRANSPARENT,            // NONE
                 Color.parseColor(Constants.COLOR_SOFT_BEIGE),  // Soft Beige
@@ -148,14 +148,13 @@ public class MainActivity extends AppCompatActivity {
                 dropDownPosition = position;
                 String selectedColor = colorHex[position];
                 if (selectedColor.equals(Constants.COLOR_NONE)) {
-                    saveProperty(Constants.COLOR, selectedColor);
                     stopLightService();
                     changeBtnStartStopText(btnStartStop);
-                } else if (selectedColor.equals(Constants.COLOR_CUSTOM)) {
-                    openCustomColorDialog();
+                } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
+                    openCustomColorDialog(btnStartStop);
                 } else {
-                    // Apply selected color
-                    saveProperty(Constants.COLOR, selectedColor);
+                    // Apply selected color'
+                    saveProperty(Constants.PREF_COLOR, selectedColor);
                     startLightService();
                     changeBtnStartStopText(btnStartStop);
                 }
@@ -173,18 +172,18 @@ public class MainActivity extends AppCompatActivity {
             colorSpinner.setSelection(prefColorDropdownPosition);
         }
 
-        isReadModeOn = Boolean.parseBoolean(sharedPreferences.getString(Constants.IS_LIGHT_ON, Constants.VALUE_FALSE));
+        isReadModeOn = sharedPreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
 
-        if (levelSettings != null && !levelSettings.equals(Constants.VALUE_EMPTY)) {
-            seekColorBar.setProgress(Integer.parseInt(levelSettings));
-            colorLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + levelSettings + Constants.TEXT_PARENTHESES_CLOSE);
-            colorIntensity = Integer.parseInt(levelSettings);
+        if (prefColorIntensity >= 0) {
+            seekColorBar.setProgress(prefColorIntensity);
+            colorLevelText.setText(getString(R.string.color_intensity, prefColorIntensity));
+            colorIntensity = prefColorIntensity;
         }
 
-        if (lightSettings != null && !lightSettings.equals("")) {
-            seekBrightnessBar.setProgress(Integer.parseInt(lightSettings));
-            brightnessLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + lightSettings + Constants.TEXT_PARENTHESES_CLOSE);
-            brightness = Integer.parseInt(lightSettings);
+        if (prefBrightness >= 0) {
+            seekBrightnessBar.setProgress(prefBrightness);
+            brightnessLevelText.setText(getString(R.string.brightness_level, prefBrightness));
+            brightness = prefBrightness;
         }
 
 
@@ -215,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onProgressChanged(SeekBar bar, int paramInt, boolean paramBoolean) {
-                colorLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + paramInt + Constants.TEXT_PARENTHESES_CLOSE);
+                colorLevelText.setText(getString(R.string.color_intensity, paramInt));
                 colorIntensity = paramInt;
                 startLightService();
                 changeBtnStartStopText(btnStartStop);
@@ -230,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onProgressChanged(SeekBar bar, int paramInt, boolean paramBoolean) {
-                brightnessLevelText.setText(Constants.TEXT_PARENTHESES_OPEN + paramInt + Constants.TEXT_PARENTHESES_CLOSE);
+                brightnessLevelText.setText(getString(R.string.brightness_level, paramInt));
                 brightness = paramInt;
                 startLightService();
                 changeBtnStartStopText(btnStartStop);
@@ -246,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void openCustomColorDialog() {
+    private void openCustomColorDialog(final Button btnStartStop) {
         // Inflate the dialog layout
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_color_picker, null);
         final View colorPreview = dialogView.findViewById(R.id.colorPreview);
@@ -291,9 +290,10 @@ public class MainActivity extends AppCompatActivity {
                     int green = seekGreen.getProgress();
                     int blue = seekBlue.getProgress();
                     String chosenColorHex = String.format("#%02X%02X%02X", red, green, blue);
-                    saveProperty(Constants.COLOR, chosenColorHex);
+                    saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
+                    saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
                     startLightService();
-                    //changeStartNowButtonText(startNowButton);
+                    changeBtnStartStopText(btnStartStop);
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
@@ -306,9 +306,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         isReadModeOn = true;
-        saveProperty(Constants.IS_LIGHT_ON, Constants.VALUE_TRUE);
-        saveProperty(Constants.LIGHT_LEVEL, String.valueOf(brightness));
-        saveProperty(Constants.COLOR_LEVEL, String.valueOf(colorIntensity));
+        saveProperty(Constants.PREF_IS_READ_MODE_ON, true);
+        saveProperty(Constants.PREF_BRIGHTNESS, brightness);
+        saveProperty(Constants.PREF_COLOR_INTENSITY, colorIntensity);
         readModeIntent = new Intent(this, DrawOverAppsService.class);
 
         if (!isMyServiceRunning(readModeIntent.getClass())) {
@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void stopLightService() {
         isReadModeOn = false;
-        saveProperty(Constants.IS_LIGHT_ON, Constants.VALUE_FALSE);
+        saveProperty(Constants.PREF_IS_READ_MODE_ON, false);
         if (readModeIntent != null) {
             stopService(readModeIntent);
         } else {
@@ -348,13 +348,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void saveProperty(final String property, String value) {
+    private void saveProperty(final String property, final String value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(property, value);
         editor.apply();
     }
 
-    private void saveProperty(final String property, int value) {
+    private void saveProperty(final String property, final boolean value) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(property, value);
+        editor.apply();
+    }
+
+    private void saveProperty(final String property, final int value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(property, value);
         editor.apply();
