@@ -25,7 +25,10 @@ public class Constants {
     public static final String SETTINGS = "SETTINGS";
     public static final String COLOR_LEVEL = "COLOR_LEVEL";
     public static final String IS_LIGHT_ON = "IS_LIGHT_ON";
+
+    public static final String PREF_COLOR_DROPDOWN = "COLOR_DROPDOWN";
     public static final String COLOR = "COLOR";
+
     public static final String LIGHT_LEVEL = "LIGHT_LEVEL";
 
     public static final String VALUE_ZERO = "0";

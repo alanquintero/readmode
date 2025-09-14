@@ -3,6 +3,7 @@
     <string name="app_name">Read Mode</string>
 
     <!-- Colors -->
+    <string name="color_none">No color</string>
     <string name="color_soft_beige">Soft Beige</string>
     <string name="color_light_gray">Light Gray</string>
     <string name="color_pale_yellow">Pale Yellow</string>
