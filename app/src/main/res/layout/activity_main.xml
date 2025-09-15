@@ -113,7 +113,7 @@
             android:id="@+id/customColorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/btn_custom_color"
+            android:backgroundTint="@color/btn_default_custom_color"
             android:text="@string/custom_color"
             android:visibility="gone" />
 

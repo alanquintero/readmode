@@ -14,5 +14,5 @@
     <color name="banner_background">#B0B0B0</color>
 
     <!-- Buttons -->
-    <color name="btn_custom_color">#505050</color>
+    <color name="btn_default_custom_color">#505050</color>
 </resources>
