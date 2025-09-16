@@ -24,8 +24,8 @@ import java.util.Objects;
  */
 public class ColorSettings {
 
-    private final String color;
-    private final String colorHex;
+    private final @NonNull String color;
+    private final @NonNull String colorHex;
     private int intensity;
     private int brightness;
 
@@ -40,7 +40,7 @@ public class ColorSettings {
         return intensity;
     }
 
-    public void setIntensity(int intensity) {
+    public void setIntensity(final int intensity) {
         this.intensity = intensity;
     }
 
@@ -48,7 +48,7 @@ public class ColorSettings {
         return brightness;
     }
 
-    public void setBrightness(int brightness) {
+    public void setBrightness(final int brightness) {
         this.brightness = brightness;
     }
 

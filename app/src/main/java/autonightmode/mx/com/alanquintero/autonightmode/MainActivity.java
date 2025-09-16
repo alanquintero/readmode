@@ -96,9 +96,7 @@ public class MainActivity extends AppCompatActivity {
         final Type type = new TypeToken<Map<String, ColorSettings>>() {
         }.getType();
         colorSettingsMap = gson.fromJson(json, type);
-        System.out.println("batman");
         if (colorSettingsMap.isEmpty()) {
-            System.out.println("batman colorSettingsMap is empty");
             // There is no pref saved, create the map with default settings
             colorSettingsMap.put(Constants.COLOR_NONE, new ColorSettings(Constants.COLOR_NONE, Constants.COLOR_NONE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
             colorSettingsMap.put(Constants.SOFT_BEIGE, new ColorSettings(Constants.SOFT_BEIGE, Constants.COLOR_SOFT_BEIGE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
@@ -107,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
             colorSettingsMap.put(Constants.WARM_SEPIA, new ColorSettings(Constants.WARM_SEPIA, Constants.COLOR_WARM_SEPIA, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
             colorSettingsMap.put(Constants.SOFT_BLUE, new ColorSettings(Constants.SOFT_BLUE, Constants.COLOR_SOFT_BLUE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
             colorSettingsMap.put(Constants.CUSTOM_COLOR, new ColorSettings(Constants.CUSTOM_COLOR, Constants.CUSTOM_COLOR, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
-        } else {
-            System.out.println("batman colorSettingsMap from properties");
         }
     }
 
@@ -214,9 +210,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (isDropDownInitializing[0]) {
                     // Ignore the initial selection triggered by setSelection
-                    if (position > 0) {
-                        btnStartStop.setBackgroundColor(getResources().getColor(R.color.start_color));
-                    }
                     isDropDownInitializing[0] = false;
                     return;
                 }
@@ -224,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
                 String selectedColor = colorHex[position];
 
                 // change the brightness and color intensity based on selected color
-                System.out.println("batman get color settings for: " + dropDownOptions[dropDownPosition]);
                 final ColorSettings colorSettings = colorSettingsMap.get(dropDownOptions[dropDownPosition]);
                 if (colorSettings != null) {
                     currentColorIntensity = colorSettings.getIntensity();
@@ -296,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        applyStartStopButtonStyle(btnStartStop);
 
         // SeekBars
         seekColorBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -509,7 +502,6 @@ public class MainActivity extends AppCompatActivity {
             colorSettings.setIntensity(currentColorIntensity);
             colorSettingsMap.put(selectedColor, colorSettings);
         }
-        System.out.println("batman");
         for (ColorSettings value : colorSettingsMap.values()) {
             System.out.println(value);
         }
