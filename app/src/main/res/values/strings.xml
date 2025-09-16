@@ -34,4 +34,7 @@
     <string name="choose_custom_color">Choose Custom Color</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Read Mode is running</string>
 </resources>

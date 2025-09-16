@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.WindowManager;
 
 public class DrawOverAppsService extends Service {
-
     private boolean isReadModeEnabled = Constants.DEFAULT_IS_READ_MODE_ENABLED;
     private int colorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
 
@@ -66,7 +65,7 @@ public class DrawOverAppsService extends Service {
         sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         isReadModeEnabled = sharedpreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
         colorIntensity = sharedpreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
-        color = sharedpreferences.getString(Constants.PREF_COLOR, Constants.COLOR_WHITE);
+        color = sharedpreferences.getString(Constants.PREF_COLOR, Constants.DEFAULT_COLOR_WHITE);
         brightness = sharedpreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
 
         if (mWindowManager == null) {
@@ -108,7 +107,9 @@ public class DrawOverAppsService extends Service {
         Intent notificationIntent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        Notification notification = new Notification.Builder(this).setContentTitle(Constants.TEXT_READ_MODE).setContentText(Constants.TEXT_READ_MODE_MSG).setSmallIcon(R.drawable.moon).setContentIntent(pendingIntent).setTicker(Constants.TEXT_READ_MODE_MSG).build();
+        final String title = getString(R.string.app_name);
+        final String notificationMsg = getString(R.string.notification_msg);
+        Notification notification = new Notification.Builder(this).setContentTitle(title).setContentText(notificationMsg).setSmallIcon(R.drawable.moon).setContentIntent(pendingIntent).setTicker(notificationMsg).build();
 
         startForeground(Constants.NOTIFICATION_ID, notification);
     }

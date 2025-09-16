@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private int currentBrightness = Constants.DEFAULT_BRIGHTNESS;
 
     private int prefColorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
-    private String prefCustomColor = Constants.COLOR_WHITE;
+    private String prefCustomColor = Constants.DEFAULT_COLOR_WHITE;
 
     private final Gson gson = new Gson();
 
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private void initSharedPreferences() {
         sharedPreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         prefColorDropdownPosition = sharedPreferences.getInt(Constants.PREF_COLOR_DROPDOWN, Constants.DEFAULT_COLOR_DROPDOWN_POSITION);
-        prefCustomColor = sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.COLOR_WHITE);
+        prefCustomColor = sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.DEFAULT_COLOR_WHITE);
         currentColorIntensity = sharedPreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
         currentBrightness = sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
 
@@ -515,8 +515,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupStatusBarColor() {
-        int lightModeColor = Color.parseColor(Constants.STATUS_BAR_LIGHT_BACKGROUND_COLOR); // light background
-        int darkModeColor = Color.parseColor(Constants.STATUS_BAR_DARK_BACKGROUND_COLOR);  // dark gray, not pure black
+        int lightModeColor = getResources().getColor(R.color.status_bar_light); // light background
+        int darkModeColor = getResources().getColor(R.color.status_bar_dark);  // dark gray, not pure black
 
         int currentNightMode = getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK;

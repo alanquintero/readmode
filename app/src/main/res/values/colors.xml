@@ -10,6 +10,10 @@
     <color name="colorPrimary">#2196F3</color>
     <color name="colorOnPrimary">#FFFFFF</color>
 
+    <!-- Status bar -->
+    <color name="status_bar_light">#FDFDFD</color>
+    <color name="status_bar_dark">#121212</color>
+
     <!-- Banner -->
     <color name="banner_background">#424242</color>
 
