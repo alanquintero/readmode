@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -31,16 +30,33 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
+
+import com.google.gson.reflect.TypeToken;
+
 public class MainActivity extends AppCompatActivity {
 
     private boolean isReadModeOn = false;
     private Intent readModeIntent;
-    private int colorIntensity = 0;
-    private int brightness = 0;
 
-    private int dropDownPosition = 0;
+    private int dropDownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
 
+    private int currentColorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
+    private int currentBrightness = Constants.DEFAULT_BRIGHTNESS;
+
+    private int prefColorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
     private String prefCustomColor = Constants.COLOR_WHITE;
+
+    private final Gson gson = new Gson();
+
+    private final String[] dropDownOptions = new String[]{Constants.COLOR_NONE, Constants.SOFT_BEIGE, Constants.LIGHT_GRAY,
+            Constants.PALE_YELLOW, Constants.WARM_SEPIA, Constants.SOFT_BLUE, Constants.CUSTOM_COLOR};
+    private Map<String, ColorSettings> colorSettingsMap = new HashMap<>();
     private SharedPreferences sharedPreferences;
 
     private static final int REQUEST_OVERLAY_PERMISSION = 1234;
@@ -60,9 +76,40 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setupStatusBarColor();
-
+        initSharedPreferences();
 
         initUI();
+    }
+
+    private void initSharedPreferences() {
+        sharedPreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
+        prefColorDropdownPosition = sharedPreferences.getInt(Constants.PREF_COLOR_DROPDOWN, Constants.DEFAULT_COLOR_DROPDOWN_POSITION);
+        prefCustomColor = sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.COLOR_WHITE);
+        currentColorIntensity = sharedPreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
+        currentBrightness = sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
+
+        initColorSettings();
+    }
+
+    private void initColorSettings() {
+        final String json = sharedPreferences.getString(Constants.PREF_COLOR_SETTINGS, "{}");
+        final Type type = new TypeToken<Map<String, ColorSettings>>() {
+        }.getType();
+        colorSettingsMap = gson.fromJson(json, type);
+        System.out.println("batman");
+        if (colorSettingsMap.isEmpty()) {
+            System.out.println("batman colorSettingsMap is empty");
+            // There is no pref saved, create the map with default settings
+            colorSettingsMap.put(Constants.COLOR_NONE, new ColorSettings(Constants.COLOR_NONE, Constants.COLOR_NONE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            colorSettingsMap.put(Constants.SOFT_BEIGE, new ColorSettings(Constants.SOFT_BEIGE, Constants.COLOR_SOFT_BEIGE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            colorSettingsMap.put(Constants.LIGHT_GRAY, new ColorSettings(Constants.LIGHT_GRAY, Constants.COLOR_LIGHT_GRAY, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            colorSettingsMap.put(Constants.PALE_YELLOW, new ColorSettings(Constants.PALE_YELLOW, Constants.COLOR_PALE_YELLOW, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            colorSettingsMap.put(Constants.WARM_SEPIA, new ColorSettings(Constants.WARM_SEPIA, Constants.COLOR_WARM_SEPIA, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            colorSettingsMap.put(Constants.SOFT_BLUE, new ColorSettings(Constants.SOFT_BLUE, Constants.COLOR_SOFT_BLUE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            colorSettingsMap.put(Constants.CUSTOM_COLOR, new ColorSettings(Constants.CUSTOM_COLOR, Constants.CUSTOM_COLOR, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+        } else {
+            System.out.println("batman colorSettingsMap from properties");
+        }
     }
 
     @Override
@@ -90,13 +137,6 @@ public class MainActivity extends AppCompatActivity {
         final Button btnStartStop = findViewById(R.id.btnStartStop);
         final Spinner colorSpinner = findViewById(R.id.colorSpinner);
         final Button customColorButton = findViewById(R.id.customColorButton);
-
-        // Shared Preferences
-        sharedPreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
-        int prefColorDropdownPosition = sharedPreferences.getInt(Constants.PREF_COLOR_DROPDOWN, Constants.DEFAULT_COLOR_DROPDOWN_POSITION);
-        int prefColorIntensity = sharedPreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
-        int prefBrightness = sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
-        prefCustomColor = sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.COLOR_WHITE);
 
         // Disabling the bars
         seekColorBar.setEnabled(false);
@@ -174,11 +214,28 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (isDropDownInitializing[0]) {
                     // Ignore the initial selection triggered by setSelection
+                    if (position > 0) {
+                        btnStartStop.setBackgroundColor(getResources().getColor(R.color.start_color));
+                    }
                     isDropDownInitializing[0] = false;
                     return;
                 }
                 dropDownPosition = position;
                 String selectedColor = colorHex[position];
+
+                // change the brightness and color intensity based on selected color
+                System.out.println("batman get color settings for: " + dropDownOptions[dropDownPosition]);
+                final ColorSettings colorSettings = colorSettingsMap.get(dropDownOptions[dropDownPosition]);
+                if (colorSettings != null) {
+                    currentColorIntensity = colorSettings.getIntensity();
+                    seekColorBar.setProgress(currentColorIntensity);
+                    colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
+
+                    currentBrightness = colorSettings.getBrightness();
+                    seekBrightnessBar.setProgress(currentBrightness);
+                    brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
+                }
+
                 if (selectedColor.equals(Constants.COLOR_NONE)) {
                     customColorButton.setVisibility(View.GONE);
                     stopReadMode(btnStartStop);
@@ -193,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
                     customColorButton.setVisibility(View.GONE);
                     startRadMode(btnStartStop);
                 }
+
                 saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
             }
 
@@ -214,18 +272,15 @@ public class MainActivity extends AppCompatActivity {
 
         isReadModeOn = sharedPreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
 
-        if (prefColorIntensity >= 0) {
-            seekColorBar.setProgress(prefColorIntensity);
-            colorLevelText.setText(getString(R.string.color_intensity, prefColorIntensity));
-            colorIntensity = prefColorIntensity;
+        if (currentColorIntensity >= 0) {
+            seekColorBar.setProgress(currentColorIntensity);
+            colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
         }
 
-        if (prefBrightness >= 0) {
-            seekBrightnessBar.setProgress(prefBrightness);
-            brightnessLevelText.setText(getString(R.string.brightness_level, prefBrightness));
-            brightness = prefBrightness;
+        if (currentBrightness >= 0) {
+            seekBrightnessBar.setProgress(currentBrightness);
+            brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
         }
-
 
         // *** START NOW ***
         btnStartStop.setOnClickListener(v -> {
@@ -233,8 +288,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.select_a_color_first, Toast.LENGTH_SHORT).show();
             } else {
                 if (!isReadModeOn) {
-                    colorIntensity = seekColorBar.getProgress();
-                    brightness = seekBrightnessBar.getProgress();
+                    currentColorIntensity = seekColorBar.getProgress();
+                    currentBrightness = seekBrightnessBar.getProgress();
                     startRadMode(btnStartStop);
                 } else {
                     stopReadMode(btnStartStop);
@@ -244,30 +299,34 @@ public class MainActivity extends AppCompatActivity {
 
         // SeekBars
         seekColorBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    currentColorIntensity = progress;
+                    colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
+                    startRadMode(btnStartStop);
+                }
+            }
+
             public void onStopTrackingTouch(SeekBar bar) {
             }
 
             public void onStartTrackingTouch(SeekBar bar) {
-            }
-
-            public void onProgressChanged(SeekBar bar, int paramInt, boolean paramBoolean) {
-                colorLevelText.setText(getString(R.string.color_intensity, paramInt));
-                colorIntensity = paramInt;
-                startRadMode(btnStartStop);
             }
         });
 
         seekBrightnessBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    currentBrightness = progress;
+                    brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
+                    startRadMode(btnStartStop);
+                }
+            }
+
             public void onStopTrackingTouch(SeekBar bar) {
             }
 
             public void onStartTrackingTouch(SeekBar bar) {
-            }
-
-            public void onProgressChanged(SeekBar bar, int paramInt, boolean paramBoolean) {
-                brightnessLevelText.setText(getString(R.string.brightness_level, paramInt));
-                brightness = paramInt;
-                startRadMode(btnStartStop);
             }
         });
     }
@@ -350,8 +409,9 @@ public class MainActivity extends AppCompatActivity {
 
         // save properties
         saveProperty(Constants.PREF_IS_READ_MODE_ON, true);
-        saveProperty(Constants.PREF_BRIGHTNESS, brightness);
-        saveProperty(Constants.PREF_COLOR_INTENSITY, colorIntensity);
+        saveProperty(Constants.PREF_BRIGHTNESS, currentBrightness);
+        saveProperty(Constants.PREF_COLOR_INTENSITY, currentColorIntensity);
+        saveColorSettingsProperty();
 
         // change button style
         applyStartStopButtonStyle(btnStartStop);
@@ -367,6 +427,9 @@ public class MainActivity extends AppCompatActivity {
 
         // save properties
         saveProperty(Constants.PREF_IS_READ_MODE_ON, false);
+        saveProperty(Constants.PREF_BRIGHTNESS, currentBrightness);
+        saveProperty(Constants.PREF_COLOR_INTENSITY, currentColorIntensity);
+        saveColorSettingsProperty();
 
         // change button style
         if (btnStartStop != null) {
@@ -434,6 +497,28 @@ public class MainActivity extends AppCompatActivity {
     private void saveProperty(final @NonNull String property, final int value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(property, value);
+        editor.apply();
+    }
+
+    private void saveColorSettingsProperty() {
+        // update the brightness and color intensity values for the selected color
+        final String selectedColor = dropDownOptions[dropDownPosition];
+        final ColorSettings colorSettings = colorSettingsMap.get(selectedColor);
+        if (colorSettings != null) {
+            colorSettings.setBrightness(currentBrightness);
+            colorSettings.setIntensity(currentColorIntensity);
+            colorSettingsMap.put(selectedColor, colorSettings);
+        }
+        System.out.println("batman");
+        for (ColorSettings value : colorSettingsMap.values()) {
+            System.out.println(value);
+        }
+
+        Gson gson = new Gson();
+        String json = gson.toJson(colorSettingsMap);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(Constants.PREF_COLOR_SETTINGS, json);
         editor.apply();
     }
 

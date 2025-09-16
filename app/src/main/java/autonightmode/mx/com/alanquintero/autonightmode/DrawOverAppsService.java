@@ -50,7 +50,6 @@ public class DrawOverAppsService extends Service {
         sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         isReadModeEnabled = sharedpreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
         colorIntensity = sharedpreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
-        // colorSelected = sharedpreferences.getString(Constants.COLOR, Constants.COLOR_WHITE);
         brightness = sharedpreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
 
         if (!isReadModeEnabled) {
