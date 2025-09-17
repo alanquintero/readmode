@@ -14,12 +14,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -47,7 +50,6 @@ import com.google.gson.reflect.TypeToken;
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private static final int REQUEST_OVERLAY_PERMISSION = 1234;
 
     // SharedPreferences and Gson
     private SharedPreferences sharedPreferences;
@@ -68,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
     private Intent readModeIntent;
 
     // Colors
+    // Color hex corresponding to each dropdown item
     private final String[] colorHex = {Constants.COLOR_NONE, Constants.COLOR_SOFT_BEIGE, Constants.COLOR_LIGHT_GRAY, Constants.COLOR_PALE_YELLOW, Constants.COLOR_WARM_SEPIA, Constants.COLOR_SOFT_BLUE, Constants.CUSTOM_COLOR};
-    private final int[] colorsForDropdownItems = {
+    // Background color to each dropdown item for better visual distinction
+    private final int[] backgroundColorForDropdownItems = {
             Color.TRANSPARENT,            // NONE
             Color.parseColor(Constants.COLOR_SOFT_BEIGE),  // Soft Beige
             Color.parseColor(Constants.COLOR_LIGHT_GRAY),  // Light Gray
@@ -78,38 +82,40 @@ public class MainActivity extends AppCompatActivity {
             Color.parseColor(Constants.COLOR_SOFT_BLUE),  // Soft Blue
             Color.WHITE             // CUSTOM
     };
-
+    // Color name corresponding to each dropdown item
     private String[] colors = {};
-    private final int customColorPosition = colorsForDropdownItems.length - 1;
+    private final int customColorDropdownPosition = backgroundColorForDropdownItems.length - 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Register Activity Result launcher for overlay permission
+        final ActivityResultLauncher<Intent> overlayPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+                        // Permission not granted
+                        Log.w(TAG, "No overlay permission granted, finishing the app");
+                        finish();
+                    } else {
+                        // Permission granted
+                        initUI();
+                    }
+                }
+        );
+
         // Check overlay permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-            Intent intent = new Intent(
+            Log.i(TAG, "Requesting overlay permission");
+            final Intent intent = new Intent(
                     Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName())
             );
-            startActivityForResult(intent, REQUEST_OVERLAY_PERMISSION);
-            return;
-        }
-
-        initUI();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_OVERLAY_PERMISSION) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-                // Permission not granted, just finish activity
-                finish();
-            } else {
-                initUI(); // Permission granted, initialize UI
-            }
+            overlayPermissionLauncher.launch(intent);
+        } else {
+            // Permission already granted or API < 23
+            initUI();
         }
     }
 
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 TextView view = (TextView) super.getView(position, convertView, parent);
-                view.setBackgroundColor(colorsForDropdownItems[position]); // Color for selected item
+                view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for selected item
                 view.setTextColor(Color.BLACK); // Text color
                 return view;
             }
@@ -149,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public View getDropDownView(final int position, final View convertView, final @NonNull ViewGroup parent) {
                 TextView view = (TextView) super.getDropDownView(position, convertView, parent);
-                view.setBackgroundColor(colorsForDropdownItems[position]); // Color for dropdown item
-                if (position == colorsForDropdownItems.length - 1) {
+                view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for dropdown item
+                if (position == customColorDropdownPosition) {
                     int color = Color.parseColor(prefCustomColor);
                     // Calculate brightness
                     int r = Color.red(color);
@@ -191,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 String selectedColor = colorHex[position];
 
                 // change the brightness and color intensity based on selected color
-                setColorSettingsText(colorSettingsText, colors);
+                setColorSettingsText(colorSettingsText);
                 final ColorSettings colorSettings = prefColorSettingsMap.get(Constants.COLOR_DROPDOWN_OPTIONS[currentColorDropdownPosition]);
                 if (colorSettings != null) {
                     currentColorIntensity = colorSettings.getIntensity();
@@ -231,14 +237,12 @@ public class MainActivity extends AppCompatActivity {
         if (prefColorDropdownPosition >= 0) {
             currentColorDropdownPosition = prefColorDropdownPosition;
             colorSpinner.setSelection(prefColorDropdownPosition);
-            setColorSettingsText(colorSettingsText, colors);
-            if (prefColorDropdownPosition == customColorPosition) {
+            setColorSettingsText(colorSettingsText);
+            if (prefColorDropdownPosition == customColorDropdownPosition) {
                 customizeCustomColorButton(customColorButton);
                 customColorButton.setVisibility(View.VISIBLE);
             }
         }
-
-        prefIsReadModeOn = sharedPreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
 
         if (currentColorIntensity >= 0) {
             seekColorIntensityBar.setProgress(currentColorIntensity);
@@ -300,37 +304,60 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initColors() {
-        // Color names and corresponding hex codes
-        final String colorNone = getString(R.string.color_none);
-        final String colorSoftBeige = getString(R.string.color_soft_beige);
-        final String colorLightGray = getString(R.string.color_light_gray);
-        final String colorPaleYellow = getString(R.string.color_pale_yellow);
-        final String colorWarmSepia = getString(R.string.color_warm_sepia);
-        final String colorSoftBlue = getString(R.string.color_soft_blue);
-        final String colorCustom = getString(R.string.color_custom);
-        colors = new String[]{colorNone, colorSoftBeige, colorLightGray, colorPaleYellow, colorWarmSepia, colorSoftBlue, colorCustom};
+    // ---------------------- Status Bar ------------------------
+
+    /**
+     * Sets up the status bar color based on the current system theme (light or dark mode).
+     */
+    private void setupStatusBarColor() {
+        int lightModeColor = getResources().getColor(R.color.status_bar_light); // light background
+        int darkModeColor = getResources().getColor(R.color.status_bar_dark);  // dark gray, not pure black
+
+        int currentNightMode = getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+
+        if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
+            // Light mode
+            getWindow().setStatusBarColor(lightModeColor);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+        } else {
+            // Dark mode
+            getWindow().setStatusBarColor(darkModeColor);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                // Remove light status bar flag to make icons white
+                getWindow().getDecorView().setSystemUiVisibility(0);
+            }
+        }
     }
+
+    // ---------------------- Init methods ------------------------
 
     /**
      * Initialize SharedPreferences and load color settings map.
      */
     private void initSharedPreferences() {
         sharedPreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
+        prefIsReadModeOn = sharedPreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
         prefColorDropdownPosition = sharedPreferences.getInt(Constants.PREF_COLOR_DROPDOWN, Constants.DEFAULT_COLOR_DROPDOWN_POSITION);
         prefCustomColor = sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.DEFAULT_COLOR_WHITE);
         currentColorIntensity = sharedPreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
         currentBrightness = sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
 
-        initPrefColorSettings();
+        initPrefColorSettingsMap();
     }
 
-    private void initPrefColorSettings() {
+    /**
+     * Loads color settings map.
+     */
+    private void initPrefColorSettingsMap() {
         final String json = sharedPreferences.getString(Constants.PREF_COLOR_SETTINGS, "{}");
         final Type type = new TypeToken<Map<String, ColorSettings>>() {
         }.getType();
         prefColorSettingsMap = gson.fromJson(json, type);
         if (prefColorSettingsMap.isEmpty()) {
+            Log.d(TAG, "prefColorSettingsMap is empty, initializing map...");
             // There is no pref saved, create the map with default settings
             prefColorSettingsMap.put(Constants.COLOR_NONE, new ColorSettings(Constants.COLOR_NONE, Constants.COLOR_NONE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
             prefColorSettingsMap.put(Constants.SOFT_BEIGE, new ColorSettings(Constants.SOFT_BEIGE, Constants.COLOR_SOFT_BEIGE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
@@ -342,6 +369,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initialize the color names for the dropdown.
+     */
+    private void initColors() {
+        // Color names for the colors dropdown
+        final String colorNone = getString(R.string.color_none);
+        final String colorSoftBeige = getString(R.string.color_soft_beige);
+        final String colorLightGray = getString(R.string.color_light_gray);
+        final String colorPaleYellow = getString(R.string.color_pale_yellow);
+        final String colorWarmSepia = getString(R.string.color_warm_sepia);
+        final String colorSoftBlue = getString(R.string.color_soft_blue);
+        final String colorCustom = getString(R.string.color_custom);
+        colors = new String[]{colorNone, colorSoftBeige, colorLightGray, colorPaleYellow, colorWarmSepia, colorSoftBlue, colorCustom};
+    }
+
+    // ---------------------- Custom Color Handling ------------------------
+
+    /**
+     * Opens the custom color picker dialog.
+     */
     private void openCustomColorDialog(final @NonNull Button startStopButton, final @NonNull Button customColorButton) {
         stopReadMode(startStopButton);
 
@@ -402,7 +449,7 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
-    private void setColorSettingsText(final @NonNull TextView colorSettingsText, final @NonNull String[] colors) {
+    private void setColorSettingsText(final @NonNull TextView colorSettingsText) {
         final String label = getString(R.string.color_settings_placeholder);
         if (currentColorDropdownPosition == 0) {
             colorSettingsText.setText(label);
@@ -528,29 +575,6 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(Constants.PREF_COLOR_SETTINGS, json);
         editor.apply();
-    }
-
-    private void setupStatusBarColor() {
-        int lightModeColor = getResources().getColor(R.color.status_bar_light); // light background
-        int darkModeColor = getResources().getColor(R.color.status_bar_dark);  // dark gray, not pure black
-
-        int currentNightMode = getResources().getConfiguration().uiMode
-                & Configuration.UI_MODE_NIGHT_MASK;
-
-        if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
-            // Light mode
-            getWindow().setStatusBarColor(lightModeColor);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            }
-        } else {
-            // Dark mode
-            getWindow().setStatusBarColor(darkModeColor);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                // Remove light status bar flag to make icons white
-                getWindow().getDecorView().setSystemUiVisibility(0);
-            }
-        }
     }
 
     @Override
