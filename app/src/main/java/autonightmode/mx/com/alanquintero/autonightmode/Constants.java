@@ -28,6 +28,9 @@ public class Constants {
     public static final String COLOR_SOFT_BLUE = "#DCEBFF";
     public static final String CUSTOM_COLOR = "CUSTOM_COLOR";
 
+    public final static String[] COLOR_DROPDOWN_OPTIONS = new String[]{Constants.COLOR_NONE, Constants.SOFT_BEIGE, Constants.LIGHT_GRAY,
+            Constants.PALE_YELLOW, Constants.WARM_SEPIA, Constants.SOFT_BLUE, Constants.CUSTOM_COLOR};
+
     // Settings
     public static final int NOTIFICATION_ID = 10;
 
