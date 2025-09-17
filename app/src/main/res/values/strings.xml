@@ -9,7 +9,7 @@
     <string name="color_pale_yellow">Pale Yellow</string>
     <string name="color_warm_sepia">Warm Sepia</string>
     <string name="color_soft_blue">Soft Blue</string>
-    <string name="color_custom">● Custom</string>
+    <string name="color_custom">Custom</string>
     <!-- Custom color -->
     <string name="color_red">Red</string>
     <string name="color_green">Green</string>
@@ -17,6 +17,9 @@
 
     <!-- Labels -->
     <string name="select_color">Select a color</string>
+    <string name="color_settings_label">Color settings</string> <!-- shown to user in UI -->
+    <string name="color_settings_placeholder">Color settings</string> <!-- initial/default text -->
+    <string name="color_settings_format">%1$s - %2$s</string> <!-- final combined text -->
     <string name="intensity">Color Intensity</string>
     <string name="brightness">Brightness</string>
     <string name="brightness_level">( %1$d )</string>

@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView colorLevelText = findViewById(R.id.colorLevelPercentageText);
         final SeekBar seekBrightnessBar = findViewById(R.id.brightnessLevelBar);
         final TextView brightnessLevelText = findViewById(R.id.brightnessLevelPercentageText);
+        final TextView colorSettingsText = findViewById(R.id.labelColorSettings);
         final Button btnStartStop = findViewById(R.id.btnStartStop);
         final Spinner colorSpinner = findViewById(R.id.colorSpinner);
         final Button customColorButton = findViewById(R.id.customColorButton);
@@ -217,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
                 String selectedColor = colorHex[position];
 
                 // change the brightness and color intensity based on selected color
+                setColorSettingsText(colorSettingsText, colors);
                 final ColorSettings colorSettings = colorSettingsMap.get(dropDownOptions[dropDownPosition]);
                 if (colorSettings != null) {
                     currentColorIntensity = colorSettings.getIntensity();
@@ -256,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
         if (prefColorDropdownPosition >= 0) {
             dropDownPosition = prefColorDropdownPosition;
             colorSpinner.setSelection(prefColorDropdownPosition);
+            setColorSettingsText(colorSettingsText, colors);
             if (prefColorDropdownPosition == customColorPosition) {
                 customizeCustomColorButton(customColorButton);
                 customColorButton.setVisibility(View.VISIBLE);
@@ -392,6 +395,16 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
+    private void setColorSettingsText(final @NonNull TextView colorSettingsText, final @NonNull String[] colors) {
+        final String label = getString(R.string.color_settings_placeholder);
+        if (dropDownPosition == 0) {
+            colorSettingsText.setText(label);
+        } else {
+            String selectedColor = colors[dropDownPosition];
+            colorSettingsText.setText(getString(R.string.color_settings_format, label, selectedColor));
+        }
+    }
+
     private void startRadMode(final @NonNull Button btnStartStop) {
         // Only start service if overlay permission granted
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
@@ -501,9 +514,6 @@ public class MainActivity extends AppCompatActivity {
             colorSettings.setBrightness(currentBrightness);
             colorSettings.setIntensity(currentColorIntensity);
             colorSettingsMap.put(selectedColor, colorSettings);
-        }
-        for (ColorSettings value : colorSettingsMap.values()) {
-            System.out.println(value);
         }
 
         Gson gson = new Gson();
