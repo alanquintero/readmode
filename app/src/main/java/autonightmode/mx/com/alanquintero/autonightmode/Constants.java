@@ -10,6 +10,8 @@ package autonightmode.mx.com.alanquintero.autonightmode;
  * that are reused in multiple parts of the app to ensure consistency and avoid
  * duplication.
  * </p>
+ *
+ * @author Alan Quintero
  */
 public class Constants {
     // Screen filter colors

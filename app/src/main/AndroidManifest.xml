@@ -8,8 +8,8 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/moon"
-        android:logo="@mipmap/moon"
         android:label="@string/app_name"
+        android:logo="@mipmap/moon"
         android:roundIcon="@mipmap/moon"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReadMode">
@@ -18,7 +18,8 @@
         <service
             android:name=".DrawOverAppsService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
 
         <!-- Main launcher activity -->
         <activity

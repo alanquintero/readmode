@@ -21,6 +21,8 @@ import java.util.Objects;
  *   <li>{@code intensity} - The user-selected intensity level for this color.</li>
  *   <li>{@code brightness} - The user-selected brightness level for this color.</li>
  * </ul>
+ *
+ * @author Alan Quintero
  */
 public class ColorSettings {
 
