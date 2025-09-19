@@ -704,6 +704,22 @@ public class MainActivity extends AppCompatActivity {
     // ---------------------- Activity Lifecycle ------------------------
 
     @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        /*
+        Need to call initUI method when system changes between dark and light mode
+         */
+        if ((newConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES) {
+            Log.d(TAG, "Dark mode enabled");
+            initUI();
+        } else {
+            Log.d(TAG, "Light mode enabled");
+            initUI();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         stopReadMode(null);
         super.onDestroy();
