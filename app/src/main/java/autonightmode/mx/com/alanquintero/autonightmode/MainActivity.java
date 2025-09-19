@@ -18,6 +18,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -62,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
     private Map<String, ColorSettings> prefColorSettingsMap = new HashMap<>();
 
     // Current state variables
-    private int currentColorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
+    @VisibleForTesting
+    int currentColorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
     private int currentColorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
     private int currentBrightness = Constants.DEFAULT_BRIGHTNESS;
 
@@ -83,8 +85,10 @@ public class MainActivity extends AppCompatActivity {
             Color.WHITE             // CUSTOM
     };
     // Color name corresponding to each dropdown item
-    private String[] colors = {};
-    private final int noColorDropdownPosition = 0;
+    @VisibleForTesting
+    String[] colors = {};
+    @VisibleForTesting
+    final int noColorDropdownPosition = 0;
     private final int customColorDropdownPosition = backgroundColorForDropdownItems.length - 1;
 
     @Override
@@ -526,7 +530,8 @@ public class MainActivity extends AppCompatActivity {
      * with the currently selected color name.
      * </p>
      */
-    private void setColorSettingsText(final @NonNull TextView colorSettingsText) {
+    @VisibleForTesting
+    void setColorSettingsText(final @NonNull TextView colorSettingsText) {
         final String label = getString(R.string.color_settings_placeholder);
         if (currentColorDropdownPosition == noColorDropdownPosition) {
             colorSettingsText.setText(label);
