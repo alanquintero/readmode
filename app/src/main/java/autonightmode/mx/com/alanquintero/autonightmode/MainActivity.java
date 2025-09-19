@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     };
     // Color name corresponding to each dropdown item
     private String[] colors = {};
+    private final int noColorDropdownPosition = 0;
     private final int customColorDropdownPosition = backgroundColorForDropdownItems.length - 1;
 
     @Override
@@ -119,14 +120,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initializes the user interface components and sets up their behavior.
+     * <p>
+     * This method handles:
+     * <ul>
+     *     <li>Finding views by ID (SeekBars, TextViews, Buttons, Spinner).</li>
+     *     <li>Setting up color dropdown, SeekBars for color intensity and brightness.</li>
+     *     <li>Configuring event listeners for user interactions (dropdown selection, button clicks, SeekBar changes).</li>
+     *     <li>Applying saved preferences to restore previous app state.</li>
+     *     <li>Enabling or disabling UI elements based on selected color and read mode status.</li>
+     * </ul>
+     */
     private void initUI() {
+        Log.d(TAG, "initUI");
         setContentView(R.layout.activity_main);
 
+        Log.d(TAG, "init methods...");
         setupStatusBarColor();
         initSharedPreferences();
         initColors();
 
-        // Components
+        // UI Components
         final SeekBar seekColorIntensityBar = findViewById(R.id.colorLevelBar);
         final TextView colorLevelText = findViewById(R.id.colorLevelPercentageText);
         final SeekBar seekBrightnessBar = findViewById(R.id.brightnessLevelBar);
@@ -136,104 +151,13 @@ public class MainActivity extends AppCompatActivity {
         final Spinner colorSpinner = findViewById(R.id.colorSpinner);
         final Button customColorButton = findViewById(R.id.customColorButton);
 
-        // Disabling the bars
+        // Disable SeekBars initially until a color is selected
         seekColorIntensityBar.setEnabled(false);
         seekBrightnessBar.setEnabled(false);
 
-        // Flag to ignore initial selection
-        final boolean[] isColorDropdownInitializing = {true};
-        // Adapter for dropdown
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, colors) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                TextView view = (TextView) super.getView(position, convertView, parent);
-                view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for selected item
-                view.setTextColor(Color.BLACK); // Text color
-                return view;
-            }
+        setupColorDropdown(colorSpinner, seekColorIntensityBar, seekBrightnessBar, colorSettingsText, colorLevelText, brightnessLevelText, customColorButton, startStopButton);
 
-            @Override
-            public View getDropDownView(final int position, final View convertView, final @NonNull ViewGroup parent) {
-                TextView view = (TextView) super.getDropDownView(position, convertView, parent);
-                view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for dropdown item
-                if (position == customColorDropdownPosition) {
-                    int color = Color.parseColor(prefCustomColor);
-                    // Calculate brightness
-                    int r = Color.red(color);
-                    int g = Color.green(color);
-                    int b = Color.blue(color);
-                    double brightness = (0.299 * r + 0.587 * g + 0.114 * b); // Perceived brightness
-                    if (brightness > 200) { // very light color
-                        view.setTextColor(Color.BLACK); // fallback
-                    } else {
-                        view.setTextColor(color);
-                    }
-                } else {
-                    view.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-
-        colorSpinner.setAdapter(adapter);
-
-        // Listen for selection
-        colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    seekColorIntensityBar.setEnabled(false);
-                    seekBrightnessBar.setEnabled(false);
-                } else {
-                    seekColorIntensityBar.setEnabled(true);
-                    seekBrightnessBar.setEnabled(true);
-                }
-                if (isColorDropdownInitializing[0]) {
-                    // Ignore the initial selection triggered by setSelection
-                    isColorDropdownInitializing[0] = false;
-                    return;
-                }
-                currentColorDropdownPosition = position;
-                String selectedColor = colorHex[position];
-
-                // change the brightness and color intensity based on selected color
-                setColorSettingsText(colorSettingsText);
-                final ColorSettings colorSettings = prefColorSettingsMap.get(Constants.COLOR_DROPDOWN_OPTIONS[currentColorDropdownPosition]);
-                if (colorSettings != null) {
-                    currentColorIntensity = colorSettings.getIntensity();
-                    seekColorIntensityBar.setProgress(currentColorIntensity);
-                    colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
-
-                    currentBrightness = colorSettings.getBrightness();
-                    seekBrightnessBar.setProgress(currentBrightness);
-                    brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
-                }
-
-                if (selectedColor.equals(Constants.COLOR_NONE)) {
-                    customColorButton.setVisibility(View.GONE);
-                    stopReadMode(startStopButton);
-                    startStopButton.setBackgroundColor(getResources().getColor(R.color.gray_disabled));
-                } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
-                    customColorButton.setVisibility(View.VISIBLE);
-                    openCustomColorDialog(startStopButton, customColorButton);
-                    adapter.notifyDataSetChanged();
-                } else {
-                    // Apply selected color
-                    saveProperty(Constants.PREF_COLOR, selectedColor);
-                    customColorButton.setVisibility(View.GONE);
-                    startRadMode(startStopButton);
-                }
-
-                saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        customColorButton.setOnClickListener(v -> openCustomColorDialog(startStopButton, customColorButton));
-
-        // Set selection if found
+        // Restore saved selection
         if (prefColorDropdownPosition >= 0) {
             currentColorDropdownPosition = prefColorDropdownPosition;
             colorSpinner.setSelection(prefColorDropdownPosition);
@@ -244,67 +168,43 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (currentColorIntensity >= 0) {
-            seekColorIntensityBar.setProgress(currentColorIntensity);
-            colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
-        }
+        // Restore SeekBars values
+        seekColorIntensityBar.setProgress(currentColorIntensity);
+        colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
+        seekBrightnessBar.setProgress(currentBrightness);
+        brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
 
-        if (currentBrightness >= 0) {
-            seekBrightnessBar.setProgress(currentBrightness);
-            brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
-        }
-
-        // *** START NOW ***
-        startStopButton.setOnClickListener(v -> {
-            if (currentColorDropdownPosition == 0) {
-                Toast.makeText(this, R.string.select_a_color_first, Toast.LENGTH_SHORT).show();
-            } else {
-                if (!prefIsReadModeOn) {
-                    currentColorIntensity = seekColorIntensityBar.getProgress();
-                    currentBrightness = seekBrightnessBar.getProgress();
-                    startRadMode(startStopButton);
-                } else {
-                    stopReadMode(startStopButton);
-                }
-            }
-        });
+        // Restore style for Start/Stop button
         applyStartStopButtonStyle(startStopButton);
 
-        // SeekBars
-        seekColorIntensityBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    currentColorIntensity = progress;
-                    colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
-                    startRadMode(startStopButton);
+        // Custom color button listener
+        customColorButton.setOnClickListener(v -> openCustomColorDialog(startStopButton, customColorButton));
+
+        // Start/Stop button listener
+        startStopButton.setOnClickListener(v -> {
+            if (currentColorDropdownPosition == noColorDropdownPosition) {
+                Toast.makeText(this, R.string.select_a_color_first, Toast.LENGTH_SHORT).show();
+                Log.w(TAG, "Start clicked but no color selected.");
+            } else {
+                if (prefIsReadModeOn) {
+                    stopReadMode(startStopButton);
+                } else {
+                    currentColorIntensity = seekColorIntensityBar.getProgress();
+                    currentBrightness = seekBrightnessBar.getProgress();
+                    startReadMode(startStopButton);
                 }
-            }
-
-            public void onStopTrackingTouch(SeekBar bar) {
-            }
-
-            public void onStartTrackingTouch(SeekBar bar) {
             }
         });
 
-        seekBrightnessBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    currentBrightness = progress;
-                    brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
-                    startRadMode(startStopButton);
-                }
-            }
+        // SeekBar listeners
+        setupSeekColorIntensityBar(seekColorIntensityBar, colorLevelText, startStopButton);
+        setupSeekBrightnessBar(seekBrightnessBar, brightnessLevelText, startStopButton);
 
-            public void onStopTrackingTouch(SeekBar bar) {
-            }
-
-            public void onStartTrackingTouch(SeekBar bar) {
-            }
-        });
+        Log.i(TAG, "UI initialized successfully.");
     }
 
-    // ---------------------- Status Bar ------------------------
+
+    // ---------------------- Applying styles ------------------------
 
     /**
      * Sets up the status bar color based on the current system theme (light or dark mode).
@@ -331,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     // ---------------------- Init methods ------------------------
 
@@ -383,6 +284,170 @@ public class MainActivity extends AppCompatActivity {
         final String colorCustom = getString(R.string.color_custom);
         colors = new String[]{colorNone, colorSoftBeige, colorLightGray, colorPaleYellow, colorWarmSepia, colorSoftBlue, colorCustom};
     }
+
+
+    // ---------------------- UI Components ------------------------
+
+    /**
+     * Initializes and configures the color selection dropdown (Spinner) along with
+     * its related UI elements such as intensity and brightness controls.
+     * <p>
+     * This method sets up a custom adapter for the Spinner, manages item selection
+     * (including handling of the "Custom color" option), and ensures that the
+     * corresponding SeekBars and labels are updated when a color is selected.
+     * </p>
+     */
+    private void setupColorDropdown(final @NonNull Spinner colorSpinner, final @NonNull SeekBar seekColorIntensityBar, final @NonNull SeekBar seekBrightnessBar,
+                                    final @NonNull TextView colorSettingsText, final @NonNull TextView colorLevelText, final @NonNull TextView brightnessLevelText,
+                                    final @NonNull Button customColorButton, final @NonNull Button startStopButton) {
+        // Flag to ignore initial selection
+        final boolean[] isColorDropdownInitializing = {true};
+        // Adapter for dropdown
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, colors) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getView(position, convertView, parent);
+                view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for selected item
+                view.setTextColor(Color.BLACK); // Text color
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(final int position, final View convertView, final @NonNull ViewGroup parent) {
+                TextView view = (TextView) super.getDropDownView(position, convertView, parent);
+                view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for dropdown item
+                if (position == customColorDropdownPosition) {
+                    int color = Color.parseColor(prefCustomColor);
+                    // Calculate brightness
+                    int r = Color.red(color);
+                    int g = Color.green(color);
+                    int b = Color.blue(color);
+                    double brightness = (0.299 * r + 0.587 * g + 0.114 * b); // Perceived brightness
+                    if (brightness > 200) { // very light color
+                        view.setTextColor(Color.BLACK); // fallback
+                    } else {
+                        view.setTextColor(color);
+                    }
+                } else {
+                    view.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        colorSpinner.setAdapter(adapter);
+
+        // Listen for selection
+        colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    // No color option
+                    // Disabling the seek bars
+                    seekColorIntensityBar.setEnabled(false);
+                    seekBrightnessBar.setEnabled(false);
+                } else {
+                    // Enabling the seek bars
+                    seekColorIntensityBar.setEnabled(true);
+                    seekBrightnessBar.setEnabled(true);
+                }
+                if (isColorDropdownInitializing[0]) {
+                    // Ignore the initial selection triggered by setSelection
+                    isColorDropdownInitializing[0] = false;
+                    return;
+                }
+                currentColorDropdownPosition = position;
+                String selectedColor = colorHex[position];
+
+                // change the brightness and color intensity based on selected color
+                setColorSettingsText(colorSettingsText);
+                final ColorSettings colorSettings = prefColorSettingsMap.get(Constants.COLOR_DROPDOWN_OPTIONS[currentColorDropdownPosition]);
+                if (colorSettings != null) {
+                    currentColorIntensity = colorSettings.getIntensity();
+                    seekColorIntensityBar.setProgress(currentColorIntensity);
+                    colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
+
+                    currentBrightness = colorSettings.getBrightness();
+                    seekBrightnessBar.setProgress(currentBrightness);
+                    brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
+                }
+
+                if (selectedColor.equals(Constants.COLOR_NONE)) {
+                    customColorButton.setVisibility(View.GONE);
+                    stopReadMode(startStopButton);
+                    startStopButton.setBackgroundColor(getResources().getColor(R.color.gray_disabled));
+                } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
+                    customColorButton.setVisibility(View.VISIBLE);
+                    openCustomColorDialog(startStopButton, customColorButton);
+                    adapter.notifyDataSetChanged();
+                } else {
+                    // Apply selected color
+                    saveProperty(Constants.PREF_COLOR, selectedColor);
+                    customColorButton.setVisibility(View.GONE);
+                    startReadMode(startStopButton);
+                }
+
+                saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    /**
+     * Configures the SeekBar that controls the color intensity of the screen filter.
+     * <p>
+     * This method sets the initial progress based on the current intensity value,
+     * listens for user changes, updates the corresponding label dynamically,
+     * and triggers the filter update when the value changes.
+     * </p>
+     */
+    private void setupSeekColorIntensityBar(final @NonNull SeekBar seekColorIntensityBar, final @NonNull TextView colorLevelText, final @NonNull Button startStopButton) {
+        seekColorIntensityBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    currentColorIntensity = progress;
+                    colorLevelText.setText(getString(R.string.color_intensity, currentColorIntensity));
+                    startReadMode(startStopButton);
+                }
+            }
+
+            public void onStopTrackingTouch(SeekBar bar) {
+            }
+
+            public void onStartTrackingTouch(SeekBar bar) {
+            }
+        });
+    }
+
+    /**
+     * Configures the SeekBar that controls the brightness level of the screen filter.
+     * <p>
+     * This method sets the initial progress based on the current brightness value,
+     * listens for user interactions, updates the corresponding label dynamically,
+     * and applies the brightness change to the filter when the value is modified.
+     * </p>
+     */
+    private void setupSeekBrightnessBar(final @NonNull SeekBar seekBrightnessBar, final @NonNull TextView brightnessLevelText, final @NonNull Button startStopButton) {
+        seekBrightnessBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    currentBrightness = progress;
+                    brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
+                    startReadMode(startStopButton);
+                }
+            }
+
+            public void onStopTrackingTouch(SeekBar bar) {
+            }
+
+            public void onStartTrackingTouch(SeekBar bar) {
+            }
+        });
+    }
+
 
     // ---------------------- Custom Color Handling ------------------------
 
@@ -439,19 +504,26 @@ public class MainActivity extends AppCompatActivity {
                     saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
                     saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
                     // start read mode
-                    startRadMode(startStopButton);
+                    startReadMode(startStopButton);
                     // update preferences for custom color
                     prefCustomColor = chosenColorHex;
                     customizeCustomColorButton(customColorButton);
                 })
-                .setNegativeButton(R.string.cancel, (dialog, which) -> {
-                    startRadMode(startStopButton);
-                }).show();
+                .setNegativeButton(R.string.cancel, (dialog, which) -> startReadMode(startStopButton)).show();
     }
 
+    /**
+     * Updates the provided {@link TextView} with the current color settings text.
+     * <p>
+     * If no color is selected in the dropdown (i.e., the current position equals
+     * {@code noColorDropdownPosition}), the text is set to a placeholder label.
+     * Otherwise, the text is formatted to include the placeholder label along
+     * with the currently selected color name.
+     * </p>
+     */
     private void setColorSettingsText(final @NonNull TextView colorSettingsText) {
         final String label = getString(R.string.color_settings_placeholder);
-        if (currentColorDropdownPosition == 0) {
+        if (currentColorDropdownPosition == noColorDropdownPosition) {
             colorSettingsText.setText(label);
         } else {
             String selectedColor = colors[currentColorDropdownPosition];
@@ -459,7 +531,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void startRadMode(final @NonNull Button startStopButton) {
+
+    // ---------------------- Start/Stop Read Mode ------------------------
+
+    /**
+     * Starts the Read Mode by enabling the overlay service and updating
+     * the UI and shared preferences with the current color, brightness,
+     * and intensity settings.
+     */
+    private void startReadMode(final @NonNull Button startStopButton) {
         // Only start service if overlay permission granted
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
             return;
@@ -482,6 +562,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Stops the Read Mode by disabling the overlay service and updating
+     * the UI and shared preferences with the current color, brightness,
+     * and intensity settings.
+     */
     private void stopReadMode(final @Nullable Button startStopButton) {
         prefIsReadModeOn = false;
 
@@ -503,6 +588,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Checks if a specific service is currently running on the device.
+     */
     private boolean isMyServiceRunning(final @NonNull Class<?> serviceClass) {
         final ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -513,6 +601,13 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+
+    // ---------------------- Buttons style ------------------------
+
+    /**
+     * Updates the visual style and text of the Start/Stop button
+     * based on whether Read Mode is currently active.
+     */
     private void applyStartStopButtonStyle(final @NonNull Button startStopButton) {
         if (prefIsReadModeOn) {
             startStopButton.setText(R.string.stop);
@@ -524,6 +619,12 @@ public class MainActivity extends AppCompatActivity {
                     ContextCompat.getColorStateList(this, R.color.start_color));
         }
     }
+
+    /**
+     * Updates the custom color button's background and text color
+     * based on the current custom color. Ensures text is readable
+     * by calculating the perceived brightness of the color.
+     */
 
     private void customizeCustomColorButton(final @NonNull Button customColorButton) {
         // Set background color
@@ -542,24 +643,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    // ---------------------- Shared Preferences Utils ------------------------
+
+    /**
+     * Saves an String value to {@link SharedPreferences} under the specified key.
+     */
     private void saveProperty(final @NonNull String property, final @NonNull String value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(property, value);
         editor.apply();
     }
 
+    /**
+     * Saves an boolean value to {@link SharedPreferences} under the specified key.
+     */
     private void saveProperty(final @NonNull String property, final boolean value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(property, value);
         editor.apply();
     }
 
+    /**
+     * Saves an integer value to {@link SharedPreferences} under the specified key.
+     */
     private void saveProperty(final @NonNull String property, final int value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(property, value);
         editor.apply();
     }
 
+    /**
+     * Saves the current brightness and color intensity settings for the selected color
+     * into the {@link SharedPreferences}. Updates the {@link #prefColorSettingsMap}
+     * with the latest values and serializes it as JSON for persistence.
+     */
     private void saveColorSettingsProperty() {
         // update the brightness and color intensity values for the selected color
         final String selectedColor = Constants.COLOR_DROPDOWN_OPTIONS[currentColorDropdownPosition];
@@ -577,11 +695,13 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+
+    // ---------------------- Activity Lifecycle ------------------------
+
     @Override
     protected void onDestroy() {
-        if (!prefIsReadModeOn) {
-            stopReadMode(null);
-        }
+        stopReadMode(null);
         super.onDestroy();
+        Log.i(TAG, "Activity destroyed.");
     }
 }
