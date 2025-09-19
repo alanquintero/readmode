@@ -174,8 +174,9 @@ public class MainActivity extends AppCompatActivity {
         seekBrightnessBar.setProgress(currentBrightness);
         brightnessLevelText.setText(getString(R.string.brightness_level, currentBrightness));
 
-        // Restore style for Start/Stop button
+        // Apply style to buttons
         applyStartStopButtonStyle(startStopButton);
+        customizeCustomColorButton(customColorButton);
 
         // Custom color button listener
         customColorButton.setOnClickListener(v -> openCustomColorDialog(startStopButton, customColorButton));
@@ -509,7 +510,11 @@ public class MainActivity extends AppCompatActivity {
                     prefCustomColor = chosenColorHex;
                     customizeCustomColorButton(customColorButton);
                 })
-                .setNegativeButton(R.string.cancel, (dialog, which) -> startReadMode(startStopButton)).show();
+                .setNegativeButton(R.string.cancel, (dialog, which) -> {
+                    if (prefIsReadModeOn) {
+                        startReadMode(startStopButton);
+                    }
+                }).show();
     }
 
     /**
