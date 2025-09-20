@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package autonightmode.mx.com.alanquintero.autonightmode;
+package com.contilabs.readmode;
 
 /**
  * A utility class that holds constant values used across the application.

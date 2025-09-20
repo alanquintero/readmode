@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package autonightmode.mx.com.alanquintero.autonightmode;
+package com.contilabs.readmode;
 
 import androidx.annotation.NonNull;
 

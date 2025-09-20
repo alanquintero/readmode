@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="autonightmode.mx.com.alanquintero.autonightmode">
+    package="com.contilabs.readmode">
 
     <!-- Permission to draw over other apps -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -16,14 +16,14 @@
 
         <!-- Service for drawing overlays -->
         <service
-            android:name=".DrawOverAppsService"
+            android:name="com.contilabs.readmode.DrawOverAppsService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="mediaProjection" />
 
         <!-- Main launcher activity -->
         <activity
-            android:name=".MainActivity"
+            android:name="com.contilabs.readmode.MainActivity"
             android:configChanges="uiMode|orientation|screenSize"
             android:exported="true">
             <intent-filter>
