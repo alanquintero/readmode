@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode;
+package com.contilabs.readmode.ui;
 
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -39,6 +39,10 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.contilabs.readmode.model.ColorSettings;
+import com.contilabs.readmode.util.Constants;
+import com.contilabs.readmode.service.DrawOverAppsService;
+import com.contilabs.readmode.R;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;

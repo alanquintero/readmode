@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode;
+package com.contilabs.readmode.util;
 
 /**
  * A utility class that holds constant values used across the application.

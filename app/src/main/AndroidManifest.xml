@@ -16,14 +16,14 @@
 
         <!-- Service for drawing overlays -->
         <service
-            android:name="com.contilabs.readmode.DrawOverAppsService"
+            android:name="com.contilabs.readmode.service.DrawOverAppsService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="mediaProjection" />
 
         <!-- Main launcher activity -->
         <activity
-            android:name="com.contilabs.readmode.MainActivity"
+            android:name="com.contilabs.readmode.ui.MainActivity"
             android:configChanges="uiMode|orientation|screenSize"
             android:exported="true">
             <intent-filter>

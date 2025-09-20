@@ -1,11 +1,13 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode;
+package com.contilabs.readmode.ui;
 
 import static org.junit.Assert.assertEquals;
 
 import android.widget.TextView;
+
+import com.contilabs.readmode.R;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode;
+package com.contilabs.readmode.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.contilabs.readmode.util.Constants;
+import com.contilabs.readmode.R;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsDialog extends DialogFragment {

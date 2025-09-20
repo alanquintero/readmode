@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode;
+package com.contilabs.readmode.model;
 
 import androidx.annotation.NonNull;
 
@@ -31,7 +31,7 @@ public class ColorSettings {
     private int intensity;
     private int brightness;
 
-    ColorSettings(final @NonNull String color, final @NonNull String colorHex, final int intensity, final int brightness) {
+    public ColorSettings(final @NonNull String color, final @NonNull String colorHex, final int intensity, final int brightness) {
         this.color = color;
         this.colorHex = colorHex;
         this.intensity = intensity;

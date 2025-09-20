@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode;
+package com.contilabs.readmode.service;
 
 import android.util.Log;
 import android.app.Notification;
@@ -21,6 +21,10 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+
+import com.contilabs.readmode.util.Constants;
+import com.contilabs.readmode.R;
+import com.contilabs.readmode.ui.MainActivity;
 
 /**
  * DrawOverAppsService is an Android foreground service responsible for creating
