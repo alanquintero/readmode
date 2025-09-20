@@ -19,22 +19,19 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsDialog extends DialogFragment {
 
-    private SharedPreferences sharedPreferences;
-
-    @NonNull
     @Override
-    public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+    public @NonNull android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-        sharedPreferences = requireActivity().getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
+        final SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
 
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_settings, null);
+        final LayoutInflater inflater = requireActivity().getLayoutInflater();
+        final View view = inflater.inflate(R.layout.dialog_settings, null);
 
-        SwitchMaterial switchSameIntensityBrightness = view.findViewById(R.id.switch_same_intensity_brightness);
-        SwitchMaterial switchAutoStartReadMode = view.findViewById(R.id.switch_auto_start_read_mode);
+        final SwitchMaterial switchSameIntensityBrightness = view.findViewById(R.id.switch_same_intensity_brightness);
+        final SwitchMaterial switchAutoStartReadMode = view.findViewById(R.id.switch_auto_start_read_mode);
 
-        ImageButton infoSameIntensity = view.findViewById(R.id.info_same_intensity_brightness);
-        ImageButton infoAutoStart = view.findViewById(R.id.info_auto_start_read_mode);
+        final ImageButton infoSameIntensity = view.findViewById(R.id.info_same_intensity_brightness);
+        final ImageButton infoAutoStart = view.findViewById(R.id.info_auto_start_read_mode);
 
         infoSameIntensity.setOnClickListener(v -> {
             new androidx.appcompat.app.AlertDialog.Builder(requireContext())
@@ -53,8 +50,8 @@ public class SettingsDialog extends DialogFragment {
         });
 
         // Load saved values
-        switchSameIntensityBrightness.setChecked(sharedPreferences.getBoolean(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, false));
-        switchAutoStartReadMode.setChecked(sharedPreferences.getBoolean(Constants.PREF_AUTO_START_READ_MODE, true));
+        switchSameIntensityBrightness.setChecked(sharedPreferences.getBoolean(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL));
+        switchAutoStartReadMode.setChecked(sharedPreferences.getBoolean(Constants.PREF_AUTO_START_READ_MODE, Constants.DEFAULT_AUTO_START_READ_MODE));
 
         // Save changes when toggled
         switchSameIntensityBrightness.setOnCheckedChangeListener((buttonView, isChecked) ->

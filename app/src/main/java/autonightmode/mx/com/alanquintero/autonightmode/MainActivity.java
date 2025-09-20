@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean prefIsReadModeOn = Constants.DEFAULT_IS_READ_MODE_ENABLED;
     private String prefCustomColor = Constants.DEFAULT_COLOR_WHITE;
     private int prefColorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
+    private boolean prefSameIntensityBrightnessForAll = Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL;
+    private boolean prefAutoStartReadMode = Constants.DEFAULT_AUTO_START_READ_MODE;
     private Map<String, ColorSettings> prefColorSettingsMap = new HashMap<>();
 
     // Current state variables
@@ -258,6 +260,8 @@ public class MainActivity extends AppCompatActivity {
         prefCustomColor = sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.DEFAULT_COLOR_WHITE);
         currentColorIntensity = sharedPreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
         currentBrightness = sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
+        prefSameIntensityBrightnessForAll = sharedPreferences.getBoolean(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL);
+        prefAutoStartReadMode = sharedPreferences.getBoolean(Constants.PREF_AUTO_START_READ_MODE, Constants.DEFAULT_AUTO_START_READ_MODE);
 
         initPrefColorSettingsMap();
     }
