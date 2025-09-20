@@ -3,9 +3,7 @@
  *****************************************************************/
 package com.contilabs.readmode.ui;
 
-import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -16,11 +14,9 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.core.content.ContextCompat;
 
 import android.provider.Settings;
 import android.util.Log;
@@ -35,9 +31,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.contilabs.readmode.command.GeneralReadModeCommand;
+import com.contilabs.readmode.command.SettingsReadModeCommand;
 import com.contilabs.readmode.model.ColorSettings;
+import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.util.Constants;
-import com.contilabs.readmode.service.DrawOverAppsService;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -52,22 +50,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private PrefsHelper prefsHelper;
-
-    // User preferences
-    private boolean prefIsReadModeOn = Constants.DEFAULT_IS_READ_MODE_ENABLED;
-    private String prefCustomColor = Constants.DEFAULT_COLOR_WHITE;
-    private int prefColorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
-    private boolean prefSameIntensityBrightnessForAll = Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL;
-    private boolean prefAutoStartReadMode = Constants.DEFAULT_AUTO_START_READ_MODE;
+    private ButtonStyler buttonStyler;
+    private ReadModeSettings readModeSettings;
+    private GeneralReadModeCommand generalReadModeCommand;
+    private SettingsReadModeCommand settingsReadModeCommand;
 
     // Current state variables
     @VisibleForTesting
     int currentColorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
-    private int prefColorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
-    private int prefBrightness = Constants.DEFAULT_BRIGHTNESS;
-
-    // Overlay service intent
-    private Intent readModeIntent;
 
     // Colors
     // Color hex corresponding to each dropdown item
@@ -139,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Log.d(TAG, "init methods...");
+        final @NonNull View rootView = findViewById(android.R.id.content);
+        buttonStyler = new ButtonStyler(this, rootView);
+        generalReadModeCommand = new GeneralReadModeCommand(this, rootView);
+        settingsReadModeCommand = new SettingsReadModeCommand(this, rootView);
         setupStatusBarColor();
         initSharedPreferences();
         initColors();
@@ -161,25 +155,25 @@ public class MainActivity extends AppCompatActivity {
         setupColorDropdown(colorSpinner, seekColorIntensityBar, seekBrightnessBar, colorSettingsText, colorLevelText, brightnessLevelText, customColorButton, startStopButton);
 
         // Restore saved selection
-        if (prefColorDropdownPosition >= 0) {
-            currentColorDropdownPosition = prefColorDropdownPosition;
-            colorSpinner.setSelection(prefColorDropdownPosition);
+        if (readModeSettings.getColorDropdownPosition() >= 0) {
+            currentColorDropdownPosition = readModeSettings.getColorDropdownPosition();
+            colorSpinner.setSelection(readModeSettings.getColorDropdownPosition());
             setColorSettingsText(colorSettingsText);
-            if (prefColorDropdownPosition == customColorDropdownPosition) {
-                customizeCustomColorButton(customColorButton);
+            if (readModeSettings.getColorDropdownPosition() == customColorDropdownPosition) {
+                buttonStyler.customizeCustomColorButton(readModeSettings.getCustomColor());
                 customColorButton.setVisibility(View.VISIBLE);
             }
         }
 
         // Restore SeekBars values
-        seekColorIntensityBar.setProgress(prefColorIntensity);
-        colorLevelText.setText(getString(R.string.color_intensity, prefColorIntensity));
-        seekBrightnessBar.setProgress(prefBrightness);
-        brightnessLevelText.setText(getString(R.string.brightness_level, prefBrightness));
+        seekColorIntensityBar.setProgress(readModeSettings.getColorIntensity());
+        colorLevelText.setText(getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
+        seekBrightnessBar.setProgress(readModeSettings.getBrightness());
+        brightnessLevelText.setText(getString(R.string.brightness_level, readModeSettings.getBrightness()));
 
         // Apply style to buttons
-        applyStartStopButtonStyle(startStopButton);
-        customizeCustomColorButton(customColorButton);
+        buttonStyler.applyStartStopButtonStyle(readModeSettings.isReadModeOn());
+        buttonStyler.customizeCustomColorButton(readModeSettings.getCustomColor());
 
         // ---------------------- Listeners ------------------------
 
@@ -191,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         setupSeekBrightnessBar(seekBrightnessBar, brightnessLevelText, startStopButton);
 
         // Custom color button listener
-        customColorButton.setOnClickListener(v -> openCustomColorDialog(startStopButton, customColorButton));
+        customColorButton.setOnClickListener(v -> openCustomColorDialog());
 
         // Start/Stop button listener
         startStopButton.setOnClickListener(v -> {
@@ -199,12 +193,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.select_a_color_first, Toast.LENGTH_SHORT).show();
                 Log.w(TAG, "Start clicked but no color selected.");
             } else {
-                if (prefIsReadModeOn) {
-                    stopReadMode(startStopButton);
+                if (readModeSettings.isReadModeOn()) {
+                    generalReadModeCommand.stopReadMode(readModeSettings);
                 } else {
-                    prefColorIntensity = seekColorIntensityBar.getProgress();
-                    prefBrightness = seekBrightnessBar.getProgress();
-                    startReadMode(startStopButton);
+                    readModeSettings.setColorIntensity(seekColorIntensityBar.getProgress());
+                    readModeSettings.setBrightness(seekBrightnessBar.getProgress());
+                    generalReadModeCommand.startReadMode(readModeSettings);
                 }
             }
         });
@@ -249,13 +243,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initSharedPreferences() {
         prefsHelper = new PrefsHelper(this);
-        prefIsReadModeOn = prefsHelper.getIsReadModeOn();
-        prefColorDropdownPosition = prefsHelper.getColorDropdownPosition();
-        prefCustomColor = prefsHelper.getCustomColor();
-        prefColorIntensity = prefsHelper.getColorIntensity();
-        prefBrightness = prefsHelper.getBrightness();
-        prefSameIntensityBrightnessForAll = prefsHelper.getSameIntensityBrightnessForAll();
-        prefAutoStartReadMode = prefsHelper.getAutoStartReadMode();
+        readModeSettings = new ReadModeSettings();
+        readModeSettings.setIsReadModeOn(prefsHelper.getIsReadModeOn());
+        readModeSettings.setColorDropdownPosition(prefsHelper.getColorDropdownPosition());
+        readModeSettings.setCustomColor(prefsHelper.getCustomColor());
+        readModeSettings.setColorIntensity(prefsHelper.getColorIntensity());
+        readModeSettings.setBrightness(prefsHelper.getBrightness());
+        readModeSettings.setAutoStartReadMode(prefsHelper.getAutoStartReadMode());
+        readModeSettings.setSameIntensityBrightnessForAll(prefsHelper.getSameIntensityBrightnessForAll());
 
         prefsHelper.initPrefColorSettingsMap();
     }
@@ -308,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView view = (TextView) super.getDropDownView(position, convertView, parent);
                 view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for dropdown item
                 if (position == customColorDropdownPosition) {
-                    int color = Color.parseColor(prefCustomColor);
+                    int color = Color.parseColor(readModeSettings.getCustomColor());
                     // Calculate brightness
                     int r = Color.red(color);
                     int g = Color.green(color);
@@ -354,28 +349,28 @@ public class MainActivity extends AppCompatActivity {
                 setColorSettingsText(colorSettingsText);
                 final ColorSettings colorSettings = prefsHelper.getColorSettings(currentColorDropdownPosition);
                 if (colorSettings != null) {
-                    prefColorIntensity = colorSettings.getIntensity();
-                    seekColorIntensityBar.setProgress(prefColorIntensity);
-                    colorLevelText.setText(getString(R.string.color_intensity, prefColorIntensity));
+                    readModeSettings.setColorIntensity(colorSettings.getIntensity());
+                    seekColorIntensityBar.setProgress(readModeSettings.getColorIntensity());
+                    colorLevelText.setText(getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
 
-                    prefBrightness = colorSettings.getBrightness();
-                    seekBrightnessBar.setProgress(prefBrightness);
-                    brightnessLevelText.setText(getString(R.string.brightness_level, prefBrightness));
+                    readModeSettings.setBrightness(colorSettings.getBrightness());
+                    seekBrightnessBar.setProgress(readModeSettings.getBrightness());
+                    brightnessLevelText.setText(getString(R.string.brightness_level, readModeSettings.getBrightness()));
                 }
 
                 if (selectedColor.equals(Constants.COLOR_NONE)) {
                     customColorButton.setVisibility(View.GONE);
-                    stopReadMode(startStopButton);
+                    generalReadModeCommand.stopReadMode(readModeSettings);
                     startStopButton.setBackgroundColor(getResources().getColor(R.color.gray_disabled));
                 } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
                     customColorButton.setVisibility(View.VISIBLE);
-                    openCustomColorDialog(startStopButton, customColorButton);
+                    openCustomColorDialog();
                     adapter.notifyDataSetChanged();
                 } else {
                     // Apply selected color
                     prefsHelper.saveProperty(Constants.PREF_COLOR, selectedColor);
                     customColorButton.setVisibility(View.GONE);
-                    startReadMode(startStopButton);
+                    settingsReadModeCommand.startReadMode(readModeSettings);
                 }
 
                 prefsHelper.saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
@@ -414,9 +409,9 @@ public class MainActivity extends AppCompatActivity {
         seekColorIntensityBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    prefColorIntensity = progress;
-                    colorLevelText.setText(getString(R.string.color_intensity, prefColorIntensity));
-                    startReadMode(startStopButton);
+                    readModeSettings.setColorIntensity(progress);
+                    colorLevelText.setText(getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
+                    settingsReadModeCommand.startReadMode(readModeSettings);
                 }
             }
 
@@ -440,9 +435,9 @@ public class MainActivity extends AppCompatActivity {
         seekBrightnessBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    prefBrightness = progress;
-                    brightnessLevelText.setText(getString(R.string.brightness_level, prefBrightness));
-                    startReadMode(startStopButton);
+                    readModeSettings.setBrightness(progress);
+                    brightnessLevelText.setText(getString(R.string.brightness_level, readModeSettings.getBrightness()));
+                    settingsReadModeCommand.startReadMode(readModeSettings);
                 }
             }
 
@@ -460,28 +455,34 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Opens the custom color picker dialog.
      */
-    private void openCustomColorDialog(final @NonNull Button startStopButton, final @NonNull Button customColorButton) {
-        stopReadMode(startStopButton);
+    private void openCustomColorDialog() {
+        generalReadModeCommand.pauseReadMode(readModeSettings);
 
         // Inflate the dialog layout
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_color_picker, null);
+        final View dialogView = getLayoutInflater().inflate(R.layout.dialog_color_picker, null);
         final View colorPreview = dialogView.findViewById(R.id.colorPreview);
         final SeekBar seekRed = dialogView.findViewById(R.id.seekRed);
         final SeekBar seekGreen = dialogView.findViewById(R.id.seekGreen);
         final SeekBar seekBlue = dialogView.findViewById(R.id.seekBlue);
 
         // Initial color
-        int initialColor = Color.parseColor(prefCustomColor);
-        seekRed.setProgress(Color.red(initialColor));
-        seekGreen.setProgress(Color.green(initialColor));
-        seekBlue.setProgress(Color.blue(initialColor));
+        final int initialColor = Color.parseColor(readModeSettings.getCustomColor());
+        final int initialRed = Color.red(initialColor);
+        final int initialGreen = Color.green(initialColor);
+        final int initialBlue = Color.blue(initialColor);
+        seekRed.setProgress(initialRed);
+        seekGreen.setProgress(initialGreen);
+        seekBlue.setProgress(initialBlue);
         colorPreview.setBackgroundColor(initialColor);
+        final String initialColorHex = String.format(Constants.COLOR_HEX_FORMAT, initialRed, initialGreen, initialBlue);
+        prefsHelper.saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
+        prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, initialColorHex);
 
         // Update preview when SeekBars change
         SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int color = Color.rgb(seekRed.getProgress(), seekGreen.getProgress(), seekBlue.getProgress());
+                final int color = Color.rgb(seekRed.getProgress(), seekGreen.getProgress(), seekBlue.getProgress());
                 colorPreview.setBackgroundColor(color);
             }
 
@@ -503,23 +504,20 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle(R.string.choose_custom_color)
                 .setView(dialogView)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
-                    int red = seekRed.getProgress();
-                    int green = seekGreen.getProgress();
-                    int blue = seekBlue.getProgress();
-                    String chosenColorHex = String.format(Constants.COLOR_HEX_FORMAT, red, green, blue);
+                    final int currentRed = seekRed.getProgress();
+                    final int currentGreen = seekGreen.getProgress();
+                    final int currentBlue = seekBlue.getProgress();
+                    final String chosenColorHex = String.format(Constants.COLOR_HEX_FORMAT, currentRed, currentGreen, currentBlue);
                     prefsHelper.saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
                     prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
-                    // start read mode
-                    startReadMode(startStopButton);
                     // update preferences for custom color
-                    prefCustomColor = chosenColorHex;
-                    customizeCustomColorButton(customColorButton);
+                    readModeSettings.setCustomColor(chosenColorHex);
+                    buttonStyler.customizeCustomColorButton(readModeSettings.getCustomColor());
+
+                    // resume read mode
+                    generalReadModeCommand.resumeReadMode(readModeSettings);
                 })
-                .setNegativeButton(R.string.cancel, (dialog, which) -> {
-                    if (prefIsReadModeOn) {
-                        startReadMode(startStopButton);
-                    }
-                }).show();
+                .setNegativeButton(R.string.cancel, (dialog, which) -> generalReadModeCommand.resumeReadMode(readModeSettings)).show();
     }
 
     /**
@@ -539,118 +537,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             String selectedColor = colors[currentColorDropdownPosition];
             colorSettingsText.setText(getString(R.string.color_settings_format, label, selectedColor));
-        }
-    }
-
-
-    // ---------------------- Start/Stop Read Mode ------------------------
-
-    /**
-     * Starts the Read Mode by enabling the overlay service and updating
-     * the UI and shared preferences with the current color, brightness,
-     * and intensity settings.
-     */
-    private void startReadMode(final @NonNull Button startStopButton) {
-        // Only start service if overlay permission granted
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-            return;
-        }
-
-        prefIsReadModeOn = true;
-
-        // save properties
-        prefsHelper.saveProperty(Constants.PREF_IS_READ_MODE_ON, true);
-        prefsHelper.saveProperty(Constants.PREF_BRIGHTNESS, prefBrightness);
-        prefsHelper.saveProperty(Constants.PREF_COLOR_INTENSITY, prefColorIntensity);
-        prefsHelper.saveColorSettingsProperty(prefColorIntensity, prefBrightness, currentColorDropdownPosition);
-
-        // change button style
-        applyStartStopButtonStyle(startStopButton);
-
-        readModeIntent = new Intent(this, DrawOverAppsService.class);
-        if (!isMyServiceRunning(readModeIntent.getClass())) {
-            startService(readModeIntent);
-        }
-    }
-
-    /**
-     * Stops the Read Mode by disabling the overlay service and updating
-     * the UI and shared preferences with the current color, brightness,
-     * and intensity settings.
-     */
-    private void stopReadMode(final @Nullable Button startStopButton) {
-        prefIsReadModeOn = false;
-
-        // save properties
-        prefsHelper.saveProperty(Constants.PREF_IS_READ_MODE_ON, false);
-        prefsHelper.saveProperty(Constants.PREF_BRIGHTNESS, prefBrightness);
-        prefsHelper.saveProperty(Constants.PREF_COLOR_INTENSITY, prefColorIntensity);
-        prefsHelper.saveColorSettingsProperty(prefColorIntensity, prefBrightness, currentColorDropdownPosition);
-
-        // change button style
-        if (startStopButton != null) {
-            applyStartStopButtonStyle(startStopButton);
-        }
-
-        if (readModeIntent != null) {
-            stopService(readModeIntent);
-        } else {
-            stopService(new Intent(MainActivity.this, DrawOverAppsService.class));
-        }
-    }
-
-    /**
-     * Checks if a specific service is currently running on the device.
-     */
-    private boolean isMyServiceRunning(final @NonNull Class<?> serviceClass) {
-        final ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    // ---------------------- Buttons style ------------------------
-
-    /**
-     * Updates the visual style and text of the Start/Stop button
-     * based on whether Read Mode is currently active.
-     */
-    private void applyStartStopButtonStyle(final @NonNull Button startStopButton) {
-        if (prefIsReadModeOn) {
-            startStopButton.setText(R.string.stop);
-            startStopButton.setBackgroundTintList(
-                    ContextCompat.getColorStateList(this, R.color.stop_color));
-        } else {
-            startStopButton.setText(R.string.start);
-            startStopButton.setBackgroundTintList(
-                    ContextCompat.getColorStateList(this, R.color.start_color));
-        }
-    }
-
-    /**
-     * Updates the custom color button's background and text color
-     * based on the current custom color. Ensures text is readable
-     * by calculating the perceived brightness of the color.
-     */
-
-    private void customizeCustomColorButton(final @NonNull Button customColorButton) {
-        // Set background color
-        customColorButton.setBackgroundColor(Color.parseColor(prefCustomColor));
-        // Set text color
-        int color = Color.parseColor(prefCustomColor);
-        // Calculate brightness
-        int r = Color.red(color);
-        int g = Color.green(color);
-        int b = Color.blue(color);
-        double brightness = (0.299 * r + 0.587 * g + 0.114 * b); // Perceived brightness
-        if (brightness > 200) { // very light color
-            customColorButton.setTextColor(Color.BLACK); // fallback
-        } else {
-            customColorButton.setTextColor(Color.WHITE);
         }
     }
 
@@ -675,7 +561,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        stopReadMode(null);
+        generalReadModeCommand.stopReadMode(readModeSettings);
         super.onDestroy();
         Log.i(TAG, "Activity destroyed.");
     }

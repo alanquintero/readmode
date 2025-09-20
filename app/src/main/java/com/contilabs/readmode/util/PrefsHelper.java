@@ -10,7 +10,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.model.ColorSettings;
-import com.contilabs.readmode.service.DrawOverAppsService;
+import com.contilabs.readmode.model.ReadModeSettings;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,10 +20,12 @@ import java.util.Map;
 
 /**
  * PrefsHelper is a utility class that simplifies access to the app's SharedPreferences.
+ *
+ * @author Alan Quintero
  */
 public class PrefsHelper {
 
-    private static final String TAG = DrawOverAppsService.class.getSimpleName();
+    private static final String TAG = PrefsHelper.class.getSimpleName();
 
     private final @NonNull SharedPreferences sharedPreferences;
     private final @NonNull Gson gson;
@@ -120,14 +122,16 @@ public class PrefsHelper {
      * into the {@link SharedPreferences}. Updates the ColorSettingsMap
      * with the latest values and serializes it as JSON for persistence.
      */
-    public void saveColorSettingsProperty(final int currentBrightness, final int currentColorIntensity, final int currentColorDropdownPosition) {
+    public void saveColorSettingsProperty(final @NonNull ReadModeSettings readModeSettings) {
         // update the brightness and color intensity values for the selected color
-        final String selectedColor = Constants.COLOR_DROPDOWN_OPTIONS[currentColorDropdownPosition];
+        final String selectedColor = Constants.COLOR_DROPDOWN_OPTIONS[readModeSettings.getColorDropdownPosition()];
         final ColorSettings colorSettings = prefColorSettingsMap.get(selectedColor);
         if (colorSettings != null) {
-            colorSettings.setBrightness(currentBrightness);
-            colorSettings.setIntensity(currentColorIntensity);
+            colorSettings.setBrightness(readModeSettings.getBrightness());
+            colorSettings.setIntensity(readModeSettings.getColorIntensity());
             prefColorSettingsMap.put(selectedColor, colorSettings);
+        } else {
+            Log.d(TAG, "colorSettings not found in prefColorSettingsMap!");
         }
 
         final String json = gson.toJson(prefColorSettingsMap);

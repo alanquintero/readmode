@@ -3,8 +3,6 @@
  *****************************************************************/
 package com.contilabs.readmode.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +18,12 @@ import com.contilabs.readmode.R;
 import com.contilabs.readmode.util.PrefsHelper;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+/**
+ * SettingsDialog is a custom dialog used to display and manage
+ * the user-configurable settings for "Read Mode" in the application.
+ *
+ * @author Alan Quintero
+ */
 public class SettingsDialog extends DialogFragment {
 
     private PrefsHelper prefsHelper;
