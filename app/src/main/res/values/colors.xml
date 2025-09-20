@@ -16,6 +16,8 @@
 
     <!-- Banner -->
     <color name="banner_background">#424242</color>
+    <!-- Menu -->
+    <color name="menu_background">#B0B0B0</color>
 
     <!-- Spinner -->
     <color name="spinner_bg_light">#FFFFFF</color>

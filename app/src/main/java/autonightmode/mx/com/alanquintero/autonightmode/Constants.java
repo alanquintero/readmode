@@ -43,6 +43,9 @@ public class Constants {
     public static final String PREF_COLOR_SETTINGS = "COLOR_SETTINGS";
     public static final String PREF_COLOR_INTENSITY = "COLOR_INTENSITY";
     public static final String PREF_BRIGHTNESS = "BRIGHTNESS";
+    public static final String PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL = "SAME_INTENSITY_BRIGHTNESS_FOR_ALL";
+    public static final String PREF_AUTO_START_READ_MODE = "AUTO_START_READ_MODE";
+
 
     // Default values
     public static final String DEFAULT_COLOR_WHITE = "WHITE";

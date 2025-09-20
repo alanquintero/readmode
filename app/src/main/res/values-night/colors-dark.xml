@@ -12,6 +12,8 @@
 
     <!-- Banner -->
     <color name="banner_background">#B0B0B0</color>
+    <!-- Menu -->
+    <color name="menu_background">#424242</color>
 
     <!-- Buttons -->
     <color name="btn_default_custom_color">#505050</color>

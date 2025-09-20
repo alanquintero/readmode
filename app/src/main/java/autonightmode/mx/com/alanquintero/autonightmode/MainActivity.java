@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
 
 import android.provider.Settings;
@@ -29,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -146,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         initColors();
 
         // UI Components
+        final ImageView menu = findViewById(R.id.bannerMenu);
         final SeekBar seekColorIntensityBar = findViewById(R.id.colorLevelBar);
         final TextView colorLevelText = findViewById(R.id.colorLevelPercentageText);
         final SeekBar seekBrightnessBar = findViewById(R.id.brightnessLevelBar);
@@ -182,6 +185,15 @@ public class MainActivity extends AppCompatActivity {
         applyStartStopButtonStyle(startStopButton);
         customizeCustomColorButton(customColorButton);
 
+        // ---------------------- Listeners ------------------------
+
+        // Menu listener
+        setupMenuListener(menu);
+
+        // SeekBar listeners
+        setupSeekColorIntensityBar(seekColorIntensityBar, colorLevelText, startStopButton);
+        setupSeekBrightnessBar(seekBrightnessBar, brightnessLevelText, startStopButton);
+
         // Custom color button listener
         customColorButton.setOnClickListener(v -> openCustomColorDialog(startStopButton, customColorButton));
 
@@ -200,10 +212,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // SeekBar listeners
-        setupSeekColorIntensityBar(seekColorIntensityBar, colorLevelText, startStopButton);
-        setupSeekBrightnessBar(seekBrightnessBar, brightnessLevelText, startStopButton);
 
         Log.i(TAG, "UI initialized successfully.");
     }
@@ -398,6 +406,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
+        });
+    }
+
+    private void setupMenuListener(final @NonNull ImageView menu) {
+        menu.setOnClickListener(v -> {
+            PopupMenu popup = new PopupMenu(this, v);
+            popup.getMenuInflater().inflate(R.menu.menu_main, popup.getMenu());
+            popup.setOnMenuItemClickListener(item -> {
+                if (item.getItemId() == R.id.action_settings) {
+                    new SettingsDialog().show(getSupportFragmentManager(), "settings_dialog");
+                    return true;
+                }
+                return false;
+            });
+            popup.show();
         });
     }
 

@@ -25,6 +25,17 @@
     <string name="brightness_level">( %1$d )</string>
     <string name="color_intensity">( %1$d )</string>
 
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="settings_menu">Settings</string>
+    <string name="info">Info</string>
+    <string name="same_intensity_brightness">Same intensity &amp; brightness for all colors</string>
+    <string name="auto_start_read_mode">Auto-start Read Mode on changes</string>
+    <string name="same_intensity_brightness_title">Same intensity &amp; brightness</string>
+    <string name="same_intensity_brightness_info">Use the same color intensity and brightness for all colors instead of setting each color individually.</string>
+    <string name="auto_start_read_mode_title">Auto-start Read Mode</string>
+    <string name="auto_start_read_mode_info">Automatically start Read Mode when the color, intensity, or brightness is changed.</string>
+
     <!-- Button -->
     <string name="start">Start</string>
     <string name="stop">Stop</string>
@@ -35,9 +46,12 @@
 
     <!-- Custom Color Dialog -->
     <string name="choose_custom_color">Choose Custom Color</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
 
     <!-- Notification -->
     <string name="notification_msg">Read Mode is running</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="done">DONE</string>
+    <string name="cancel">Cancel</string>
 </resources>
