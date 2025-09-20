@@ -17,14 +17,17 @@ import androidx.fragment.app.DialogFragment;
 
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.R;
+import com.contilabs.readmode.util.PrefsHelper;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsDialog extends DialogFragment {
 
+    private PrefsHelper prefsHelper;
+
     @Override
     public @NonNull android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-        final SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
+        prefsHelper = new PrefsHelper(requireContext());
 
         final LayoutInflater inflater = requireActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.dialog_settings, null);
@@ -52,16 +55,16 @@ public class SettingsDialog extends DialogFragment {
         });
 
         // Load saved values
-        switchSameIntensityBrightness.setChecked(sharedPreferences.getBoolean(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL));
-        switchAutoStartReadMode.setChecked(sharedPreferences.getBoolean(Constants.PREF_AUTO_START_READ_MODE, Constants.DEFAULT_AUTO_START_READ_MODE));
+        switchSameIntensityBrightness.setChecked(prefsHelper.getSameIntensityBrightnessForAll());
+        switchAutoStartReadMode.setChecked(prefsHelper.getAutoStartReadMode());
 
         // Save changes when toggled
         switchSameIntensityBrightness.setOnCheckedChangeListener((buttonView, isChecked) ->
-                sharedPreferences.edit().putBoolean(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, isChecked).apply()
+                prefsHelper.saveProperty(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, isChecked)
         );
 
         switchAutoStartReadMode.setOnCheckedChangeListener((buttonView, isChecked) ->
-                sharedPreferences.edit().putBoolean(Constants.PREF_AUTO_START_READ_MODE, isChecked).apply()
+                prefsHelper.saveProperty(Constants.PREF_AUTO_START_READ_MODE, isChecked)
         );
 
         return new AlertDialog.Builder(requireContext())
