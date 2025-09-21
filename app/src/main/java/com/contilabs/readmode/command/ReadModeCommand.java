@@ -14,7 +14,7 @@ import com.contilabs.readmode.model.ReadModeSettings;
  *
  * @author Alan Quintero
  */
-interface ReadModeCommand {
+public interface ReadModeCommand {
     void startReadMode(final @NonNull ReadModeSettings readModeSettings);
 
     void pauseReadMode(final @NonNull ReadModeSettings readModeSettings);

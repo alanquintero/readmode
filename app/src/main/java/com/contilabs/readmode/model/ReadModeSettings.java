@@ -31,7 +31,7 @@ public class ReadModeSettings {
     private int colorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
     private int brightness = Constants.DEFAULT_BRIGHTNESS;
     private boolean autoStartReadMode = Constants.DEFAULT_AUTO_START_READ_MODE;
-    private boolean sameIntensityBrightnessForAll = Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL;
+    private boolean shouldUseSameIntensityBrightnessForAll = Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL;
     private @Nullable Intent readModeIntent = null;
 
     public boolean isReadModeOn() {
@@ -91,12 +91,12 @@ public class ReadModeSettings {
         this.autoStartReadMode = autoStartReadMode;
     }
 
-    public boolean isSameIntensityBrightnessForAll() {
-        return sameIntensityBrightnessForAll;
+    public boolean shouldUseSameIntensityBrightnessForAll() {
+        return shouldUseSameIntensityBrightnessForAll;
     }
 
-    public void setSameIntensityBrightnessForAll(boolean sameIntensityBrightnessForAll) {
-        this.sameIntensityBrightnessForAll = sameIntensityBrightnessForAll;
+    public void setShouldUseSameIntensityBrightnessForAll(boolean shouldUseSameIntensityBrightnessForAll) {
+        this.shouldUseSameIntensityBrightnessForAll = shouldUseSameIntensityBrightnessForAll;
     }
 
     @Nullable

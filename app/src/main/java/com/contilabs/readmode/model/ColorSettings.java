@@ -18,7 +18,7 @@ import java.util.Objects;
  * <ul>
  *   <li>{@code color} - The name or identifier of the color (e.g., "Custom", "Blue").</li>
  *   <li>{@code colorHex} - The hexadecimal representation of the color (e.g., "#FF5733").</li>
- *   <li>{@code intensity} - The user-selected intensity level for this color.</li>
+ *   <li>{@code colorIntensity} - The user-selected intensity level for this color.</li>
  *   <li>{@code brightness} - The user-selected brightness level for this color.</li>
  * </ul>
  *
@@ -28,22 +28,22 @@ public class ColorSettings {
 
     private final @NonNull String color;
     private final @NonNull String colorHex;
-    private int intensity;
+    private int colorIntensity;
     private int brightness;
 
-    public ColorSettings(final @NonNull String color, final @NonNull String colorHex, final int intensity, final int brightness) {
+    public ColorSettings(final @NonNull String color, final @NonNull String colorHex, final int colorIntensity, final int brightness) {
         this.color = color;
         this.colorHex = colorHex;
-        this.intensity = intensity;
+        this.colorIntensity = colorIntensity;
         this.brightness = brightness;
     }
 
-    public int getIntensity() {
-        return intensity;
+    public int getColorIntensity() {
+        return colorIntensity;
     }
 
-    public void setIntensity(final int intensity) {
-        this.intensity = intensity;
+    public void setColorIntensity(final int intensity) {
+        this.colorIntensity = intensity;
     }
 
     public int getBrightness() {

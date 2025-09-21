@@ -27,12 +27,22 @@ public class PrefsHelper {
 
     private static final String TAG = PrefsHelper.class.getSimpleName();
 
+    private static PrefsHelper instance = null;
+
     private final @NonNull SharedPreferences sharedPreferences;
     private final @NonNull Gson gson;
 
     private Map<String, ColorSettings> prefColorSettingsMap = new HashMap<>();
 
-    public PrefsHelper(final @NonNull Context context) {
+
+    public static PrefsHelper init(final @NonNull Context context) {
+        if (instance == null) {
+            instance = new PrefsHelper(context);
+        }
+        return instance;
+    }
+
+    private PrefsHelper(final @NonNull Context context) {
         sharedPreferences = context.getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         gson = new Gson();
     }
@@ -55,10 +65,12 @@ public class PrefsHelper {
             prefColorSettingsMap.put(Constants.WARM_SEPIA, new ColorSettings(Constants.WARM_SEPIA, Constants.COLOR_WARM_SEPIA, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
             prefColorSettingsMap.put(Constants.SOFT_BLUE, new ColorSettings(Constants.SOFT_BLUE, Constants.COLOR_SOFT_BLUE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
             prefColorSettingsMap.put(Constants.CUSTOM_COLOR, new ColorSettings(Constants.CUSTOM_COLOR, Constants.CUSTOM_COLOR, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+        } else {
+            Log.d(TAG, "prefColorSettingsMap loaded from shared preferences!");
         }
     }
 
-    public boolean getIsReadModeOn() {
+    public boolean isReadModeOn() {
         return sharedPreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
     }
 
@@ -78,7 +90,7 @@ public class PrefsHelper {
         return sharedPreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
     }
 
-    public boolean getSameIntensityBrightnessForAll() {
+    public boolean shouldUseSameIntensityBrightnessForAll() {
         return sharedPreferences.getBoolean(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL);
     }
 
@@ -86,9 +98,14 @@ public class PrefsHelper {
         return sharedPreferences.getBoolean(Constants.PREF_AUTO_START_READ_MODE, Constants.DEFAULT_AUTO_START_READ_MODE);
     }
 
+    public @NonNull String getColor() {
+        return sharedPreferences.getString(Constants.PREF_COLOR, Constants.DEFAULT_COLOR_WHITE);
+    }
+
     public ColorSettings getColorSettings(final int currentColorDropdownPosition) {
         return prefColorSettingsMap.get(Constants.COLOR_DROPDOWN_OPTIONS[currentColorDropdownPosition]);
     }
+
 
     /**
      * Saves an String value to {@link SharedPreferences} under the specified key.
@@ -127,8 +144,8 @@ public class PrefsHelper {
         final String selectedColor = Constants.COLOR_DROPDOWN_OPTIONS[readModeSettings.getColorDropdownPosition()];
         final ColorSettings colorSettings = prefColorSettingsMap.get(selectedColor);
         if (colorSettings != null) {
+            colorSettings.setColorIntensity(readModeSettings.getColorIntensity());
             colorSettings.setBrightness(readModeSettings.getBrightness());
-            colorSettings.setIntensity(readModeSettings.getColorIntensity());
             prefColorSettingsMap.put(selectedColor, colorSettings);
         } else {
             Log.d(TAG, "colorSettings not found in prefColorSettingsMap!");

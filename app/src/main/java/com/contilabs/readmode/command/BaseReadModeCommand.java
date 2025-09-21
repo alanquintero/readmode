@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.manager.ReadModeManager;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.util.PrefsHelper;
 
 /**
  * Serves as the base implementation for read mode commands, providing

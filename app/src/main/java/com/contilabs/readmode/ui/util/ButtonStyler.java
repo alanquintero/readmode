@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode.ui;
+package com.contilabs.readmode.ui.util;
 
 import android.content.Context;
 import android.graphics.Color;

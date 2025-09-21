@@ -29,7 +29,7 @@ public class SettingsReadModeCommand extends BaseReadModeCommand {
     public SettingsReadModeCommand(final @NonNull Context context, final @NonNull View rootView) {
         super(context, rootView);
         manager = new ReadModeManager(context, rootView);
-        prefsHelper = new PrefsHelper(context);
+        this.prefsHelper = PrefsHelper.init(context);
     }
 
     @Override

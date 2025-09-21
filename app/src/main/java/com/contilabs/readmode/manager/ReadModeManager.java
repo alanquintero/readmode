@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.service.DrawOverAppsService;
-import com.contilabs.readmode.ui.ButtonStyler;
+import com.contilabs.readmode.ui.util.ButtonStyler;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -37,8 +37,8 @@ public class ReadModeManager {
 
     public ReadModeManager(final @NonNull Context context, final @NonNull View rootView) {
         this.context = context;
+        this.prefsHelper = PrefsHelper.init(context);
         this.buttonStyler = new ButtonStyler(context, rootView);
-        prefsHelper = new PrefsHelper(context);
     }
 
     /**
@@ -59,7 +59,10 @@ public class ReadModeManager {
         prefsHelper.saveProperty(Constants.PREF_IS_READ_MODE_ON, readModeSettings.isReadModeOn());
         prefsHelper.saveProperty(Constants.PREF_COLOR_INTENSITY, readModeSettings.getColorIntensity());
         prefsHelper.saveProperty(Constants.PREF_BRIGHTNESS, readModeSettings.getBrightness());
-        prefsHelper.saveColorSettingsProperty(readModeSettings);
+        if (!readModeSettings.shouldUseSameIntensityBrightnessForAll()) {
+            // Only save the properties for each color when setting is disabled
+            prefsHelper.saveColorSettingsProperty(readModeSettings);
+        }
 
         final Intent readModeIntent = new Intent(context, DrawOverAppsService.class);
         if (!isMyServiceRunning(readModeIntent.getClass())) {

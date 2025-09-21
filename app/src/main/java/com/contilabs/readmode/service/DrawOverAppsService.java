@@ -10,7 +10,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
@@ -25,6 +24,7 @@ import androidx.annotation.NonNull;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.ui.MainActivity;
+import com.contilabs.readmode.util.PrefsHelper;
 
 /**
  * DrawOverAppsService is an Android foreground service responsible for creating
@@ -73,7 +73,7 @@ public class DrawOverAppsService extends Service {
     private View mView;
     private WindowManager.LayoutParams mParams;
     private WindowManager mWindowManager;
-    private SharedPreferences sharedpreferences;
+    private PrefsHelper prefsHelper;
 
     @Override
     public void onCreate() {
@@ -100,10 +100,10 @@ public class DrawOverAppsService extends Service {
                         WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
                 PixelFormat.TRANSLUCENT);
 
-        sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
-        isReadModeEnabled = sharedpreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
-        colorIntensity = sharedpreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
-        brightness = sharedpreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
+        prefsHelper = PrefsHelper.init(this);
+        isReadModeEnabled = prefsHelper.isReadModeOn();
+        colorIntensity = prefsHelper.getColorIntensity();
+        brightness = prefsHelper.getBrightness();
 
         if (!isReadModeEnabled) {
             Log.d(TAG, "Read mode is OFF, adding overlay view");
@@ -119,11 +119,11 @@ public class DrawOverAppsService extends Service {
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
         Log.d(TAG, "Service onStartCommand");
 
-        sharedpreferences = getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
-        isReadModeEnabled = sharedpreferences.getBoolean(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
-        screenColor = sharedpreferences.getString(Constants.PREF_COLOR, Constants.DEFAULT_COLOR_WHITE);
-        colorIntensity = sharedpreferences.getInt(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
-        brightness = sharedpreferences.getInt(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
+        prefsHelper = PrefsHelper.init(this);
+        isReadModeEnabled = prefsHelper.isReadModeOn();
+        screenColor = prefsHelper.getColor();
+        colorIntensity = prefsHelper.getColorIntensity();
+        brightness = prefsHelper.getBrightness();
 
         if (mWindowManager == null) {
             Log.d(TAG, "Initializing WindowManager in onStartCommand");
@@ -247,17 +247,13 @@ public class DrawOverAppsService extends Service {
                     canvas.drawARGB(120, 220, 235, 255 - colorIntensity);
                     break;
                 case Constants.CUSTOM_COLOR:
-                    final String customColor = sharedpreferences.getString(Constants.PREF_CUSTOM_COLOR, "");
-                    if (!customColor.isEmpty()) {
-                        int color = Color.parseColor(customColor);
-                        int alpha = 120;
-                        int red = Color.red(color);
-                        int green = Color.green(color);
-                        int blue = Color.blue(color);
-                        canvas.drawARGB(alpha, red, green, blue - colorIntensity);
-                    } else {
-                        Log.w(TAG, "Custom color settings not found!");
-                    }
+                    final String customColor = prefsHelper.getCustomColor();
+                    int color = Color.parseColor(customColor);
+                    int alpha = 120;
+                    int red = Color.red(color);
+                    int green = Color.green(color);
+                    int blue = Color.blue(color);
+                    canvas.drawARGB(alpha, red, green, blue - colorIntensity);
                     break;
                 case Constants.COLOR_NONE:
                 default:
