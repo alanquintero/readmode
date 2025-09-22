@@ -23,29 +23,31 @@ abstract class BaseReadModeCommand implements ReadModeCommand {
     private static final String TAG = BaseReadModeCommand.class.getSimpleName();
 
     private final @NonNull ReadModeManager manager;
+    private final @NonNull ReadModeSettings readModeSettings;
 
-    public BaseReadModeCommand(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject) {
-        manager = new ReadModeManager(context, readModeSubject);
+    public BaseReadModeCommand(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject, final @NonNull ReadModeSettings readModeSettings) {
+        this.readModeSettings = readModeSettings;
+        manager = new ReadModeManager(context, readModeSubject, readModeSettings);
     }
 
     @Override
-    public void pauseReadMode(final @NonNull ReadModeSettings readModeSettings) {
+    public void pauseReadMode() {
         Log.d(TAG, "pauseReadMode");
         readModeSettings.setWasReadModeOn(readModeSettings.isReadModeOn());
-        manager.stopReadMode(readModeSettings);
+        manager.stopReadMode();
     }
 
     @Override
-    public void resumeReadMode(final @NonNull ReadModeSettings readModeSettings) {
+    public void resumeReadMode() {
         Log.d(TAG, "resumeReadMode");
         if (readModeSettings.wasReadModeOn()) {
-            manager.startReadMode(readModeSettings);
+            manager.startReadMode();
         }
     }
 
     @Override
-    public void stopReadMode(final @NonNull ReadModeSettings readModeSettings) {
+    public void stopReadMode() {
         Log.d(TAG, "stopReadMode");
-        manager.stopReadMode(readModeSettings);
+        manager.stopReadMode();
     }
 }

@@ -5,8 +5,6 @@ package com.contilabs.readmode.observer.dropdown;
 
 import androidx.annotation.NonNull;
 
-import com.contilabs.readmode.model.ReadModeSettings;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +20,6 @@ import java.util.List;
 public class ColorDropdownSubject {
     private final List<ColorDropdownObserver> observers = new ArrayList<>();
     private int currentColorDropdownPosition;
-    private final @NonNull ReadModeSettings readModeSettings;
-
-    public ColorDropdownSubject(final @NonNull ReadModeSettings readModeSettings) {
-        this.readModeSettings = readModeSettings;
-    }
 
     /**
      * Registers a new observer to receive Read Mode updates.
@@ -44,7 +37,6 @@ public class ColorDropdownSubject {
      */
     public void setCurrentColorDropdownPosition(final int currentColorDropdownPosition) {
         this.currentColorDropdownPosition = currentColorDropdownPosition;
-        readModeSettings.setColorDropdownPosition(currentColorDropdownPosition);
         notifyObservers();
     }
 

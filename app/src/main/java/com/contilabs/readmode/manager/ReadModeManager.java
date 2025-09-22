@@ -35,10 +35,13 @@ public class ReadModeManager {
 
     private final @NonNull ReadModeSubject readModeSubject;
 
-    public ReadModeManager(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject) {
+    private final @NonNull ReadModeSettings readModeSettings;
+
+    public ReadModeManager(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject, final @NonNull ReadModeSettings readModeSettings) {
         this.context = context;
         this.prefsHelper = PrefsHelper.init(context);
         this.readModeSubject = readModeSubject;
+        this.readModeSettings = readModeSettings;
     }
 
     /**
@@ -46,13 +49,14 @@ public class ReadModeManager {
      * the UI and shared preferences with the current color, brightness,
      * and intensity settings.
      */
-    public void startReadMode(final @NonNull ReadModeSettings readModeSettings) {
+    public void startReadMode() {
         // Only start service if overlay permission granted
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(context)) {
             Log.w(TAG, "No overlay permission granted, finishing the app");
             return;
         }
 
+        readModeSubject.setReadModeOn(true);
         readModeSettings.setIsReadModeOn(true);
 
         // save properties
@@ -70,8 +74,6 @@ public class ReadModeManager {
             context.startService(readModeIntent);
             readModeSettings.setReadModeIntent(readModeIntent);
         }
-
-        readModeSubject.setReadModeOn(true);
     }
 
     /**
@@ -79,7 +81,7 @@ public class ReadModeManager {
      * the UI and shared preferences with the current color, brightness,
      * and intensity settings.
      */
-    public void stopReadMode(final @NonNull ReadModeSettings readModeSettings) {
+    public void stopReadMode() {
         readModeSubject.setReadModeOn(false);
         readModeSettings.setIsReadModeOn(false);
 

@@ -3,10 +3,6 @@
  *****************************************************************/
 package com.contilabs.readmode.command;
 
-import androidx.annotation.NonNull;
-
-import com.contilabs.readmode.model.ReadModeSettings;
-
 /**
  * ReadModeCommand defines the contract for starting and stopping "Read Mode"
  * in the application. Implementations can define different behaviors or
@@ -15,11 +11,11 @@ import com.contilabs.readmode.model.ReadModeSettings;
  * @author Alan Quintero
  */
 public interface ReadModeCommand {
-    void startReadMode(final @NonNull ReadModeSettings readModeSettings);
+    void startReadMode();
 
-    void pauseReadMode(final @NonNull ReadModeSettings readModeSettings);
+    void pauseReadMode();
 
-    void resumeReadMode(final @NonNull ReadModeSettings readModeSettings);
+    void resumeReadMode();
 
-    void stopReadMode(final @NonNull ReadModeSettings readModeSettings);
+    void stopReadMode();
 }

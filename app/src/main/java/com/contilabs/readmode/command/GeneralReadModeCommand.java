@@ -24,15 +24,14 @@ public class GeneralReadModeCommand extends BaseReadModeCommand {
 
     private final @NonNull ReadModeManager manager;
 
-
-    public GeneralReadModeCommand(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject) {
-        super(context, readModeSubject);
-        manager = new ReadModeManager(context, readModeSubject);
+    public GeneralReadModeCommand(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject, final @NonNull ReadModeSettings readModeSettings) {
+        super(context, readModeSubject, readModeSettings);
+        manager = new ReadModeManager(context, readModeSubject, readModeSettings);
     }
 
     @Override
-    public void startReadMode(final @NonNull ReadModeSettings readModeSettings) {
+    public void startReadMode() {
         Log.d(TAG, "startReadMode");
-        manager.startReadMode(readModeSettings);
+        manager.startReadMode();
     }
 }

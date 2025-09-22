@@ -50,7 +50,7 @@ public class CustomColorDialog extends DialogFragment {
     private @NonNull android.app.Dialog openCustomColorDialog() {
         Log.i(TAG, "Opening custom color dialog");
         final PrefsHelper prefsHelper = PrefsHelper.init(requireContext());
-        readModeCommand.pauseReadMode(readModeSettings);
+        readModeCommand.pauseReadMode();
 
         // Inflate the dialog layout
         final View dialogView = getLayoutInflater().inflate(R.layout.dialog_color_picker, null);
@@ -110,9 +110,9 @@ public class CustomColorDialog extends DialogFragment {
                     // customizeCustomColorButton(readModeSettings.getCustomColor());
 
                     // resume read mode
-                    readModeCommand.resumeReadMode(readModeSettings);
+                    readModeCommand.resumeReadMode();
                 })
-                .setNegativeButton(R.string.cancel, (dialog, which) -> readModeCommand.resumeReadMode(readModeSettings)).show();
+                .setNegativeButton(R.string.cancel, (dialog, which) -> readModeCommand.resumeReadMode()).show();
     }
 
 }

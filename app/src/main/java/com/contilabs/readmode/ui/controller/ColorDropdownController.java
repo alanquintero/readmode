@@ -5,6 +5,7 @@ package com.contilabs.readmode.ui.controller;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -107,11 +108,14 @@ public class ColorDropdownController {
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "Position selected: " + position);
                 colorDropdownSubject.setCurrentColorDropdownPosition(position);
+                readModeSettings.setColorDropdownPosition(position);
 
                 if (isColorDropdownInitializing[0]) {
                     // Ignore the initial selection triggered by setSelection
                     isColorDropdownInitializing[0] = false;
+                    Log.d(TAG, "Ignoring the initial selection triggered by setSelection");
                     return;
                 }
 
@@ -119,13 +123,13 @@ public class ColorDropdownController {
 
                 final String selectedColor = Constants.COLOR_HEX_ARRAY[position];
                 if (selectedColor.equals(Constants.COLOR_NONE)) {
-                    readModeCommand.stopReadMode(readModeSettings);
+                    readModeCommand.stopReadMode();
                 } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
                     customColorDialog.show(activity.getSupportFragmentManager(), "CustomColorDialogOpenedFromDropdown");
                     adapter.notifyDataSetChanged();
                 } else {
                     prefsHelper.saveProperty(Constants.PREF_COLOR, selectedColor);
-                    readModeCommand.startReadMode(readModeSettings);
+                    readModeCommand.startReadMode();
                 }
             }
 

@@ -113,7 +113,7 @@ public class SeekBarController implements ColorDropdownObserver {
                 if (fromUser) {
                     readModeSettings.setBrightness(progress);
                     brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
-                    readModeCommand.startReadMode(readModeSettings);
+                    readModeCommand.startReadMode();
                 }
             }
 
@@ -139,7 +139,7 @@ public class SeekBarController implements ColorDropdownObserver {
                 if (fromUser) {
                     readModeSettings.setColorIntensity(progress);
                     colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
-                    readModeCommand.startReadMode(readModeSettings);
+                    readModeCommand.startReadMode();
                 }
             }
 

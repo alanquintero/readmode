@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import com.contilabs.readmode.manager.ReadModeManager;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.readmode.ReadModeSubject;
-import com.contilabs.readmode.util.PrefsHelper;
 
 /**
  * SettingsReadModeCommand is responsible for starting the Read Mode
@@ -24,17 +23,19 @@ public class SettingsReadModeCommand extends BaseReadModeCommand {
     private static final String TAG = SettingsReadModeCommand.class.getSimpleName();
 
     private final @NonNull ReadModeManager manager;
+    private final @NonNull ReadModeSettings readModeSettings;
 
-    public SettingsReadModeCommand(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject) {
-        super(context, readModeSubject);
-        manager = new ReadModeManager(context, readModeSubject);
+    public SettingsReadModeCommand(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject, final @NonNull ReadModeSettings readModeSettings) {
+        super(context, readModeSubject, readModeSettings);
+        this.readModeSettings = readModeSettings;
+        manager = new ReadModeManager(context, readModeSubject, readModeSettings);
     }
 
     @Override
-    public void startReadMode(final @NonNull ReadModeSettings readModeSettings) {
+    public void startReadMode() {
         Log.d(TAG, "startReadMode");
         if (readModeSettings.isAutoStartReadMode()) {
-            manager.startReadMode(readModeSettings);
+            manager.startReadMode();
         }
     }
 }

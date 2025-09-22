@@ -71,9 +71,9 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
                 Log.w(TAG, "Start clicked but no color selected.");
             } else {
                 if (readModeSettings.isReadModeOn()) {
-                    readModeCommand.stopReadMode(readModeSettings);
+                    readModeCommand.stopReadMode();
                 } else {
-                    readModeCommand.startReadMode(readModeSettings);
+                    readModeCommand.startReadMode();
                 }
             }
         });

@@ -17,5 +17,5 @@ public interface ReadModeObserver {
     /**
      * Called when the Read Mode state has changed.
      */
-    void onReadModeChanged(boolean isReadModeOn);
+    void onReadModeChanged(final boolean isReadModeOn);
 }

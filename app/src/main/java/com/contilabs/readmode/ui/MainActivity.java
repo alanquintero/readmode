@@ -101,9 +101,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "init classes...");
         final @NonNull View rootView = findViewById(android.R.id.content);
         final ReadModeSubject readModeSubject = new ReadModeSubject();
-        final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject(readModeSettings);
-        generalReadModeCommand = new GeneralReadModeCommand(this, readModeSubject);
-        final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(this, readModeSubject);
+        final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject();
+        generalReadModeCommand = new GeneralReadModeCommand(this, readModeSubject, readModeSettings);
+        final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(this, readModeSubject, readModeSettings);
 
         // UI components
         final CustomColorDialog customColorDialog = new CustomColorDialog(generalReadModeCommand, readModeSettings);
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        generalReadModeCommand.stopReadMode(readModeSettings);
+        generalReadModeCommand.stopReadMode();
         super.onDestroy();
         Log.i(TAG, "Activity destroyed.");
     }

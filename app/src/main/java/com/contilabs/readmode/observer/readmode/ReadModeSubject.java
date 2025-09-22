@@ -3,6 +3,8 @@
  *****************************************************************/
 package com.contilabs.readmode.observer.readmode;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class ReadModeSubject {
      *
      * @param observer the observer to add
      */
-    public void registerObserver(ReadModeObserver observer) {
+    public void registerObserver(final @NonNull ReadModeObserver observer) {
         observers.add(observer);
     }
 
@@ -33,7 +35,7 @@ public class ReadModeSubject {
      *
      * @param isReadModeOn true to start Read Mode, false to stop
      */
-    public void setReadModeOn(boolean isReadModeOn) {
+    public void setReadModeOn(final boolean isReadModeOn) {
         this.isReadModeOn = isReadModeOn;
         notifyObservers();
     }
