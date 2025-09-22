@@ -22,7 +22,7 @@ public class ColorDropdownSubject {
     private int currentColorDropdownPosition;
 
     /**
-     * Registers a new observer to receive Read Mode updates.
+     * Registers a new observer to receive Color Dropdown position updates.
      *
      * @param observer the observer to add
      */

@@ -1,10 +1,9 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode.ui;
+package com.contilabs.readmode.ui.dialog;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.settings.SettingsSubject;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.util.PrefsHelper;
@@ -31,15 +32,18 @@ public class SettingsDialog extends DialogFragment {
 
     private static final String TAG = SettingsDialog.class.getSimpleName();
 
-    private final @NonNull PrefsHelper prefsHelper;
+    private final @NonNull SettingsSubject settingsSubject;
+    private final @NonNull ReadModeSettings readModeSettings;
 
-    public SettingsDialog() {
-        prefsHelper = PrefsHelper.init(requireContext());
+    public SettingsDialog(final @NonNull SettingsSubject settingsSubject, final @NonNull ReadModeSettings readModeSettings) {
+        this.settingsSubject = settingsSubject;
+        this.readModeSettings = readModeSettings;
     }
 
     @Override
     public @NonNull Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Log.i(TAG, "Opening setting dialog");
+        final PrefsHelper prefsHelper = PrefsHelper.init(requireContext());
 
         final LayoutInflater inflater = requireActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.dialog_settings, null);
@@ -67,35 +71,21 @@ public class SettingsDialog extends DialogFragment {
         switchAutoStartReadMode.setChecked(prefsHelper.getAutoStartReadMode());
 
         // Save changes when toggled
-        switchAutoStartReadMode.setOnCheckedChangeListener((buttonView, isChecked) ->
-                prefsHelper.saveProperty(Constants.PREF_AUTO_START_READ_MODE, isChecked)
-        );
+        switchAutoStartReadMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            prefsHelper.saveProperty(Constants.PREF_AUTO_START_READ_MODE, isChecked);
+            readModeSettings.setAutoStartReadMode(isChecked);
+        });
 
-        switchSameIntensityBrightness.setOnCheckedChangeListener((buttonView, isChecked) ->
-                prefsHelper.saveProperty(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, isChecked));
+        switchSameIntensityBrightness.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            prefsHelper.saveProperty(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, isChecked);
+            readModeSettings.setShouldUseSameIntensityBrightnessForAll(isChecked);
+            settingsSubject.shouldUseSameIntensityBrightnessForAllChanged();
+        });
 
         return new AlertDialog.Builder(requireContext())
                 .setTitle(getString(R.string.settings_menu))
                 .setView(view)
                 .setPositiveButton(getString(R.string.done), (dialog, which) -> dialog.dismiss())
                 .create();
-    }
-
-    public interface OnSettingsClosedListener {
-        void onSettingsClosed();
-    }
-
-    private OnSettingsClosedListener listener;
-
-    public void setOnSettingsClosedListener(OnSettingsClosedListener listener) {
-        this.listener = listener;
-    }
-
-    @Override
-    public void onDismiss(@NonNull DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (listener != null) {
-            listener.onSettingsClosed();
-        }
     }
 }

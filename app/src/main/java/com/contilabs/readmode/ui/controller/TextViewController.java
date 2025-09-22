@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownObserver;
+import com.contilabs.readmode.observer.settings.SettingsObserver;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -20,15 +21,13 @@ import com.contilabs.readmode.util.PrefsHelper;
  *
  * @author Alan Quintero
  */
-public class TextViewController implements ColorDropdownObserver {
+public class TextViewController implements ColorDropdownObserver, SettingsObserver {
 
     private final @NonNull Context context;
     private final @NonNull PrefsHelper prefsHelper;
-
     private final @NonNull ReadModeSettings readModeSettings;
     private final @NonNull String[] colorNames;
     private final @NonNull TextView colorSettingsText;
-
 
     public TextViewController(final @NonNull Context context, final @NonNull View rootView, final @NonNull ReadModeSettings readModeSettings, final @NonNull String[] colorNames) {
         this.context = context;
@@ -37,7 +36,6 @@ public class TextViewController implements ColorDropdownObserver {
         this.colorNames = colorNames;
         colorSettingsText = rootView.findViewById(R.id.labelColorSettings);
     }
-
 
     /**
      * Sets the initial value for the Color Settings text
@@ -66,7 +64,12 @@ public class TextViewController implements ColorDropdownObserver {
     }
 
     @Override
-    public void onColorDropdownPositionChange(int currentColorDropdownPosition) {
+    public void onColorDropdownPositionChange(final int currentColorDropdownPosition) {
+        setColorSettingsText();
+    }
+
+    @Override
+    public void shouldUseSameIntensityBrightnessForAllChanged() {
         setColorSettingsText();
     }
 }

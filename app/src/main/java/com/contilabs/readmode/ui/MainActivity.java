@@ -24,6 +24,7 @@ import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.customcolor.CustomColorSubject;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
 import com.contilabs.readmode.observer.readmode.ReadModeSubject;
+import com.contilabs.readmode.observer.settings.SettingsSubject;
 import com.contilabs.readmode.ui.controller.ButtonController;
 import com.contilabs.readmode.ui.controller.ColorDropdownController;
 import com.contilabs.readmode.ui.controller.MenuController;
@@ -31,6 +32,7 @@ import com.contilabs.readmode.ui.controller.SeekBarController;
 import com.contilabs.readmode.ui.controller.StatusBarController;
 import com.contilabs.readmode.ui.controller.TextViewController;
 import com.contilabs.readmode.R;
+import com.contilabs.readmode.ui.dialog.CustomColorDialog;
 import com.contilabs.readmode.util.PrefsHelper;
 
 /**
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         final ReadModeSubject readModeSubject = new ReadModeSubject();
         final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject();
         final CustomColorSubject customColorSubject = new CustomColorSubject();
+        final SettingsSubject settingsSubject = new SettingsSubject();
         generalReadModeCommand = new GeneralReadModeCommand(this, readModeSubject, readModeSettings);
         final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(this, readModeSubject, readModeSettings);
 
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         final SeekBarController seekBarController = new SeekBarController(this, rootView, generalReadModeCommand, readModeSettings);
         final TextViewController textViewController = new TextViewController(this, rootView, readModeSettings, colorNames);
         final StatusBarController statusBarController = new StatusBarController(this, this);
-        final MenuController menuController = new MenuController(this, this, rootView, readModeSettings);
+        final MenuController menuController = new MenuController(this, this, rootView, settingsSubject, readModeSettings);
         final ColorDropdownController colorDropdownController = new ColorDropdownController(this, this, rootView, customColorDialog, colorDropdownSubject, settingsReadModeCommand, readModeSettings, colorNames);
 
         statusBarController.setupStatusBarColor();
@@ -127,8 +130,10 @@ public class MainActivity extends AppCompatActivity {
         readModeSubject.registerObserver(buttonController);
         customColorSubject.registerObserver(buttonController);
         colorDropdownSubject.registerObserver(buttonController);
+        settingsSubject.registerObserver(seekBarController);
         colorDropdownSubject.registerObserver(seekBarController);
         colorDropdownSubject.registerObserver(textViewController);
+        settingsSubject.registerObserver(textViewController);
 
         Log.i(TAG, "UI initialized successfully.");
     }

@@ -22,7 +22,7 @@ public class CustomColorSubject {
     private String customColor;
 
     /**
-     * Registers a new observer to receive Read Mode updates.
+     * Registers a new observer to receive Custom Color updates.
      *
      * @param observer the observer to add
      */
@@ -33,7 +33,7 @@ public class CustomColorSubject {
     /**
      * Sets the Custom Color and notifies all registered observers.
      *
-     * @param customColor the current position in the Color dropdown
+     * @param customColor the current selected Custom Color
      */
     public void setCustomColor(final @NonNull String customColor) {
         this.customColor = customColor;

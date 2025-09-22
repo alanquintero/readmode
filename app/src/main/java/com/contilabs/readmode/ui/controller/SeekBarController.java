@@ -16,6 +16,7 @@ import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ColorSettings;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownObserver;
+import com.contilabs.readmode.observer.settings.SettingsObserver;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -24,7 +25,7 @@ import com.contilabs.readmode.util.PrefsHelper;
  *
  * @author Alan Quintero
  */
-public class SeekBarController implements ColorDropdownObserver {
+public class SeekBarController implements ColorDropdownObserver, SettingsObserver {
 
     private static final String TAG = SeekBarController.class.getSimpleName();
 
@@ -54,19 +55,10 @@ public class SeekBarController implements ColorDropdownObserver {
         seekBrightnessBar.setEnabled(true);
     }
 
-
     public void disableSeekBars() {
         Log.d(TAG, "Disabling seek bars");
         seekColorIntensityBar.setEnabled(false);
         seekBrightnessBar.setEnabled(false);
-    }
-
-    public int getCurrentColorIntensity() {
-        return seekColorIntensityBar.getProgress();
-    }
-
-    public int getCurrentBrightness() {
-        return seekBrightnessBar.getProgress();
     }
 
     /**
@@ -211,6 +203,11 @@ public class SeekBarController implements ColorDropdownObserver {
         } else {
             enableSeekBars();
         }
+        updateSeekBarsForSelectedColor();
+    }
+
+    @Override
+    public void shouldUseSameIntensityBrightnessForAllChanged() {
         updateSeekBarsForSelectedColor();
     }
 }

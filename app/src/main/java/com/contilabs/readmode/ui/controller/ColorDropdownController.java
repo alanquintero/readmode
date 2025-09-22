@@ -20,7 +20,7 @@ import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
-import com.contilabs.readmode.ui.CustomColorDialog;
+import com.contilabs.readmode.ui.dialog.CustomColorDialog;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
