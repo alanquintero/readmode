@@ -23,19 +23,16 @@ public class SettingsReadModeCommand extends BaseReadModeCommand {
     private static final String TAG = SettingsReadModeCommand.class.getSimpleName();
 
     private final @NonNull ReadModeManager manager;
-    private final @NonNull PrefsHelper prefsHelper;
 
     public SettingsReadModeCommand(final @NonNull Context context) {
         super(context);
         manager = new ReadModeManager(context);
-        this.prefsHelper = PrefsHelper.init(context);
     }
 
     @Override
     public void startReadMode(final @NonNull ReadModeSettings readModeSettings) {
         Log.d(TAG, "startReadMode");
-        final boolean isAutoStartReadModeEnabled = prefsHelper.getAutoStartReadMode();
-        if (isAutoStartReadModeEnabled) {
+        if (readModeSettings.isAutoStartReadMode()) {
             manager.startReadMode(readModeSettings);
         }
     }
