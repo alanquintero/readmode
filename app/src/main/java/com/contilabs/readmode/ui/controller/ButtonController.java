@@ -124,16 +124,20 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
 
     @Override
     public void onReadModeChanged(boolean isReadModeOn) {
-        applyStartStopButtonStyle(isReadModeOn);
+        if (readModeSettings.getColorDropdownPosition() != Constants.NO_COLOR_DROPDOWN_POSITION) {
+            // Avoid applying style when the dropdown position is NONE
+            applyStartStopButtonStyle(isReadModeOn);
+        }
     }
 
     @Override
     public void onColorDropdownPositionChange(final int currentColorDropdownPosition) {
         final String selectedColor = Constants.COLOR_HEX_ARRAY[currentColorDropdownPosition];
+        Log.e(TAG, "Selected color: " + selectedColor);
         switch (selectedColor) {
             case Constants.COLOR_NONE:
                 customColorButton.setVisibility(View.GONE);
-                startStopButton.setBackgroundColor(context.getResources().getColor(R.color.gray_disabled));
+                startStopButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.gray_disabled));
                 break;
             case Constants.CUSTOM_COLOR:
                 customColorButton.setVisibility(View.VISIBLE);

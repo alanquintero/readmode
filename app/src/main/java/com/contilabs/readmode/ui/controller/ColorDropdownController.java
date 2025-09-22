@@ -109,8 +109,8 @@ public class ColorDropdownController {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "Position selected: " + position);
-                colorDropdownSubject.setCurrentColorDropdownPosition(position);
                 readModeSettings.setColorDropdownPosition(position);
+                colorDropdownSubject.setCurrentColorDropdownPosition(position);
 
                 if (isColorDropdownInitializing[0]) {
                     // Ignore the initial selection triggered by setSelection

@@ -192,7 +192,7 @@ public class SeekBarController implements ColorDropdownObserver, SettingsObserve
         colorLevelText.setText(context.getString(R.string.color_intensity, Constants.DEFAULT_COLOR_INTENSITY));
         // Brightness
         seekBrightnessBar.setProgress(Constants.DEFAULT_BRIGHTNESS);
-        brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
+        brightnessLevelText.setText(context.getString(R.string.brightness_level, Constants.DEFAULT_BRIGHTNESS));
     }
 
     @Override
