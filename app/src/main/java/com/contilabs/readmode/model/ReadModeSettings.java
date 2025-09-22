@@ -50,7 +50,7 @@ public class ReadModeSettings {
         return isReadModeOn;
     }
 
-    public void setIsReadModeOn(boolean readModeOn) {
+    public void setIsReadModeOn(final boolean readModeOn) {
         isReadModeOn = readModeOn;
     }
 
@@ -58,7 +58,7 @@ public class ReadModeSettings {
         return wasReadModeOn;
     }
 
-    public void setWasReadModeOn(boolean wasReadModeOn) {
+    public void setWasReadModeOn(final boolean wasReadModeOn) {
         this.wasReadModeOn = wasReadModeOn;
     }
 
@@ -67,7 +67,7 @@ public class ReadModeSettings {
         return customColor;
     }
 
-    public void setCustomColor(@NonNull String customColor) {
+    public void setCustomColor(final @NonNull String customColor) {
         this.customColor = customColor;
     }
 
@@ -75,7 +75,7 @@ public class ReadModeSettings {
         return colorDropdownPosition;
     }
 
-    public void setColorDropdownPosition(int colorDropdownPosition) {
+    public void setColorDropdownPosition(final int colorDropdownPosition) {
         this.colorDropdownPosition = colorDropdownPosition;
     }
 
@@ -83,7 +83,7 @@ public class ReadModeSettings {
         return colorIntensity;
     }
 
-    public void setColorIntensity(int colorIntensity) {
+    public void setColorIntensity(final int colorIntensity) {
         this.colorIntensity = colorIntensity;
     }
 
@@ -91,7 +91,7 @@ public class ReadModeSettings {
         return brightness;
     }
 
-    public void setBrightness(int brightness) {
+    public void setBrightness(final int brightness) {
         this.brightness = brightness;
     }
 
@@ -99,7 +99,7 @@ public class ReadModeSettings {
         return autoStartReadMode;
     }
 
-    public void setAutoStartReadMode(boolean autoStartReadMode) {
+    public void setAutoStartReadMode(final boolean autoStartReadMode) {
         this.autoStartReadMode = autoStartReadMode;
     }
 
@@ -107,7 +107,7 @@ public class ReadModeSettings {
         return shouldUseSameIntensityBrightnessForAll;
     }
 
-    public void setShouldUseSameIntensityBrightnessForAll(boolean shouldUseSameIntensityBrightnessForAll) {
+    public void setShouldUseSameIntensityBrightnessForAll(final boolean shouldUseSameIntensityBrightnessForAll) {
         this.shouldUseSameIntensityBrightnessForAll = shouldUseSameIntensityBrightnessForAll;
     }
 

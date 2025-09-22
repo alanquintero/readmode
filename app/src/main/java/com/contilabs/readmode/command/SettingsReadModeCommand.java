@@ -34,7 +34,7 @@ public class SettingsReadModeCommand extends BaseReadModeCommand {
     @Override
     public void startReadMode() {
         Log.d(TAG, "startReadMode");
-        if (readModeSettings.isAutoStartReadMode()) {
+        if (readModeSettings.isAutoStartReadMode() || readModeSettings.isReadModeOn()) {
             manager.startReadMode();
         }
     }

@@ -106,6 +106,7 @@ public class CustomColorDialog extends DialogFragment {
                     final String chosenColorHex = String.format(Constants.COLOR_HEX_FORMAT, currentRed, currentGreen, currentBlue);
                     prefsHelper.saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
                     prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
+
                     // update preferences for custom color
                     readModeSettings.setCustomColor(chosenColorHex);
                     customColorSubject.setCustomColor(chosenColorHex);
