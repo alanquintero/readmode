@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.dropdown.ColorDropdownObserver;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -19,15 +20,21 @@ import com.contilabs.readmode.util.PrefsHelper;
  *
  * @author Alan Quintero
  */
-public class TextViewController {
+public class TextViewController implements ColorDropdownObserver {
 
     private final @NonNull Context context;
-    private final @NonNull TextView colorSettingsText;
     private final @NonNull PrefsHelper prefsHelper;
 
-    public TextViewController(final @NonNull Context context, final @NonNull View rootView) {
+    private final @NonNull ReadModeSettings readModeSettings;
+    private final @NonNull String[] colorNames;
+    private final @NonNull TextView colorSettingsText;
+
+
+    public TextViewController(final @NonNull Context context, final @NonNull View rootView, final @NonNull ReadModeSettings readModeSettings, final @NonNull String[] colorNames) {
         this.context = context;
         this.prefsHelper = PrefsHelper.init(context);
+        this.readModeSettings = readModeSettings;
+        this.colorNames = colorNames;
         colorSettingsText = rootView.findViewById(R.id.labelColorSettings);
     }
 
@@ -35,8 +42,8 @@ public class TextViewController {
     /**
      * Sets the initial value for the Color Settings text
      */
-    public void setupTextViews(@NonNull ReadModeSettings readModeSettings, final @NonNull String[] colors) {
-        setColorSettingsText(readModeSettings, colors);
+    public void setupTextViews() {
+        setColorSettingsText();
     }
 
     /**
@@ -48,13 +55,18 @@ public class TextViewController {
      * with the currently selected color name.
      * </p>
      */
-    public void setColorSettingsText(final @NonNull ReadModeSettings readModeSettings, final @NonNull String[] colors) {
+    public void setColorSettingsText() {
         final String label = context.getString(R.string.color_settings_placeholder);
         if (prefsHelper.shouldUseSameIntensityBrightnessForAll() || readModeSettings.getColorDropdownPosition() == Constants.NO_COLOR_DROPDOWN_POSITION) {
             colorSettingsText.setText(label);
         } else {
-            String selectedColor = colors[readModeSettings.getColorDropdownPosition()];
+            String selectedColor = colorNames[readModeSettings.getColorDropdownPosition()];
             colorSettingsText.setText(context.getString(R.string.color_settings_format, label, selectedColor));
         }
+    }
+
+    @Override
+    public void onColorDropdownPositionChange(int currentColorDropdownPosition) {
+        setColorSettingsText();
     }
 }

@@ -23,6 +23,18 @@ import com.contilabs.readmode.util.Constants;
  */
 public class ReadModeSettings {
 
+    private static ReadModeSettings readModeSettings = null;
+
+    public static ReadModeSettings init() {
+        if (readModeSettings == null) {
+            readModeSettings = new ReadModeSettings();
+        }
+        return readModeSettings;
+    }
+
+    private ReadModeSettings() {
+    }
+
     private boolean isReadModeOn = Constants.DEFAULT_IS_READ_MODE_ENABLED;
 
     private boolean wasReadModeOn = false;

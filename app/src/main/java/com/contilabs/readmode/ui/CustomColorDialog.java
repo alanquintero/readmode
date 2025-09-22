@@ -4,7 +4,6 @@
 package com.contilabs.readmode.ui;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,19 +30,13 @@ public class CustomColorDialog extends DialogFragment {
 
     private static final String TAG = CustomColorDialog.class.getSimpleName();
 
-    private final @NonNull Context context;
-
-    private final @NonNull PrefsHelper prefsHelper;
-
     private final @NonNull ReadModeCommand readModeCommand;
 
     private final @NonNull ReadModeSettings readModeSettings;
 
-    public CustomColorDialog(final @NonNull Context context, final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
-        this.context = context;
+    public CustomColorDialog(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
         this.readModeCommand = readModeCommand;
         this.readModeSettings = readModeSettings;
-        prefsHelper = PrefsHelper.init(context);
     }
 
     /**
@@ -54,8 +47,9 @@ public class CustomColorDialog extends DialogFragment {
         return openCustomColorDialog();
     }
 
-    public @NonNull android.app.Dialog openCustomColorDialog() {
+    private @NonNull android.app.Dialog openCustomColorDialog() {
         Log.i(TAG, "Opening custom color dialog");
+        final PrefsHelper prefsHelper = PrefsHelper.init(requireContext());
         readModeCommand.pauseReadMode(readModeSettings);
 
         // Inflate the dialog layout
@@ -100,7 +94,7 @@ public class CustomColorDialog extends DialogFragment {
         seekBlue.setOnSeekBarChangeListener(listener);
 
         // Build the dialog
-        return new AlertDialog.Builder(context)
+        return new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.choose_custom_color)
                 .setView(dialogView)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {

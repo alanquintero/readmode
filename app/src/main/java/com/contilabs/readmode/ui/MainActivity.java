@@ -21,6 +21,7 @@ import android.view.View;
 import com.contilabs.readmode.command.GeneralReadModeCommand;
 import com.contilabs.readmode.command.SettingsReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
 import com.contilabs.readmode.observer.readmode.ReadModeSubject;
 import com.contilabs.readmode.ui.controller.ButtonController;
 import com.contilabs.readmode.ui.controller.ColorDropdownController;
@@ -31,7 +32,6 @@ import com.contilabs.readmode.ui.controller.TextViewController;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.util.PrefsHelper;
 
-
 /**
  * MainActivity controls the UI for Read Mode.
  * Users can select colors, brightness, intensity, and start/stop the read mode overlay.
@@ -41,7 +41,7 @@ import com.contilabs.readmode.util.PrefsHelper;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private final ReadModeSettings readModeSettings = new ReadModeSettings();
+    private final ReadModeSettings readModeSettings = ReadModeSettings.init();
     private GeneralReadModeCommand generalReadModeCommand;
     private String[] colorNames = {};
 
@@ -101,27 +101,31 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "init classes...");
         final @NonNull View rootView = findViewById(android.R.id.content);
         final ReadModeSubject readModeSubject = new ReadModeSubject();
+        final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject(readModeSettings);
         generalReadModeCommand = new GeneralReadModeCommand(this, readModeSubject);
         final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(this, readModeSubject);
 
-        // UI com
-        final CustomColorDialog customColorDialog = new CustomColorDialog(this, generalReadModeCommand, readModeSettings);
-        final ButtonController buttonController = new ButtonController(this, rootView, generalReadModeCommand, readModeSettings, customColorDialog);
-        final SeekBarController seekBarController = new SeekBarController(this, rootView);
-        final TextViewController textViewController = new TextViewController(this, rootView);
+        // UI components
+        final CustomColorDialog customColorDialog = new CustomColorDialog(generalReadModeCommand, readModeSettings);
+        final ButtonController buttonController = new ButtonController(this, this, rootView, generalReadModeCommand, readModeSettings, customColorDialog);
+        final SeekBarController seekBarController = new SeekBarController(this, rootView, generalReadModeCommand, readModeSettings);
+        final TextViewController textViewController = new TextViewController(this, rootView, readModeSettings, colorNames);
         final StatusBarController statusBarController = new StatusBarController(this, this);
-        final MenuController menuController = new MenuController(this, this, rootView);
-        final ColorDropdownController colorDropdownController = new ColorDropdownController(this, rootView);
+        final MenuController menuController = new MenuController(this, this, rootView, readModeSettings);
+        final ColorDropdownController colorDropdownController = new ColorDropdownController(this, this, rootView, customColorDialog, colorDropdownSubject, settingsReadModeCommand, readModeSettings, colorNames);
 
         statusBarController.setupStatusBarColor();
-        colorDropdownController.setupColorDropdown(settingsReadModeCommand, readModeSettings, colorNames);
-        textViewController.setupTextViews(readModeSettings, colorNames);
-        seekBarController.setupSeekBars(settingsReadModeCommand, readModeSettings);
+        colorDropdownController.setupColorDropdown();
+        textViewController.setupTextViews();
+        seekBarController.setupSeekBars();
         buttonController.setupButtons();
-        menuController.setupMenu(readModeSettings);
+        menuController.setupMenu();
 
         // Register Observers
         readModeSubject.registerObserver(buttonController);
+        colorDropdownSubject.registerObserver(buttonController);
+        colorDropdownSubject.registerObserver(seekBarController);
+        colorDropdownSubject.registerObserver(textViewController);
 
         Log.i(TAG, "UI initialized successfully.");
     }

@@ -15,6 +15,7 @@ import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ColorSettings;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.dropdown.ColorDropdownObserver;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -23,20 +24,24 @@ import com.contilabs.readmode.util.PrefsHelper;
  *
  * @author Alan Quintero
  */
-public class SeekBarController {
+public class SeekBarController implements ColorDropdownObserver {
 
     private static final String TAG = SeekBarController.class.getSimpleName();
 
     private final @NonNull Context context;
     private final @NonNull PrefsHelper prefsHelper;
+    private final @NonNull ReadModeCommand readModeCommand;
+    private final @NonNull ReadModeSettings readModeSettings;
     private final @NonNull SeekBar seekColorIntensityBar;
     private final @NonNull TextView colorLevelText;
     private final @NonNull SeekBar seekBrightnessBar;
     private final @NonNull TextView brightnessLevelText;
 
-    public SeekBarController(final @NonNull Context context, final @NonNull View rootView) {
+    public SeekBarController(final @NonNull Context context, final @NonNull View rootView, final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
         this.context = context;
         this.prefsHelper = PrefsHelper.init(context);
+        this.readModeCommand = readModeCommand;
+        this.readModeSettings = readModeSettings;
         this.seekColorIntensityBar = rootView.findViewById(R.id.colorLevelBar);
         this.colorLevelText = rootView.findViewById(R.id.colorLevelPercentageText);
         this.seekBrightnessBar = rootView.findViewById(R.id.brightnessLevelBar);
@@ -67,24 +72,24 @@ public class SeekBarController {
     /**
      * Restores the saved values for the seek bars, setup listeners.
      */
-    public void setupSeekBars(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
-        // Disable SeekBars initially until a color is selected
-        disableSeekBars();
+    public void setupSeekBars() {
         // restore saved value
-        restoreSavedSelection(readModeSettings);
+        restoreSavedSelection();
         // setup seek bars
-        setupSeekColorIntensityBar(readModeCommand, readModeSettings);
-        setupSeekBrightnessBar(readModeCommand, readModeSettings);
+        setupSeekColorIntensityBar();
+        setupSeekBrightnessBar();
 
     }
 
     /**
      * Restores the saved values for the seek bars
      */
-    private void restoreSavedSelection(final @NonNull ReadModeSettings readModeSettings) {
+    private void restoreSavedSelection() {
         if (readModeSettings.getColorDropdownPosition() == Constants.DEFAULT_COLOR_DROPDOWN_POSITION) {
-            setSeekBarsWithDefaultValues(readModeSettings);
+            setSeekBarsWithDefaultValues();
+            disableSeekBars();
         } else {
+            enableSeekBars();
             // Color Intensity
             seekColorIntensityBar.setProgress(readModeSettings.getColorIntensity());
             colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
@@ -102,7 +107,7 @@ public class SeekBarController {
      * and applies the brightness change to the filter when the value is modified.
      * </p>
      */
-    private void setupSeekBrightnessBar(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+    private void setupSeekBrightnessBar() {
         seekBrightnessBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
                 if (fromUser) {
@@ -128,7 +133,7 @@ public class SeekBarController {
      * and triggers the filter update when the value changes.
      * </p>
      */
-    private void setupSeekColorIntensityBar(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+    private void setupSeekColorIntensityBar() {
         seekColorIntensityBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
                 if (fromUser) {
@@ -149,12 +154,12 @@ public class SeekBarController {
     /**
      * Sets the seek bars for the selected color from the dropdown.
      */
-    public void updateSeekBarsForSelectedColor(final @NonNull ReadModeSettings readModeSettings) {
+    public void updateSeekBarsForSelectedColor() {
         Log.d(TAG, "updateSeekBarsForSelectedColor");
 
         if (readModeSettings.getColorDropdownPosition() == Constants.DEFAULT_COLOR_DROPDOWN_POSITION) {
             Log.d(TAG, "Selected color: NONE");
-            setSeekBarsWithDefaultValues(readModeSettings);
+            setSeekBarsWithDefaultValues();
         } else if (readModeSettings.shouldUseSameIntensityBrightnessForAll()) {
             Log.d(TAG, "Using same Intensity and Brightness for All");
             Log.d(TAG, "Selected position: " + readModeSettings.getColorDropdownPosition() + "; colorIntensity: " + readModeSettings.getColorIntensity() + "; brightness: " + readModeSettings.getBrightness());
@@ -180,7 +185,7 @@ public class SeekBarController {
                 seekBrightnessBar.setProgress(readModeSettings.getBrightness());
                 brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
             } else {
-                setSeekBarsWithDefaultValues(readModeSettings);
+                setSeekBarsWithDefaultValues();
             }
         }
     }
@@ -188,7 +193,7 @@ public class SeekBarController {
     /**
      * Sets seeks bars using the default values.
      */
-    private void setSeekBarsWithDefaultValues(final @NonNull ReadModeSettings readModeSettings) {
+    private void setSeekBarsWithDefaultValues() {
         Log.d(TAG, "Updating seek bars with default values");
         // Color Intensity
         seekColorIntensityBar.setProgress(Constants.DEFAULT_COLOR_INTENSITY);
@@ -196,5 +201,16 @@ public class SeekBarController {
         // Brightness
         seekBrightnessBar.setProgress(Constants.DEFAULT_BRIGHTNESS);
         brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
+    }
+
+    @Override
+    public void onColorDropdownPositionChange(final int currentColorDropdownPosition) {
+        final String selectedColor = Constants.COLOR_HEX_ARRAY[currentColorDropdownPosition];
+        if (selectedColor.equals(Constants.COLOR_NONE)) {
+            disableSeekBars();
+        } else {
+            enableSeekBars();
+        }
+        updateSeekBarsForSelectedColor();
     }
 }

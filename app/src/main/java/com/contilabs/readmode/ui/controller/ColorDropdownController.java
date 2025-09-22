@@ -13,10 +13,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
+import com.contilabs.readmode.ui.CustomColorDialog;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -30,13 +33,24 @@ public class ColorDropdownController {
     private static final String TAG = ColorDropdownController.class.getSimpleName();
 
     private final @NonNull Context context;
-
+    private final @NonNull FragmentActivity activity;
     private final @NonNull PrefsHelper prefsHelper;
+    private final @NonNull ReadModeCommand readModeCommand;
+    private final @NonNull ReadModeSettings readModeSettings;
+    private final @NonNull CustomColorDialog customColorDialog;
+    private final @NonNull String[] colorNames;
+    private final @NonNull ColorDropdownSubject colorDropdownSubject;
     private final @NonNull Spinner colorSpinner;
 
-    public ColorDropdownController(final @NonNull Context context, final @NonNull View rootView) {
+    public ColorDropdownController(final @NonNull Context context, final @NonNull FragmentActivity activity, final @NonNull View rootView, final @NonNull CustomColorDialog customColorDialog, final @NonNull ColorDropdownSubject colorDropdownSubject, final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings, final @NonNull String[] colorNames) {
         this.context = context;
+        this.activity = activity;
         this.prefsHelper = PrefsHelper.init(context);
+        this.customColorDialog = customColorDialog;
+        this.colorDropdownSubject = colorDropdownSubject;
+        this.readModeCommand = readModeCommand;
+        this.readModeSettings = readModeSettings;
+        this.colorNames = colorNames;
         colorSpinner = rootView.findViewById(R.id.colorSpinner);
     }
 
@@ -50,11 +64,11 @@ public class ColorDropdownController {
      * corresponding SeekBars and labels are updated when a color is selected.
      * </p>
      */
-    public void setupColorDropdown(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings, final @NonNull String[] colors) {
+    public void setupColorDropdown() {
         // Flag to ignore initial selection
         final boolean[] isColorDropdownInitializing = {true};
         // Adapter for dropdown
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, colors) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, colorNames) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 TextView view = (TextView) super.getView(position, convertView, parent);
@@ -93,18 +107,7 @@ public class ColorDropdownController {
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                readModeSettings.setColorDropdownPosition(position);
-                if (position == Constants.NO_COLOR_DROPDOWN_POSITION) {
-                    // No color option
-                    // Disabling the seek bars
-                    // TODO listeners
-                    // seekBarsStyler.disableSeekBars();
-                } else {
-                    // Enabling the seek bars
-                    // TODO listeners
-                    // seekBarsStyler.enableSeekBars();
-                }
+                colorDropdownSubject.setCurrentColorDropdownPosition(position);
 
                 if (isColorDropdownInitializing[0]) {
                     // Ignore the initial selection triggered by setSelection
@@ -115,24 +118,13 @@ public class ColorDropdownController {
                 prefsHelper.saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
 
                 final String selectedColor = Constants.COLOR_HEX_ARRAY[position];
-                // TODO listener
-                // textViewStyler.setColorSettingsText(readModeSettings, colors);
-                // seekBarsStyler.updateSeekBarsForSelectedColor(readModeSettings);
-
                 if (selectedColor.equals(Constants.COLOR_NONE)) {
-                    // TODO listener
-                    // customColorButton.setVisibility(View.GONE);
-                    // startStopButton.setBackgroundColor(getResources().getColor(R.color.gray_disabled));
                     readModeCommand.stopReadMode(readModeSettings);
                 } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
-                    // customColorButton.setVisibility(View.VISIBLE);
-                    // customColorDialog.openCustomColorDialog();
+                    customColorDialog.show(activity.getSupportFragmentManager(), "CustomColorDialogOpenedFromDropdown");
                     adapter.notifyDataSetChanged();
                 } else {
-                    // Apply selected color
-                    // TODO listener
                     prefsHelper.saveProperty(Constants.PREF_COLOR, selectedColor);
-                    // customColorButton.setVisibility(View.GONE);
                     readModeCommand.startReadMode(readModeSettings);
                 }
             }

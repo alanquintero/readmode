@@ -30,17 +30,18 @@ public class MenuController {
     private final @NonNull Context context;
     private final @NonNull FragmentActivity activity;
     private final @NonNull PrefsHelper prefsHelper;
-
+    private final @NonNull ReadModeSettings readModeSettings;
     private final @Nullable ImageView menu;
 
-    public MenuController(final @NonNull Context context, final @NonNull FragmentActivity activity, final @NonNull View rootView) {
+    public MenuController(final @NonNull Context context, final @NonNull FragmentActivity activity, final @NonNull View rootView, final @NonNull ReadModeSettings readModeSettings) {
         this.context = context;
         this.activity = activity;
         this.prefsHelper = PrefsHelper.init(context);
+        this.readModeSettings = readModeSettings;
         this.menu = rootView.findViewById(R.id.bannerMenu);
     }
 
-    public void setupMenu(final @NonNull ReadModeSettings readModeSettings) {
+    public void setupMenu() {
         if (menu != null) {
             menu.setOnClickListener(v -> {
                 PopupMenu popup = new PopupMenu(context, v);
@@ -49,7 +50,7 @@ public class MenuController {
                     if (item.getItemId() == R.id.action_settings) {
                         final SettingsDialog dialog = new SettingsDialog();
                         // Code to run after dialog is closed
-                        dialog.setOnSettingsClosedListener(() -> reloadSettings(readModeSettings));
+                        dialog.setOnSettingsClosedListener(this::reloadSettings);
                         dialog.show(activity.getSupportFragmentManager(), "settingsDialog");
                         return true;
                     }
@@ -60,7 +61,7 @@ public class MenuController {
         }
     }
 
-    private void reloadSettings(final @NonNull ReadModeSettings readModeSettings) {
+    private void reloadSettings() {
         Log.d(TAG, "reloading Settings");
         readModeSettings.setAutoStartReadMode(prefsHelper.getAutoStartReadMode());
         readModeSettings.setShouldUseSameIntensityBrightnessForAll(prefsHelper.shouldUseSameIntensityBrightnessForAll());
