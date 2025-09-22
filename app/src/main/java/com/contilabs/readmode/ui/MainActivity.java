@@ -3,7 +3,6 @@
  *****************************************************************/
 package com.contilabs.readmode.ui;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -26,10 +25,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.contilabs.readmode.command.GeneralReadModeCommand;
 import com.contilabs.readmode.command.SettingsReadModeCommand;
@@ -56,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBarsStyler seekBarsStyler;
     private TextViewStyler textViewStyler;
     private ReadModeSettings readModeSettings;
+    private CustomColorDialog customColorDialog;
     private GeneralReadModeCommand generalReadModeCommand;
     private SettingsReadModeCommand settingsReadModeCommand;
 
@@ -64,21 +62,7 @@ public class MainActivity extends AppCompatActivity {
     int currentColorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
 
     // ---------------- Colors ----------------
-    // Color hex corresponding to each dropdown item
-    private final String[] colorHex = {Constants.COLOR_NONE, Constants.COLOR_SOFT_BEIGE, Constants.COLOR_LIGHT_GRAY, Constants.COLOR_PALE_YELLOW, Constants.COLOR_WARM_SEPIA, Constants.COLOR_SOFT_BLUE, Constants.CUSTOM_COLOR};
-    // Background color to each dropdown item for better visual distinction
-    private final int[] backgroundColorForDropdownItems = {
-            Color.TRANSPARENT,            // NONE
-            Color.parseColor(Constants.COLOR_SOFT_BEIGE),  // Soft Beige
-            Color.parseColor(Constants.COLOR_LIGHT_GRAY),  // Light Gray
-            Color.parseColor(Constants.COLOR_PALE_YELLOW),  // Pale Yellow
-            Color.parseColor(Constants.COLOR_WARM_SEPIA),  // Warm Sepia
-            Color.parseColor(Constants.COLOR_SOFT_BLUE),  // Soft Blue
-            Color.WHITE             // CUSTOM
-    };
-    // Color name corresponding to each dropdown item
     String[] colors = {};
-    private final int CUSTOM_DROPDOWN_POSITION = backgroundColorForDropdownItems.length - 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,11 +120,12 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "init classes...");
         final @NonNull View rootView = findViewById(android.R.id.content);
-        buttonStyler = new ButtonStyler(this, rootView);
+        generalReadModeCommand = new GeneralReadModeCommand(this);
+        settingsReadModeCommand = new SettingsReadModeCommand(this);
+        customColorDialog = new CustomColorDialog(this, generalReadModeCommand, readModeSettings);
+        buttonStyler = new ButtonStyler(this, rootView, customColorDialog);
         seekBarsStyler = new SeekBarsStyler(this, rootView);
         textViewStyler = new TextViewStyler(this, rootView);
-        generalReadModeCommand = new GeneralReadModeCommand(this, rootView);
-        settingsReadModeCommand = new SettingsReadModeCommand(this, rootView);
 
         // UI Components
         final ImageView menu = findViewById(R.id.bannerMenu);
@@ -157,47 +142,16 @@ public class MainActivity extends AppCompatActivity {
         if (readModeSettings.getColorDropdownPosition() >= 0) {
             currentColorDropdownPosition = readModeSettings.getColorDropdownPosition();
             colorSpinner.setSelection(readModeSettings.getColorDropdownPosition());
-            textViewStyler.setColorSettingsText(readModeSettings, colors);
-            if (readModeSettings.getColorDropdownPosition() == CUSTOM_DROPDOWN_POSITION) {
-                buttonStyler.customizeCustomColorButton(readModeSettings.getCustomColor());
-                customColorButton.setVisibility(View.VISIBLE);
-            }
+
         }
-
-        // Restore SeekBars values
-        seekBarsStyler.restoreSeekBarValues(readModeSettings);
-
-        // Apply style to buttons
-        buttonStyler.applyStartStopButtonStyle(readModeSettings.isReadModeOn());
-        buttonStyler.customizeCustomColorButton(readModeSettings.getCustomColor());
+        textViewStyler.setupTextViews(readModeSettings, colors);
+        seekBarsStyler.setupSeekBars(settingsReadModeCommand, readModeSettings);
+        buttonStyler.setupButtons(generalReadModeCommand, readModeSettings);
 
         // ---------------------- Listeners ------------------------
 
         // Menu listener
         setupMenuListener(menu);
-
-        // SeekBar listeners
-        seekBarsStyler.setupSeekColorIntensityBar(settingsReadModeCommand, readModeSettings);
-        seekBarsStyler.setupSeekBrightnessBar(settingsReadModeCommand, readModeSettings);
-
-        // Custom color button listener
-        customColorButton.setOnClickListener(v -> openCustomColorDialog());
-
-        // Start/Stop button listener
-        startStopButton.setOnClickListener(v -> {
-            if (currentColorDropdownPosition == Constants.NO_COLOR_DROPDOWN_POSITION) {
-                Toast.makeText(this, R.string.select_a_color_first, Toast.LENGTH_SHORT).show();
-                Log.w(TAG, "Start clicked but no color selected.");
-            } else {
-                if (readModeSettings.isReadModeOn()) {
-                    generalReadModeCommand.stopReadMode(readModeSettings);
-                } else {
-                    readModeSettings.setColorIntensity(seekBarsStyler.getCurrentColorIntensity());
-                    readModeSettings.setBrightness(seekBarsStyler.getCurrentBrightness());
-                    generalReadModeCommand.startReadMode(readModeSettings);
-                }
-            }
-        });
 
         Log.i(TAG, "UI initialized successfully.");
     }
@@ -287,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 TextView view = (TextView) super.getView(position, convertView, parent);
-                view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for selected item
+                view.setBackgroundColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]); // Color for selected item
                 view.setTextColor(Color.BLACK); // Text color
                 return view;
             }
@@ -295,8 +249,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public View getDropDownView(final int position, final View convertView, final @NonNull ViewGroup parent) {
                 TextView view = (TextView) super.getDropDownView(position, convertView, parent);
-                view.setBackgroundColor(backgroundColorForDropdownItems[position]); // Color for dropdown item
-                if (position == CUSTOM_DROPDOWN_POSITION) {
+                view.setBackgroundColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]); // Color for dropdown item
+                if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
                     int color = Color.parseColor(readModeSettings.getCustomColor());
                     // Calculate brightness
                     int r = Color.red(color);
@@ -340,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
                 prefsHelper.saveProperty(Constants.PREF_COLOR_DROPDOWN, currentColorDropdownPosition);
                 readModeSettings.setColorDropdownPosition(currentColorDropdownPosition);
 
-                final String selectedColor = colorHex[currentColorDropdownPosition];
+                final String selectedColor = Constants.COLOR_HEX_ARRAY[currentColorDropdownPosition];
                 textViewStyler.setColorSettingsText(readModeSettings, colors);
                 seekBarsStyler.updateSeekBarsForSelectedColor(readModeSettings);
 
@@ -350,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                     startStopButton.setBackgroundColor(getResources().getColor(R.color.gray_disabled));
                 } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
                     customColorButton.setVisibility(View.VISIBLE);
-                    openCustomColorDialog();
+                    customColorDialog.openCustomColorDialog();
                     adapter.notifyDataSetChanged();
                 } else {
                     // Apply selected color
@@ -391,78 +345,6 @@ public class MainActivity extends AppCompatActivity {
         textViewStyler.setColorSettingsText(readModeSettings, colors);
         seekBarsStyler.updateSeekBarsForSelectedColor(readModeSettings);
     }
-
-
-    // ---------------------- Custom Color Handling ------------------------
-
-    /**
-     * Opens the custom color picker dialog.
-     */
-    private void openCustomColorDialog() {
-        generalReadModeCommand.pauseReadMode(readModeSettings);
-
-        // Inflate the dialog layout
-        final View dialogView = getLayoutInflater().inflate(R.layout.dialog_color_picker, null);
-        final View colorPreview = dialogView.findViewById(R.id.colorPreview);
-        final SeekBar seekRed = dialogView.findViewById(R.id.seekRed);
-        final SeekBar seekGreen = dialogView.findViewById(R.id.seekGreen);
-        final SeekBar seekBlue = dialogView.findViewById(R.id.seekBlue);
-
-        // Initial color
-        final int initialColor = Color.parseColor(readModeSettings.getCustomColor());
-        final int initialRed = Color.red(initialColor);
-        final int initialGreen = Color.green(initialColor);
-        final int initialBlue = Color.blue(initialColor);
-        seekRed.setProgress(initialRed);
-        seekGreen.setProgress(initialGreen);
-        seekBlue.setProgress(initialBlue);
-        colorPreview.setBackgroundColor(initialColor);
-        final String initialColorHex = String.format(Constants.COLOR_HEX_FORMAT, initialRed, initialGreen, initialBlue);
-        prefsHelper.saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
-        prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, initialColorHex);
-
-        // Update preview when SeekBars change
-        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                final int color = Color.rgb(seekRed.getProgress(), seekGreen.getProgress(), seekBlue.getProgress());
-                colorPreview.setBackgroundColor(color);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        };
-
-        seekRed.setOnSeekBarChangeListener(listener);
-        seekGreen.setOnSeekBarChangeListener(listener);
-        seekBlue.setOnSeekBarChangeListener(listener);
-
-        // Build the dialog
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.choose_custom_color)
-                .setView(dialogView)
-                .setPositiveButton(R.string.ok, (dialog, which) -> {
-                    final int currentRed = seekRed.getProgress();
-                    final int currentGreen = seekGreen.getProgress();
-                    final int currentBlue = seekBlue.getProgress();
-                    final String chosenColorHex = String.format(Constants.COLOR_HEX_FORMAT, currentRed, currentGreen, currentBlue);
-                    prefsHelper.saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
-                    prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
-                    // update preferences for custom color
-                    readModeSettings.setCustomColor(chosenColorHex);
-                    buttonStyler.customizeCustomColorButton(readModeSettings.getCustomColor());
-
-                    // resume read mode
-                    generalReadModeCommand.resumeReadMode(readModeSettings);
-                })
-                .setNegativeButton(R.string.cancel, (dialog, which) -> generalReadModeCommand.resumeReadMode(readModeSettings)).show();
-    }
-
 
     // ---------------------- Activity Lifecycle ------------------------
 

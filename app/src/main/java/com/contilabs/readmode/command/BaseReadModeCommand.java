@@ -5,13 +5,11 @@ package com.contilabs.readmode.command;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.manager.ReadModeManager;
 import com.contilabs.readmode.model.ReadModeSettings;
-import com.contilabs.readmode.util.PrefsHelper;
 
 /**
  * Serves as the base implementation for read mode commands, providing
@@ -25,8 +23,8 @@ abstract class BaseReadModeCommand implements ReadModeCommand {
 
     private final @NonNull ReadModeManager manager;
 
-    public BaseReadModeCommand(final @NonNull Context context, final @NonNull View rootView) {
-        manager = new ReadModeManager(context, rootView);
+    public BaseReadModeCommand(final @NonNull Context context) {
+        manager = new ReadModeManager(context);
     }
 
     @Override

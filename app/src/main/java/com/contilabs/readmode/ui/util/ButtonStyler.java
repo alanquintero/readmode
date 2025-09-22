@@ -8,12 +8,17 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.contilabs.readmode.R;
+import com.contilabs.readmode.command.ReadModeCommand;
+import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.ui.CustomColorDialog;
+import com.contilabs.readmode.util.Constants;
 
 /**
  * ButtonStyler is responsible for applying consistent visual styles to buttons.
@@ -25,11 +30,51 @@ public class ButtonStyler {
     private static final String TAG = ButtonStyler.class.getSimpleName();
 
     private final @NonNull Context context;
-    private final @NonNull View rootView;
 
-    public ButtonStyler(final @NonNull Context context, final @NonNull View rootView) {
+    private final @NonNull CustomColorDialog customColorDialog;
+
+    private final @Nullable Button customColorButton;
+
+    private final @Nullable Button startStopButton;
+
+    public ButtonStyler(final @NonNull Context context, final @NonNull View rootView, final @NonNull CustomColorDialog customColorDialog) {
         this.context = context;
-        this.rootView = rootView;
+        this.customColorDialog = customColorDialog;
+        this.customColorButton = rootView.findViewById(R.id.customColorButton);
+        this.startStopButton = rootView.findViewById(R.id.startStopButton);
+    }
+
+    public void setupButtons(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+        // Custom color button
+        if (customColorButton != null) {
+            if (readModeSettings.getColorDropdownPosition() == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
+                applyCustomColorButtonStyle(readModeSettings.getCustomColor());
+                customColorButton.setVisibility(View.VISIBLE);
+            }
+            // Custom color button listener
+            customColorButton.setOnClickListener(v -> customColorDialog.openCustomColorDialog());
+        }
+        // Start/stop button
+        setupStartStopButton(readModeCommand, readModeSettings);
+    }
+
+    private void setupStartStopButton(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+        if (startStopButton != null) {
+            applyStartStopButtonStyle(readModeSettings.isReadModeOn());
+            // Start/Stop button listener
+            startStopButton.setOnClickListener(v -> {
+                if (readModeSettings.getColorDropdownPosition() == Constants.NO_COLOR_DROPDOWN_POSITION) {
+                    Toast.makeText(context, R.string.select_a_color_first, Toast.LENGTH_SHORT).show();
+                    Log.w(TAG, "Start clicked but no color selected.");
+                } else {
+                    if (readModeSettings.isReadModeOn()) {
+                        readModeCommand.stopReadMode(readModeSettings);
+                    } else {
+                        readModeCommand.startReadMode(readModeSettings);
+                    }
+                }
+            });
+        }
     }
 
     /**
@@ -37,7 +82,6 @@ public class ButtonStyler {
      * based on whether Read Mode is currently active.
      */
     public void applyStartStopButtonStyle(final boolean isReadModeOn) {
-        final @Nullable Button startStopButton = rootView.findViewById(R.id.startStopButton);
         if (startStopButton != null) {
             if (isReadModeOn) {
                 Log.d(TAG, "Applying style to stop button");
@@ -61,8 +105,7 @@ public class ButtonStyler {
      * by calculating the perceived brightness of the color.
      */
 
-    public void customizeCustomColorButton(final @NonNull String customColor) {
-        final @Nullable Button customColorButton = rootView.findViewById(R.id.customColorButton);
+    private void applyCustomColorButtonStyle(final @NonNull String customColor) {
         if (customColorButton != null) {
             Log.d(TAG, "Applying style to custom color button");
             // Set background color
@@ -83,4 +126,5 @@ public class ButtonStyler {
             Log.d(TAG, "Custom color button not found!");
         }
     }
+
 }

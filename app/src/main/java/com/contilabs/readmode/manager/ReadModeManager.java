@@ -9,13 +9,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.service.DrawOverAppsService;
-import com.contilabs.readmode.ui.util.ButtonStyler;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -32,13 +30,11 @@ public class ReadModeManager {
     private static final String TAG = ReadModeManager.class.getSimpleName();
 
     private final @NonNull Context context;
-    private final @NonNull ButtonStyler buttonStyler;
     private final @NonNull PrefsHelper prefsHelper;
 
-    public ReadModeManager(final @NonNull Context context, final @NonNull View rootView) {
+    public ReadModeManager(final @NonNull Context context) {
         this.context = context;
         this.prefsHelper = PrefsHelper.init(context);
-        this.buttonStyler = new ButtonStyler(context, rootView);
     }
 
     /**
@@ -70,7 +66,8 @@ public class ReadModeManager {
             context.startService(readModeIntent);
             readModeSettings.setReadModeIntent(readModeIntent);
         }
-        buttonStyler.applyStartStopButtonStyle(readModeSettings.isReadModeOn());
+        // TODO change this to listeners
+        // buttonStyler.applyStartStopButtonStyle(readModeSettings.isReadModeOn());
     }
 
     /**
@@ -84,7 +81,8 @@ public class ReadModeManager {
         // save properties
         prefsHelper.saveProperty(Constants.PREF_IS_READ_MODE_ON, readModeSettings.isReadModeOn());
 
-        buttonStyler.applyStartStopButtonStyle(readModeSettings.isReadModeOn());
+        // TODO change this to listeners
+        // buttonStyler.applyStartStopButtonStyle(readModeSettings.isReadModeOn());
 
         Log.i(TAG, "Stopping Read Mode...");
         if (readModeSettings.getReadModeIntent() != null) {

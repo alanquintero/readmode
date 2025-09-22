@@ -1,0 +1,124 @@
+/*****************************************************************
+ * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
+ *****************************************************************/
+package com.contilabs.readmode.ui;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.SeekBar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
+import com.contilabs.readmode.R;
+import com.contilabs.readmode.command.ReadModeCommand;
+import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.util.Constants;
+import com.contilabs.readmode.util.PrefsHelper;
+
+/**
+ * CustomColorDialog is a custom dialog used to display and manage
+ * the user-configurable settings for choosing a custom color for the Read Mode.
+ *
+ * @author Alan Quintero
+ */
+public class CustomColorDialog extends DialogFragment {
+
+    private static final String TAG = CustomColorDialog.class.getSimpleName();
+
+    private final @NonNull Context context;
+
+    private final @NonNull PrefsHelper prefsHelper;
+
+    private final @NonNull ReadModeCommand readModeCommand;
+
+    private final @NonNull ReadModeSettings readModeSettings;
+
+    public CustomColorDialog(final @NonNull Context context, final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+        this.context = context;
+        this.readModeCommand = readModeCommand;
+        this.readModeSettings = readModeSettings;
+        prefsHelper = PrefsHelper.init(context);
+    }
+
+    /**
+     * Opens the custom color picker dialog.
+     */
+    @Override
+    public @NonNull android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        return openCustomColorDialog();
+    }
+
+    public @NonNull android.app.Dialog openCustomColorDialog() {
+        Log.i(TAG, "Opening custom color dialog");
+        readModeCommand.pauseReadMode(readModeSettings);
+
+        // Inflate the dialog layout
+        final View dialogView = getLayoutInflater().inflate(R.layout.dialog_color_picker, null);
+        final View colorPreview = dialogView.findViewById(R.id.colorPreview);
+        final SeekBar seekRed = dialogView.findViewById(R.id.seekRed);
+        final SeekBar seekGreen = dialogView.findViewById(R.id.seekGreen);
+        final SeekBar seekBlue = dialogView.findViewById(R.id.seekBlue);
+
+        // Initial color
+        final int initialColor = Color.parseColor(readModeSettings.getCustomColor());
+        final int initialRed = Color.red(initialColor);
+        final int initialGreen = Color.green(initialColor);
+        final int initialBlue = Color.blue(initialColor);
+        seekRed.setProgress(initialRed);
+        seekGreen.setProgress(initialGreen);
+        seekBlue.setProgress(initialBlue);
+        colorPreview.setBackgroundColor(initialColor);
+        final String initialColorHex = String.format(Constants.COLOR_HEX_FORMAT, initialRed, initialGreen, initialBlue);
+        prefsHelper.saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
+        prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, initialColorHex);
+
+        // Update preview when SeekBars change
+        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                final int color = Color.rgb(seekRed.getProgress(), seekGreen.getProgress(), seekBlue.getProgress());
+                colorPreview.setBackgroundColor(color);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        };
+
+        seekRed.setOnSeekBarChangeListener(listener);
+        seekGreen.setOnSeekBarChangeListener(listener);
+        seekBlue.setOnSeekBarChangeListener(listener);
+
+        // Build the dialog
+        return new AlertDialog.Builder(context)
+                .setTitle(R.string.choose_custom_color)
+                .setView(dialogView)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    final int currentRed = seekRed.getProgress();
+                    final int currentGreen = seekGreen.getProgress();
+                    final int currentBlue = seekBlue.getProgress();
+                    final String chosenColorHex = String.format(Constants.COLOR_HEX_FORMAT, currentRed, currentGreen, currentBlue);
+                    prefsHelper.saveProperty(Constants.PREF_COLOR, Constants.CUSTOM_COLOR);
+                    prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
+                    // update preferences for custom color
+                    readModeSettings.setCustomColor(chosenColorHex);
+                    // TODO move this to listeners
+                    // customizeCustomColorButton(readModeSettings.getCustomColor());
+
+                    // resume read mode
+                    readModeCommand.resumeReadMode(readModeSettings);
+                })
+                .setNegativeButton(R.string.cancel, (dialog, which) -> readModeCommand.resumeReadMode(readModeSettings)).show();
+    }
+
+}

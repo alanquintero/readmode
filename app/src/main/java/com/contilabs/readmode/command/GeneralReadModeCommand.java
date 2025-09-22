@@ -5,7 +5,6 @@ package com.contilabs.readmode.command;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -25,9 +24,9 @@ public class GeneralReadModeCommand extends BaseReadModeCommand {
     private final @NonNull ReadModeManager manager;
 
 
-    public GeneralReadModeCommand(final @NonNull Context context, final @NonNull View rootView) {
-        super(context, rootView);
-        manager = new ReadModeManager(context, rootView);
+    public GeneralReadModeCommand(final @NonNull Context context) {
+        super(context);
+        manager = new ReadModeManager(context);
     }
 
     @Override

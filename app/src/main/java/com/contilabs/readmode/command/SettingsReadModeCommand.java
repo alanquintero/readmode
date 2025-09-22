@@ -5,7 +5,6 @@ package com.contilabs.readmode.command;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -26,9 +25,9 @@ public class SettingsReadModeCommand extends BaseReadModeCommand {
     private final @NonNull ReadModeManager manager;
     private final @NonNull PrefsHelper prefsHelper;
 
-    public SettingsReadModeCommand(final @NonNull Context context, final @NonNull View rootView) {
-        super(context, rootView);
-        manager = new ReadModeManager(context, rootView);
+    public SettingsReadModeCommand(final @NonNull Context context) {
+        super(context);
+        manager = new ReadModeManager(context);
         this.prefsHelper = PrefsHelper.init(context);
     }
 

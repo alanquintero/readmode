@@ -3,6 +3,8 @@
  *****************************************************************/
 package com.contilabs.readmode.util;
 
+import android.graphics.Color;
+
 /**
  * A utility class that holds constant values used across the application.
  * <p>
@@ -14,7 +16,7 @@ package com.contilabs.readmode.util;
  * @author Alan Quintero
  */
 public class Constants {
-    // Screen filter colors
+    // ---------- Screen filter colors ----------
     public static final String COLOR_NONE = "none";
     public static final String SOFT_BEIGE = "SOFT_BEIGE";
     public static final String COLOR_SOFT_BEIGE = "#F5F5DC";
@@ -28,15 +30,30 @@ public class Constants {
     public static final String COLOR_SOFT_BLUE = "#DCEBFF";
     public static final String CUSTOM_COLOR = "CUSTOM_COLOR";
 
+
+    // ---------- Colors ----------
     public final static String[] COLOR_DROPDOWN_OPTIONS = new String[]{Constants.COLOR_NONE, Constants.SOFT_BEIGE, Constants.LIGHT_GRAY,
             Constants.PALE_YELLOW, Constants.WARM_SEPIA, Constants.SOFT_BLUE, Constants.CUSTOM_COLOR};
-
+    // Color hex corresponding to each dropdown item
+    public static final String[] COLOR_HEX_ARRAY = {Constants.COLOR_NONE, Constants.COLOR_SOFT_BEIGE, Constants.COLOR_LIGHT_GRAY, Constants.COLOR_PALE_YELLOW, Constants.COLOR_WARM_SEPIA, Constants.COLOR_SOFT_BLUE, Constants.CUSTOM_COLOR};
+    // Background color to each dropdown item for better visual distinction
+    public static final int[] BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS = {
+            Color.TRANSPARENT,            // NONE
+            Color.parseColor(Constants.COLOR_SOFT_BEIGE),  // Soft Beige
+            Color.parseColor(Constants.COLOR_LIGHT_GRAY),  // Light Gray
+            Color.parseColor(Constants.COLOR_PALE_YELLOW),  // Pale Yellow
+            Color.parseColor(Constants.COLOR_WARM_SEPIA),  // Warm Sepia
+            Color.parseColor(Constants.COLOR_SOFT_BLUE),  // Soft Blue
+            Color.WHITE             // CUSTOM
+    };
     public final static int NO_COLOR_DROPDOWN_POSITION = 0;
+    public final static int CUSTOM_COLOR_DROPDOWN_POSITION = BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS.length - 1;
 
-    // Settings
+
+    // ---------- Settings ----------
     public static final int NOTIFICATION_ID = 10;
 
-    // Shared Preference
+    // ---------- Shared Preference ----------
     public static final String SETTINGS = "SETTINGS";
     public static final String PREF_IS_READ_MODE_ON = "IS_READ_MODE_ON";
     public static final String PREF_COLOR_DROPDOWN = "COLOR_DROPDOWN";
@@ -49,7 +66,7 @@ public class Constants {
     public static final String PREF_AUTO_START_READ_MODE = "AUTO_START_READ_MODE";
 
 
-    // Default values
+    // ---------- Default values ----------
     public static final String DEFAULT_COLOR_WHITE = "WHITE";
     public static final boolean DEFAULT_IS_READ_MODE_ENABLED = false;
     public static final int DEFAULT_COLOR_DROPDOWN_POSITION = 0;
@@ -58,6 +75,6 @@ public class Constants {
     public static final boolean DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL = false;
     public static final boolean DEFAULT_AUTO_START_READ_MODE = true;
 
-    // Others
+    // ---------- Others ----------
     public static final String COLOR_HEX_FORMAT = "#%02X%02X%02X";
 }

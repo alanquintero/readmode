@@ -28,6 +28,14 @@ public class TextViewStyler {
         colorSettingsText = rootView.findViewById(R.id.labelColorSettings);
     }
 
+
+    /**
+     * Sets the initial value for the Color Settings text
+     */
+    public void setupTextViews(@NonNull ReadModeSettings readModeSettings, final @NonNull String[] colors) {
+        setColorSettingsText(readModeSettings, colors);
+    }
+
     /**
      * Updates the provided {@link TextView} with the current color settings text.
      * <p>

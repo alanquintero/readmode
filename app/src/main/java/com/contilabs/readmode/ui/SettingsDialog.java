@@ -3,6 +3,7 @@
  *****************************************************************/
 package com.contilabs.readmode.ui;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,13 +31,15 @@ public class SettingsDialog extends DialogFragment {
 
     private static final String TAG = SettingsDialog.class.getSimpleName();
 
-    private PrefsHelper prefsHelper;
+    private final @NonNull PrefsHelper prefsHelper;
+
+    public SettingsDialog() {
+        prefsHelper = PrefsHelper.init(requireContext());
+    }
 
     @Override
-    public @NonNull android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Log.w(TAG, "Opening setting dialog");
-
-        prefsHelper = PrefsHelper.init(requireContext());
+    public @NonNull Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "Opening setting dialog");
 
         final LayoutInflater inflater = requireActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.dialog_settings, null);
