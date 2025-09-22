@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.customcolor.CustomColorObserver;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownObserver;
 import com.contilabs.readmode.observer.readmode.ReadModeObserver;
 import com.contilabs.readmode.ui.CustomColorDialog;
@@ -27,7 +28,7 @@ import com.contilabs.readmode.util.Constants;
  *
  * @author Alan Quintero
  */
-public class ButtonController implements ReadModeObserver, ColorDropdownObserver {
+public class ButtonController implements ReadModeObserver, ColorDropdownObserver, CustomColorObserver {
 
     private static final String TAG = ButtonController.class.getSimpleName();
 
@@ -143,5 +144,10 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
                 applyStartStopButtonStyle(readModeSettings.isReadModeOn());
                 break;
         }
+    }
+
+    @Override
+    public void onCustomColorChange(final @NonNull String customColor) {
+        applyCustomColorButtonStyle(customColor);
     }
 }

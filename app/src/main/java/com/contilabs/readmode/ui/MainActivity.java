@@ -21,6 +21,7 @@ import android.view.View;
 import com.contilabs.readmode.command.GeneralReadModeCommand;
 import com.contilabs.readmode.command.SettingsReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.customcolor.CustomColorSubject;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
 import com.contilabs.readmode.observer.readmode.ReadModeSubject;
 import com.contilabs.readmode.ui.controller.ButtonController;
@@ -102,11 +103,12 @@ public class MainActivity extends AppCompatActivity {
         final @NonNull View rootView = findViewById(android.R.id.content);
         final ReadModeSubject readModeSubject = new ReadModeSubject();
         final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject();
+        final CustomColorSubject customColorSubject = new CustomColorSubject();
         generalReadModeCommand = new GeneralReadModeCommand(this, readModeSubject, readModeSettings);
         final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(this, readModeSubject, readModeSettings);
 
         // UI components
-        final CustomColorDialog customColorDialog = new CustomColorDialog(generalReadModeCommand, readModeSettings);
+        final CustomColorDialog customColorDialog = new CustomColorDialog(generalReadModeCommand, readModeSettings, customColorSubject);
         final ButtonController buttonController = new ButtonController(this, this, rootView, generalReadModeCommand, readModeSettings, customColorDialog);
         final SeekBarController seekBarController = new SeekBarController(this, rootView, generalReadModeCommand, readModeSettings);
         final TextViewController textViewController = new TextViewController(this, rootView, readModeSettings, colorNames);
@@ -123,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Register Observers
         readModeSubject.registerObserver(buttonController);
+        customColorSubject.registerObserver(buttonController);
         colorDropdownSubject.registerObserver(buttonController);
         colorDropdownSubject.registerObserver(seekBarController);
         colorDropdownSubject.registerObserver(textViewController);

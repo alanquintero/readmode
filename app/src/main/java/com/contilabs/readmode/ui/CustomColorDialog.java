@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.customcolor.CustomColorSubject;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -31,12 +32,13 @@ public class CustomColorDialog extends DialogFragment {
     private static final String TAG = CustomColorDialog.class.getSimpleName();
 
     private final @NonNull ReadModeCommand readModeCommand;
-
     private final @NonNull ReadModeSettings readModeSettings;
+    private final @NonNull CustomColorSubject customColorSubject;
 
-    public CustomColorDialog(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+    public CustomColorDialog(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings, final @NonNull CustomColorSubject customColorSubject) {
         this.readModeCommand = readModeCommand;
         this.readModeSettings = readModeSettings;
+        this.customColorSubject = customColorSubject;
     }
 
     /**
@@ -106,13 +108,11 @@ public class CustomColorDialog extends DialogFragment {
                     prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
                     // update preferences for custom color
                     readModeSettings.setCustomColor(chosenColorHex);
-                    // TODO move this to listeners
-                    // customizeCustomColorButton(readModeSettings.getCustomColor());
+                    customColorSubject.setCustomColor(chosenColorHex);
 
                     // resume read mode
                     readModeCommand.resumeReadMode();
                 })
                 .setNegativeButton(R.string.cancel, (dialog, which) -> readModeCommand.resumeReadMode()).show();
     }
-
 }
