@@ -1,4 +1,7 @@
-package com.contilabs.readmode.ui.util;
+/*****************************************************************
+ * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
+ *****************************************************************/
+package com.contilabs.readmode.ui.controller;
 
 import android.content.Context;
 import android.view.View;
@@ -12,17 +15,17 @@ import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
 /**
- * TextViewStyler is responsible for applying consistent visual styles to all text views.
+ * TextViewController is responsible for applying consistent visual styles to all text views.
  *
  * @author Alan Quintero
  */
-public class TextViewStyler {
+public class TextViewController {
 
     private final @NonNull Context context;
     private final @NonNull TextView colorSettingsText;
     private final @NonNull PrefsHelper prefsHelper;
 
-    public TextViewStyler(final @NonNull Context context, final @NonNull View rootView) {
+    public TextViewController(final @NonNull Context context, final @NonNull View rootView) {
         this.context = context;
         this.prefsHelper = PrefsHelper.init(context);
         colorSettingsText = rootView.findViewById(R.id.labelColorSettings);

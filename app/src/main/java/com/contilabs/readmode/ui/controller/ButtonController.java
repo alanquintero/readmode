@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode.ui.util;
+package com.contilabs.readmode.ui.controller;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -21,13 +21,13 @@ import com.contilabs.readmode.ui.CustomColorDialog;
 import com.contilabs.readmode.util.Constants;
 
 /**
- * ButtonStyler is responsible for applying consistent visual styles to buttons.
+ * ButtonController is responsible for applying consistent visual styles to buttons.
  *
  * @author Alan Quintero
  */
-public class ButtonStyler {
+public class ButtonController {
 
-    private static final String TAG = ButtonStyler.class.getSimpleName();
+    private static final String TAG = ButtonController.class.getSimpleName();
 
     private final @NonNull Context context;
 
@@ -37,7 +37,7 @@ public class ButtonStyler {
 
     private final @Nullable Button startStopButton;
 
-    public ButtonStyler(final @NonNull Context context, final @NonNull View rootView, final @NonNull CustomColorDialog customColorDialog) {
+    public ButtonController(final @NonNull Context context, final @NonNull View rootView, final @NonNull CustomColorDialog customColorDialog) {
         this.context = context;
         this.customColorDialog = customColorDialog;
         this.customColorButton = rootView.findViewById(R.id.customColorButton);

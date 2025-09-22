@@ -1,7 +1,7 @@
 /*****************************************************************
  * Copyright (C) 2025 Alan Quintero <https://github.com/alanquintero/>
  *****************************************************************/
-package com.contilabs.readmode.ui.util;
+package com.contilabs.readmode.ui.controller;
 
 import android.content.Context;
 import android.util.Log;
@@ -19,13 +19,13 @@ import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
 /**
- * SeekBarsStyler is responsible for applying consistent visual styles to all seeks bars.
+ * SeekBarController is responsible for applying consistent visual styles to all seeks bars.
  *
  * @author Alan Quintero
  */
-public class SeekBarsStyler {
+public class SeekBarController {
 
-    private static final String TAG = SeekBarsStyler.class.getSimpleName();
+    private static final String TAG = SeekBarController.class.getSimpleName();
 
     private final @NonNull Context context;
     private final @NonNull PrefsHelper prefsHelper;
@@ -34,7 +34,7 @@ public class SeekBarsStyler {
     private final @NonNull SeekBar seekBrightnessBar;
     private final @NonNull TextView brightnessLevelText;
 
-    public SeekBarsStyler(final @NonNull Context context, final @NonNull View rootView) {
+    public SeekBarController(final @NonNull Context context, final @NonNull View rootView) {
         this.context = context;
         this.prefsHelper = PrefsHelper.init(context);
         this.seekColorIntensityBar = rootView.findViewById(R.id.colorLevelBar);
@@ -68,6 +68,8 @@ public class SeekBarsStyler {
      * Restores the saved values for the seek bars, setup listeners.
      */
     public void setupSeekBars(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+        // Disable SeekBars initially until a color is selected
+        disableSeekBars();
         // restore saved value
         restoreSavedSelection(readModeSettings);
         // setup seek bars
