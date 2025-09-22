@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.readmode.ReadModeObserver;
 import com.contilabs.readmode.ui.CustomColorDialog;
 import com.contilabs.readmode.util.Constants;
 
@@ -25,11 +26,14 @@ import com.contilabs.readmode.util.Constants;
  *
  * @author Alan Quintero
  */
-public class ButtonController {
+public class ButtonController implements ReadModeObserver {
 
     private static final String TAG = ButtonController.class.getSimpleName();
 
     private final @NonNull Context context;
+
+    private final @NonNull ReadModeCommand readModeCommand;
+    private final @NonNull ReadModeSettings readModeSettings;
 
     private final @NonNull CustomColorDialog customColorDialog;
 
@@ -37,14 +41,16 @@ public class ButtonController {
 
     private final @Nullable Button startStopButton;
 
-    public ButtonController(final @NonNull Context context, final @NonNull View rootView, final @NonNull CustomColorDialog customColorDialog) {
+    public ButtonController(final @NonNull Context context, final @NonNull View rootView, final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings, final @NonNull CustomColorDialog customColorDialog) {
         this.context = context;
+        this.readModeCommand = readModeCommand;
         this.customColorDialog = customColorDialog;
+        this.readModeSettings = readModeSettings;
         this.customColorButton = rootView.findViewById(R.id.customColorButton);
         this.startStopButton = rootView.findViewById(R.id.startStopButton);
     }
 
-    public void setupButtons(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+    public void setupButtons() {
         // Custom color button
         if (customColorButton != null) {
             if (readModeSettings.getColorDropdownPosition() == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
@@ -55,10 +61,10 @@ public class ButtonController {
             customColorButton.setOnClickListener(v -> customColorDialog.openCustomColorDialog());
         }
         // Start/stop button
-        setupStartStopButton(readModeCommand, readModeSettings);
+        setupStartStopButton();
     }
 
-    private void setupStartStopButton(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
+    private void setupStartStopButton() {
         if (startStopButton != null) {
             applyStartStopButtonStyle(readModeSettings.isReadModeOn());
             // Start/Stop button listener
@@ -127,4 +133,8 @@ public class ButtonController {
         }
     }
 
+    @Override
+    public void onReadModeChanged(boolean isReadModeOn) {
+        applyStartStopButtonStyle(isReadModeOn);
+    }
 }

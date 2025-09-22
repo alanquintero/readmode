@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.manager.ReadModeManager;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.readmode.ReadModeSubject;
 
 /**
  * GeneralReadModeCommand is responsible for starting the Read Mode
@@ -24,9 +25,9 @@ public class GeneralReadModeCommand extends BaseReadModeCommand {
     private final @NonNull ReadModeManager manager;
 
 
-    public GeneralReadModeCommand(final @NonNull Context context) {
-        super(context);
-        manager = new ReadModeManager(context);
+    public GeneralReadModeCommand(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject) {
+        super(context, readModeSubject);
+        manager = new ReadModeManager(context, readModeSubject);
     }
 
     @Override

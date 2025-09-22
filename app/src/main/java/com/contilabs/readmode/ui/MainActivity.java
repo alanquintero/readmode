@@ -21,6 +21,7 @@ import android.view.View;
 import com.contilabs.readmode.command.GeneralReadModeCommand;
 import com.contilabs.readmode.command.SettingsReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
+import com.contilabs.readmode.observer.readmode.ReadModeSubject;
 import com.contilabs.readmode.ui.controller.ButtonController;
 import com.contilabs.readmode.ui.controller.ColorDropdownController;
 import com.contilabs.readmode.ui.controller.MenuController;
@@ -99,12 +100,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "init classes...");
         final @NonNull View rootView = findViewById(android.R.id.content);
-        generalReadModeCommand = new GeneralReadModeCommand(this);
-        final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(this);
+        final ReadModeSubject readModeSubject = new ReadModeSubject();
+        generalReadModeCommand = new GeneralReadModeCommand(this, readModeSubject);
+        final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(this, readModeSubject);
 
         // UI com
         final CustomColorDialog customColorDialog = new CustomColorDialog(this, generalReadModeCommand, readModeSettings);
-        final ButtonController buttonController = new ButtonController(this, rootView, customColorDialog);
+        final ButtonController buttonController = new ButtonController(this, rootView, generalReadModeCommand, readModeSettings, customColorDialog);
         final SeekBarController seekBarController = new SeekBarController(this, rootView);
         final TextViewController textViewController = new TextViewController(this, rootView);
         final StatusBarController statusBarController = new StatusBarController(this, this);
@@ -115,8 +117,11 @@ public class MainActivity extends AppCompatActivity {
         colorDropdownController.setupColorDropdown(settingsReadModeCommand, readModeSettings, colorNames);
         textViewController.setupTextViews(readModeSettings, colorNames);
         seekBarController.setupSeekBars(settingsReadModeCommand, readModeSettings);
-        buttonController.setupButtons(generalReadModeCommand, readModeSettings);
+        buttonController.setupButtons();
         menuController.setupMenu(readModeSettings);
+
+        // Register Observers
+        readModeSubject.registerObserver(buttonController);
 
         Log.i(TAG, "UI initialized successfully.");
     }
