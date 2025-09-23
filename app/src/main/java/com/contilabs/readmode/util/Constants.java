@@ -32,25 +32,25 @@ public class Constants {
 
 
     // ---------- Colors ----------
-    public final static String[] COLOR_DROPDOWN_OPTIONS = new String[]{Constants.COLOR_NONE, Constants.SOFT_BEIGE, Constants.LIGHT_GRAY,
-            Constants.PALE_YELLOW, Constants.WARM_SEPIA, Constants.SOFT_BLUE, Constants.CUSTOM_COLOR};
+    public final static String[] COLOR_DROPDOWN_OPTIONS = new String[]{COLOR_NONE, SOFT_BEIGE, LIGHT_GRAY,
+            PALE_YELLOW, WARM_SEPIA, SOFT_BLUE, CUSTOM_COLOR};
     // Color hex corresponding to each dropdown item
-    public static final String[] COLOR_HEX_ARRAY = {Constants.COLOR_NONE, Constants.COLOR_SOFT_BEIGE, Constants.COLOR_LIGHT_GRAY, Constants.COLOR_PALE_YELLOW, Constants.COLOR_WARM_SEPIA, Constants.COLOR_SOFT_BLUE, Constants.CUSTOM_COLOR};
+    public static final String[] COLOR_HEX_ARRAY = {COLOR_NONE, COLOR_SOFT_BEIGE, COLOR_LIGHT_GRAY, COLOR_PALE_YELLOW, COLOR_WARM_SEPIA, COLOR_SOFT_BLUE, CUSTOM_COLOR};
     // Background color to each dropdown item for better visual distinction
     public static final int[] BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS = {
             Color.TRANSPARENT,            // NONE
-            Color.parseColor(Constants.COLOR_SOFT_BEIGE),  // Soft Beige
-            Color.parseColor(Constants.COLOR_LIGHT_GRAY),  // Light Gray
-            Color.parseColor(Constants.COLOR_PALE_YELLOW),  // Pale Yellow
-            Color.parseColor(Constants.COLOR_WARM_SEPIA),  // Warm Sepia
-            Color.parseColor(Constants.COLOR_SOFT_BLUE),  // Soft Blue
+            Color.parseColor(COLOR_SOFT_BEIGE),  // Soft Beige
+            Color.parseColor(COLOR_LIGHT_GRAY),  // Light Gray
+            Color.parseColor(COLOR_PALE_YELLOW),  // Pale Yellow
+            Color.parseColor(COLOR_WARM_SEPIA),  // Warm Sepia
+            Color.parseColor(COLOR_SOFT_BLUE),  // Soft Blue
             Color.WHITE             // CUSTOM
     };
     public final static int NO_COLOR_DROPDOWN_POSITION = 0;
     public final static int CUSTOM_COLOR_DROPDOWN_POSITION = BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS.length - 1;
 
 
-    // ---------- Settings ----------
+    // ---------- Android Settings ----------
     public static final int NOTIFICATION_ID = 10;
 
     // ---------- Shared Preference ----------
@@ -64,6 +64,14 @@ public class Constants {
     public static final String PREF_BRIGHTNESS = "BRIGHTNESS";
     public static final String PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL = "SAME_INTENSITY_BRIGHTNESS_FOR_ALL";
     public static final String PREF_AUTO_START_READ_MODE = "AUTO_START_READ_MODE";
+
+
+    // ---------- App Settings ----------
+
+    public enum SETTING_OPTIONS {
+        AUTO_READ_MODE,
+        SAME_SETTINGS_FOR_ALL
+    }
 
 
     // ---------- Default values ----------

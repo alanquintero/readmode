@@ -6,6 +6,7 @@ package com.contilabs.readmode.observer.settings;
 import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.observer.readmode.ReadModeObserver;
+import com.contilabs.readmode.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ import java.util.List;
 public class SettingsSubject {
     private final List<SettingsObserver> observers = new ArrayList<>();
 
+    private Constants.SETTING_OPTIONS setting;
+
     /**
      * Registers a new observer to receive Settings updates.
      *
@@ -34,7 +37,8 @@ public class SettingsSubject {
     /**
      * Notifies all registered observers.
      */
-    public void shouldUseSameIntensityBrightnessForAllChanged() {
+    public void onSettingsChanged(Constants.SETTING_OPTIONS setting) {
+        this.setting = setting;
         notifyObservers();
     }
 
@@ -44,7 +48,7 @@ public class SettingsSubject {
      */
     private void notifyObservers() {
         for (SettingsObserver observer : observers) {
-            observer.shouldUseSameIntensityBrightnessForAllChanged();
+            observer.onSettingsChanged(setting);
         }
     }
 }

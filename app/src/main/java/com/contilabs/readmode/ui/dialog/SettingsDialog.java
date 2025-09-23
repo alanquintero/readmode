@@ -74,12 +74,13 @@ public class SettingsDialog extends DialogFragment {
         switchAutoStartReadMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
             prefsHelper.saveProperty(Constants.PREF_AUTO_START_READ_MODE, isChecked);
             readModeSettings.setAutoStartReadMode(isChecked);
+            settingsSubject.onSettingsChanged(Constants.SETTING_OPTIONS.AUTO_READ_MODE);
         });
 
         switchSameIntensityBrightness.setOnCheckedChangeListener((buttonView, isChecked) -> {
             prefsHelper.saveProperty(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, isChecked);
             readModeSettings.setShouldUseSameIntensityBrightnessForAll(isChecked);
-            settingsSubject.shouldUseSameIntensityBrightnessForAllChanged();
+            settingsSubject.onSettingsChanged(Constants.SETTING_OPTIONS.SAME_SETTINGS_FOR_ALL);
         });
 
         return new AlertDialog.Builder(requireContext())

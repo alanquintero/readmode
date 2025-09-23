@@ -129,11 +129,12 @@ public class MainActivity extends AppCompatActivity {
         // Register Observers
         readModeSubject.registerObserver(buttonController);
         customColorSubject.registerObserver(buttonController);
+        customColorSubject.registerObserver(seekBarController);
         colorDropdownSubject.registerObserver(buttonController);
-        settingsSubject.registerObserver(seekBarController);
         colorDropdownSubject.registerObserver(seekBarController);
         colorDropdownSubject.registerObserver(textViewController);
         settingsSubject.registerObserver(textViewController);
+        settingsSubject.registerObserver(seekBarController);
 
         Log.i(TAG, "UI initialized successfully.");
     }

@@ -3,6 +3,8 @@
  *****************************************************************/
 package com.contilabs.readmode.observer.settings;
 
+import com.contilabs.readmode.util.Constants;
+
 /**
  * Observer interface for classes that want to be notified about changes in Settings.
  *
@@ -14,5 +16,5 @@ public interface SettingsObserver {
     /**
      * Called when Settings has changed.
      */
-    void shouldUseSameIntensityBrightnessForAllChanged();
+    void onSettingsChanged(Constants.SETTING_OPTIONS setting);
 }

@@ -4,6 +4,7 @@
 package com.contilabs.readmode.ui.controller;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +23,8 @@ import com.contilabs.readmode.util.PrefsHelper;
  * @author Alan Quintero
  */
 public class TextViewController implements ColorDropdownObserver, SettingsObserver {
+
+    private static final String TAG = TextViewController.class.getSimpleName();
 
     private final @NonNull Context context;
     private final @NonNull PrefsHelper prefsHelper;
@@ -69,7 +72,17 @@ public class TextViewController implements ColorDropdownObserver, SettingsObserv
     }
 
     @Override
-    public void shouldUseSameIntensityBrightnessForAllChanged() {
-        setColorSettingsText();
+    public void onSettingsChanged(Constants.SETTING_OPTIONS setting) {
+        switch (setting) {
+            case AUTO_READ_MODE:
+                // nothing here
+                break;
+            case SAME_SETTINGS_FOR_ALL:
+                setColorSettingsText();
+                break;
+            default:
+                Log.w(TAG, "Invalid setting option");
+
+        }
     }
 }
