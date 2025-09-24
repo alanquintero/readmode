@@ -28,6 +28,10 @@
     <color name="spinner_border_light">#999999</color>
     <color name="spinner_border_dark">#BBBBBB</color>
 
+    <!-- Color settings container -->
+    <color name="surface_color_settings">#F5F5F5</color>
+    <color name="text_color_settings">#212121</color>
+
     <!-- Buttons -->
     <color name="btn_default_custom_color">#B0B0B0</color>
 </resources>

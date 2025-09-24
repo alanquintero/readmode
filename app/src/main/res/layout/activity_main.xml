@@ -43,6 +43,7 @@
                 app:tint="?attr/textPrimary" />
         </LinearLayout>
 
+        <!-- Select a Color section -->
         <LinearLayout
             android:id="@+id/colorOptionsContainer"
             android:layout_width="match_parent"
@@ -72,12 +73,13 @@
 
         </LinearLayout>
 
+        <!-- Color Settings section -->
         <LinearLayout
             android:id="@+id/colorSettingsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/container_border"
+            android:background="@drawable/color_settings_border"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -89,7 +91,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/color_settings_label"
-                android:textColor="?attr/textPrimary"
+                android:textColor="@color/text_color_settings"
                 android:textStyle="bold" />
 
             <View
@@ -112,14 +114,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/intensity"
-                    android:textColor="?attr/textPrimary" />
+                    android:textColor="@color/text_color_settings" />
 
                 <TextView
                     android:id="@+id/colorLevelPercentageText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/color_intensity"
-                    android:textColor="?attr/textPrimary" />
+                    android:textColor="@color/text_color_settings" />
 
             </LinearLayout>
 
@@ -144,14 +146,14 @@
                     android:layout_marginTop="16dp"
                     android:layout_weight="1"
                     android:text="@string/brightness"
-                    android:textColor="?attr/textPrimary" />
+                    android:textColor="@color/text_color_settings" />
 
                 <TextView
                     android:id="@+id/brightnessLevelPercentageText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/brightness_level"
-                    android:textColor="?attr/textPrimary" />
+                    android:textColor="@color/text_color_settings" />
 
             </LinearLayout>
 
