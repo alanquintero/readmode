@@ -67,8 +67,8 @@ public class SettingsDialog extends DialogFragment {
                 .show());
 
         // Load saved values
-        switchSameIntensityBrightness.setChecked(prefsHelper.shouldUseSameIntensityBrightnessForAll());
         switchAutoStartReadMode.setChecked(prefsHelper.getAutoStartReadMode());
+        switchSameIntensityBrightness.setChecked(prefsHelper.shouldUseSameIntensityBrightnessForAll());
 
         // Save changes when toggled
         switchAutoStartReadMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
