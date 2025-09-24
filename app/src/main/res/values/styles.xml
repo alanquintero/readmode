@@ -2,8 +2,19 @@
 <resources>
 
     <style name="Theme.ReadMode" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Spinner colors -->
-        <item name="spinnerBackground">@color/spinner_bg_light</item>
-        <item name="spinnerBorder">@color/spinner_border_light</item>
+        <!-- Map custom attributes to color resources -->
+        <item name="backgroundPrimary">@color/background_primary</item>
+        <item name="surfaceElevated">@color/surface_elevated</item>
+        <item name="appBarColor">@color/app_bar</item>
+        <item name="textPrimary">@color/text_primary</item>
+        <item name="textSecondary">@color/text_secondary</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+
+        <item name="buttonStartColor">@color/button_start</item>
+        <item name="buttonStopColor">@color/button_stop</item>
+
+        <item name="bannerBackground">@color/banner_background</item>
+        <item name="spinnerBackground">@color/spinner_bg</item>
+        <item name="spinnerBorder">@color/spinner_border</item>
     </style>
 </resources>

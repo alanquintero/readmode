@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Background color for Dark Mode -->
+    <!-- Dark mode palette -->
     <color name="background_primary">#121212</color>
-
-    <!-- Text colors -->
+    <color name="surface_elevated">#1E1E1E</color>
+    <color name="app_bar">#202124</color>
     <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#BBBBBB</color>
-    <color name="color_primary">#90CAF9</color>
-    <color name="color_on_primary">#000000</color>
+    <color name="text_secondary">#BDBDBD</color>
+    <color name="color_on_primary">#FFFFFF</color>
 
-    <!-- Buttons -->
-    <color name="btn_default_custom_color">#505050</color>
+    <!-- Buttons (keep bright colors for affordance) -->
+    <color name="button_start">#4CAF50</color>
+    <color name="button_stop">#F44336</color>
+
+    <!-- Banner / spinner -->
+    <color name="banner_background">#1E1E1E</color>
+    <color name="spinner_bg">#1E1E1E</color>
+    <color name="spinner_border">#333333</color>
 </resources>

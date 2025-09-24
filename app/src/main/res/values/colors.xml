@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Background color for Light Mode -->
-    <color name="background_primary">#F9F9F9</color>
-
-    <!-- Text colors -->
-    <color name="text_primary">#000000</color>
-    <color name="text_secondary">#555555</color>
-    <color name="color_primary">#2196F3</color>
+    <!-- Light mode palette -->
+    <color name="background_primary">#FFFFFF</color>       <!-- page background -->
+    <color name="surface_elevated">#F5F5F5</color>        <!-- cards, containers -->
+    <color name="app_bar">#FFFFFF</color>                 <!-- toolbar/appbar -->
+    <color name="text_primary">#212121</color>            <!-- main text -->
+    <color name="text_secondary">#757575</color>          <!-- secondary text -->
     <color name="color_on_primary">#FFFFFF</color>
+
+    <!-- Buttons -->
+    <color name="button_start">#4CAF50</color>
+    <color name="button_stop">#F44336</color>
+
+    <!-- Banner / spinner -->
+    <color name="banner_background">#EEEEEE</color>
+    <color name="spinner_bg">#FFFFFF</color>
+    <color name="spinner_border">#E0E0E0</color>
 
     <!-- Status bar -->
     <color name="status_bar_light">#FDFDFD</color>
@@ -20,9 +28,5 @@
     <color name="spinner_border_dark">#BBBBBB</color>
 
     <!-- Buttons -->
-    <color name="start_color">#4CAF50</color>
-    <color name="stop_color">#F44336</color>
-    <color name="gray_disabled">#BDBDBD</color>
-    <color name="button_text_color">#FFFFFF</color>
     <color name="btn_default_custom_color">#B0B0B0</color>
 </resources>

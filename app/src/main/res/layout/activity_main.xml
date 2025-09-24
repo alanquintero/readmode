@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_primary"
+    android:background="?attr/backgroundPrimary"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background_primary"
+            android:background="?attr/backgroundPrimary"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="12dp">
@@ -28,7 +28,7 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:text="@string/app_name"
-                android:textColor="@color/text_primary"
+                android:textColor="?attr/textPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -37,10 +37,10 @@
                 android:id="@+id/bannerMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/background_primary"
+                android:background="?attr/backgroundPrimary"
                 android:contentDescription="@string/menu_desc"
                 android:src="@drawable/ic_more_vert"
-                app:tint="@color/text_primary" />
+                app:tint="?attr/textPrimary" />
         </LinearLayout>
 
         <LinearLayout
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/select_color"
-                android:textColor="@color/text_primary"
+                android:textColor="?attr/textPrimary"
                 android:textStyle="bold" />
 
             <!-- Spinner -->
@@ -89,7 +89,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/color_settings_label"
-                android:textColor="@color/text_primary"
+                android:textColor="?attr/textPrimary"
                 android:textStyle="bold" />
 
             <View
@@ -112,16 +112,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/intensity"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold" />
+                    android:textColor="?attr/textPrimary" />
 
                 <TextView
                     android:id="@+id/colorLevelPercentageText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/color_intensity"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold" />
+                    android:textColor="?attr/textPrimary" />
 
             </LinearLayout>
 
@@ -146,16 +144,14 @@
                     android:layout_marginTop="16dp"
                     android:layout_weight="1"
                     android:text="@string/brightness"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold" />
+                    android:textColor="?attr/textPrimary" />
 
                 <TextView
                     android:id="@+id/brightnessLevelPercentageText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/brightness_level"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold" />
+                    android:textColor="?attr/textPrimary" />
 
             </LinearLayout>
 
@@ -175,15 +171,15 @@
 
         </LinearLayout>
 
-        <!-- Start Button -->
+        <!-- Start/Stop Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/startStopButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/gray_disabled"
+            android:backgroundTint="?attr/buttonStartColor"
             android:text="@string/start"
-            android:textColor="@color/color_on_primary"
+            android:textColor="?attr/colorOnPrimary"
             android:textStyle="bold" />
 
     </LinearLayout>

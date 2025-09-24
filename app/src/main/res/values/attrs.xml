@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="spinnerBackground" format="color"/>
-    <attr name="spinnerBorder" format="color"/>
+    <!-- App surface & text -->
+    <attr name="backgroundPrimary" format="color" />
+    <attr name="surfaceElevated" format="color" />
+    <attr name="appBarColor" format="color" />
+    <attr name="textPrimary" format="color" />
+    <attr name="textSecondary" format="color" />
+    <attr name="colorOnPrimary" format="color" />
+
+    <!-- Buttons -->
+    <attr name="buttonStartColor" format="color" />
+    <attr name="buttonStopColor" format="color" />
+    <attr name="buttonDisabledColor" format="color" />
+
+    <!-- Banner / spinner -->
+    <attr name="bannerBackground" format="color" />
+    <attr name="spinnerBackground" format="color" />
+    <attr name="spinnerBorder" format="color" />
 </resources>

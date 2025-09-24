@@ -83,12 +83,12 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
             Log.d(TAG, "Applying style to stop button");
             startStopButton.setText(R.string.stop);
             startStopButton.setBackgroundTintList(
-                    ContextCompat.getColorStateList(context, R.color.stop_color));
+                    ContextCompat.getColorStateList(context, R.color.button_stop));
         } else {
             Log.d(TAG, "Applying style start button");
             startStopButton.setText(R.string.start);
             startStopButton.setBackgroundTintList(
-                    ContextCompat.getColorStateList(context, R.color.start_color));
+                    ContextCompat.getColorStateList(context, R.color.button_start));
         }
     }
 
