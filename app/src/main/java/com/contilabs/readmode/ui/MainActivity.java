@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.provider.Settings;
@@ -34,7 +35,9 @@ import com.contilabs.readmode.ui.controller.StatusBarController;
 import com.contilabs.readmode.ui.controller.TextViewController;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.ui.dialog.CustomColorDialog;
+import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
+import com.contilabs.readmode.util.Utils;
 
 /**
  * MainActivity controls the UI for Read Mode.
@@ -44,13 +47,18 @@ import com.contilabs.readmode.util.PrefsHelper;
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-
     private final ReadModeSettings readModeSettings = ReadModeSettings.init();
+    private PrefsHelper prefsHelper;
     private GeneralReadModeCommand generalReadModeCommand;
     private String[] colorNames = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Check Theme before loading app content
+        prefsHelper = PrefsHelper.init(this);
+        final Constants.ThemeMode savedTheme = prefsHelper.getTheme();
+        Utils.setAppTheme(savedTheme);
+
         super.onCreate(savedInstanceState);
 
         // Register Activity Result launcher for overlay permission
@@ -157,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
      * Initialize SharedPreferences and load color settings map.
      */
     private void initSharedPreferences() {
-        final PrefsHelper prefsHelper = PrefsHelper.init(this);
         prefsHelper.initPrefColorSettingsMap();
 
         // Loading saved preferences to the Read Mode Setting obj

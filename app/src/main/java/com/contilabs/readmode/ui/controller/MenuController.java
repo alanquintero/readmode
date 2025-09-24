@@ -18,6 +18,7 @@ import com.contilabs.readmode.R;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.settings.SettingsSubject;
 import com.contilabs.readmode.ui.dialog.SettingsDialog;
+import com.contilabs.readmode.ui.dialog.ThemeDialog;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
@@ -50,6 +51,7 @@ public class MenuController {
         menu.setOnClickListener(v -> {
             final PowerMenu powerMenu = new PowerMenu.Builder(context)
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_settings), false, R.drawable.menu_settings))
+                    .addItem(new PowerMenuItem(context.getString(R.string.menu_theme), false, R.drawable.menu_theme))
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_support), false, R.drawable.menu_support))
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_feedback), false, R.drawable.menu_feedback))
                     .setMenuRadius(10f)
@@ -65,15 +67,20 @@ public class MenuController {
                             switch (position) {
                                 case 0: // Settings
                                     Log.d(TAG, "Settings selected");
-                                    final SettingsDialog dialog = new SettingsDialog(settingsSubject, readModeSettings);
-                                    dialog.show(activity.getSupportFragmentManager(), "settingsDialog");
+                                    final SettingsDialog settingDialog = new SettingsDialog(settingsSubject, readModeSettings);
+                                    settingDialog.show(activity.getSupportFragmentManager(), "settingsDialog");
                                     break;
-                                case 1: // Support
+                                case 1: // Theme
+                                    Log.d(TAG, "Theme selected");
+                                    final ThemeDialog themeDialog = new ThemeDialog();
+                                    themeDialog.show(activity.getSupportFragmentManager(), "themeDialog");
+                                    break;
+                                case 2: // Support
                                     Log.d(TAG, "Support selected");
                                     final Intent supportIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.buymeacoffee.com/alanquintero"));
                                     context.startActivity(supportIntent);
                                     break;
-                                case 2: // Feedback
+                                case 3: // Feedback
                                     Log.d(TAG, "Feedback selected");
                                     final Intent feedbackIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/3BcGuBZyWer7m8Gx5"));
                                     context.startActivity(feedbackIntent);

@@ -93,6 +93,10 @@ public class PrefsHelper {
         return sharedPreferences.getBoolean(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL);
     }
 
+    public @NonNull Constants.ThemeMode getTheme() {
+        return Constants.ThemeMode.fromInt(sharedPreferences.getInt(Constants.PREF_THEME, Constants.DEFAULT_THEME));
+    }
+
     public boolean getAutoStartReadMode() {
         return sharedPreferences.getBoolean(Constants.PREF_AUTO_START_READ_MODE, Constants.DEFAULT_AUTO_START_READ_MODE);
     }

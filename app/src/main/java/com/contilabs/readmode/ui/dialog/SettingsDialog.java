@@ -55,14 +55,14 @@ public class SettingsDialog extends DialogFragment {
         final ImageButton infoAutoStart = view.findViewById(R.id.info_auto_start_read_mode);
 
         infoAutoStart.setOnClickListener(v -> new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.auto_start_read_mode_title))
-                .setMessage(getString(R.string.auto_start_read_mode_info))
+                .setTitle(getString(R.string.title_auto_start_read_mode))
+                .setMessage(getString(R.string.info_auto_start_read_mode))
                 .setPositiveButton(getString(R.string.ok), null)
                 .show());
 
         infoSameIntensity.setOnClickListener(v -> new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.same_intensity_brightness_title))
-                .setMessage(getString(R.string.same_intensity_brightness_info))
+                .setTitle(getString(R.string.title_same_intensity_brightness))
+                .setMessage(getString(R.string.info_same_intensity_brightness))
                 .setPositiveButton(getString(R.string.ok), null)
                 .show());
 

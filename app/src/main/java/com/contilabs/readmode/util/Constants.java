@@ -58,8 +58,35 @@ public class Constants {
     public static final String PREF_COLOR_SETTINGS = "COLOR_SETTINGS";
     public static final String PREF_COLOR_INTENSITY = "COLOR_INTENSITY";
     public static final String PREF_BRIGHTNESS = "BRIGHTNESS";
-    public static final String PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL = "SAME_INTENSITY_BRIGHTNESS_FOR_ALL";
-    public static final String PREF_AUTO_START_READ_MODE = "AUTO_START_READ_MODE";
+
+    // ---------- App Theme ----------
+    public enum ThemeMode {
+        SYSTEM_DEFAULT(0),
+        LIGHT(1),
+        DARK(2);
+
+        private final int value;
+
+        ThemeMode(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public static ThemeMode fromInt(int value) {
+            for (ThemeMode mode : ThemeMode.values()) {
+                if (mode.getValue() == value) {
+                    return mode;
+                }
+            }
+            return SYSTEM_DEFAULT; // fallback
+        }
+
+    }
+
+    public static final String PREF_THEME = "THEME";
 
 
     // ---------- App Settings ----------
@@ -69,6 +96,9 @@ public class Constants {
         SAME_SETTINGS_FOR_ALL
     }
 
+    public static final String PREF_AUTO_START_READ_MODE = "AUTO_START_READ_MODE";
+    public static final String PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL = "SAME_INTENSITY_BRIGHTNESS_FOR_ALL";
+
 
     // ---------- Default values ----------
     public static final String DEFAULT_COLOR_WHITE = "WHITE";
@@ -76,6 +106,7 @@ public class Constants {
     public static final int DEFAULT_COLOR_DROPDOWN_POSITION = 0;
     public static final int DEFAULT_BRIGHTNESS = 50;
     public static final int DEFAULT_COLOR_INTENSITY = 50;
+    public static final int DEFAULT_THEME = ThemeMode.SYSTEM_DEFAULT.value;
     public static final boolean DEFAULT_AUTO_START_READ_MODE = false;
     public static final boolean DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL = false;
 
