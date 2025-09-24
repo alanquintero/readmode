@@ -64,17 +64,17 @@ public class MenuController {
                             Log.d(TAG, "Menu item position: " + position);
                             switch (position) {
                                 case 0: // Settings
-                                    Log.e(TAG, "Settings selected");
+                                    Log.d(TAG, "Settings selected");
                                     final SettingsDialog dialog = new SettingsDialog(settingsSubject, readModeSettings);
                                     dialog.show(activity.getSupportFragmentManager(), "settingsDialog");
                                     break;
                                 case 1: // Support
-                                    Log.e(TAG, "Support selected");
+                                    Log.d(TAG, "Support selected");
                                     final Intent supportIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.buymeacoffee.com/alanquintero"));
                                     context.startActivity(supportIntent);
                                     break;
                                 case 2: // Feedback
-                                    Log.e(TAG, "Feedback selected");
+                                    Log.d(TAG, "Feedback selected");
                                     final Intent feedbackIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/3BcGuBZyWer7m8Gx5"));
                                     context.startActivity(feedbackIntent);
                                     break;
