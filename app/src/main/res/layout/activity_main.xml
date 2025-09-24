@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backGround"
+    android:background="@color/background_primary"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -14,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/banner_background"
+            android:background="@color/background_primary"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="12dp">
@@ -25,9 +26,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="@string/app_name"
-                android:textColor="@color/colorOnPrimary"
+                android:textColor="@color/text_primary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -36,9 +37,10 @@
                 android:id="@+id/bannerMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/menu_background"
+                android:background="@color/background_primary"
                 android:contentDescription="@string/menu_desc"
-                android:src="@drawable/ic_more_vert" />
+                android:src="@drawable/ic_more_vert"
+                app:tint="@color/text_primary" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/select_color"
-                android:textColor="@color/textPrimary"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold" />
 
             <!-- Spinner -->
@@ -87,7 +89,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/color_settings_label"
-                android:textColor="@color/textPrimary"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold" />
 
             <View
@@ -110,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/intensity"
-                    android:textColor="@color/textPrimary"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -118,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/color_intensity"
-                    android:textColor="@color/textPrimary"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -144,7 +146,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_weight="1"
                     android:text="@string/brightness"
-                    android:textColor="@color/textPrimary"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -152,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/brightness_level"
-                    android:textColor="@color/textPrimary"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -181,7 +183,7 @@
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/gray_disabled"
             android:text="@string/start"
-            android:textColor="@color/colorOnPrimary"
+            android:textColor="@color/color_on_primary"
             android:textStyle="bold" />
 
     </LinearLayout>

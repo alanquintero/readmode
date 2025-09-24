@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Background color for Light Mode -->
-    <color name="backGround">#F9F9F9</color>
+    <color name="background_primary">#F9F9F9</color>
 
     <!-- Text colors -->
-    <color name="textPrimary">#000000</color>
-    <color name="textSecondary">#555555</color>
-
-    <color name="colorPrimary">#2196F3</color>
-    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#555555</color>
+    <color name="color_primary">#2196F3</color>
+    <color name="color_on_primary">#FFFFFF</color>
 
     <!-- Status bar -->
     <color name="status_bar_light">#FDFDFD</color>
     <color name="status_bar_dark">#121212</color>
-
-    <!-- Banner -->
-    <color name="banner_background">#424242</color>
-    <!-- Menu -->
-    <color name="menu_background">#B0B0B0</color>
 
     <!-- Spinner -->
     <color name="spinner_bg_light">#FFFFFF</color>
