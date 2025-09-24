@@ -255,7 +255,6 @@ public class DrawOverAppsService extends Service {
                     int blue = Color.blue(color);
                     canvas.drawARGB(alpha, red, green, blue - colorIntensity);
                     break;
-                case Constants.COLOR_NONE:
                 default:
                     break;
             }

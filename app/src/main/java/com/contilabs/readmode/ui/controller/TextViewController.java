@@ -58,7 +58,7 @@ public class TextViewController implements ColorDropdownObserver, SettingsObserv
      */
     public void setColorSettingsText() {
         final String label = context.getString(R.string.color_settings_placeholder);
-        if (prefsHelper.shouldUseSameIntensityBrightnessForAll() || readModeSettings.getColorDropdownPosition() == Constants.NO_COLOR_DROPDOWN_POSITION) {
+        if (prefsHelper.shouldUseSameIntensityBrightnessForAll()) {
             colorSettingsText.setText(label);
         } else {
             String selectedColor = colorNames[readModeSettings.getColorDropdownPosition()];

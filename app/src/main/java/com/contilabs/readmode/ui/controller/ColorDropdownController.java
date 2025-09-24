@@ -118,9 +118,7 @@ public class ColorDropdownController {
                 prefsHelper.saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
 
                 final String selectedColor = Constants.COLOR_HEX_ARRAY[position];
-                if (selectedColor.equals(Constants.COLOR_NONE)) {
-                    readModeCommand.stopReadMode();
-                } else if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
+                if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
                     customColorDialog.show(activity.getSupportFragmentManager(), "CustomColorDialogOpenedFromDropdown");
                     adapter.notifyDataSetChanged();
                 } else {

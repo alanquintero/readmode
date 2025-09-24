@@ -17,7 +17,6 @@ import android.graphics.Color;
  */
 public class Constants {
     // ---------- Screen filter colors ----------
-    public static final String COLOR_NONE = "none";
     public static final String SOFT_BEIGE = "SOFT_BEIGE";
     public static final String COLOR_SOFT_BEIGE = "#F5F5DC";
     public static final String LIGHT_GRAY = "LIGHT_GRAY";
@@ -32,13 +31,11 @@ public class Constants {
 
 
     // ---------- Colors ----------
-    public final static String[] COLOR_DROPDOWN_OPTIONS = new String[]{COLOR_NONE, SOFT_BEIGE, LIGHT_GRAY,
-            PALE_YELLOW, WARM_SEPIA, SOFT_BLUE, CUSTOM_COLOR};
+    public final static String[] COLOR_DROPDOWN_OPTIONS = new String[]{SOFT_BEIGE, LIGHT_GRAY, PALE_YELLOW, WARM_SEPIA, SOFT_BLUE, CUSTOM_COLOR};
     // Color hex corresponding to each dropdown item
-    public static final String[] COLOR_HEX_ARRAY = {COLOR_NONE, COLOR_SOFT_BEIGE, COLOR_LIGHT_GRAY, COLOR_PALE_YELLOW, COLOR_WARM_SEPIA, COLOR_SOFT_BLUE, CUSTOM_COLOR};
+    public static final String[] COLOR_HEX_ARRAY = {COLOR_SOFT_BEIGE, COLOR_LIGHT_GRAY, COLOR_PALE_YELLOW, COLOR_WARM_SEPIA, COLOR_SOFT_BLUE, CUSTOM_COLOR};
     // Background color to each dropdown item for better visual distinction
     public static final int[] BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS = {
-            Color.WHITE,            // NONE
             Color.parseColor(COLOR_SOFT_BEIGE),  // Soft Beige
             Color.parseColor(COLOR_LIGHT_GRAY),  // Light Gray
             Color.parseColor(COLOR_PALE_YELLOW),  // Pale Yellow
@@ -46,7 +43,6 @@ public class Constants {
             Color.parseColor(COLOR_SOFT_BLUE),  // Soft Blue
             Color.WHITE             // CUSTOM
     };
-    public final static int NO_COLOR_DROPDOWN_POSITION = 0;
     public final static int CUSTOM_COLOR_DROPDOWN_POSITION = BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS.length - 1;
 
 

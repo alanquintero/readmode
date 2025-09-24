@@ -176,14 +176,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initColorNames() {
         // Color names for the color dropdown
-        final String colorNone = getString(R.string.color_none);
         final String colorSoftBeige = getString(R.string.color_soft_beige);
         final String colorLightGray = getString(R.string.color_light_gray);
         final String colorPaleYellow = getString(R.string.color_pale_yellow);
         final String colorWarmSepia = getString(R.string.color_warm_sepia);
         final String colorSoftBlue = getString(R.string.color_soft_blue);
         final String colorCustom = getString(R.string.color_custom);
-        colorNames = new String[]{colorNone, colorSoftBeige, colorLightGray, colorPaleYellow, colorWarmSepia, colorSoftBlue, colorCustom};
+        colorNames = new String[]{colorSoftBeige, colorLightGray, colorPaleYellow, colorWarmSepia, colorSoftBlue, colorCustom};
     }
 
 

@@ -56,18 +56,6 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
         this.containerLayout = rootView.findViewById(R.id.colorSettingsContainer);
     }
 
-    public void enableSeekBars() {
-        Log.d(TAG, "Enabling seek bars");
-        seekColorIntensityBar.setEnabled(true);
-        seekBrightnessBar.setEnabled(true);
-    }
-
-    public void disableSeekBars() {
-        Log.d(TAG, "Disabling seek bars");
-        seekColorIntensityBar.setEnabled(false);
-        seekBrightnessBar.setEnabled(false);
-    }
-
     /**
      * Restores the saved values for the seek bars, setup listeners.
      */
@@ -84,18 +72,12 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
      * Restores the saved values for the seek bars
      */
     private void restoreSavedSelection() {
-        if (readModeSettings.getColorDropdownPosition() == Constants.DEFAULT_COLOR_DROPDOWN_POSITION) {
-            setSeekBarsWithDefaultValues();
-            disableSeekBars();
-        } else {
-            enableSeekBars();
-            // Color Intensity
-            seekColorIntensityBar.setProgress(readModeSettings.getColorIntensity());
-            colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
-            // Brightness
-            seekBrightnessBar.setProgress(readModeSettings.getBrightness());
-            brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
-        }
+        // Color Intensity
+        seekColorIntensityBar.setProgress(readModeSettings.getColorIntensity());
+        colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
+        // Brightness
+        seekBrightnessBar.setProgress(readModeSettings.getBrightness());
+        brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
     }
 
     /**
@@ -225,7 +207,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
 
         if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
             drawable.setColor(ColorUtils.adjustColor(Color.parseColor(readModeSettings.getCustomColor()), colorIntensity, brightness));
-        } else if (position != Constants.NO_COLOR_DROPDOWN_POSITION) {
+        } else {
             drawable.setColor(ColorUtils.adjustColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position], colorIntensity, brightness));
         }
     }
@@ -245,12 +227,6 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
 
     @Override
     public void onColorDropdownPositionChange(final int currentColorDropdownPosition) {
-        final String selectedColor = Constants.COLOR_HEX_ARRAY[currentColorDropdownPosition];
-        if (selectedColor.equals(Constants.COLOR_NONE)) {
-            disableSeekBars();
-        } else {
-            enableSeekBars();
-        }
         updateSeekBarsForSelectedColor();
     }
 

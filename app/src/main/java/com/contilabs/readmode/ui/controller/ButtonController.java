@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -67,15 +66,10 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
         applyStartStopButtonStyle(readModeSettings.isReadModeOn());
         // Start/Stop button listener
         startStopButton.setOnClickListener(v -> {
-            if (readModeSettings.getColorDropdownPosition() == Constants.NO_COLOR_DROPDOWN_POSITION) {
-                Toast.makeText(context, R.string.select_a_color_first, Toast.LENGTH_SHORT).show();
-                Log.w(TAG, "Start clicked but no color selected.");
+            if (readModeSettings.isReadModeOn()) {
+                readModeCommand.stopReadMode();
             } else {
-                if (readModeSettings.isReadModeOn()) {
-                    readModeCommand.stopReadMode();
-                } else {
-                    readModeCommand.startReadMode();
-                }
+                readModeCommand.startReadMode();
             }
         });
     }
@@ -124,29 +118,19 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
 
     @Override
     public void onReadModeChanged(boolean isReadModeOn) {
-        if (readModeSettings.getColorDropdownPosition() != Constants.NO_COLOR_DROPDOWN_POSITION) {
-            // Avoid applying style when the dropdown position is NONE
-            applyStartStopButtonStyle(isReadModeOn);
-        }
+        applyStartStopButtonStyle(isReadModeOn);
     }
 
     @Override
     public void onColorDropdownPositionChange(final int currentColorDropdownPosition) {
         final String selectedColor = Constants.COLOR_HEX_ARRAY[currentColorDropdownPosition];
         Log.e(TAG, "Selected color: " + selectedColor);
-        switch (selectedColor) {
-            case Constants.COLOR_NONE:
-                customColorButton.setVisibility(View.GONE);
-                startStopButton.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.gray_disabled));
-                break;
-            case Constants.CUSTOM_COLOR:
-                customColorButton.setVisibility(View.VISIBLE);
-                applyStartStopButtonStyle(readModeSettings.isReadModeOn());
-                break;
-            default:
-                customColorButton.setVisibility(View.GONE);
-                applyStartStopButtonStyle(readModeSettings.isReadModeOn());
-                break;
+        if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
+            customColorButton.setVisibility(View.VISIBLE);
+            applyStartStopButtonStyle(readModeSettings.isReadModeOn());
+        } else {
+            customColorButton.setVisibility(View.GONE);
+            applyStartStopButtonStyle(readModeSettings.isReadModeOn());
         }
     }
 

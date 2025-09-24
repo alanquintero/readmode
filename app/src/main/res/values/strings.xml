@@ -3,7 +3,6 @@
     <string name="app_name">Read Mode</string>
 
     <!-- Colors -->
-    <string name="color_none">No color</string>
     <string name="color_soft_beige">Soft Beige</string>
     <string name="color_light_gray">Light Gray</string>
     <string name="color_pale_yellow">Pale Yellow</string>
@@ -42,9 +41,6 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="custom_color">Choose custom color</string>
-
-    <!-- Toasts -->
-    <string name="select_a_color_first">Please select a color first</string>
 
     <!-- Custom Color Dialog -->
     <string name="choose_custom_color">Choose Custom Color</string>
