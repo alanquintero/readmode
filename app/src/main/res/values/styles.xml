@@ -12,9 +12,10 @@
 
         <item name="buttonStartColor">@color/button_start</item>
         <item name="buttonStopColor">@color/button_stop</item>
+        <item name="buttonCustomColor">@color/button_custom_color</item>
 
         <item name="bannerBackground">@color/banner_background</item>
         <item name="spinnerBackground">@color/spinner_bg</item>
-        <item name="spinnerBorder">@color/spinner_border</item>
+        <item name="containerBorder">@color/container_border</item>
     </style>
 </resources>

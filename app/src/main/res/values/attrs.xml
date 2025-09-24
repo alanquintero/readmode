@@ -11,10 +11,10 @@
     <!-- Buttons -->
     <attr name="buttonStartColor" format="color" />
     <attr name="buttonStopColor" format="color" />
-    <attr name="buttonDisabledColor" format="color" />
+    <attr name="buttonCustomColor" format="color" />
 
     <!-- Banner / spinner -->
     <attr name="bannerBackground" format="color" />
     <attr name="spinnerBackground" format="color" />
-    <attr name="spinnerBorder" format="color" />
+    <attr name="containerBorder" format="color" />
 </resources>

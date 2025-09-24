@@ -109,6 +109,7 @@ public class Constants {
     public static final int DEFAULT_THEME = ThemeMode.SYSTEM_DEFAULT.value;
     public static final boolean DEFAULT_AUTO_START_READ_MODE = false;
     public static final boolean DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL = false;
+    public static final String DEFAULT_CUSTOM_COLOR = "#7F7F7F"; // medium gray
 
     // ---------- Others ----------
     public static final String COLOR_HEX_FORMAT = "#%02X%02X%02X";

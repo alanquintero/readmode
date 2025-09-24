@@ -38,7 +38,7 @@ public class ReadModeSettings {
     private boolean isReadModeOn = Constants.DEFAULT_IS_READ_MODE_ENABLED;
 
     private boolean wasReadModeOn = false;
-    private @NonNull String customColor = Constants.DEFAULT_COLOR_WHITE;
+    private @NonNull String customColor = Constants.DEFAULT_CUSTOM_COLOR;
     private int colorDropdownPosition = Constants.DEFAULT_COLOR_DROPDOWN_POSITION;
     private int colorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
     private int brightness = Constants.DEFAULT_BRIGHTNESS;

@@ -78,7 +78,7 @@ public class PrefsHelper {
     }
 
     public String getCustomColor() {
-        return sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.DEFAULT_COLOR_WHITE);
+        return sharedPreferences.getString(Constants.PREF_CUSTOM_COLOR, Constants.DEFAULT_CUSTOM_COLOR);
     }
 
     public int getColorIntensity() {

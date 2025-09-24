@@ -62,6 +62,7 @@ public class CustomColorDialog extends DialogFragment {
         final SeekBar seekBlue = dialogView.findViewById(R.id.seekBlue);
 
         // Initial color
+        Log.d(TAG, "Loading initial custom color: " + readModeSettings.getCustomColor());
         final int initialColor = Color.parseColor(readModeSettings.getCustomColor());
         final int initialRed = Color.red(initialColor);
         final int initialGreen = Color.green(initialColor);
@@ -108,6 +109,7 @@ public class CustomColorDialog extends DialogFragment {
                     prefsHelper.saveProperty(Constants.PREF_CUSTOM_COLOR, chosenColorHex);
 
                     // update preferences for custom color
+                    Log.d(TAG, "Updating custom color to: " + readModeSettings.getCustomColor());
                     readModeSettings.setCustomColor(chosenColorHex);
                     customColorSubject.setCustomColor(chosenColorHex);
 

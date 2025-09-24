@@ -11,11 +11,12 @@
     <!-- Buttons -->
     <color name="button_start">#4CAF50</color>
     <color name="button_stop">#F44336</color>
+    <color name="button_custom_color">#7F7F7F</color>
 
     <!-- Banner / spinner -->
     <color name="banner_background">#EEEEEE</color>
     <color name="spinner_bg">#FFFFFF</color>
-    <color name="spinner_border">#E0E0E0</color>
+    <color name="container_border">#E0E0E0</color>
 
     <!-- Status bar -->
     <color name="status_bar_light">#FDFDFD</color>
