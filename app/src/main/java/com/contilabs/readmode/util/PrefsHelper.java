@@ -138,11 +138,16 @@ public class PrefsHelper {
     }
 
     /**
-     * Saves the current brightness and color intensity settings for the selected color
-     * into the {@link SharedPreferences}. Updates the ColorSettingsMap
+     * Tries to save (based on settings) the current brightness and color intensity settings
+     * for the selected color into the {@link SharedPreferences}. Updates the ColorSettingsMap
      * with the latest values and serializes it as JSON for persistence.
      */
-    public void saveColorSettingsProperty(final @NonNull ReadModeSettings readModeSettings) {
+    public void tryToSaveColorSettingsProperty(final @NonNull ReadModeSettings readModeSettings) {
+        if (readModeSettings.shouldUseSameIntensityBrightnessForAll()) {
+            Log.w(TAG, "Not saving values for each color as all colors use the same values!");
+            // Only save the properties for each color when setting is disabled
+            return;
+        }
         // update the brightness and color intensity values for the selected color
         final String selectedColor = Constants.COLOR_DROPDOWN_OPTIONS[readModeSettings.getColorDropdownPosition()];
         final ColorSettings colorSettings = prefColorSettingsMap.get(selectedColor);

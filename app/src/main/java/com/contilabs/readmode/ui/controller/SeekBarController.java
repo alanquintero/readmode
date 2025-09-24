@@ -93,6 +93,8 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
                 if (fromUser) {
                     readModeSettings.setBrightness(progress);
+                    prefsHelper.saveProperty(Constants.PREF_BRIGHTNESS, progress);
+                    prefsHelper.tryToSaveColorSettingsProperty(readModeSettings);
                     brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
                     if (readModeSettings.isAutoStartReadMode()) {
                         readModeCommand.startReadMode();
@@ -123,6 +125,8 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
                 if (fromUser) {
                     readModeSettings.setColorIntensity(progress);
+                    prefsHelper.saveProperty(Constants.PREF_COLOR_INTENSITY, progress);
+                    prefsHelper.tryToSaveColorSettingsProperty(readModeSettings);
                     colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
                     if (readModeSettings.isAutoStartReadMode()) {
                         readModeCommand.startReadMode();
@@ -146,10 +150,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
     public void updateSeekBarsForSelectedColor() {
         Log.d(TAG, "updateSeekBarsForSelectedColor");
 
-        if (readModeSettings.getColorDropdownPosition() == Constants.DEFAULT_COLOR_DROPDOWN_POSITION) {
-            Log.d(TAG, "Selected color: NONE");
-            setSeekBarsWithDefaultValues();
-        } else if (readModeSettings.shouldUseSameIntensityBrightnessForAll()) {
+        if (readModeSettings.shouldUseSameIntensityBrightnessForAll()) {
             Log.d(TAG, "Using same Intensity and Brightness for All");
             Log.d(TAG, "Selected position: " + readModeSettings.getColorDropdownPosition() + "; colorIntensity: " + readModeSettings.getColorIntensity() + "; brightness: " + readModeSettings.getBrightness());
             // Color Intensity

@@ -64,10 +64,7 @@ public class ReadModeManager {
         prefsHelper.saveProperty(Constants.PREF_IS_READ_MODE_ON, readModeSettings.isReadModeOn());
         prefsHelper.saveProperty(Constants.PREF_COLOR_INTENSITY, readModeSettings.getColorIntensity());
         prefsHelper.saveProperty(Constants.PREF_BRIGHTNESS, readModeSettings.getBrightness());
-        if (!readModeSettings.shouldUseSameIntensityBrightnessForAll()) {
-            // Only save the properties for each color when setting is disabled
-            prefsHelper.saveColorSettingsProperty(readModeSettings);
-        }
+        prefsHelper.tryToSaveColorSettingsProperty(readModeSettings);
 
         final Intent readModeIntent = new Intent(context, DrawOverAppsService.class);
         if (!isMyServiceRunning(readModeIntent.getClass())) {
