@@ -84,7 +84,7 @@ public class SettingsDialog extends DialogFragment {
         });
 
         return new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.settings_menu))
+                .setTitle(getString(R.string.menu_settings))
                 .setView(view)
                 .setPositiveButton(getString(R.string.done), (dialog, which) -> dialog.dismiss())
                 .create();

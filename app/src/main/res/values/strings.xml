@@ -27,7 +27,9 @@
 
     <!-- Menu -->
     <string name="menu_desc">Menu</string>
-    <string name="settings_menu">Settings</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_support">Support</string>
+    <string name="menu_feedback">Feedback</string>
     <string name="info">Info</string>
     <string name="same_intensity_brightness">Same intensity &amp; brightness for all colors</string>
     <string name="auto_start_read_mode">Auto-start Read Mode on changes</string>
