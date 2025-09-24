@@ -17,6 +17,8 @@ import android.graphics.Color;
  */
 public class ColorUtils {
 
+    private final static int VERY_LIGHT_COLOR_RANGE = 200;
+
     /**
      * Adjusts a base color by applying intensity (darker values) and brightness (overall dimming).
      *
@@ -32,5 +34,29 @@ public class ColorUtils {
         int alpha = 150 - brightness;
 
         return Color.argb(alpha, red, green, blue);
+    }
+
+    /**
+     * Returns true is the given color is a very light color.
+     *
+     * @param color the given color
+     * @return true if given color is very light, false otherwise
+     */
+    public static boolean isVeryLightColor(final int color) {
+        return ColorUtils.calculatePerceivedBrightness(color) > VERY_LIGHT_COLOR_RANGE;
+    }
+
+    /**
+     * Calculates  the perceived brightness of the given color.
+     *
+     * @param color the given color
+     * @return the perceived brightness
+     */
+    private static double calculatePerceivedBrightness(final int color) {
+        // Calculate brightness
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+        return (0.299 * r + 0.587 * g + 0.114 * b); // Perceived brightness
     }
 }

@@ -21,6 +21,7 @@ import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
 import com.contilabs.readmode.ui.dialog.CustomColorDialog;
+import com.contilabs.readmode.util.ColorUtils;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
@@ -84,13 +85,8 @@ public class ColorDropdownController {
                 view.setBackgroundColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]); // Color for dropdown item
                 if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
                     int color = Color.parseColor(readModeSettings.getCustomColor());
-                    // Calculate brightness
-                    int r = Color.red(color);
-                    int g = Color.green(color);
-                    int b = Color.blue(color);
-                    double brightness = (0.299 * r + 0.587 * g + 0.114 * b); // Perceived brightness
-                    if (brightness > 200) { // very light color
-                        view.setTextColor(Color.BLACK); // fallback
+                    if (ColorUtils.isVeryLightColor(color)) {
+                        view.setTextColor(Color.BLACK);
                     } else {
                         view.setTextColor(color);
                     }
