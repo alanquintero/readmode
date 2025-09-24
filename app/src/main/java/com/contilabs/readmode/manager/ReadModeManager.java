@@ -32,10 +32,10 @@ public class ReadModeManager {
 
     private final @NonNull Context context;
     private final @NonNull PrefsHelper prefsHelper;
-
     private final @NonNull ReadModeSubject readModeSubject;
-
     private final @NonNull ReadModeSettings readModeSettings;
+
+    private boolean isReadModeServiceRunning = false;
 
     public ReadModeManager(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject, final @NonNull ReadModeSettings readModeSettings) {
         this.context = context;
@@ -58,6 +58,7 @@ public class ReadModeManager {
 
         readModeSubject.setReadModeOn(true);
         readModeSettings.setIsReadModeOn(true);
+        isReadModeServiceRunning = true;
 
         // save properties
         prefsHelper.saveProperty(Constants.PREF_IS_READ_MODE_ON, readModeSettings.isReadModeOn());
@@ -84,6 +85,7 @@ public class ReadModeManager {
     public void stopReadMode() {
         readModeSubject.setReadModeOn(false);
         readModeSettings.setIsReadModeOn(false);
+        isReadModeServiceRunning = false;
 
         // save properties
         prefsHelper.saveProperty(Constants.PREF_IS_READ_MODE_ON, readModeSettings.isReadModeOn());
@@ -95,6 +97,10 @@ public class ReadModeManager {
             context.stopService(new Intent(context, DrawOverAppsService.class));
         }
         readModeSettings.setReadModeIntent(null);
+    }
+
+    public boolean isReadModeServiceRunning() {
+        return isReadModeServiceRunning;
     }
 
     /**
@@ -111,6 +117,4 @@ public class ReadModeManager {
         Log.d(TAG, "Service is NOT running");
         return false;
     }
-
-
 }

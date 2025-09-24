@@ -20,6 +20,7 @@ import android.view.View;
 
 import com.contilabs.readmode.command.GeneralReadModeCommand;
 import com.contilabs.readmode.command.SettingsReadModeCommand;
+import com.contilabs.readmode.manager.ReadModeManager;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.customcolor.CustomColorSubject;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
@@ -107,8 +108,19 @@ public class MainActivity extends AppCompatActivity {
         final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject();
         final CustomColorSubject customColorSubject = new CustomColorSubject();
         final SettingsSubject settingsSubject = new SettingsSubject();
-        generalReadModeCommand = new GeneralReadModeCommand(this, readModeSubject, readModeSettings);
-        final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(this, readModeSubject, readModeSettings);
+        final ReadModeManager readModeManager = new ReadModeManager(this, readModeSubject, readModeSettings);
+        generalReadModeCommand = new GeneralReadModeCommand(readModeManager, readModeSettings);
+        final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(readModeManager, readModeSettings);
+
+        /*
+         * When Read Mode is ON and the app is updated, the app process is killed.
+         * As a result, Read Mode is turned OFF, but the property was never saved,
+         * leaving the stored state inconsistent with the actual state.
+         */
+        if (!readModeManager.isReadModeServiceRunning() && readModeSettings.isReadModeOn()) {
+            Log.d(TAG, "Read Mode is not running but setting is ON, set it to OFF");
+            readModeSettings.setIsReadModeOn(false);
+        }
 
         // UI components
         final CustomColorDialog customColorDialog = new CustomColorDialog(generalReadModeCommand, readModeSettings, customColorSubject);
