@@ -73,7 +73,7 @@ public class ColorDropdownController {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, colorNames) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                TextView view = (TextView) super.getView(position, convertView, parent);
+                final TextView view = (TextView) super.getView(position, convertView, parent);
                 view.setBackgroundColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]); // Color for selected item
                 view.setTextColor(Color.BLACK); // Text color
                 return view;
@@ -81,7 +81,7 @@ public class ColorDropdownController {
 
             @Override
             public View getDropDownView(final int position, final View convertView, final @NonNull ViewGroup parent) {
-                TextView view = (TextView) super.getDropDownView(position, convertView, parent);
+                final TextView view = (TextView) super.getDropDownView(position, convertView, parent);
                 view.setBackgroundColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]); // Color for dropdown item
                 if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
                     int color = Color.parseColor(readModeSettings.getCustomColor());

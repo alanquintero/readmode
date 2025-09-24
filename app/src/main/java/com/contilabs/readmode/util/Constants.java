@@ -38,7 +38,7 @@ public class Constants {
     public static final String[] COLOR_HEX_ARRAY = {COLOR_NONE, COLOR_SOFT_BEIGE, COLOR_LIGHT_GRAY, COLOR_PALE_YELLOW, COLOR_WARM_SEPIA, COLOR_SOFT_BLUE, CUSTOM_COLOR};
     // Background color to each dropdown item for better visual distinction
     public static final int[] BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS = {
-            Color.TRANSPARENT,            // NONE
+            Color.WHITE,            // NONE
             Color.parseColor(COLOR_SOFT_BEIGE),  // Soft Beige
             Color.parseColor(COLOR_LIGHT_GRAY),  // Light Gray
             Color.parseColor(COLOR_PALE_YELLOW),  // Pale Yellow
