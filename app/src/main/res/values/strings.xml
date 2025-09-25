@@ -37,9 +37,14 @@
     <!-- Settings -->
     <string name="setting_same_intensity_brightness">Same intensity &amp; brightness for all colors</string>
     <string name="setting_auto_start_read_mode">Auto-start Read Mode on changes</string>
+    <string name="setting_reset_warning_info">This will erase all your preferences and restore defaults. Continue?</string>
+    <string name="setting_reset_warning_confirm">Are you sure you want to delete the data?</string>
+    <string name="setting_reset_confirmation">Preferences reset</string>
     <!-- Settings titles -->
-    <string name="title_same_intensity_brightness">Same intensity &amp; brightness</string>
     <string name="title_auto_start_read_mode">Auto-start Read Mode</string>
+    <string name="title_same_intensity_brightness">Same intensity &amp; brightness</string>
+    <string name="title_reset_app_data">Reset app data</string>
+    <string name="title_confirm_reset">Confirm Reset</string>
     <!-- Theme -->
     <string name="title_theme">Choose Theme</string>
     <string name="theme_system_default">System Default</string>
@@ -59,6 +64,8 @@
 
     <!-- Common -->
     <string name="ok">OK</string>
+    <string name="yes">YES</string>
+    <string name="confirm">CONFIRM</string>
     <string name="done">DONE</string>
     <string name="cancel">Cancel</string>
 </resources>

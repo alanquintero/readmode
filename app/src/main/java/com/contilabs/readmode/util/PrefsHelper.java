@@ -51,7 +51,7 @@ public class PrefsHelper {
      * Loads color settings map.
      */
     public void initPrefColorSettingsMap() {
-        final String json = sharedPreferences.getString(Constants.PREF_COLOR_SETTINGS, "{}");
+        final String json = sharedPreferences.getString(Constants.PREF_COLOR_SETTINGS, Constants.DEFAULT_COLOR_SETTINGS);
         final Type type = new TypeToken<Map<String, ColorSettings>>() {
         }.getType();
         prefColorSettingsMap = gson.fromJson(json, type);
@@ -164,5 +164,21 @@ public class PrefsHelper {
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(Constants.PREF_COLOR_SETTINGS, json);
         editor.apply();
+    }
+
+    /**
+     * Reset all shared preferences to default values
+     */
+    public void resetAppData() {
+        saveProperty(Constants.PREF_IS_READ_MODE_ON, Constants.DEFAULT_IS_READ_MODE_ENABLED);
+        saveProperty(Constants.PREF_COLOR_DROPDOWN, Constants.DEFAULT_COLOR_DROPDOWN_POSITION);
+        saveProperty(Constants.PREF_COLOR, Constants.DEFAULT_COLOR_WHITE);
+        saveProperty(Constants.PREF_CUSTOM_COLOR, Constants.DEFAULT_CUSTOM_COLOR);
+        saveProperty(Constants.PREF_COLOR_SETTINGS, Constants.DEFAULT_COLOR_SETTINGS);
+        saveProperty(Constants.PREF_COLOR_INTENSITY, Constants.DEFAULT_COLOR_INTENSITY);
+        saveProperty(Constants.PREF_BRIGHTNESS, Constants.DEFAULT_BRIGHTNESS);
+        saveProperty(Constants.PREF_THEME, Constants.DEFAULT_THEME);
+        saveProperty(Constants.PREF_AUTO_START_READ_MODE, Constants.DEFAULT_AUTO_START_READ_MODE);
+        saveProperty(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL);
     }
 }

@@ -55,4 +55,16 @@
             app:tint="?attr/colorOnSurface" />
     </LinearLayout>
 
+    <!-- Option 3: Reset App Data -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_reset_app_data"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_reset_app_data"
+        android:textColor="@color/button_setting_reset"
+        app:iconGravity="start"
+        app:strokeColor="@color/button_setting_reset"
+        app:strokeWidth="2dp" />
+
 </LinearLayout>

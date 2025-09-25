@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.contilabs.readmode.observer.settings.SettingsSubject;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.util.PrefsHelper;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 /**
@@ -83,10 +85,38 @@ public class SettingsDialog extends DialogFragment {
             settingsSubject.onSettingsChanged(Constants.SETTING_OPTIONS.SAME_SETTINGS_FOR_ALL);
         });
 
-        return new AlertDialog.Builder(requireContext())
+        final AlertDialog settingsDialog = new AlertDialog.Builder(requireContext())
                 .setTitle(getString(R.string.menu_settings))
                 .setView(view)
                 .setPositiveButton(getString(R.string.done), (dialog, which) -> dialog.dismiss())
                 .create();
+
+        // RESET DATA
+        final MaterialButton resetButton = view.findViewById(R.id.button_reset_app_data);
+        resetButton.setOnClickListener(v -> {
+            new AlertDialog.Builder(view.getContext())
+                    .setTitle(getString(R.string.title_reset_app_data))
+                    .setMessage(getString(R.string.setting_reset_warning_info))
+                    .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                        // Show second confirmation
+                        new AlertDialog.Builder(view.getContext())
+                                .setTitle(getString(R.string.title_confirm_reset))
+                                .setMessage(getString(R.string.setting_reset_warning_confirm))
+                                .setPositiveButton(getString(R.string.confirm), (d, w) -> {
+                                    prefsHelper.resetAppData();
+                                    settingsSubject.onSettingsChanged(Constants.SETTING_OPTIONS.RESET_APP_DATA);
+                                    // Dismiss setting dialog
+                                    settingsDialog.dismiss();
+                                    Toast.makeText(view.getContext(), getString(R.string.setting_reset_confirmation), Toast.LENGTH_SHORT).show();
+                                })
+                                .setNegativeButton(getString(R.string.cancel), null)
+                                .show();
+                    })
+                    .setNegativeButton(getString(R.string.cancel), null)
+                    .show();
+        });
+
+
+        return settingsDialog;
     }
 }

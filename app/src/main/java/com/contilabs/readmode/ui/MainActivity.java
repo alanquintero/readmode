@@ -12,7 +12,6 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.provider.Settings;
@@ -26,6 +25,7 @@ import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.customcolor.CustomColorSubject;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
 import com.contilabs.readmode.observer.readmode.ReadModeSubject;
+import com.contilabs.readmode.observer.settings.SettingsObserver;
 import com.contilabs.readmode.observer.settings.SettingsSubject;
 import com.contilabs.readmode.ui.controller.ButtonController;
 import com.contilabs.readmode.ui.controller.ColorDropdownController;
@@ -45,10 +45,11 @@ import com.contilabs.readmode.util.Utils;
  *
  * @author Alan Quintero
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SettingsObserver {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final ReadModeSettings readModeSettings = ReadModeSettings.init();
     private PrefsHelper prefsHelper;
+    private ReadModeManager readModeManager;
     private GeneralReadModeCommand generalReadModeCommand;
     private String[] colorNames = {};
 
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject();
         final CustomColorSubject customColorSubject = new CustomColorSubject();
         final SettingsSubject settingsSubject = new SettingsSubject();
-        final ReadModeManager readModeManager = new ReadModeManager(this, readModeSubject, readModeSettings);
+        readModeManager = new ReadModeManager(this, readModeSubject, readModeSettings);
         generalReadModeCommand = new GeneralReadModeCommand(readModeManager, readModeSettings);
         final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(readModeManager, readModeSettings);
 
@@ -155,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
         colorDropdownSubject.registerObserver(textViewController);
         settingsSubject.registerObserver(textViewController);
         settingsSubject.registerObserver(seekBarController);
+        settingsSubject.registerObserver(this);
 
         Log.i(TAG, "UI initialized successfully.");
     }
@@ -216,5 +218,18 @@ public class MainActivity extends AppCompatActivity {
         generalReadModeCommand.stopReadMode();
         super.onDestroy();
         Log.i(TAG, "Activity destroyed.");
+    }
+
+    @Override
+    public void onSettingsChanged(Constants.SETTING_OPTIONS setting) {
+        if (Constants.SETTING_OPTIONS.RESET_APP_DATA.equals(setting)) {
+            Log.w(TAG, "App data was reset");
+            if (readModeManager != null) {
+                readModeManager.stopReadMode();
+            }
+            final Constants.ThemeMode savedTheme = prefsHelper.getTheme();
+            Utils.setAppTheme(savedTheme);
+            initUI();
+        }
     }
 }
