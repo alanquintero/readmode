@@ -13,6 +13,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.ReadModeCommand;
@@ -217,10 +218,11 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
      * Apply or removes the background color for the Container Layout.
      */
     private void handleContainerBackgroundColor() {
+        Log.d(TAG, "handleContainerBackgroundColor");
         if (readModeSettings.isAutoStartReadMode()) {
             // reset to initial value
             final GradientDrawable drawable = (GradientDrawable) containerLayout.getBackground();
-            drawable.setColor(Color.TRANSPARENT);
+            drawable.setColor(ContextCompat.getColorStateList(context, R.color.surface_color_settings));
         } else {
             setContainerBackgroundColor();
         }

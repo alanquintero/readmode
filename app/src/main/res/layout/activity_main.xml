@@ -129,7 +129,10 @@
                 android:id="@+id/colorLevelBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:progress="50" />
+                android:progress="50"
+                android:progressBackgroundTint="@color/seek_background"
+                android:progressTint="@color/seek_progress"
+                android:thumbTint="@color/seek_thumb" />
 
 
             <!-- Brightness -->
@@ -161,7 +164,10 @@
                 android:id="@+id/brightnessLevelBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:progress="50" />
+                android:progress="50"
+                android:progressBackgroundTint="@color/seek_background"
+                android:progressTint="@color/seek_progress"
+                android:thumbTint="@color/seek_thumb" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/customColorButton"

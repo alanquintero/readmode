@@ -32,6 +32,9 @@
     <!-- Color settings container -->
     <color name="surface_color_settings">#F5F5F5</color>
     <color name="text_color_settings">#212121</color>
+    <color name="seek_progress">#4CAF50</color>
+    <color name="seek_background">#757575</color>
+    <color name="seek_thumb">#4CAF50</color>>
 
     <!-- Buttons -->
     <color name="btn_default_custom_color">#B0B0B0</color>
