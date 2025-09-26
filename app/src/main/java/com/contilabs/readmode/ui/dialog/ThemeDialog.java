@@ -13,13 +13,13 @@ import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 import com.contilabs.readmode.util.Utils;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 /**
  * ThemeDialog is a custom dialog used to display and manage
@@ -78,8 +78,8 @@ public class ThemeDialog extends DialogFragment {
             }
         });
 
-        return new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.title_theme))
+        return new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogCustom)
+                .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_theme))
                 .setView(view)
                 .setPositiveButton(getString(R.string.done), (dialog, which) -> dialog.dismiss())
                 .create();

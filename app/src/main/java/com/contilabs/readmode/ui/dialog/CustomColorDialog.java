@@ -3,7 +3,6 @@
  *****************************************************************/
 package com.contilabs.readmode.ui.dialog;
 
-import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +19,8 @@ import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.customcolor.CustomColorSubject;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
+import com.contilabs.readmode.util.Utils;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 /**
  * CustomColorDialog is a custom dialog used to display and manage
@@ -97,8 +98,8 @@ public class CustomColorDialog extends DialogFragment {
         seekBlue.setOnSeekBarChangeListener(listener);
 
         // Build the dialog
-        return new AlertDialog.Builder(requireContext())
-                .setTitle(R.string.choose_custom_color)
+        return new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogCustom)
+                .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.choose_custom_color))
                 .setView(dialogView)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     final int currentRed = seekRed.getProgress();

@@ -21,7 +21,9 @@ import com.contilabs.readmode.observer.settings.SettingsSubject;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.util.PrefsHelper;
+import com.contilabs.readmode.util.Utils;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 /**
@@ -56,14 +58,14 @@ public class SettingsDialog extends DialogFragment {
         final ImageButton infoSameIntensity = view.findViewById(R.id.info_same_intensity_brightness);
         final ImageButton infoAutoStart = view.findViewById(R.id.info_auto_start_read_mode);
 
-        infoAutoStart.setOnClickListener(v -> new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.title_auto_start_read_mode))
+        infoAutoStart.setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogCustom)
+                .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_auto_start_read_mode))
                 .setMessage(getString(R.string.info_auto_start_read_mode))
                 .setPositiveButton(getString(R.string.ok), null)
                 .show());
 
-        infoSameIntensity.setOnClickListener(v -> new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.title_same_intensity_brightness))
+        infoSameIntensity.setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogCustom)
+                .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_same_intensity_brightness))
                 .setMessage(getString(R.string.info_same_intensity_brightness))
                 .setPositiveButton(getString(R.string.ok), null)
                 .show());
@@ -85,8 +87,8 @@ public class SettingsDialog extends DialogFragment {
             settingsSubject.onSettingsChanged(Constants.SETTING_OPTIONS.SAME_SETTINGS_FOR_ALL);
         });
 
-        final AlertDialog settingsDialog = new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.menu_settings))
+        final AlertDialog settingsDialog = new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogCustom)
+                .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.menu_settings))
                 .setView(view)
                 .setPositiveButton(getString(R.string.done), (dialog, which) -> dialog.dismiss())
                 .create();
@@ -94,13 +96,13 @@ public class SettingsDialog extends DialogFragment {
         // RESET DATA
         final MaterialButton resetButton = view.findViewById(R.id.button_reset_app_data);
         resetButton.setOnClickListener(v -> {
-            new AlertDialog.Builder(view.getContext())
-                    .setTitle(getString(R.string.title_reset_app_data))
+            new MaterialAlertDialogBuilder(view.getContext(), R.style.AlertDialogCustom)
+                    .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_reset_app_data))
                     .setMessage(getString(R.string.setting_reset_warning_info))
                     .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
                         // Show second confirmation
-                        new AlertDialog.Builder(view.getContext())
-                                .setTitle(getString(R.string.title_confirm_reset))
+                        new MaterialAlertDialogBuilder(view.getContext(), R.style.AlertDialogCustom)
+                                .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_confirm_reset))
                                 .setMessage(getString(R.string.setting_reset_warning_confirm))
                                 .setPositiveButton(getString(R.string.confirm), (d, w) -> {
                                     prefsHelper.resetAppData();
