@@ -31,7 +31,6 @@ public class ThemeDialog extends DialogFragment {
 
     private static final String TAG = ThemeDialog.class.getSimpleName();
 
-
     @Override
     public @NonNull Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Log.i(TAG, "Opening theme dialog");
@@ -63,10 +62,17 @@ public class ThemeDialog extends DialogFragment {
         themeGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radio_system_default) {
                 Log.d(TAG, "System default selected");
+                Utils.setAppTheme(Constants.ThemeMode.SYSTEM_DEFAULT);
+                prefsHelper.saveProperty(Constants.PREF_THEME, Constants.ThemeMode.SYSTEM_DEFAULT.getValue());
+
             } else if (checkedId == R.id.radio_light) {
                 Log.d(TAG, "Light mode selected");
+                Utils.setAppTheme(Constants.ThemeMode.LIGHT);
+                prefsHelper.saveProperty(Constants.PREF_THEME, Constants.ThemeMode.LIGHT.getValue());
             } else if (checkedId == R.id.radio_dark) {
                 Log.d(TAG, "Dark mode selected");
+                Utils.setAppTheme(Constants.ThemeMode.DARK);
+                prefsHelper.saveProperty(Constants.PREF_THEME, Constants.ThemeMode.DARK.getValue());
             } else {
                 Log.w(TAG, "Invalid theme selected");
             }
@@ -75,32 +81,7 @@ public class ThemeDialog extends DialogFragment {
         return new AlertDialog.Builder(requireContext())
                 .setTitle(getString(R.string.title_theme))
                 .setView(view)
-                .setPositiveButton(getString(R.string.done), (dialog, which) -> {
-                    final int selectedId = themeGroup.getCheckedRadioButtonId();
-                    if (selectedId != -1) {
-                        final RadioButton selectedRadioButton = view.findViewById(selectedId);
-                        Constants.ThemeMode selectedTheme;
-                        if (selectedRadioButton.getId() == R.id.radio_system_default) {
-                            Log.d(TAG, "System default selected");
-                            selectedTheme = Constants.ThemeMode.SYSTEM_DEFAULT;
-                        } else if (selectedRadioButton.getId() == R.id.radio_light) {
-                            Log.d(TAG, "Light mode selected");
-                            selectedTheme = Constants.ThemeMode.LIGHT;
-                        } else if (selectedRadioButton.getId() == R.id.radio_dark) {
-                            Log.d(TAG, "Dark mode selected");
-                            selectedTheme = Constants.ThemeMode.DARK;
-                        } else {
-                            Log.w(TAG, "Invalid theme selected");
-                            return;
-                        }
-                        Log.d(TAG, "Final choice: " + selectedTheme);
-                        if (savedTheme != selectedTheme) {
-                            prefsHelper.saveProperty(Constants.PREF_THEME, selectedTheme.getValue());
-                            Utils.setAppTheme(selectedTheme);
-                        }
-                    }
-                    dialog.dismiss();
-                })
+                .setPositiveButton(getString(R.string.done), (dialog, which) -> dialog.dismiss())
                 .create();
     }
 }
