@@ -15,6 +15,7 @@
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch_auto_start_read_mode"
+            style="?attr/textAppearanceBody1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,6 +41,7 @@
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch_same_intensity_brightness"
+            style="?attr/textAppearanceBody1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

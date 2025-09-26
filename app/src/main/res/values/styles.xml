@@ -17,6 +17,13 @@
         <item name="bannerBackground">@color/banner_background</item>
         <item name="spinnerBackground">@color/spinner_bg</item>
         <item name="containerBorder">@color/container_border</item>
+
+        <!-- Apply global text appearances -->
+        <item name="textAppearanceHeadline1">@style/AppTextAppearance.Headline1</item>
+        <item name="textAppearanceSubtitle1">@style/AppTextAppearance.Subtitle1</item>
+        <item name="textAppearanceBody1">@style/AppTextAppearance.Body1</item>
+        <item name="textAppearanceCaption">@style/AppTextAppearance.Caption</item>
+        <item name="textAppearanceButton">@style/AppTextAppearance.Button</item>
     </style>
 
     <style name="AlertDialogCustom" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
@@ -34,4 +41,39 @@
     <style name="AlertDialogButton.Negative" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/dialog_negative</item>
     </style>
+
+
+    <!-- Global TextAppearances using Roboto Variable -->
+
+    <style name="AppTextAppearance.Headline1" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/roboto_variable</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="AppTextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/roboto_variable</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="AppTextAppearance.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/roboto_variable</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="AppTextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/roboto_variable</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="AppTextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/roboto_variable</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
 </resources>

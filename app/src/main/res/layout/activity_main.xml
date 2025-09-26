@@ -23,13 +23,13 @@
             <!-- Banner -->
             <TextView
                 android:id="@+id/readModeBanner"
+                style="?attr/textAppearanceHeadline1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="start"
                 android:text="@string/app_name"
                 android:textColor="?attr/textPrimary"
-                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- Settings menu -->
@@ -56,6 +56,7 @@
             <!-- Label -->
             <TextView
                 android:id="@+id/labelColor"
+                style="?attr/textAppearanceSubtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -66,6 +67,7 @@
             <!-- Spinner -->
             <Spinner
                 android:id="@+id/colorSpinner"
+                style="?attr/textAppearanceSubtitle1"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/spinner_background"
@@ -86,6 +88,7 @@
             <!-- Selected color Label -->
             <TextView
                 android:id="@+id/labelColorSettings"
+                style="?attr/textAppearanceSubtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -110,6 +113,7 @@
 
                 <TextView
                     android:id="@+id/colorLevelText"
+                    style="?attr/textAppearanceBody1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -118,6 +122,7 @@
 
                 <TextView
                     android:id="@+id/colorLevelPercentageText"
+                    style="?attr/textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/color_intensity"
@@ -144,6 +149,7 @@
 
                 <TextView
                     android:id="@+id/brightnessLevelText"
+                    style="?attr/textAppearanceBody1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -153,6 +159,7 @@
 
                 <TextView
                     android:id="@+id/brightnessLevelPercentageText"
+                    style="?attr/textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/brightness_level"
@@ -171,6 +178,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/customColorButton"
+                style="?attr/textAppearanceButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -186,6 +194,7 @@
         <!-- Start/Stop Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/startStopButton"
+            style="?attr/textAppearanceButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

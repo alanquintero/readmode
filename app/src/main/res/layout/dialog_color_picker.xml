@@ -13,6 +13,7 @@
         android:background="#FFFFFF" />
 
     <TextView
+        style="?attr/textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/color_red" />
@@ -24,6 +25,7 @@
         android:max="255" />
 
     <TextView
+        style="?attr/textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/color_green" />
@@ -35,6 +37,7 @@
         android:max="255" />
 
     <TextView
+        style="?attr/textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/color_blue" />
