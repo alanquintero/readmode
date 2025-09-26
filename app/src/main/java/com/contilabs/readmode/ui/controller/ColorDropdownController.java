@@ -123,7 +123,9 @@ public class ColorDropdownController {
                     adapter.notifyDataSetChanged();
                 } else {
                     prefsHelper.saveProperty(Constants.PREF_COLOR, selectedColor);
-                    readModeCommand.updateReadMode();
+                    if (readModeSettings.isReadModeOn()) {
+                        readModeCommand.updateReadMode();
+                    }
                 }
             }
 
