@@ -26,6 +26,8 @@ import com.contilabs.readmode.R;
 import com.contilabs.readmode.ui.MainActivity;
 import com.contilabs.readmode.util.PrefsHelper;
 
+import java.lang.ref.WeakReference;
+
 /**
  * DrawOverAppsService is an Android foreground service responsible for creating
  * a screen overlay that applies a "Read Mode" filter over other apps.
@@ -75,6 +77,8 @@ public class DrawOverAppsService extends Service {
     private WindowManager mWindowManager;
     private PrefsHelper prefsHelper;
 
+    private static WeakReference<DrawOverAppsService> instanceRef;
+
     @Override
     public void onCreate() {
         Log.d(TAG, "Service onCreate");
@@ -112,6 +116,8 @@ public class DrawOverAppsService extends Service {
             startNotification();
         }
 
+        instanceRef = new WeakReference<>(this);
+
         super.onCreate();
     }
 
@@ -141,12 +147,17 @@ public class DrawOverAppsService extends Service {
     @Override
     public void onDestroy() {
         Log.d(TAG, "Service onDestroy");
+
         if (mView != null) {
             Log.d(TAG, "Removing overlay view");
             mWindowManager.removeView(mView);
             mView = null;
         }
+
         stopNotification();
+
+        instanceRef = null;
+
         super.onDestroy();
     }
 
@@ -157,6 +168,12 @@ public class DrawOverAppsService extends Service {
 
     public void onUpdate() {
         Log.d(TAG, "Updating overlay view");
+        // Reading new values
+        isReadModeEnabled = prefsHelper.isReadModeOn();
+        screenColor = prefsHelper.getColor();
+        colorIntensity = prefsHelper.getColorIntensity();
+        brightness = prefsHelper.getBrightness();
+
         if (mView != null) {
             mWindowManager.removeView(mView);
             mView = null;
@@ -187,6 +204,10 @@ public class DrawOverAppsService extends Service {
         Log.d(TAG, "Stopping notification");
         final NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancel(Constants.NOTIFICATION_ID);
+    }
+
+    public static DrawOverAppsService getInstance() {
+        return instanceRef != null ? instanceRef.get() : null;
     }
 
     /**
@@ -220,12 +241,12 @@ public class DrawOverAppsService extends Service {
      */
     public class MyLoadView extends View {
 
-        public MyLoadView(Context context) {
+        public MyLoadView(final @NonNull Context context) {
             super(context);
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
+        protected void onDraw(final @NonNull Canvas canvas) {
             super.onDraw(canvas);
             Log.d(TAG, "Drawing overlay: color=" + screenColor + " intensity=" + colorIntensity + " brightness=" + brightness);
 

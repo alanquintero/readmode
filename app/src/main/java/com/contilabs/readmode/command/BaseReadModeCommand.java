@@ -29,6 +29,13 @@ abstract class BaseReadModeCommand implements ReadModeCommand {
     }
 
     @Override
+    public void updateReadMode() {
+        Log.d(TAG, "updateReadMode");
+        readModeManager.updateOverlay();
+    }
+
+
+    @Override
     public void pauseReadMode() {
         Log.d(TAG, "pauseReadMode");
         readModeSettings.setWasReadModeOn(readModeSettings.isReadModeOn());

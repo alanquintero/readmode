@@ -13,6 +13,8 @@ package com.contilabs.readmode.command;
 public interface ReadModeCommand {
     void startReadMode();
 
+    void updateReadMode();
+
     void pauseReadMode();
 
     void resumeReadMode();

@@ -96,6 +96,20 @@ public class ReadModeManager {
         readModeSettings.setReadModeIntent(null);
     }
 
+    /**
+     * Either redraws overlay without stopping the Read Mode or start the Read Mode if not running
+     */
+    public void updateOverlay() {
+        DrawOverAppsService service = DrawOverAppsService.getInstance();
+        if (service != null) {
+            Log.d(TAG, "Updating overlay directly via ReadModeManager...");
+            service.onUpdate(); // redraw overlay without stopping service
+        } else {
+            Log.w(TAG, "DrawOverAppsService is not running. Starting it...");
+            startReadMode(); // start the service if not running
+        }
+    }
+
     public boolean isReadModeServiceRunning() {
         return isReadModeServiceRunning;
     }

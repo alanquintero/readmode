@@ -98,11 +98,11 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
                     prefsHelper.tryToSaveColorSettingsProperty(readModeSettings);
                     brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
                     if (readModeSettings.isAutoStartReadMode()) {
-                        readModeCommand.startReadMode();
+                        readModeCommand.updateReadMode();
                     } else {
                         setContainerBackgroundColor();
                         if (readModeSettings.isReadModeOn()) {
-                            readModeCommand.startReadMode();
+                            readModeCommand.updateReadMode();
                         }
                     }
                 }
@@ -133,11 +133,11 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
                     prefsHelper.tryToSaveColorSettingsProperty(readModeSettings);
                     colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
                     if (readModeSettings.isAutoStartReadMode()) {
-                        readModeCommand.startReadMode();
+                        readModeCommand.updateReadMode();
                     } else {
                         setContainerBackgroundColor();
                         if (readModeSettings.isReadModeOn()) {
-                            readModeCommand.startReadMode();
+                            readModeCommand.updateReadMode();
                         }
                     }
                 }
@@ -232,7 +232,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
         } else {
             setContainerBackgroundColor();
             if (readModeSettings.isReadModeOn()) {
-                readModeCommand.startReadMode();
+                readModeCommand.updateReadMode();
             }
         }
     }
