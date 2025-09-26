@@ -101,6 +101,9 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
                         readModeCommand.startReadMode();
                     } else {
                         setContainerBackgroundColor();
+                        if (readModeSettings.isReadModeOn()) {
+                            readModeCommand.startReadMode();
+                        }
                     }
                 }
             }
@@ -133,6 +136,9 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
                         readModeCommand.startReadMode();
                     } else {
                         setContainerBackgroundColor();
+                        if (readModeSettings.isReadModeOn()) {
+                            readModeCommand.startReadMode();
+                        }
                     }
                 }
             }
@@ -225,6 +231,9 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
             drawable.setColor(ContextCompat.getColorStateList(context, R.color.surface_color_settings));
         } else {
             setContainerBackgroundColor();
+            if (readModeSettings.isReadModeOn()) {
+                readModeCommand.startReadMode();
+            }
         }
     }
 
