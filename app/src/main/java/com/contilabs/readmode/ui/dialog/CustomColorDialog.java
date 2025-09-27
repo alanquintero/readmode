@@ -17,10 +17,14 @@ import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.customcolor.CustomColorSubject;
+import com.contilabs.readmode.ui.spinner.ColorItem;
+import com.contilabs.readmode.ui.spinner.ColorSpinnerAdapter;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 import com.contilabs.readmode.util.Utils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.List;
 
 /**
  * CustomColorDialog is a custom dialog used to display and manage
@@ -36,10 +40,21 @@ public class CustomColorDialog extends DialogFragment {
     private final @NonNull ReadModeSettings readModeSettings;
     private final @NonNull CustomColorSubject customColorSubject;
 
+    private List<ColorItem> colorItems;
+    private ColorSpinnerAdapter colorSpinnerAdapter;
+
     public CustomColorDialog(final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings, final @NonNull CustomColorSubject customColorSubject) {
         this.readModeCommand = readModeCommand;
         this.readModeSettings = readModeSettings;
         this.customColorSubject = customColorSubject;
+    }
+
+    public void setColorItems(final List<ColorItem> colorItems) {
+        this.colorItems = colorItems;
+    }
+
+    public void setColorSpinnerAdapter(final ColorSpinnerAdapter colorSpinnerAdapter) {
+        this.colorSpinnerAdapter = colorSpinnerAdapter;
     }
 
     /**
@@ -113,6 +128,11 @@ public class CustomColorDialog extends DialogFragment {
                     Log.d(TAG, "Updating custom color to: " + readModeSettings.getCustomColor());
                     readModeSettings.setCustomColor(chosenColorHex);
                     customColorSubject.setCustomColor(chosenColorHex);
+                    if (colorItems != null && colorSpinnerAdapter != null && colorItems.size() > Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
+                        Log.d(TAG, "Updating custom color to in colorItems and notifying DataSet Changed...");
+                        colorItems.get(Constants.CUSTOM_COLOR_DROPDOWN_POSITION).setIconColor(Color.parseColor(chosenColorHex));
+                        colorSpinnerAdapter.notifyDataSetChanged();
+                    }
 
                     // resume read mode
                     readModeCommand.resumeReadMode();

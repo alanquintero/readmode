@@ -7,11 +7,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -21,9 +18,13 @@ import com.contilabs.readmode.command.ReadModeCommand;
 import com.contilabs.readmode.model.ReadModeSettings;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownSubject;
 import com.contilabs.readmode.ui.dialog.CustomColorDialog;
-import com.contilabs.readmode.util.ColorUtils;
+import com.contilabs.readmode.ui.spinner.ColorItem;
+import com.contilabs.readmode.ui.spinner.ColorSpinnerAdapter;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ColorDropdownController is responsible for applying consistent visual styles the Color dropdown.
@@ -67,39 +68,24 @@ public class ColorDropdownController {
      * </p>
      */
     public void setupColorDropdown() {
-        // Flag to ignore initial selection
-        final boolean[] isColorDropdownInitializing = {true};
-        // Adapter for dropdown
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, colorNames) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                final TextView view = (TextView) super.getView(position, convertView, parent);
-                view.setBackgroundColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]); // Color for selected item
-                view.setTextColor(Color.BLACK); // Text color
-                return view;
+        final List<ColorItem> colorItems = new ArrayList<>();
+        for (int position = 0; position < colorNames.length; position++) {
+            if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
+                colorItems.add(new ColorItem(colorNames[position], Color.parseColor(readModeSettings.getCustomColor())));
+            } else {
+                colorItems.add(new ColorItem(colorNames[position], Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]));
             }
+        }
 
-            @Override
-            public View getDropDownView(final int position, final View convertView, final @NonNull ViewGroup parent) {
-                final TextView view = (TextView) super.getDropDownView(position, convertView, parent);
-                view.setBackgroundColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]); // Color for dropdown item
-                if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
-                    int color = Color.parseColor(readModeSettings.getCustomColor());
-                    if (ColorUtils.isVeryLightColor(color)) {
-                        view.setTextColor(Color.BLACK);
-                    } else {
-                        view.setTextColor(color);
-                    }
-                } else {
-                    view.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-
+        final ColorSpinnerAdapter adapter = new ColorSpinnerAdapter(context, colorItems);
         colorSpinner.setAdapter(adapter);
+        customColorDialog.setColorItems(colorItems);
+        customColorDialog.setColorSpinnerAdapter(adapter);
+
         colorSpinner.setSelection(readModeSettings.getColorDropdownPosition());
 
+        // Flag to ignore initial selection
+        final boolean[] isColorDropdownInitializing = {true};
         // Listen for selection
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -120,7 +106,6 @@ public class ColorDropdownController {
                 final String selectedColor = Constants.COLOR_HEX_ARRAY[position];
                 if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
                     customColorDialog.show(activity.getSupportFragmentManager(), "CustomColorDialogOpenedFromDropdown");
-                    adapter.notifyDataSetChanged();
                 } else {
                     prefsHelper.saveProperty(Constants.PREF_COLOR, selectedColor);
                     if (readModeSettings.isReadModeOn()) {

@@ -62,6 +62,9 @@
     <!-- Notification -->
     <string name="notification_msg">Read Mode is running</string>
 
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">circle icon</string>
+
     <!-- Common -->
     <string name="ok">OK</string>
     <string name="yes">YES</string>
