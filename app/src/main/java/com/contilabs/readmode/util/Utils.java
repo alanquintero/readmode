@@ -4,6 +4,7 @@
 package com.contilabs.readmode.util;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,15 @@ public class Utils {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             Log.d(TAG, "Applied Dark theme");
         }
+    }
+
+    /**
+     * Checks whether the app is currently in dark mode.
+     */
+    public static boolean isDarkMode(final @NonNull Context context) {
+        int currentNightMode = context.getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
     }
 
     /**

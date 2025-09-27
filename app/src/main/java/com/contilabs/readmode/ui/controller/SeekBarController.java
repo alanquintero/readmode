@@ -25,6 +25,7 @@ import com.contilabs.readmode.observer.settings.SettingsObserver;
 import com.contilabs.readmode.util.ColorUtils;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
+import com.contilabs.readmode.util.Utils;
 
 /**
  * SeekBarController is responsible for applying consistent visual styles to all seeks bars.
@@ -39,10 +40,13 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
     private final @NonNull PrefsHelper prefsHelper;
     private final @NonNull ReadModeCommand readModeCommand;
     private final @NonNull ReadModeSettings readModeSettings;
+    private final @NonNull TextView labelColorSettings;
     private final @NonNull SeekBar seekColorIntensityBar;
     private final @NonNull TextView colorLevelText;
-    private final @NonNull SeekBar seekBrightnessBar;
+    private final @NonNull TextView colorLevelPercentageText;
     private final @NonNull TextView brightnessLevelText;
+    private final @NonNull SeekBar seekBrightnessBar;
+    private final @NonNull TextView brightnessLevelPercentageText;
     private final @NonNull LinearLayout containerLayout;
 
     public SeekBarController(final @NonNull Context context, final @NonNull View rootView, final @NonNull ReadModeCommand readModeCommand, final @NonNull ReadModeSettings readModeSettings) {
@@ -50,10 +54,13 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
         this.prefsHelper = PrefsHelper.init(context);
         this.readModeCommand = readModeCommand;
         this.readModeSettings = readModeSettings;
+        this.labelColorSettings = rootView.findViewById(R.id.labelColorSettings);
         this.seekColorIntensityBar = rootView.findViewById(R.id.colorLevelBar);
-        this.colorLevelText = rootView.findViewById(R.id.colorLevelPercentageText);
+        this.colorLevelText = rootView.findViewById(R.id.colorLevelText);
+        this.colorLevelPercentageText = rootView.findViewById(R.id.colorLevelPercentageText);
+        this.brightnessLevelText = rootView.findViewById(R.id.brightnessLevelText);
         this.seekBrightnessBar = rootView.findViewById(R.id.brightnessLevelBar);
-        this.brightnessLevelText = rootView.findViewById(R.id.brightnessLevelPercentageText);
+        this.brightnessLevelPercentageText = rootView.findViewById(R.id.brightnessLevelPercentageText);
         this.containerLayout = rootView.findViewById(R.id.colorSettingsContainer);
     }
 
@@ -75,10 +82,10 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
     private void restoreSavedSelection() {
         // Color Intensity
         seekColorIntensityBar.setProgress(readModeSettings.getColorIntensity());
-        colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
+        colorLevelPercentageText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
         // Brightness
         seekBrightnessBar.setProgress(readModeSettings.getBrightness());
-        brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
+        brightnessLevelPercentageText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
     }
 
     /**
@@ -96,11 +103,11 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
                     readModeSettings.setBrightness(progress);
                     prefsHelper.saveProperty(Constants.PREF_BRIGHTNESS, progress);
                     prefsHelper.tryToSaveColorSettingsProperty(readModeSettings);
-                    brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
+                    brightnessLevelPercentageText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
                     if (readModeSettings.isAutoStartReadMode()) {
                         readModeCommand.updateReadMode();
                     } else {
-                        setContainerBackgroundColor();
+                        setContainerColors();
                         if (readModeSettings.isReadModeOn()) {
                             readModeCommand.updateReadMode();
                         }
@@ -131,11 +138,11 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
                     readModeSettings.setColorIntensity(progress);
                     prefsHelper.saveProperty(Constants.PREF_COLOR_INTENSITY, progress);
                     prefsHelper.tryToSaveColorSettingsProperty(readModeSettings);
-                    colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
+                    colorLevelPercentageText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
                     if (readModeSettings.isAutoStartReadMode()) {
                         readModeCommand.updateReadMode();
                     } else {
-                        setContainerBackgroundColor();
+                        setContainerColors();
                         if (readModeSettings.isReadModeOn()) {
                             readModeCommand.updateReadMode();
                         }
@@ -162,10 +169,10 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
             Log.d(TAG, "Selected position: " + readModeSettings.getColorDropdownPosition() + "; colorIntensity: " + readModeSettings.getColorIntensity() + "; brightness: " + readModeSettings.getBrightness());
             // Color Intensity
             seekColorIntensityBar.setProgress(prefsHelper.getColorIntensity());
-            colorLevelText.setText(context.getString(R.string.color_intensity, prefsHelper.getColorIntensity()));
+            colorLevelPercentageText.setText(context.getString(R.string.color_intensity, prefsHelper.getColorIntensity()));
             // Brightness
             seekBrightnessBar.setProgress(prefsHelper.getBrightness());
-            brightnessLevelText.setText(context.getString(R.string.brightness_level, prefsHelper.getBrightness()));
+            brightnessLevelPercentageText.setText(context.getString(R.string.brightness_level, prefsHelper.getBrightness()));
         } else {
             Log.d(TAG, "Using Intensity and Brightness for selected color");
             Log.d(TAG, "Selected position: " + readModeSettings.getColorDropdownPosition());
@@ -176,17 +183,17 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
                 // Color Intensity
                 readModeSettings.setColorIntensity(colorSettings.getColorIntensity());
                 seekColorIntensityBar.setProgress(readModeSettings.getColorIntensity());
-                colorLevelText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
+                colorLevelPercentageText.setText(context.getString(R.string.color_intensity, readModeSettings.getColorIntensity()));
                 // Brightness
                 readModeSettings.setBrightness(colorSettings.getBrightness());
                 seekBrightnessBar.setProgress(readModeSettings.getBrightness());
-                brightnessLevelText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
+                brightnessLevelPercentageText.setText(context.getString(R.string.brightness_level, readModeSettings.getBrightness()));
             } else {
                 setSeekBarsWithDefaultValues();
             }
         }
         if (!readModeSettings.isAutoStartReadMode()) {
-            setContainerBackgroundColor();
+            setContainerColors();
         }
     }
 
@@ -197,27 +204,53 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
         Log.d(TAG, "Updating seek bars with default values");
         // Color Intensity
         seekColorIntensityBar.setProgress(Constants.DEFAULT_COLOR_INTENSITY);
-        colorLevelText.setText(context.getString(R.string.color_intensity, Constants.DEFAULT_COLOR_INTENSITY));
+        colorLevelPercentageText.setText(context.getString(R.string.color_intensity, Constants.DEFAULT_COLOR_INTENSITY));
         // Brightness
         seekBrightnessBar.setProgress(Constants.DEFAULT_BRIGHTNESS);
-        brightnessLevelText.setText(context.getString(R.string.brightness_level, Constants.DEFAULT_BRIGHTNESS));
+        brightnessLevelPercentageText.setText(context.getString(R.string.brightness_level, Constants.DEFAULT_BRIGHTNESS));
     }
 
     /**
-     * Apply color to the Container Layout.
+     * Apply colors to the Container Layout.
      */
-    private void setContainerBackgroundColor() {
+    private void setContainerColors() {
+        // Background color
         final int position = readModeSettings.getColorDropdownPosition();
         final int colorIntensity = seekColorIntensityBar.getProgress();
         final int brightness = seekBrightnessBar.getProgress();
 
         final GradientDrawable drawable = (GradientDrawable) containerLayout.getBackground();
 
+        int backgroundColor;
         if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
-            drawable.setColor(ColorUtils.adjustColor(Color.parseColor(readModeSettings.getCustomColor()), colorIntensity, brightness));
+            backgroundColor = ColorUtils.adjustColor(Color.parseColor(readModeSettings.getCustomColor()), colorIntensity, brightness);
         } else {
-            drawable.setColor(ColorUtils.adjustColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position], colorIntensity, brightness));
+            backgroundColor = ColorUtils.adjustColor(Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position], colorIntensity, brightness);
         }
+        drawable.setColor(backgroundColor);
+
+        // Text color
+        if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
+            if (ColorUtils.isColorDark(backgroundColor)) {
+                setTextColorForAllElementsInColorSettingsContainer(Color.WHITE);
+            } else {
+                setTextColorForAllElementsInColorSettingsContainer(Color.BLACK);
+            }
+        } else {
+            if (Utils.isDarkMode(context)) {
+                setTextColorForAllElementsInColorSettingsContainer(Color.WHITE);
+            } else {
+                setTextColorForAllElementsInColorSettingsContainer(Color.BLACK);
+            }
+        }
+    }
+
+    private void setTextColorForAllElementsInColorSettingsContainer(final int color) {
+        labelColorSettings.setTextColor(color);
+        colorLevelText.setTextColor(color);
+        colorLevelPercentageText.setTextColor(color);
+        brightnessLevelText.setTextColor(color);
+        brightnessLevelPercentageText.setTextColor(color);
     }
 
     /**
@@ -230,7 +263,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
             final GradientDrawable drawable = (GradientDrawable) containerLayout.getBackground();
             drawable.setColor(ContextCompat.getColorStateList(context, R.color.surface_color_settings));
         } else {
-            setContainerBackgroundColor();
+            setContainerColors();
             if (readModeSettings.isReadModeOn()) {
                 readModeCommand.updateReadMode();
             }

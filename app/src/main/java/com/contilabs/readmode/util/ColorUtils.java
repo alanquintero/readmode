@@ -47,6 +47,27 @@ public class ColorUtils {
     }
 
     /**
+     * Determines whether a given color is considered dark.
+     */
+    public static boolean isColorDark(int color) {
+        // Convert RGB components to values between 0 and 1
+        double r = Color.red(color) / 255.0;
+        double g = Color.green(color) / 255.0;
+        double b = Color.blue(color) / 255.0;
+
+        // Apply gamma correction
+        r = r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+        g = g <= 0.03928 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+        b = b <= 0.03928 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+
+        // Calculate relative luminance
+        double luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+        // If luminance is less than 0.5 → dark color
+        return luminance < 0.4;
+    }
+
+    /**
      * Calculates  the perceived brightness of the given color.
      *
      * @param color the given color
