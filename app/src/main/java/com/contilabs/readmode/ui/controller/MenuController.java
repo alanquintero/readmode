@@ -50,6 +50,7 @@ public class MenuController {
 
     public void setupMenu() {
         Log.e(TAG, "Opening menu...");
+
         menu.setOnClickListener(v -> {
             final PowerMenu powerMenu = new PowerMenu.Builder(context)
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_settings), false, R.drawable.menu_settings))
@@ -62,6 +63,7 @@ public class MenuController {
                     .setTextColor(ContextCompat.getColor(context, R.color.text_primary))
                     .setIconColor(ContextCompat.getColor(context, R.color.text_primary))
                     .setMenuColor(ContextCompat.getColor(context, R.color.background_primary))
+                    .setMenuColor(ContextCompat.getColor(context, R.color.menu_background))
                     .setBackgroundColor(Color.WHITE)
                     .setTextSize(16)
                     .setAutoDismiss(true)

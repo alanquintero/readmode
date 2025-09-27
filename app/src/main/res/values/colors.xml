@@ -13,6 +13,7 @@
     <color name="button_stop">#F44336</color>
     <color name="button_custom_color">#7F7F7F</color>
     <color name="button_setting_reset">#F44336</color>
+    <color name="btn_default_custom_color">#B0B0B0</color>
 
     <!-- Banner / spinner -->
     <color name="banner_background">#EEEEEE</color>
@@ -39,8 +40,8 @@
     <color name="seek_background">#757575</color>
     <color name="seek_thumb">#4CAF50</color>>
 
-    <!-- Buttons -->
-    <color name="btn_default_custom_color">#B0B0B0</color>
+    <!-- Menu -->
+    <color name="menu_background">#FFFFFF</color>
 
     <!-- Dialogs -->
     <color name="dialog_positive">#4CAF50</color>

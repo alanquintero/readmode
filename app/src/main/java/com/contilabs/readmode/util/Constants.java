@@ -112,7 +112,4 @@ public class Constants {
     public static final boolean DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL = false;
     public static final String DEFAULT_CUSTOM_COLOR = "#7F7F7F"; // medium gray
     public static final String DEFAULT_COLOR_SETTINGS = "{}";
-
-    // ---------- Others ----------
-    public static final String COLOR_HEX_FORMAT = "#%02X%02X%02X";
 }

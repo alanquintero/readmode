@@ -6,14 +6,18 @@ package com.contilabs.readmode.ui.dialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.contilabs.readmode.model.ReadModeSettings;
@@ -60,13 +64,13 @@ public class SettingsDialog extends DialogFragment {
 
         infoAutoStart.setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogCustom)
                 .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_auto_start_read_mode))
-                .setMessage(getString(R.string.info_auto_start_read_mode))
+                .setView(getMessageWithStyle(R.string.info_auto_start_read_mode))
                 .setPositiveButton(getString(R.string.ok), null)
                 .show());
 
         infoSameIntensity.setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogCustom)
                 .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_same_intensity_brightness))
-                .setMessage(getString(R.string.info_same_intensity_brightness))
+                .setView(getMessageWithStyle(R.string.info_same_intensity_brightness))
                 .setPositiveButton(getString(R.string.ok), null)
                 .show());
 
@@ -95,30 +99,37 @@ public class SettingsDialog extends DialogFragment {
 
         // RESET DATA
         final MaterialButton resetButton = view.findViewById(R.id.button_reset_app_data);
-        resetButton.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(view.getContext(), R.style.AlertDialogCustom)
-                    .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_reset_app_data))
-                    .setMessage(getString(R.string.setting_reset_warning_info))
-                    .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
-                        // Show second confirmation
-                        new MaterialAlertDialogBuilder(view.getContext(), R.style.AlertDialogCustom)
-                                .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_confirm_reset))
-                                .setMessage(getString(R.string.setting_reset_warning_confirm))
-                                .setPositiveButton(getString(R.string.confirm), (d, w) -> {
-                                    prefsHelper.resetAppData();
-                                    settingsSubject.onSettingsChanged(Constants.SETTING_OPTIONS.RESET_APP_DATA);
-                                    // Dismiss setting dialog
-                                    settingsDialog.dismiss();
-                                    Toast.makeText(view.getContext(), getString(R.string.setting_reset_confirmation), Toast.LENGTH_SHORT).show();
-                                })
-                                .setNegativeButton(getString(R.string.cancel), null)
-                                .show();
-                    })
-                    .setNegativeButton(getString(R.string.cancel), null)
-                    .show();
-        });
+        resetButton.setOnClickListener(v -> new MaterialAlertDialogBuilder(view.getContext(), R.style.AlertDialogCustom)
+                .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_reset_app_data))
+                .setMessage(getString(R.string.setting_reset_warning_info))
+                .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                    // Show second confirmation
+                    new MaterialAlertDialogBuilder(view.getContext(), R.style.AlertDialogCustom)
+                            .setCustomTitle(Utils.createDialogTitle(requireContext(), R.string.title_confirm_reset))
+                            .setMessage(getString(R.string.setting_reset_warning_confirm))
+                            .setPositiveButton(getString(R.string.confirm), (d, w) -> {
+                                prefsHelper.resetAppData();
+                                settingsSubject.onSettingsChanged(Constants.SETTING_OPTIONS.RESET_APP_DATA);
+                                // Dismiss setting dialog
+                                settingsDialog.dismiss();
+                                Toast.makeText(view.getContext(), getString(R.string.setting_reset_confirmation), Toast.LENGTH_SHORT).show();
+                            })
+                            .setNegativeButton(getString(R.string.cancel), null)
+                            .show();
+                })
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show());
 
 
         return settingsDialog;
+    }
+
+    private @NonNull TextView getMessageWithStyle(final @StringRes int resId) {
+        final TextView messageView = new TextView(requireContext());
+        messageView.setText(resId);
+        messageView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16); // set size in sp
+        messageView.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_primary));
+        messageView.setPadding(64, 32, 64, 32); // left, top, right, bottom
+        return messageView;
     }
 }
