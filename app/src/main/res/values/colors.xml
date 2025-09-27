@@ -28,6 +28,9 @@
     <color name="spinner_bg_dark">#222222</color>
     <color name="spinner_border_light">#999999</color>
     <color name="spinner_border_dark">#BBBBBB</color>
+    <color name="spinner_item_separator">#121212</color>
+    <color name="spinner_item_stroke">#121212</color>
+    <color name="spinner_selected_item">#E0E0E0</color>
 
     <!-- Color settings container -->
     <color name="surface_color_settings">#F5F5F5</color>

@@ -4,7 +4,6 @@
 package com.contilabs.readmode.ui.spinner;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.contilabs.readmode.R;
+import com.contilabs.readmode.model.ReadModeSettings;
 
 import java.util.List;
 
@@ -32,19 +32,29 @@ public class ColorSpinnerAdapter extends ArrayAdapter<ColorItem> {
 
     private final @NonNull LayoutInflater inflater;
 
-    public ColorSpinnerAdapter(final @NonNull Context context, final @NonNull List<ColorItem> items) {
+    private final @NonNull ReadModeSettings readModeSettings;
+
+    public ColorSpinnerAdapter(final @NonNull Context context, final @NonNull List<ColorItem> items, final @NonNull ReadModeSettings readModeSettings) {
         super(context, 0, items);
         inflater = LayoutInflater.from(context);
+        this.readModeSettings = readModeSettings;
     }
 
     @NonNull
     @Override
-    public View getView(final int position, final @NonNull View convertView, final @NonNull ViewGroup parent) {
+    public View getView(final int position, View convertView, final @NonNull ViewGroup parent) {
         return createItemView(position, convertView, parent);
     }
 
     @Override
-    public View getDropDownView(final int position, final View convertView, final @NonNull ViewGroup parent) {
+    public View getDropDownView(final int position, View convertView, final @NonNull ViewGroup parent) {
+        Log.d(TAG, "getDropDownView");
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.spinner_item, parent, false);
+        }
+        if (position == readModeSettings.getColorDropdownPosition()) {
+            convertView.setBackgroundColor(inflater.getContext().getResources().getColor(R.color.spinner_selected_item));
+        }
         return createItemView(position, convertView, parent);
     }
 
@@ -65,7 +75,7 @@ public class ColorSpinnerAdapter extends ArrayAdapter<ColorItem> {
             final GradientDrawable drawable = new GradientDrawable();
             drawable.setShape(GradientDrawable.OVAL);
             drawable.setColor(item.getIconColor()); // fill color
-            drawable.setStroke(3, Color.BLACK); // stroke width + color
+            drawable.setStroke(3, inflater.getContext().getResources().getColor(R.color.spinner_item_stroke)); // stroke width + color
             icon.setImageDrawable(drawable);
             // Name
             name.setText(item.getName());

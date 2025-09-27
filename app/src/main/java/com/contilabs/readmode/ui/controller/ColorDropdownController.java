@@ -77,7 +77,7 @@ public class ColorDropdownController {
             }
         }
 
-        final ColorSpinnerAdapter adapter = new ColorSpinnerAdapter(context, colorItems);
+        final ColorSpinnerAdapter adapter = new ColorSpinnerAdapter(context, colorItems, readModeSettings);
         colorSpinner.setAdapter(adapter);
         customColorDialog.setColorItems(colorItems);
         customColorDialog.setColorSpinnerAdapter(adapter);
@@ -86,6 +86,7 @@ public class ColorDropdownController {
 
         // Flag to ignore initial selection
         final boolean[] isColorDropdownInitializing = {true};
+
         // Listen for selection
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
