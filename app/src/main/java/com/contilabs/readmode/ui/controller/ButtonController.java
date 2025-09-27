@@ -4,6 +4,7 @@
 package com.contilabs.readmode.ui.controller;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.contilabs.readmode.observer.customcolor.CustomColorObserver;
 import com.contilabs.readmode.observer.dropdown.ColorDropdownObserver;
 import com.contilabs.readmode.observer.readmode.ReadModeObserver;
 import com.contilabs.readmode.ui.dialog.CustomColorDialog;
+import com.contilabs.readmode.util.ColorUtils;
 import com.contilabs.readmode.util.Constants;
 
 /**
@@ -101,15 +103,11 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
     private void applyCustomColorButtonStyle(final @NonNull String customColor) {
         Log.d(TAG, "Applying style to custom color button, customColor: " + customColor);
         // Set background color
-        customColorButton.setBackgroundColor(Color.parseColor(customColor));
+        customColorButton.setBackgroundTintList(ColorStateList.valueOf(ColorUtils.toButtonCompatibleColor(customColor)));
+
         // Set text color
         int color = Color.parseColor(customColor);
-        // Calculate brightness
-        int r = Color.red(color);
-        int g = Color.green(color);
-        int b = Color.blue(color);
-        double brightness = (0.299 * r + 0.587 * g + 0.114 * b); // Perceived brightness
-        if (brightness > 200) { // very light color
+        if (ColorUtils.isVeryLightColor(color)) { // very light color
             customColorButton.setTextColor(Color.BLACK); // fallback
         } else {
             customColorButton.setTextColor(Color.WHITE);

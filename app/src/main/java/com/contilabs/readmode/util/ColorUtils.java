@@ -33,6 +33,23 @@ public class ColorUtils {
     }
 
     /**
+     * Converts any color into a color compatible with MaterialButton background.
+     * MaterialButton may ignore very transparent colors, so this ensures proper alpha blending.
+     *
+     * @param colorHex Any Hex color.
+     * @return A "safe" color that works with MaterialButton.
+     */
+    public static int toButtonCompatibleColor(final @NonNull String colorHex) {
+        final int color = Color.parseColor(colorHex);
+        // If the color is too transparent, increase alpha to at least 30%
+        int alpha = Color.alpha(color);
+        if (alpha < 77) { // 30% of 255
+            alpha = 77;
+        }
+        return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+    }
+
+    /**
      * Adjusts a base color by applying intensity (darker values) and brightness (overall dimming).
      *
      * @param baseColor  the selected color or a custom color

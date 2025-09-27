@@ -201,7 +201,8 @@
             android:backgroundTint="?attr/buttonStartColor"
             android:text="@string/start"
             android:textColor="?attr/colorOnPrimary"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:cornerRadius="12dp" />
 
     </LinearLayout>
 </ScrollView>
