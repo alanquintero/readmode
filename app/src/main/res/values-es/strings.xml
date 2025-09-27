@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Read Mode</string>
+
+    <!-- Colors -->
+    <string name="color_soft_beige">Beige suave</string>
+    <string name="color_light_gray">Gris claro</string>
+    <string name="color_pale_yellow">Amarillo pálido</string>
+    <string name="color_warm_sepia">Sepia cálido</string>
+    <string name="color_soft_blue">Azul suave</string>
+    <string name="color_custom">Personalizado</string>
+
+    <!-- Labels -->
+    <string name="select_color">Selecciona un color</string>
+    <string name="color_settings_label">Configuración</string> <!-- shown to user in UI -->
+    <string name="color_settings_placeholder">Configuración</string> <!-- initial/default text -->
+    <string name="color_settings_format">%1$s - %2$s</string> <!-- final combined text -->
+    <string name="intensity">Intensidad</string>
+    <string name="brightness">Brillo</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menú</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Donar</string>
+    <string name="menu_feedback">Comentarios</string>
+    <!-- Settings info -->
+    <string name="info">Información</string>
+    <string name="info_same_intensity_brightness">Usar la misma intensidad y brillo para todos los colores en lugar de configurar cada color individualmente.</string>
+    <string name="info_auto_start_read_mode">Iniciar automáticamente Read Mode cuando se cambie el color, la intensidad o el brillo.</string>
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Misma intensidad y brillo para todos los colores</string>
+    <string name="setting_auto_start_read_mode">Iniciar automáticamente Read Mode al hacer cambios</string>
+    <string name="setting_reset_warning_info">Esto borrará todas tus preferencias y restaurará los valores predeterminados. ¿Deseas continuar?</string>
+    <string name="setting_reset_warning_confirm">¿Estás seguro de que quieres eliminar los datos?</string>
+    <string name="setting_reset_confirmation">Preferencias restablecidas</string>
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Iniciar automáticamente Read Mode</string>
+    <string name="title_same_intensity_brightness">Misma intensidad y brillo</string>
+    <string name="title_reset_app_data">Restablecer datos de la aplicación</string>
+    <string name="title_confirm_reset">Confirmar restablecimiento</string>
+    <!-- Theme -->
+    <string name="title_theme">Elegir tema</string>
+    <string name="theme_system_default">Predeterminado del sistema</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="theme_light">Claro</string>
+
+    <!-- Button -->
+    <string name="start">Iniciar</string>
+    <string name="stop">Detener</string>
+    <string name="custom_color">Elige un color Personalizado</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Elige un color Personalizado</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Read Mode se esta ejecutando</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ícono de círculo</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">SI</string>
+    <string name="confirm">CONFIRMAR</string>
+    <string name="done">OK</string>
+    <string name="cancel">Cancelar</string>
+</resources>

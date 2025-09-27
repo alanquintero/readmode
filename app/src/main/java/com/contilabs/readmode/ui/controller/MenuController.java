@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -52,10 +53,11 @@ public class MenuController {
             final PowerMenu powerMenu = new PowerMenu.Builder(context)
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_settings), false, R.drawable.menu_settings))
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_theme), false, R.drawable.menu_theme))
-                    .addItem(new PowerMenuItem(context.getString(R.string.menu_support), false, R.drawable.menu_support))
+                    .addItem(new PowerMenuItem(context.getString(R.string.menu_donate), false, R.drawable.menu_donate))
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_feedback), false, R.drawable.menu_feedback))
                     .setMenuRadius(10f)
                     .setMenuShadow(10f)
+                    .setWidth(ViewGroup.LayoutParams.WRAP_CONTENT)
                     .setTextColor(Color.BLACK)
                     .setTextSize(14)
                     .setBackgroundColor(Color.WHITE)
