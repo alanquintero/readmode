@@ -5,6 +5,9 @@ package com.contilabs.readmode.util;
 
 import android.graphics.Color;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+
 /**
  * Utility class for applying color transformations such as intensity reduction and brightness adjustment.
  * <p>
@@ -18,6 +21,16 @@ import android.graphics.Color;
 public class ColorUtils {
 
     private final static int VERY_LIGHT_COLOR_RANGE = 200;
+
+    /**
+     * Returns the Hex color for the given ColorInt
+     *
+     * @param color the ColorInt
+     * @return the Hex color
+     */
+    public static @NonNull String getHexColor(final @ColorInt int color) {
+        return String.format("#%08X", color);
+    }
 
     /**
      * Adjusts a base color by applying intensity (darker values) and brightness (overall dimming).

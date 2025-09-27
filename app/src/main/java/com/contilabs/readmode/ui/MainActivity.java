@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
         }
 
         // UI components
-        final CustomColorDialog customColorDialog = new CustomColorDialog(generalReadModeCommand, readModeSettings, customColorSubject);
+        final CustomColorDialog customColorDialog = new CustomColorDialog(this, generalReadModeCommand, readModeSettings, customColorSubject);
         final ButtonController buttonController = new ButtonController(this, this, rootView, generalReadModeCommand, readModeSettings, customColorDialog);
         final SeekBarController seekBarController = new SeekBarController(this, rootView, generalReadModeCommand, readModeSettings);
         final TextViewController textViewController = new TextViewController(this, rootView, readModeSettings, colorNames);

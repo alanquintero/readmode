@@ -99,7 +99,7 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
      */
 
     private void applyCustomColorButtonStyle(final @NonNull String customColor) {
-        Log.d(TAG, "Applying style to custom color button");
+        Log.d(TAG, "Applying style to custom color button, customColor: " + customColor);
         // Set background color
         customColorButton.setBackgroundColor(Color.parseColor(customColor));
         // Set text color
