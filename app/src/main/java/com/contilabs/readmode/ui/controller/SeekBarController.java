@@ -41,6 +41,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
     private final @NonNull ReadModeCommand readModeCommand;
     private final @NonNull ReadModeSettings readModeSettings;
     private final @NonNull TextView labelColorSettings;
+    private final @NonNull View lineColorSettings;
     private final @NonNull SeekBar seekColorIntensityBar;
     private final @NonNull TextView colorLevelText;
     private final @NonNull TextView colorLevelPercentageText;
@@ -55,6 +56,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
         this.readModeCommand = readModeCommand;
         this.readModeSettings = readModeSettings;
         this.labelColorSettings = rootView.findViewById(R.id.labelColorSettings);
+        this.lineColorSettings = rootView.findViewById(R.id.lineColorSettings);
         this.seekColorIntensityBar = rootView.findViewById(R.id.colorLevelBar);
         this.colorLevelText = rootView.findViewById(R.id.colorLevelText);
         this.colorLevelPercentageText = rootView.findViewById(R.id.colorLevelPercentageText);
@@ -247,6 +249,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
 
     private void setTextColorForAllElementsInColorSettingsContainer(final int color) {
         labelColorSettings.setTextColor(color);
+        lineColorSettings.setBackgroundColor(color);
         colorLevelText.setTextColor(color);
         colorLevelPercentageText.setTextColor(color);
         brightnessLevelText.setTextColor(color);
