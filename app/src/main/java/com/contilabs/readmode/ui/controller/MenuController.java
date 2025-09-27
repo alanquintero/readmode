@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.contilabs.readmode.R;
@@ -58,11 +59,14 @@ public class MenuController {
                     .setMenuRadius(10f)
                     .setMenuShadow(10f)
                     .setWidth(ViewGroup.LayoutParams.WRAP_CONTENT)
-                    .setTextColor(Color.BLACK)
-                    .setTextSize(14)
+                    .setTextColor(ContextCompat.getColor(context, R.color.text_primary))
+                    .setIconColor(ContextCompat.getColor(context, R.color.text_primary))
+                    .setMenuColor(ContextCompat.getColor(context, R.color.background_primary))
                     .setBackgroundColor(Color.WHITE)
+                    .setTextSize(16)
                     .setAutoDismiss(true)
                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
                         @Override
                         public void onItemClick(int position, Object item) {
                             Log.d(TAG, "Menu item position: " + position);
