@@ -262,6 +262,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
             // reset to initial value
             final GradientDrawable drawable = (GradientDrawable) containerLayout.getBackground();
             drawable.setColor(ContextCompat.getColorStateList(context, R.color.surface_color_settings));
+            setTextColorForAllElementsInColorSettingsContainer(Color.BLACK);
         } else {
             setContainerColors();
             if (readModeSettings.isReadModeOn()) {
