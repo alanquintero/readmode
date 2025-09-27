@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">מצב קריאה</string>
+
+    <!-- Colors -->
+    <string name="color_soft_beige">בז\' רך</string>
+    <string name="color_light_gray">אפור בהיר</string>
+    <string name="color_pale_yellow">צהוב חיוור</string>
+    <string name="color_warm_sepia">סֶפִּיָה חם</string>
+    <string name="color_soft_blue">כחול רך</string>
+    <string name="color_custom">מותאם אישית</string>
+
+    <!-- Labels -->
+    <string name="select_color">בחר צבע</string>
+    <string name="color_settings_label">הגדרות צבע</string> <!-- shown to user in UI -->
+    <string name="color_settings_placeholder">הגדרות צבע</string> <!-- initial/default text -->
+    <string name="color_settings_format">%2$s - %1$s</string> <!-- reversed for RTL -->
+    <string name="intensity">עוצמת צבע</string>
+    <string name="brightness">בהירות</string>
+    <string name="brightness_level">(%1$d)</string>
+    <string name="color_intensity">(%1$d)</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">תפריט</string>
+    <string name="menu_settings">הגדרות</string>
+    <string name="menu_theme">ערכת נושא</string>
+    <string name="menu_donate">תרומה</string>
+    <string name="menu_feedback">משוב</string>
+
+    <!-- Settings info -->
+    <string name="info">מידע</string>
+    <string name="info_same_intensity_brightness">השתמש באותה עוצמת צבע ובהירות עבור כל הצבעים במקום להגדיר כל צבע individually.</string>
+    <string name="info_auto_start_read_mode">הפעל אוטומטית את מצב הקריאה כאשר הצבע, העוצמה או הבהירות משתנים.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">אותה עוצמה ובהירות לכל הצבעים</string>
+    <string name="setting_auto_start_read_mode">הפעלה אוטומטית של מצב קריאה</string>
+    <string name="setting_reset_warning_info">פעולה זו תמחק את כל ההעדפות שלך ותשחזר ברירות מחדל. להמשיך?</string>
+    <string name="setting_reset_warning_confirm">האם אתה בטוח שאתה רוצה למחוק את הנתונים?</string>
+    <string name="setting_reset_confirmation">העדפות אופסו</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">הפעלה אוטומטית של מצב קריאה</string>
+    <string name="title_same_intensity_brightness">אותה עוצמה ובהירות</string>
+    <string name="title_reset_app_data">איפוס נתוני האפליקציה</string>
+    <string name="title_confirm_reset">אשר איפוס</string>
+
+    <!-- Theme -->
+    <string name="title_theme">בחר ערכת נושא</string>
+    <string name="theme_system_default">ברירת מחדל של המערכת</string>
+    <string name="theme_dark">כהה</string>
+    <string name="theme_light">בהיר</string>
+
+    <!-- Button -->
+    <string name="start">התחל</string>
+    <string name="stop">עצור</string>
+    <string name="custom_color">בחר צבע מותאם</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">בחר צבע מותאם אישית</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">מצב קריאה פועל</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">סמל עיגול</string>
+
+    <!-- Common -->
+    <string name="ok">אישור</string>
+    <string name="yes">כן</string>
+    <string name="confirm">אשר</string>
+    <string name="done">בוצע</string>
+    <string name="cancel">ביטול</string>
+</resources>

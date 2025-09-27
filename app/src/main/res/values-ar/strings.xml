@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">وضع القراءة</string>
+    <string name="color_soft_beige">بيج ناعم</string>
+    <string name="color_light_gray">رمادي فاتح</string>
+    <string name="color_pale_yellow">أصفر باهت</string>
+    <string name="color_warm_sepia">بني داكن دافئ</string>
+    <string name="color_soft_blue">أزرق ناعم</string>
+    <string name="color_custom">مخصص</string>
+    <string name="select_color">اختر لون</string>
+    <string name="color_settings_label">إعدادات اللون</string>
+    <string name="color_settings_placeholder">إعدادات اللون</string>
+    <!-- Note: Format might need adjustment for RTL -->
+    <string name="color_settings_format">%2$s - %1$s</string> <!-- Reversed for RTL -->
+    <string name="intensity">شدة اللون</string>
+    <string name="brightness">السطوع</string>
+    <string name="brightness_level">(%1$d)</string> <!-- Parentheses might need adjustment -->
+    <string name="color_intensity">(%1$d)</string>
+    <string name="menu_desc">القائمة</string>
+    <string name="menu_settings">الإعدادات</string>
+    <string name="menu_theme">السمة</string>
+    <string name="menu_donate">تبرع</string>
+    <string name="menu_feedback">ملاحظات</string>
+    <string name="info">معلومات</string>
+    <string name="info_same_intensity_brightness">استخدم نفس شدة اللون والسطوع لجميع الألوان بدلاً من تعيين كل لون على حدة.</string>
+    <string name="info_auto_start_read_mode">ابدأ وضع القراءة تلقائيًا عند تغيير اللون أو الشدة أو السطوع.</string>
+    <string name="setting_same_intensity_brightness">نفس الشدة والسطوع لجميع الألوان</string>
+    <string name="setting_auto_start_read_mode">بدء وضع القراءة تلقائيًا عند التغيير</string>
+    <string name="setting_reset_warning_info">سيؤدي هذا إلى حذف جميع تفضيلاتك واستعادة الإعدادات الافتراضية. هل تريد المتابعة؟</string>
+    <string name="setting_reset_warning_confirm">هل أنت متأكد من أنك تريد حذف البيانات؟</string>
+    <string name="setting_reset_confirmation">تم إعادة تعيين التفضيلات</string>
+    <string name="title_auto_start_read_mode">بدء وضع القراءة تلقائيًا</string>
+    <string name="title_same_intensity_brightness">نفس الشدة والسطوع</string>
+    <string name="title_reset_app_data">إعادة تعيين بيانات التطبيق</string>
+    <string name="title_confirm_reset">تأكيد إعادة التعيين</string>
+    <string name="title_theme">اختر السمة</string>
+    <string name="theme_system_default">افتراضي النظام</string>
+    <string name="theme_dark">داكن</string>
+    <string name="theme_light">فاتح</string>
+    <string name="start">ابدأ</string>
+    <string name="stop">أوقف</string>
+    <string name="custom_color">اختر لون مخصص</string>
+    <string name="choose_custom_color">اختر لون مخصص</string>
+    <string name="notification_msg">وضع القراءة قيد التشغيل</string>
+    <string name="circle_icon_desc">أيقونة دائرية</string>
+    <string name="ok">موافق</string>
+    <string name="yes">نعم</string>
+    <string name="confirm">تأكيد</string>
+    <string name="done">تم</string>
+    <string name="cancel">إلغاء</string>
+</resources>

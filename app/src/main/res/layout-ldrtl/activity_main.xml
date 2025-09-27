@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundPrimary"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="locale"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/backgroundPrimary"
+            android:gravity="center_vertical"
+            android:layoutDirection="locale"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <!-- Banner -->
+            <TextView
+                android:id="@+id/readModeBanner"
+                style="?attr/textAppearanceHeadline1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/textPrimary"
+                android:textStyle="bold" />
+
+            <!-- Settings menu -->
+            <ImageView
+                android:id="@+id/bannerMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/backgroundPrimary"
+                android:contentDescription="@string/menu_desc"
+                android:src="@drawable/ic_more_vert"
+                app:tint="?attr/textPrimary" />
+        </LinearLayout>
+
+        <!-- Select a Color section -->
+        <LinearLayout
+            android:id="@+id/colorOptionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/container_border"
+            android:layoutDirection="locale"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Label -->
+            <TextView
+                android:id="@+id/labelColor"
+                style="?attr/textAppearanceSubtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/select_color"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/textPrimary"
+                android:textStyle="bold" />
+
+            <!-- Spinner -->
+            <Spinner
+                android:id="@+id/colorSpinner"
+                style="?attr/textAppearanceSubtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/spinner_background"
+                android:spinnerMode="dropdown"
+                android:textAlignment="viewStart" />
+
+        </LinearLayout>
+
+        <!-- Color Settings section -->
+        <LinearLayout
+            android:id="@+id/colorSettingsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/color_settings_border"
+            android:layoutDirection="locale"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Selected color Label -->
+            <TextView
+                android:id="@+id/labelColorSettings"
+                style="?attr/textAppearanceSubtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/color_settings_label"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_settings"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/lineColorSettings"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/text_color_settings" />
+
+            <!-- Intensity -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layoutDirection="locale"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/colorLevelText"
+                    style="?attr/textAppearanceBody1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/intensity"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/text_color_settings" />
+
+                <TextView
+                    android:id="@+id/colorLevelPercentageText"
+                    style="?attr/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color_intensity"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/text_color_settings" />
+
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/colorLevelBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="locale"
+                android:progress="50"
+                android:progressBackgroundTint="@color/seek_background"
+                android:progressTint="@color/seek_progress"
+                android:thumbTint="@color/seek_thumb" />
+
+
+            <!-- Brightness -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layoutDirection="locale"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/brightnessLevelText"
+                    style="?attr/textAppearanceBody1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:text="@string/brightness"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/text_color_settings" />
+
+                <TextView
+                    android:id="@+id/brightnessLevelPercentageText"
+                    style="?attr/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brightness_level"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/text_color_settings" />
+
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/brightnessLevelBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="locale"
+                android:progress="50"
+                android:progressBackgroundTint="@color/seek_background"
+                android:progressTint="@color/seek_progress"
+                android:thumbTint="@color/seek_thumb" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/customColorButton"
+                style="?attr/textAppearanceButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/btn_default_custom_color"
+                android:text="@string/custom_color"
+                android:visibility="gone"
+                app:cornerRadius="12dp"
+                app:strokeColor="?attr/colorOnPrimary"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
+
+        <!-- Start/Stop Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startStopButton"
+            style="?attr/textAppearanceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="?attr/buttonStartColor"
+            android:text="@string/start"
+            android:textAlignment="viewStart"
+            android:textColor="?attr/colorOnPrimary"
+            android:textStyle="bold"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
+</ScrollView>
