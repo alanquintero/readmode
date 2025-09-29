@@ -20,8 +20,6 @@ import androidx.annotation.NonNull;
  */
 public class ColorUtils {
 
-    private final static int VERY_LIGHT_COLOR_RANGE = 200;
-
     /**
      * Returns the Hex color for the given ColorInt
      *
@@ -58,10 +56,10 @@ public class ColorUtils {
      * @return the adjusted color as an int
      */
     public static int adjustColor(final int baseColor, final int intensity, final int brightness) {
-        int red = Math.max(0, Color.red(baseColor) - intensity);
-        int green = Math.max(0, Color.green(baseColor) - intensity);
-        int blue = Math.max(0, Color.blue(baseColor) - intensity);
-        int alpha = 150 - brightness;
+        final int red = Math.max(0, Color.red(baseColor) - intensity);
+        final int green = Math.max(0, Color.green(baseColor) - intensity);
+        final int blue = Math.max(0, Color.blue(baseColor) - intensity);
+        final int alpha = 150 - brightness;
 
         return Color.argb(alpha, red, green, blue);
     }
@@ -73,7 +71,13 @@ public class ColorUtils {
      * @return true if given color is very light, false otherwise
      */
     public static boolean isVeryLightColor(final int color) {
-        return ColorUtils.calculatePerceivedBrightness(color) > VERY_LIGHT_COLOR_RANGE;
+        // Calculate brightness
+        final int r = Color.red(color);
+        final int g = Color.green(color);
+        final int b = Color.blue(color);
+        final double perceivedBrightness = (0.299 * r + 0.587 * g + 0.114 * b);
+
+        return perceivedBrightness > 200;
     }
 
     /**
@@ -95,19 +99,5 @@ public class ColorUtils {
 
         // If luminance is less than 0.5 → dark color
         return luminance < 0.4;
-    }
-
-    /**
-     * Calculates  the perceived brightness of the given color.
-     *
-     * @param color the given color
-     * @return the perceived brightness
-     */
-    private static double calculatePerceivedBrightness(final int color) {
-        // Calculate brightness
-        int r = Color.red(color);
-        int g = Color.green(color);
-        int b = Color.blue(color);
-        return (0.299 * r + 0.587 * g + 0.114 * b); // Perceived brightness
     }
 }

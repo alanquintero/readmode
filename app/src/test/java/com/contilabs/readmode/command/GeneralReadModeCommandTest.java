@@ -26,7 +26,7 @@ public class GeneralReadModeCommandTest extends BaseTest {
     private GeneralReadModeCommand generalReadModeCommand;
 
     @BeforeEach
-    void setup() {
+    public void setup() {
         // Initialize mocks
         mocks = MockitoAnnotations.openMocks(this);
 
@@ -34,7 +34,7 @@ public class GeneralReadModeCommandTest extends BaseTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 

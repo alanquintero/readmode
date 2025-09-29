@@ -30,7 +30,7 @@ public class ColorDropdownSubjectTest extends BaseTest {
     private final int currentColorDropdownPosition = 1;
 
     @BeforeEach
-    void setup() {
+    public void setup() {
         // Initialize mocks
         mocks = MockitoAnnotations.openMocks(this);
 
@@ -38,12 +38,12 @@ public class ColorDropdownSubjectTest extends BaseTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 
     @Test
-    void testRegisterAndNotifyObservers() {
+    public void registerAndNotifyObservers() {
         colorDropdownSubject.registerObserver(observer1);
         colorDropdownSubject.registerObserver(observer2);
 
@@ -54,7 +54,7 @@ public class ColorDropdownSubjectTest extends BaseTest {
     }
 
     @Test
-    void testUnregisterAllObservers() {
+    public void unregisterAllObservers() {
         colorDropdownSubject.registerObserver(observer1);
         colorDropdownSubject.registerObserver(observer2);
         colorDropdownSubject.unregisterAllObservers();
@@ -66,7 +66,7 @@ public class ColorDropdownSubjectTest extends BaseTest {
     }
 
     @Test
-    void testNotifyObservers_NoObservers_NoCrash() {
+    public void notifyObservers_NoObservers_NoCrash() {
         colorDropdownSubject.setCurrentColorDropdownPosition(currentColorDropdownPosition);
 
         Mockito.verify(observer1, never()).onColorDropdownPositionChange(anyInt());

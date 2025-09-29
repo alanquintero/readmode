@@ -54,7 +54,7 @@ public class ReadModeManagerTest extends BaseTest {
     private ReadModeManager readModeManager;
 
     @BeforeEach
-    void setup() {
+    public void setup() {
         // Initialize mocks
         mocks = MockitoAnnotations.openMocks(this);
 
@@ -62,15 +62,15 @@ public class ReadModeManagerTest extends BaseTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 
     @Test
     public void startReadMode_serviceIsNotRunning() {
-        ActivityManager manager = mock(ActivityManager.class);
-        List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
-        ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
+        final ActivityManager manager = mock(ActivityManager.class);
+        final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
+        final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
         runningServiceInfos.add(service);
         service.service = mock(ComponentName.class);
 
@@ -92,9 +92,9 @@ public class ReadModeManagerTest extends BaseTest {
 
     @Test
     public void startReadMode_serviceIsRunning() {
-        ActivityManager manager = mock(ActivityManager.class);
-        List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
-        ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
+        final ActivityManager manager = mock(ActivityManager.class);
+        final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
+        final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
         runningServiceInfos.add(service);
         service.service = mock(ComponentName.class);
 
@@ -116,9 +116,9 @@ public class ReadModeManagerTest extends BaseTest {
 
     @Test
     public void readModeServiceIsRunning() {
-        ActivityManager manager = mock(ActivityManager.class);
-        List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
-        ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
+        final ActivityManager manager = mock(ActivityManager.class);
+        final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
+        final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
         runningServiceInfos.add(service);
         service.service = mock(ComponentName.class);
 
@@ -138,9 +138,9 @@ public class ReadModeManagerTest extends BaseTest {
 
     @Test
     public void readModeServiceIsRunningAfterStopReadMode() {
-        ActivityManager manager = mock(ActivityManager.class);
-        List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
-        ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
+        final  ActivityManager manager = mock(ActivityManager.class);
+        final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
+        final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
         runningServiceInfos.add(service);
         service.service = mock(ComponentName.class);
 
@@ -171,8 +171,8 @@ public class ReadModeManagerTest extends BaseTest {
     }
 
     @Test
-    void updateOverlay_whenServiceAvailable_callsOnUpdate() {
-        DrawOverAppsService serviceMock = mock(DrawOverAppsService.class);
+    public void updateOverlay_whenServiceAvailable_callsOnUpdate() {
+        final DrawOverAppsService serviceMock = mock(DrawOverAppsService.class);
 
         try (MockedStatic<DrawOverAppsService> mockedStatic =
                      Mockito.mockStatic(DrawOverAppsService.class)) {
@@ -186,10 +186,10 @@ public class ReadModeManagerTest extends BaseTest {
     }
 
     @Test
-    void updateOverlay_whenServiceNull_callsStartReadMode() {
-        ActivityManager activityManager = mock(ActivityManager.class);
-        List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
-        ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
+    public void updateOverlay_whenServiceNull_callsStartReadMode() {
+        final ActivityManager activityManager = mock(ActivityManager.class);
+        final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
+        final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
         runningServiceInfos.add(service);
         service.service = mock(ComponentName.class);
 

@@ -46,7 +46,7 @@ public class BaseReadModeCommandTest extends BaseTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 

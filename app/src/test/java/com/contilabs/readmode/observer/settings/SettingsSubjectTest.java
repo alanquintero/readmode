@@ -31,7 +31,7 @@ public class SettingsSubjectTest extends BaseTest {
     private final Constants.SETTING_OPTIONS setting = Constants.SETTING_OPTIONS.RESET_APP_DATA;
 
     @BeforeEach
-    void setup() {
+    public void setup() {
         // Initialize mocks
         mocks = MockitoAnnotations.openMocks(this);
 
@@ -39,12 +39,12 @@ public class SettingsSubjectTest extends BaseTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 
     @Test
-    void testRegisterAndNotifyObservers() {
+    public void registerAndNotifyObservers() {
         settingsSubject.registerObserver(observer1);
         settingsSubject.registerObserver(observer2);
 
@@ -55,7 +55,7 @@ public class SettingsSubjectTest extends BaseTest {
     }
 
     @Test
-    void testUnregisterAllObservers() {
+    public void unregisterAllObservers() {
         settingsSubject.registerObserver(observer1);
         settingsSubject.registerObserver(observer2);
         settingsSubject.unregisterAllObservers();
@@ -67,7 +67,7 @@ public class SettingsSubjectTest extends BaseTest {
     }
 
     @Test
-    void testNotifyObservers_NoObservers_NoCrash() {
+    public void notifyObservers_NoObservers_NoCrash() {
         settingsSubject.onSettingsChanged(setting);
 
         Mockito.verify(observer1, never()).onSettingsChanged(any());

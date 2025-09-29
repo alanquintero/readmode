@@ -30,7 +30,7 @@ public class ReadModeSubjectTest extends BaseTest {
     private final boolean readModeOn = true;
 
     @BeforeEach
-    void setup() {
+    public void setup() {
         // Initialize mocks
         mocks = MockitoAnnotations.openMocks(this);
 
@@ -38,12 +38,12 @@ public class ReadModeSubjectTest extends BaseTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 
     @Test
-    void testRegisterAndNotifyObservers() {
+    void registerAndNotifyObservers() {
         readModeSubject.registerObserver(observer1);
         readModeSubject.registerObserver(observer2);
 
@@ -54,7 +54,7 @@ public class ReadModeSubjectTest extends BaseTest {
     }
 
     @Test
-    void testUnregisterAllObservers() {
+    public void unregisterAllObservers() {
         readModeSubject.registerObserver(observer1);
         readModeSubject.registerObserver(observer2);
         readModeSubject.unregisterAllObservers();
@@ -66,7 +66,7 @@ public class ReadModeSubjectTest extends BaseTest {
     }
 
     @Test
-    void testNotifyObservers_NoObservers_NoCrash() {
+    public void notifyObservers_NoObservers_NoCrash() {
         readModeSubject.setReadModeOn(readModeOn);
 
         Mockito.verify(observer1, never()).onReadModeChanged(anyBoolean());

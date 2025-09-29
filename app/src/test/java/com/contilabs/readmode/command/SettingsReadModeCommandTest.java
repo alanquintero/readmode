@@ -29,7 +29,7 @@ public class SettingsReadModeCommandTest extends BaseTest {
     private SettingsReadModeCommand settingsReadModeCommand;
 
     @BeforeEach
-    void setup() {
+    public void setup() {
         // Initialize mocks
         mocks = MockitoAnnotations.openMocks(this);
 
@@ -38,7 +38,7 @@ public class SettingsReadModeCommandTest extends BaseTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 

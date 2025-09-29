@@ -30,7 +30,7 @@ public class CustomColorSubjectTest extends BaseTest {
     private final String color = "#FF0000";
 
     @BeforeEach
-    void setup() {
+    public void setup() {
         // Initialize mocks
         mocks = MockitoAnnotations.openMocks(this);
 
@@ -38,12 +38,12 @@ public class CustomColorSubjectTest extends BaseTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 
     @Test
-    void testRegisterAndNotifyObservers() {
+    public void registerAndNotifyObservers() {
         customColorSubject.registerObserver(observer1);
         customColorSubject.registerObserver(observer2);
 
@@ -54,7 +54,7 @@ public class CustomColorSubjectTest extends BaseTest {
     }
 
     @Test
-    void testUnregisterAllObservers() {
+    public void unregisterAllObservers() {
         customColorSubject.registerObserver(observer1);
         customColorSubject.registerObserver(observer2);
         customColorSubject.unregisterAllObservers();
@@ -66,7 +66,7 @@ public class CustomColorSubjectTest extends BaseTest {
     }
 
     @Test
-    void testNotifyObservers_NoObservers_NoCrash() {
+    public void notifyObservers_NoObservers_NoCrash() {
         customColorSubject.setCustomColor(color);
 
         Mockito.verify(observer1, never()).onCustomColorChange(anyString());
