@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
         final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject();
         final CustomColorSubject customColorSubject = new CustomColorSubject();
         final SettingsSubject settingsSubject = new SettingsSubject();
-        readModeManager = new ReadModeManager(this, readModeSubject, readModeSettings);
+        readModeManager = new ReadModeManager(this, prefsHelper, readModeSubject, readModeSettings);
         generalReadModeCommand = new GeneralReadModeCommand(readModeManager, readModeSettings);
         final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(readModeManager, readModeSettings);
 

@@ -37,9 +37,9 @@ public class ReadModeManager {
 
     private boolean isReadModeServiceRunning = false;
 
-    public ReadModeManager(final @NonNull Context context, final @NonNull ReadModeSubject readModeSubject, final @NonNull ReadModeSettings readModeSettings) {
+    public ReadModeManager(final @NonNull Context context, final @NonNull PrefsHelper prefsHelper, final @NonNull ReadModeSubject readModeSubject, final @NonNull ReadModeSettings readModeSettings) {
         this.context = context;
-        this.prefsHelper = PrefsHelper.init(context);
+        this.prefsHelper = prefsHelper;
         this.readModeSubject = readModeSubject;
         this.readModeSettings = readModeSettings;
     }
@@ -100,7 +100,7 @@ public class ReadModeManager {
      * Either redraws overlay without stopping the Read Mode or start the Read Mode if not running
      */
     public void updateOverlay() {
-        DrawOverAppsService service = DrawOverAppsService.getInstance();
+        final DrawOverAppsService service = DrawOverAppsService.getInstance();
         if (service != null) {
             Log.d(TAG, "Updating overlay directly via ReadModeManager...");
             service.onUpdate(); // redraw overlay without stopping service
