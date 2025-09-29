@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.contilabs.readmode.model.ColorSettings;
 import com.contilabs.readmode.model.ReadModeSettings;
@@ -45,6 +47,14 @@ public class PrefsHelper {
     private PrefsHelper(final @NonNull Context context) {
         sharedPreferences = context.getSharedPreferences(Constants.SETTINGS, Context.MODE_PRIVATE);
         gson = new Gson();
+    }
+
+    /**
+     * IMPORTANT: use it for testing ONLY
+     */
+    @VisibleForTesting
+    static void cleanUp() {
+        instance = null;
     }
 
     /**
@@ -93,19 +103,19 @@ public class PrefsHelper {
         return sharedPreferences.getBoolean(Constants.PREF_SAME_INTENSITY_BRIGHTNESS_FOR_ALL, Constants.DEFAULT_SAME_INTENSITY_BRIGHTNESS_FOR_ALL);
     }
 
-    public @NonNull Constants.ThemeMode getTheme() {
-        return Constants.ThemeMode.fromInt(sharedPreferences.getInt(Constants.PREF_THEME, Constants.DEFAULT_THEME));
-    }
-
     public boolean getAutoStartReadMode() {
         return sharedPreferences.getBoolean(Constants.PREF_AUTO_START_READ_MODE, Constants.DEFAULT_AUTO_START_READ_MODE);
+    }
+
+    public @NonNull Constants.ThemeMode getTheme() {
+        return Constants.ThemeMode.fromInt(sharedPreferences.getInt(Constants.PREF_THEME, Constants.DEFAULT_THEME));
     }
 
     public @NonNull String getColor() {
         return sharedPreferences.getString(Constants.PREF_COLOR, Constants.DEFAULT_COLOR_WHITE);
     }
 
-    public ColorSettings getColorSettings(final int currentColorDropdownPosition) {
+    public @Nullable ColorSettings getColorSettings(final int currentColorDropdownPosition) {
         return prefColorSettingsMap.get(Constants.COLOR_DROPDOWN_OPTIONS[currentColorDropdownPosition]);
     }
 
@@ -114,7 +124,7 @@ public class PrefsHelper {
      * Saves an String value to {@link SharedPreferences} under the specified key.
      */
     public void saveProperty(final @NonNull String property, final @NonNull String value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(property, value);
         editor.apply();
     }
@@ -123,7 +133,7 @@ public class PrefsHelper {
      * Saves an boolean value to {@link SharedPreferences} under the specified key.
      */
     public void saveProperty(final @NonNull String property, final boolean value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(property, value);
         editor.apply();
     }
@@ -132,7 +142,7 @@ public class PrefsHelper {
      * Saves an integer value to {@link SharedPreferences} under the specified key.
      */
     public void saveProperty(final @NonNull String property, final int value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(property, value);
         editor.apply();
     }
@@ -155,15 +165,15 @@ public class PrefsHelper {
             colorSettings.setColorIntensity(readModeSettings.getColorIntensity());
             colorSettings.setBrightness(readModeSettings.getBrightness());
             prefColorSettingsMap.put(selectedColor, colorSettings);
+
+            final String json = gson.toJson(prefColorSettingsMap);
+
+            final SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(Constants.PREF_COLOR_SETTINGS, json);
+            editor.apply();
         } else {
             Log.d(TAG, "colorSettings not found in prefColorSettingsMap!");
         }
-
-        final String json = gson.toJson(prefColorSettingsMap);
-
-        final SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(Constants.PREF_COLOR_SETTINGS, json);
-        editor.apply();
     }
 
     /**
