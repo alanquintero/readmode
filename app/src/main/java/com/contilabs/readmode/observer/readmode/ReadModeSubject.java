@@ -3,6 +3,8 @@
  *****************************************************************/
 package com.contilabs.readmode.observer.readmode;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -18,6 +20,9 @@ import java.util.List;
  * @author Alan Quintero
  */
 public class ReadModeSubject {
+
+    private static final String TAG = ReadModeSubject.class.getSimpleName();
+
     private final List<ReadModeObserver> observers = new ArrayList<>();
     private boolean isReadModeOn;
 
@@ -27,7 +32,16 @@ public class ReadModeSubject {
      * @param observer the observer to add
      */
     public void registerObserver(final @NonNull ReadModeObserver observer) {
+        Log.d(TAG, "registerObserver");
         observers.add(observer);
+    }
+
+    /**
+     * Unregister all observers.
+     */
+    public void unregisterAllObservers() {
+        Log.d(TAG, "unregisterAllObservers");
+        observers.clear();
     }
 
     /**
@@ -36,15 +50,16 @@ public class ReadModeSubject {
      * @param isReadModeOn true to start Read Mode, false to stop
      */
     public void setReadModeOn(final boolean isReadModeOn) {
+        Log.d(TAG, "setReadModeOn: " + isReadModeOn);
         this.isReadModeOn = isReadModeOn;
         notifyObservers();
     }
-
 
     /**
      * Notifies all registered observers about the state change.
      */
     private void notifyObservers() {
+        Log.d(TAG, "notifyObservers");
         for (ReadModeObserver observer : observers) {
             observer.onReadModeChanged(isReadModeOn);
         }

@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
     private PrefsHelper prefsHelper;
     private ReadModeManager readModeManager;
     private GeneralReadModeCommand generalReadModeCommand;
+    private ReadModeSubject readModeSubject;
+    private SettingsSubject settingsSubject;
+    private CustomColorSubject customColorSubject;
+    private ColorDropdownSubject colorDropdownSubject;
     private String[] colorNames = {};
 
     @Override
@@ -113,10 +117,10 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
 
         Log.d(TAG, "init classes...");
         final @NonNull View rootView = findViewById(android.R.id.content);
-        final ReadModeSubject readModeSubject = new ReadModeSubject();
-        final ColorDropdownSubject colorDropdownSubject = new ColorDropdownSubject();
-        final CustomColorSubject customColorSubject = new CustomColorSubject();
-        final SettingsSubject settingsSubject = new SettingsSubject();
+        readModeSubject = new ReadModeSubject();
+        colorDropdownSubject = new ColorDropdownSubject();
+        customColorSubject = new CustomColorSubject();
+        settingsSubject = new SettingsSubject();
         readModeManager = new ReadModeManager(this, prefsHelper, readModeSubject, readModeSettings);
         generalReadModeCommand = new GeneralReadModeCommand(readModeManager, readModeSettings);
         final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(readModeManager, readModeSettings);
@@ -216,6 +220,12 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
     @Override
     protected void onDestroy() {
         generalReadModeCommand.stopReadMode();
+        // unregister all observers
+        readModeSubject.unregisterAllObservers();
+        settingsSubject.unregisterAllObservers();
+        customColorSubject.unregisterAllObservers();
+        colorDropdownSubject.unregisterAllObservers();
+
         super.onDestroy();
         Log.i(TAG, "Activity destroyed.");
     }

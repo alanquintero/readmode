@@ -3,6 +3,8 @@
  *****************************************************************/
 package com.contilabs.readmode.observer.customcolor;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -18,6 +20,9 @@ import java.util.List;
  * @author Alan Quintero
  */
 public class CustomColorSubject {
+
+    private static final String TAG = CustomColorSubject.class.getSimpleName();
+
     private final List<CustomColorObserver> observers = new ArrayList<>();
     private String customColor;
 
@@ -27,7 +32,16 @@ public class CustomColorSubject {
      * @param observer the observer to add
      */
     public void registerObserver(final @NonNull CustomColorObserver observer) {
+        Log.d(TAG, "registerObserver");
         observers.add(observer);
+    }
+
+    /**
+     * Unregister all observers.
+     */
+    public void unregisterAllObservers() {
+        Log.d(TAG, "unregisterAllObservers");
+        observers.clear();
     }
 
     /**
@@ -36,6 +50,7 @@ public class CustomColorSubject {
      * @param customColor the current selected Custom Color
      */
     public void setCustomColor(final @NonNull String customColor) {
+        Log.d(TAG, "setCustomColor: " + customColor);
         this.customColor = customColor;
         notifyObservers();
     }
@@ -45,6 +60,7 @@ public class CustomColorSubject {
      * Notifies all registered observers about the state change.
      */
     private void notifyObservers() {
+        Log.d(TAG, "notifyObservers");
         for (final CustomColorObserver observer : observers) {
             observer.onCustomColorChange(customColor);
         }
