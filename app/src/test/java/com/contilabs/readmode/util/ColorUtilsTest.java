@@ -21,14 +21,17 @@ public class ColorUtilsTest {
 
     @Test
     public void getHexColor() {
+        // Given
         final String hexColor = ColorUtils.getHexColor(123);
 
+        // When & Then
         assertEquals("#0000007B", hexColor);
     }
 
     @Test
     public void toButtonCompatibleColor() {
         try (MockedStatic<Color> colorMock = mockStatic(Color.class)) {
+            // Given
             // The color value returned by parseColor
             final int mockColor = 0x1100FF00; // semi-transparent green
             final int expected = 0x4D00FF00;
@@ -39,8 +42,10 @@ public class ColorUtilsTest {
             colorMock.when(() -> Color.blue(mockColor)).thenReturn(4);
             colorMock.when(() -> Color.argb(anyInt(), anyInt(), anyInt(), anyInt())).thenReturn(expected);
 
+            // When
             final int result = ColorUtils.toButtonCompatibleColor("#1100FF00");
 
+            // Then
             assertEquals(expected, result);
         }
     }
@@ -48,6 +53,7 @@ public class ColorUtilsTest {
     @Test
     public void adjustColor() {
         try (MockedStatic<Color> colorMock = mockStatic(Color.class)) {
+            // Given
             final int baseColor = 0xFF112233; // arbitrary color
             // Expected channels after subtracting intensity
             final int intensity = 5;
@@ -64,8 +70,10 @@ public class ColorUtilsTest {
             colorMock.when(() -> Color.blue(baseColor)).thenReturn(0x33);
             colorMock.when(() -> Color.argb(anyInt(), anyInt(), anyInt(), anyInt())).thenReturn(expected);
 
+            // When
             final int result = ColorUtils.adjustColor(baseColor, intensity, brightness);
 
+            // Then
             assertEquals(expected, result);
         }
     }
@@ -73,14 +81,17 @@ public class ColorUtilsTest {
     @Test
     public void isVeryLightColor_true() {
         try (MockedStatic<Color> colorMock = mockStatic(Color.class)) {
+            // Given
             final int color = 0xFFFFFFFF; // arbitrary color
             // Mock channels to simulate a very light color
             colorMock.when(() -> Color.red(color)).thenReturn(250);
             colorMock.when(() -> Color.green(color)).thenReturn(240);
             colorMock.when(() -> Color.blue(color)).thenReturn(230);
 
+            // When
             final boolean result = ColorUtils.isVeryLightColor(color);
 
+            // Then
             assertTrue(result, "Color should be considered very light");
         }
     }
@@ -88,14 +99,17 @@ public class ColorUtilsTest {
     @Test
     public void isVeryLightColor_false() {
         try (MockedStatic<Color> colorMock = mockStatic(Color.class)) {
+            // Given
             final int color = 0xFF112233; // arbitrary dark color
             // Mock channels to simulate a darker color
             colorMock.when(() -> Color.red(color)).thenReturn(10);
             colorMock.when(() -> Color.green(color)).thenReturn(20);
             colorMock.when(() -> Color.blue(color)).thenReturn(30);
 
+            // When
             final boolean result = ColorUtils.isVeryLightColor(color);
 
+            // Then
             assertFalse(result, "Color should not be considered very light");
         }
     }
@@ -103,14 +117,17 @@ public class ColorUtilsTest {
     @Test
     public void isColorDark_true() {
         try (MockedStatic<Color> colorMock = mockStatic(Color.class)) {
+            // Given
             final int color = 0xFF112233; // arbitrary dark color
             // Mock RGB values to simulate a dark color
             colorMock.when(() -> Color.red(color)).thenReturn(20);
             colorMock.when(() -> Color.green(color)).thenReturn(30);
             colorMock.when(() -> Color.blue(color)).thenReturn(40);
 
+            // When
             final boolean result = ColorUtils.isColorDark(color);
 
+            // Then
             assertTrue(result, "Color should be considered dark");
         }
     }
@@ -118,14 +135,17 @@ public class ColorUtilsTest {
     @Test
     public void isColorDark_false() {
         try (MockedStatic<Color> colorMock = mockStatic(Color.class)) {
+            // Given
             final int color = 0xFFFFFFFF; // arbitrary light color
             // Mock RGB values to simulate a light color
             colorMock.when(() -> Color.red(color)).thenReturn(250);
             colorMock.when(() -> Color.green(color)).thenReturn(240);
             colorMock.when(() -> Color.blue(color)).thenReturn(230);
 
+            // When
             final boolean result = ColorUtils.isColorDark(color);
 
+            // Then
             assertFalse(result, "Color should not be considered dark");
         }
     }

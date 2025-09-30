@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.model.ReadModeSettings;
@@ -42,12 +43,12 @@ public class ColorSpinnerAdapter extends ArrayAdapter<ColorItem> {
 
     @NonNull
     @Override
-    public View getView(final int position, View convertView, final @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, final @NonNull ViewGroup parent) {
         return createItemView(position, convertView, parent);
     }
 
     @Override
-    public View getDropDownView(final int position, View convertView, final @NonNull ViewGroup parent) {
+    public View getDropDownView(final int position, @Nullable View convertView, final @NonNull ViewGroup parent) {
         Log.d(TAG, "getDropDownView");
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.spinner_item, parent, false);
@@ -58,7 +59,7 @@ public class ColorSpinnerAdapter extends ArrayAdapter<ColorItem> {
         return createItemView(position, convertView, parent);
     }
 
-    private View createItemView(final int position, View convertView, final @NonNull ViewGroup parent) {
+    private View createItemView(final int position, @Nullable View convertView, final @NonNull ViewGroup parent) {
         Log.d(TAG, "Creating item view");
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.spinner_item, parent, false);

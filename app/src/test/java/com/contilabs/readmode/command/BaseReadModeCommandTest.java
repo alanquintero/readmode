@@ -52,53 +52,69 @@ public class BaseReadModeCommandTest extends BaseTest {
 
     @Test
     public void updateReadMode() {
+        // When
         baseReadModeCommand.updateReadMode();
 
+        // Then
         Mockito.verify(readModeManager).updateOverlay();
     }
 
     @Test
     public void pauseReadMode_readModeIsOff() {
+        // Given
         readModeSettings.setIsReadModeOn(false);
 
+        // When
         baseReadModeCommand.pauseReadMode();
 
+        // Then
         Mockito.verify(readModeManager).stopReadMode();
         assertFalse(readModeSettings.wasReadModeOn());
     }
 
     @Test
     public void pauseReadMode_readModeIsOn() {
+        // Given
         readModeSettings.setIsReadModeOn(true);
 
+        // When
         baseReadModeCommand.pauseReadMode();
 
+        // Then
         Mockito.verify(readModeManager).stopReadMode();
         assertTrue(readModeSettings.wasReadModeOn());
     }
 
     @Test
     public void resumeReadMode_wasReadModeOnIsFalse() {
+        // Given
         readModeSettings.setWasReadModeOn(false);
 
+        // When
         baseReadModeCommand.resumeReadMode();
 
+        // Then
         Mockito.verify(readModeManager, never()).startReadMode();
     }
 
     @Test
     public void resumeReadMode_wasReadModeOnIsTrue() {
+        // Given
         readModeSettings.setWasReadModeOn(true);
 
+        // When
         baseReadModeCommand.resumeReadMode();
 
+        // Then
         Mockito.verify(readModeManager).startReadMode();
     }
 
     @Test
     public void stopReadMode() {
+        // When
         baseReadModeCommand.stopReadMode();
 
+        // Then
         Mockito.verify(readModeManager).stopReadMode();
     }
 }

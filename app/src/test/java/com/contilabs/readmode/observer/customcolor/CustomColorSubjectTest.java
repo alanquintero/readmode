@@ -44,31 +44,39 @@ public class CustomColorSubjectTest extends BaseTest {
 
     @Test
     public void registerAndNotifyObservers() {
+        // Given
         customColorSubject.registerObserver(observer1);
         customColorSubject.registerObserver(observer2);
 
+        // When
         customColorSubject.setCustomColor(color);
 
+        // Then
         Mockito.verify(observer1).onCustomColorChange(color);
         Mockito.verify(observer2).onCustomColorChange(color);
     }
 
     @Test
     public void unregisterAllObservers() {
+        // Given
         customColorSubject.registerObserver(observer1);
         customColorSubject.registerObserver(observer2);
         customColorSubject.unregisterAllObservers();
 
+        // When
         customColorSubject.setCustomColor(color);
 
+        // Then
         Mockito.verify(observer1, never()).onCustomColorChange(anyString());
         Mockito.verify(observer2, never()).onCustomColorChange(anyString());
     }
 
     @Test
     public void notifyObservers_NoObservers_NoCrash() {
+        // When
         customColorSubject.setCustomColor(color);
 
+        // Then
         Mockito.verify(observer1, never()).onCustomColorChange(anyString());
         Mockito.verify(observer2, never()).onCustomColorChange(anyString());
     }

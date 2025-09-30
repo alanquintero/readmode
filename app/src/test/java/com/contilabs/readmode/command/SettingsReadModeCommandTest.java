@@ -44,41 +44,53 @@ public class SettingsReadModeCommandTest extends BaseTest {
 
     @Test
     public void startReadMode_readModeIsOffAndAutoReadModeIsOff() {
+        // Given
         readModeSettings.setIsReadModeOn(false);
         readModeSettings.setAutoStartReadMode(false);
 
+        // When
         settingsReadModeCommand.startReadMode();
 
+        // Then
         Mockito.verify(readModeManager, never()).startReadMode();
     }
 
     @Test
     public void startReadMode_readModeIsOnAndAutoReadModeIsOff() {
+        // Given
         readModeSettings.setIsReadModeOn(true);
         readModeSettings.setAutoStartReadMode(false);
 
+        // When
         settingsReadModeCommand.startReadMode();
 
+        // Then
         Mockito.verify(readModeManager).startReadMode();
     }
 
     @Test
     public void startReadMode_readModeIsOffAndAutoReadModeIsOn() {
+        // Given
         readModeSettings.setIsReadModeOn(false);
         readModeSettings.setAutoStartReadMode(true);
 
+        // When
         settingsReadModeCommand.startReadMode();
 
+        // Then
         Mockito.verify(readModeManager).startReadMode();
     }
 
     @Test
     public void startReadMode_readModeIsOnAndAutoReadModeIsOn() {
+        // Given
         readModeSettings.setIsReadModeOn(true);
         readModeSettings.setAutoStartReadMode(true);
 
+        // When
         settingsReadModeCommand.startReadMode();
 
+        // Then
         Mockito.verify(readModeManager).startReadMode();
     }
 }

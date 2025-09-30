@@ -54,10 +54,13 @@ public class UtilsTest extends BaseTest {
     @Test
     public void setAppTheme_SystemDefault() {
         try (MockedStatic<AppCompatDelegate> delegateMock = mockStatic(AppCompatDelegate.class)) {
+            // Given
             final Constants.ThemeMode themeMode = Constants.ThemeMode.SYSTEM_DEFAULT;
 
+            // When
             Utils.setAppTheme(themeMode);
 
+            // Then
             delegateMock.verify(() -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM));
         }
     }
@@ -65,10 +68,13 @@ public class UtilsTest extends BaseTest {
     @Test
     public void setAppTheme_LightMode() {
         try (MockedStatic<AppCompatDelegate> delegateMock = mockStatic(AppCompatDelegate.class)) {
+            // Given
             final Constants.ThemeMode themeMode = Constants.ThemeMode.LIGHT;
 
+            // When
             Utils.setAppTheme(themeMode);
 
+            // Then
             delegateMock.verify(() -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO));
         }
     }
@@ -76,42 +82,52 @@ public class UtilsTest extends BaseTest {
     @Test
     public void setAppTheme_DarkMode() {
         try (MockedStatic<AppCompatDelegate> delegateMock = mockStatic(AppCompatDelegate.class)) {
+            // Given
             final Constants.ThemeMode themeMode = Constants.ThemeMode.DARK;
 
+            // When
             Utils.setAppTheme(themeMode);
 
+            // Then
             delegateMock.verify(() -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES));
         }
     }
 
     @Test
     public void isDarkMode_true() {
+        // Given
         final Resources resources = mock(Resources.class);
         final Configuration configuration = mock(Configuration.class);
         configuration.uiMode = 0x20;
         doReturn(resources).when(context).getResources();
         doReturn(configuration).when(resources).getConfiguration();
 
+        // When
         final boolean isDarkMode = Utils.isDarkMode(context);
 
+        // Then
         assertTrue(isDarkMode);
     }
 
     @Test
     public void isDarkMode_false() {
+        // Given
         final Resources resources = mock(Resources.class);
         final Configuration configuration = mock(Configuration.class);
         configuration.uiMode = 0x30;
         doReturn(resources).when(context).getResources();
         doReturn(configuration).when(resources).getConfiguration();
 
+        // When
         final boolean isDarkMode = Utils.isDarkMode(context);
 
+        // Then
         assertFalse(isDarkMode);
     }
 
     @Test
     public void createDialogTitle() {
+        // Given
         final LayoutInflater layoutInflater = mock(LayoutInflater.class);
         final View customTitle = mock(View.class);
         final TextView textView = mock(TextView.class);
@@ -124,8 +140,10 @@ public class UtilsTest extends BaseTest {
                     .thenReturn(customTitle);
             doReturn(textView).when(customTitle).findViewById(R.id.dialog_title);
 
+            // When
             final View result = Utils.createDialogTitle(context, titleRes);
 
+            // Then
             Mockito.verify(textView).setText(titleRes);
             assertNotNull(result);
         }

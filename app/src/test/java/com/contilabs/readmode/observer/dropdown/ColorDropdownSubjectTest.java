@@ -44,31 +44,39 @@ public class ColorDropdownSubjectTest extends BaseTest {
 
     @Test
     public void registerAndNotifyObservers() {
+        // Given
         colorDropdownSubject.registerObserver(observer1);
         colorDropdownSubject.registerObserver(observer2);
 
+        // When
         colorDropdownSubject.setCurrentColorDropdownPosition(currentColorDropdownPosition);
 
+        // Then
         Mockito.verify(observer1).onColorDropdownPositionChange(currentColorDropdownPosition);
         Mockito.verify(observer2).onColorDropdownPositionChange(currentColorDropdownPosition);
     }
 
     @Test
     public void unregisterAllObservers() {
+        // Given
         colorDropdownSubject.registerObserver(observer1);
         colorDropdownSubject.registerObserver(observer2);
         colorDropdownSubject.unregisterAllObservers();
 
+        // When
         colorDropdownSubject.setCurrentColorDropdownPosition(currentColorDropdownPosition);
 
+        // Then
         Mockito.verify(observer1, never()).onColorDropdownPositionChange(anyInt());
         Mockito.verify(observer2, never()).onColorDropdownPositionChange(anyInt());
     }
 
     @Test
     public void notifyObservers_NoObservers_NoCrash() {
+        // When
         colorDropdownSubject.setCurrentColorDropdownPosition(currentColorDropdownPosition);
 
+        // Then
         Mockito.verify(observer1, never()).onColorDropdownPositionChange(anyInt());
         Mockito.verify(observer2, never()).onColorDropdownPositionChange(anyInt());
     }

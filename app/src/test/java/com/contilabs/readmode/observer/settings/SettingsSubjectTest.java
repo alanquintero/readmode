@@ -45,31 +45,39 @@ public class SettingsSubjectTest extends BaseTest {
 
     @Test
     public void registerAndNotifyObservers() {
+        // Given
         settingsSubject.registerObserver(observer1);
         settingsSubject.registerObserver(observer2);
 
+        // When
         settingsSubject.onSettingsChanged(setting);
 
+        // Then
         Mockito.verify(observer1).onSettingsChanged(setting);
         Mockito.verify(observer2).onSettingsChanged(setting);
     }
 
     @Test
     public void unregisterAllObservers() {
+        // Given
         settingsSubject.registerObserver(observer1);
         settingsSubject.registerObserver(observer2);
         settingsSubject.unregisterAllObservers();
 
+        // When
         settingsSubject.onSettingsChanged(setting);
 
+        // Then
         Mockito.verify(observer1, never()).onSettingsChanged(any());
         Mockito.verify(observer2, never()).onSettingsChanged(any());
     }
 
     @Test
     public void notifyObservers_NoObservers_NoCrash() {
+        // When
         settingsSubject.onSettingsChanged(setting);
 
+        // Then
         Mockito.verify(observer1, never()).onSettingsChanged(any());
         Mockito.verify(observer2, never()).onSettingsChanged(any());
     }

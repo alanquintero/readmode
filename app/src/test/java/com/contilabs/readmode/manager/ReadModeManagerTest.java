@@ -68,6 +68,7 @@ public class ReadModeManagerTest extends BaseTest {
 
     @Test
     public void startReadMode_serviceIsNotRunning() {
+        // Given
         final ActivityManager manager = mock(ActivityManager.class);
         final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
         final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
@@ -78,8 +79,10 @@ public class ReadModeManagerTest extends BaseTest {
         doReturn(runningServiceInfos).when(manager).getRunningServices(Integer.MAX_VALUE);
         doReturn("").when(service.service).getClassName();
 
+        // When
         readModeManager.startReadMode();
 
+        // Then
         Mockito.verify(readModeSubject).setReadModeOn(eq(true));
         Mockito.verify(readModeSettings).setIsReadModeOn(eq(true));
         Mockito.verify(prefsHelper).saveProperty(eq(Constants.PREF_IS_READ_MODE_ON), anyBoolean());
@@ -92,6 +95,7 @@ public class ReadModeManagerTest extends BaseTest {
 
     @Test
     public void startReadMode_serviceIsRunning() {
+        // Given
         final ActivityManager manager = mock(ActivityManager.class);
         final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
         final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
@@ -102,8 +106,10 @@ public class ReadModeManagerTest extends BaseTest {
         doReturn(runningServiceInfos).when(manager).getRunningServices(Integer.MAX_VALUE);
         doReturn("android.content.Intent").when(service.service).getClassName();
 
+        // When
         readModeManager.startReadMode();
 
+        // Then
         Mockito.verify(readModeSubject).setReadModeOn(eq(true));
         Mockito.verify(readModeSettings).setIsReadModeOn(eq(true));
         Mockito.verify(prefsHelper).saveProperty(eq(Constants.PREF_IS_READ_MODE_ON), anyBoolean());
@@ -116,6 +122,7 @@ public class ReadModeManagerTest extends BaseTest {
 
     @Test
     public void readModeServiceIsRunning() {
+        // Given
         final ActivityManager manager = mock(ActivityManager.class);
         final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
         final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
@@ -126,19 +133,23 @@ public class ReadModeManagerTest extends BaseTest {
         doReturn(runningServiceInfos).when(manager).getRunningServices(Integer.MAX_VALUE);
         doReturn("android.content.Intent").when(service.service).getClassName();
 
+        // When
         readModeManager.startReadMode();
 
+        // Then
         assertTrue(readModeManager.isReadModeServiceRunning());
     }
 
     @Test
     public void readModeServiceRunningIsNotRunning() {
+        // Then
         assertFalse(readModeManager.isReadModeServiceRunning());
     }
 
     @Test
-    public void readModeServiceIsRunningAfterStopReadMode() {
-        final  ActivityManager manager = mock(ActivityManager.class);
+    public void readModeServiceShouldNotBeRunningAfterStopReadMode() {
+        // Given
+        final ActivityManager manager = mock(ActivityManager.class);
         final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
         final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
         runningServiceInfos.add(service);
@@ -148,21 +159,24 @@ public class ReadModeManagerTest extends BaseTest {
         doReturn(runningServiceInfos).when(manager).getRunningServices(Integer.MAX_VALUE);
         doReturn("android.content.Intent").when(service.service).getClassName();
 
+        // When
         readModeManager.startReadMode();
-
         assertTrue(readModeManager.isReadModeServiceRunning());
-
         readModeManager.stopReadMode();
 
+        // Then
         assertFalse(readModeManager.isReadModeServiceRunning());
     }
 
     @Test
     public void stopReadMode() {
+        // Given
         readModeSettings.setReadModeIntent(mock(Intent.class));
 
+        // When
         readModeManager.stopReadMode();
 
+        // Then
         Mockito.verify(readModeSubject).setReadModeOn(eq(false));
         Mockito.verify(readModeSettings).setIsReadModeOn(eq(false));
         Mockito.verify(prefsHelper).saveProperty(eq(Constants.PREF_IS_READ_MODE_ON), anyBoolean());
@@ -172,21 +186,25 @@ public class ReadModeManagerTest extends BaseTest {
 
     @Test
     public void updateOverlay_whenServiceAvailable_callsOnUpdate() {
-        final DrawOverAppsService serviceMock = mock(DrawOverAppsService.class);
-
         try (MockedStatic<DrawOverAppsService> mockedStatic =
                      Mockito.mockStatic(DrawOverAppsService.class)) {
+            // Given
+            final DrawOverAppsService serviceMock = mock(DrawOverAppsService.class);
             mockedStatic.when(DrawOverAppsService::getInstance).thenReturn(serviceMock);
 
-            ReadModeManager manager = new ReadModeManager(context, prefsHelper, readModeSubject, readModeSettings);
+            final ReadModeManager manager = new ReadModeManager(context, prefsHelper, readModeSubject, readModeSettings);
+
+            // When
             manager.updateOverlay();
 
+            // Then
             Mockito.verify(serviceMock).onUpdate();
         }
     }
 
     @Test
     public void updateOverlay_whenServiceNull_callsStartReadMode() {
+        // Given
         final ActivityManager activityManager = mock(ActivityManager.class);
         final List<ActivityManager.RunningServiceInfo> runningServiceInfos = new ArrayList<>();
         final ActivityManager.RunningServiceInfo service = mock(ActivityManager.RunningServiceInfo.class);
@@ -201,9 +219,12 @@ public class ReadModeManagerTest extends BaseTest {
                      Mockito.mockStatic(DrawOverAppsService.class)) {
             mockedStatic.when(DrawOverAppsService::getInstance).thenReturn(null);
 
-            ReadModeManager manager = Mockito.spy(new ReadModeManager(context, prefsHelper, readModeSubject, readModeSettings));
+            final ReadModeManager manager = Mockito.spy(new ReadModeManager(context, prefsHelper, readModeSubject, readModeSettings));
+
+            // When
             manager.updateOverlay();
 
+            // Then
             Mockito.verify(manager).startReadMode();
         }
     }

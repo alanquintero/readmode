@@ -40,8 +40,10 @@ public class GeneralReadModeCommandTest extends BaseTest {
 
     @Test
     public void startReadMode() {
+        // When
         generalReadModeCommand.startReadMode();
 
+        // Then
         Mockito.verify(readModeManager).startReadMode();
     }
 }
