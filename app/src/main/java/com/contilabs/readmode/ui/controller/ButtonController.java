@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -99,8 +100,8 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
      * based on the current custom color. Ensures text is readable
      * by calculating the perceived brightness of the color.
      */
-
-    private void applyCustomColorButtonStyle(final @NonNull String customColor) {
+    @VisibleForTesting
+    void applyCustomColorButtonStyle(final @NonNull String customColor) {
         Log.d(TAG, "Applying style to custom color button, customColor: " + customColor);
         // Set background color
         customColorButton.setBackgroundTintList(ColorStateList.valueOf(ColorUtils.toButtonCompatibleColor(customColor)));

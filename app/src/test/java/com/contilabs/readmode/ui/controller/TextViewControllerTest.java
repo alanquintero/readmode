@@ -75,7 +75,7 @@ public class TextViewControllerTest {
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
 
             // When
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             // Then
             verify(mockRootView).findViewById(R.id.labelColorSettings);
@@ -88,7 +88,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             // Mock the behavior for setColorSettingsText
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(true);
@@ -107,7 +107,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(true);
             final String placeholder = context.getString(R.string.color_settings_placeholder);
@@ -127,7 +127,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(false);
             when(mockReadModeSettings.getColorDropdownPosition()).thenReturn(1); // "Green"
@@ -148,7 +148,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(false);
             when(mockReadModeSettings.getColorDropdownPosition()).thenReturn(0); // "Red"
@@ -168,7 +168,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(false);
             when(mockReadModeSettings.getColorDropdownPosition()).thenReturn(3); // "Custom"
@@ -188,7 +188,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             // Mock the behavior for setColorSettingsText
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(true);
@@ -206,7 +206,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             // Mock the behavior for setColorSettingsText
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(true);
@@ -224,7 +224,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             // When
             controller.onSettingsChanged(Constants.SETTING_OPTIONS.AUTO_READ_MODE);
@@ -239,7 +239,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             // When
             controller.onSettingsChanged(Constants.SETTING_OPTIONS.RESET_APP_DATA);
@@ -254,7 +254,7 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             // First call - same intensity is true
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(true);
@@ -284,19 +284,19 @@ public class TextViewControllerTest {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(any())).thenReturn(mockPrefsHelper);
-            TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
+            final TextViewController controller = new TextViewController(context, mockRootView, mockReadModeSettings, colorNames);
 
             when(mockPrefsHelper.shouldUseSameIntensityBrightnessForAll()).thenReturn(false);
             final String placeholder = context.getString(R.string.color_settings_placeholder);
 
             // Test multiple color positions
             when(mockReadModeSettings.getColorDropdownPosition()).thenReturn(0); // "Red"
-            String expectedText1 = context.getString(R.string.color_settings_format, placeholder, "Red");
+            final String expectedText1 = context.getString(R.string.color_settings_format, placeholder, "Red");
             controller.setColorSettingsText();
             verify(mockColorSettingsText).setText(expectedText1);
 
             when(mockReadModeSettings.getColorDropdownPosition()).thenReturn(1); // "Green"
-            String expectedText2 = context.getString(R.string.color_settings_format, placeholder, "Green");
+            final String expectedText2 = context.getString(R.string.color_settings_format, placeholder, "Green");
             controller.setColorSettingsText();
             verify(mockColorSettingsText).setText(expectedText2);
 

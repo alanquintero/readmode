@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.FragmentActivity;
 
 import com.contilabs.readmode.R;
@@ -57,7 +58,6 @@ public class ColorDropdownController {
         colorSpinner = rootView.findViewById(R.id.colorSpinner);
     }
 
-
     /**
      * Initializes and configures the color selection dropdown (Spinner) along with
      * its related UI elements such as intensity and brightness controls.
@@ -68,6 +68,21 @@ public class ColorDropdownController {
      * </p>
      */
     public void setupColorDropdown() {
+        final List<ColorItem> colorItems = createColorItems();
+        final ColorSpinnerAdapter adapter = new ColorSpinnerAdapter(context, colorItems, readModeSettings);
+        colorSpinner.setAdapter(adapter);
+        customColorDialog.setColorItems(colorItems);
+        customColorDialog.setColorSpinnerAdapter(adapter);
+
+        colorSpinner.setSelection(readModeSettings.getColorDropdownPosition());
+
+        setupSelectionListener();
+    }
+
+    /**
+     * Creates the list of color items for the spinner
+     */
+    private List<ColorItem> createColorItems() {
         final List<ColorItem> colorItems = new ArrayList<>();
         for (int position = 0; position < colorNames.length; position++) {
             if (position == Constants.CUSTOM_COLOR_DROPDOWN_POSITION) {
@@ -76,14 +91,13 @@ public class ColorDropdownController {
                 colorItems.add(new ColorItem(colorNames[position], Constants.BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS[position]));
             }
         }
+        return colorItems;
+    }
 
-        final ColorSpinnerAdapter adapter = new ColorSpinnerAdapter(context, colorItems, readModeSettings);
-        colorSpinner.setAdapter(adapter);
-        customColorDialog.setColorItems(colorItems);
-        customColorDialog.setColorSpinnerAdapter(adapter);
-
-        colorSpinner.setSelection(readModeSettings.getColorDropdownPosition());
-
+    /**
+     * Sets up the selection listener for the color spinner
+     */
+    private void setupSelectionListener() {
         // Flag to ignore initial selection
         final boolean[] isColorDropdownInitializing = {true};
 
@@ -92,8 +106,6 @@ public class ColorDropdownController {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "Position selected: " + position);
-                readModeSettings.setColorDropdownPosition(position);
-                colorDropdownSubject.setCurrentColorDropdownPosition(position);
 
                 if (isColorDropdownInitializing[0]) {
                     // Ignore the initial selection triggered by setSelection
@@ -102,22 +114,48 @@ public class ColorDropdownController {
                     return;
                 }
 
-                prefsHelper.saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
-
-                final String selectedColor = Constants.COLOR_HEX_ARRAY[position];
-                if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
-                    customColorDialog.show(activity.getSupportFragmentManager(), "CustomColorDialogOpenedFromDropdown");
-                } else {
-                    prefsHelper.saveProperty(Constants.PREF_COLOR, selectedColor);
-                    if (readModeSettings.isReadModeOn()) {
-                        readModeCommand.updateReadMode();
-                    }
-                }
+                handleColorSelection(position, true);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                // No action needed
             }
         });
+    }
+
+    /**
+     * Handles color selection logic - extracted for testability
+     *
+     * @param position        The selected position
+     * @param isUserSelection Whether this was a user selection (vs initial selection)
+     */
+    public void handleColorSelection(final int position, final boolean isUserSelection) {
+        if (!isUserSelection) {
+            return;
+        }
+
+        readModeSettings.setColorDropdownPosition(position);
+        colorDropdownSubject.setCurrentColorDropdownPosition(position);
+        prefsHelper.saveProperty(Constants.PREF_COLOR_DROPDOWN, position);
+
+        final String selectedColor = Constants.COLOR_HEX_ARRAY[position];
+        if (selectedColor.equals(Constants.CUSTOM_COLOR)) {
+            customColorDialog.show(activity.getSupportFragmentManager(), "CustomColorDialogOpenedFromDropdown");
+        } else {
+            prefsHelper.saveProperty(Constants.PREF_COLOR, selectedColor);
+            if (readModeSettings.isReadModeOn()) {
+                readModeCommand.updateReadMode();
+            }
+        }
+    }
+
+    /**
+     * Getter for the color spinner - useful for testing
+     */
+    @VisibleForTesting
+    @NonNull
+    Spinner getColorSpinner() {
+        return colorSpinner;
     }
 }

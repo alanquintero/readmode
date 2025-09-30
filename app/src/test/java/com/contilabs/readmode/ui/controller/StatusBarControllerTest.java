@@ -72,7 +72,7 @@ public class StatusBarControllerTest {
             when(mockResources.getColor(R.color.status_bar_light)).thenReturn(0xFFE0E0E0);
             when(mockResources.getColor(R.color.status_bar_dark)).thenReturn(0xFF303030);
 
-            StatusBarController controller = new StatusBarController(mockContext, mockActivity);
+            final StatusBarController controller = new StatusBarController(mockContext, mockActivity);
 
             // When
             controller.setupStatusBarColor();
@@ -91,7 +91,7 @@ public class StatusBarControllerTest {
             when(mockResources.getColor(R.color.status_bar_light)).thenReturn(0xFFE0E0E0);
             when(mockResources.getColor(R.color.status_bar_dark)).thenReturn(0xFF303030);
 
-            StatusBarController controller = new StatusBarController(mockContext, mockActivity);
+            final StatusBarController controller = new StatusBarController(mockContext, mockActivity);
 
             // When
             controller.setupStatusBarColor();
@@ -110,7 +110,7 @@ public class StatusBarControllerTest {
             when(mockResources.getColor(R.color.status_bar_light)).thenReturn(0xFFE0E0E0);
             when(mockResources.getColor(R.color.status_bar_dark)).thenReturn(0xFF303030);
 
-            StatusBarController controller = new StatusBarController(mockContext, mockActivity);
+            final StatusBarController controller = new StatusBarController(mockContext, mockActivity);
 
             // When
             controller.setupStatusBarColor();
@@ -128,7 +128,7 @@ public class StatusBarControllerTest {
             when(mockResources.getColor(R.color.status_bar_light)).thenReturn(0xFFE0E0E0);
             when(mockResources.getColor(R.color.status_bar_dark)).thenReturn(0xFF303030);
 
-            StatusBarController controller = new StatusBarController(mockContext, mockActivity);
+            final StatusBarController controller = new StatusBarController(mockContext, mockActivity);
 
             // When
             controller.setupStatusBarColor();
@@ -146,7 +146,7 @@ public class StatusBarControllerTest {
             when(mockResources.getColor(R.color.status_bar_light)).thenReturn(0xFFE0E0E0);
             when(mockResources.getColor(R.color.status_bar_dark)).thenReturn(0xFF303030);
 
-            StatusBarController controller = new StatusBarController(mockContext, mockActivity);
+            final StatusBarController controller = new StatusBarController(mockContext, mockActivity);
 
             // When
             controller.setupStatusBarColor();
@@ -164,7 +164,7 @@ public class StatusBarControllerTest {
             when(mockResources.getColor(R.color.status_bar_light)).thenReturn(0xFFE0E0E0);
             when(mockResources.getColor(R.color.status_bar_dark)).thenReturn(0xFF303030);
 
-            StatusBarController controller = new StatusBarController(mockContext, mockActivity);
+            final StatusBarController controller = new StatusBarController(mockContext, mockActivity);
 
             // First call - Light mode
             mockConfiguration.uiMode = Configuration.UI_MODE_NIGHT_NO;
@@ -188,7 +188,7 @@ public class StatusBarControllerTest {
             when(mockResources.getColor(R.color.status_bar_light)).thenReturn(0xFFE0E0E0);
             when(mockResources.getColor(R.color.status_bar_dark)).thenReturn(0xFF303030);
 
-            StatusBarController controller = new StatusBarController(mockContext, mockActivity);
+            final StatusBarController controller = new StatusBarController(mockContext, mockActivity);
 
             // When
             controller.setupStatusBarColor();
@@ -209,7 +209,7 @@ public class StatusBarControllerTest {
             when(mockResources.getColor(R.color.status_bar_light)).thenReturn(0xFFE0E0E0);
             when(mockResources.getColor(R.color.status_bar_dark)).thenReturn(0xFF303030);
 
-            StatusBarController controller = new StatusBarController(mockContext, mockActivity);
+            final StatusBarController controller = new StatusBarController(mockContext, mockActivity);
 
             // When
             controller.setupStatusBarColor();

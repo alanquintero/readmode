@@ -37,7 +37,6 @@ import org.robolectric.annotation.Config;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -61,7 +60,6 @@ public class SeekBarControllerTest {
     private TextView mockBrightnessLevelPercentageText;
     private LinearLayout mockContainerLayout;
     private GradientDrawable mockGradientDrawable;
-    private Resources mockResources;
 
     @Before
     public void setUp() {
@@ -83,7 +81,7 @@ public class SeekBarControllerTest {
         mockBrightnessLevelPercentageText = mock(TextView.class);
         mockContainerLayout = mock(LinearLayout.class);
         mockGradientDrawable = mock(GradientDrawable.class);
-        mockResources = mock(Resources.class);
+        final Resources mockResources = mock(Resources.class);
 
         // Setup common mock behavior
         when(mockRootView.findViewById(R.id.labelColorSettings)).thenReturn(mockLabelColorSettings);
@@ -115,7 +113,7 @@ public class SeekBarControllerTest {
             when(mockContext.getString(R.string.color_intensity, 50)).thenReturn("50%");
             when(mockContext.getString(R.string.brightness_level, 75)).thenReturn("75%");
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When
             controller.setupSeekBars();
@@ -138,7 +136,7 @@ public class SeekBarControllerTest {
             when(mockReadModeSettings.isAutoStartReadMode()).thenReturn(true);
             when(mockContext.getString(R.string.brightness_level, 60)).thenReturn("60%");
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
             controller.setupSeekBars();
 
             // Capture the listener
@@ -163,7 +161,7 @@ public class SeekBarControllerTest {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(mockContext)).thenReturn(mockPrefsHelper);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
             controller.setupSeekBars();
 
             // Capture the listener
@@ -189,7 +187,7 @@ public class SeekBarControllerTest {
             when(mockReadModeSettings.isAutoStartReadMode()).thenReturn(true);
             when(mockContext.getString(R.string.color_intensity, 40)).thenReturn("40%");
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
             controller.setupSeekBars();
 
             // Capture the listener
@@ -223,7 +221,7 @@ public class SeekBarControllerTest {
             when(mockReadModeSettings.isAutoStartReadMode()).thenReturn(false);
             utilsStatic.when(() -> Utils.isDarkMode(mockContext)).thenReturn(false);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When
             controller.updateSeekBarsForSelectedColor();
@@ -257,7 +255,7 @@ public class SeekBarControllerTest {
             when(mockReadModeSettings.isAutoStartReadMode()).thenReturn(false);
             utilsStatic.when(() -> Utils.isDarkMode(mockContext)).thenReturn(false);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When
             controller.updateSeekBarsForSelectedColor();
@@ -285,7 +283,7 @@ public class SeekBarControllerTest {
             when(mockReadModeSettings.isAutoStartReadMode()).thenReturn(false);
             utilsStatic.when(() -> Utils.isDarkMode(mockContext)).thenReturn(false);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When
             controller.updateSeekBarsForSelectedColor();
@@ -315,7 +313,7 @@ public class SeekBarControllerTest {
             colorUtilsStatic.when(() -> ColorUtils.adjustColor(Color.parseColor("#FF0000"), 40, 70)).thenReturn(0xFFFF8080);
             colorUtilsStatic.when(() -> ColorUtils.isColorDark(0xFFFF8080)).thenReturn(false);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When - We need to call this indirectly through a public method
             // Since setContainerColors is private, we'll test it through updateSeekBarsForSelectedColor
@@ -344,7 +342,7 @@ public class SeekBarControllerTest {
             utilsStatic.when(() -> Utils.isDarkMode(mockContext)).thenReturn(true);
             when(mockReadModeSettings.isAutoStartReadMode()).thenReturn(false);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When
             controller.updateSeekBarsForSelectedColor();
@@ -375,7 +373,7 @@ public class SeekBarControllerTest {
                     .thenReturn(mockColorStateList);
             when(mockColorStateList.getDefaultColor()).thenReturn(Color.WHITE);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When - Since handleContainerBackgroundColor is private, test through onSettingsChanged
             controller.onSettingsChanged(Constants.SETTING_OPTIONS.AUTO_READ_MODE);
@@ -401,7 +399,7 @@ public class SeekBarControllerTest {
             when(mockReadModeSettings.isAutoStartReadMode()).thenReturn(false);
             utilsStatic.when(() -> Utils.isDarkMode(mockContext)).thenReturn(false);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When
             controller.onColorDropdownPositionChange(2);
@@ -427,7 +425,7 @@ public class SeekBarControllerTest {
             when(mockReadModeSettings.isAutoStartReadMode()).thenReturn(false);
             utilsStatic.when(() -> Utils.isDarkMode(mockContext)).thenReturn(false);
 
-            SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
+            final SeekBarController controller = new SeekBarController(mockContext, mockRootView, mockReadModeCommand, mockReadModeSettings);
 
             // When
             controller.onSettingsChanged(Constants.SETTING_OPTIONS.SAME_SETTINGS_FOR_ALL);
