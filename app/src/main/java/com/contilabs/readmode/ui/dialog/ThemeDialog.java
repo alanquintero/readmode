@@ -48,7 +48,6 @@ public class ThemeDialog extends DialogFragment {
         if (Constants.ThemeMode.SYSTEM_DEFAULT.equals(savedTheme)) {
             systemDefaultRadioButton.setChecked(true);
         } else if (Constants.ThemeMode.LIGHT.equals(savedTheme)) {
-
             lightRadioButton.setChecked(true);
         } else if (Constants.ThemeMode.DARK.equals(savedTheme)) {
             darkRadioButton.setChecked(true);
@@ -64,7 +63,6 @@ public class ThemeDialog extends DialogFragment {
                 Log.d(TAG, "System default selected");
                 Utils.setAppTheme(Constants.ThemeMode.SYSTEM_DEFAULT);
                 prefsHelper.saveProperty(Constants.PREF_THEME, Constants.ThemeMode.SYSTEM_DEFAULT.getValue());
-
             } else if (checkedId == R.id.radio_light) {
                 Log.d(TAG, "Light mode selected");
                 Utils.setAppTheme(Constants.ThemeMode.LIGHT);

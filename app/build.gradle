@@ -55,6 +55,8 @@ dependencies {
     testImplementation 'androidx.test:rules:1.5.0'
     testImplementation 'androidx.test.ext:junit:1.1.5'
     testImplementation 'androidx.test.ext:truth:1.5.0'
+    testImplementation 'androidx.fragment:fragment-testing:1.6.2'
+    testImplementation 'androidx.test:core:1.5.0'
 
     // For better JUnit 5 + Robolectric integration
     testImplementation 'org.junit.vintage:junit-vintage-engine:5.10.0'
