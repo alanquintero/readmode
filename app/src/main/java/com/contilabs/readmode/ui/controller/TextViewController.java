@@ -72,7 +72,7 @@ public class TextViewController implements ColorDropdownObserver, SettingsObserv
     }
 
     @Override
-    public void onSettingsChanged(Constants.SETTING_OPTIONS setting) {
+    public void onSettingsChanged(final @NonNull Constants.SETTING_OPTIONS setting) {
         switch (setting) {
             case AUTO_READ_MODE:
                 // nothing here

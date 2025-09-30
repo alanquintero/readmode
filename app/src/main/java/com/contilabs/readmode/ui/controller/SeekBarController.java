@@ -13,6 +13,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
 import com.contilabs.readmode.R;
@@ -215,7 +216,8 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
     /**
      * Apply colors to the Container Layout.
      */
-    private void setContainerColors() {
+    @VisibleForTesting
+    void setContainerColors() {
         // Background color
         final int position = readModeSettings.getColorDropdownPosition();
         final int colorIntensity = seekColorIntensityBar.getProgress();
@@ -259,7 +261,8 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
     /**
      * Apply or removes the background color for the Container Layout.
      */
-    private void handleContainerBackgroundColor() {
+    @VisibleForTesting
+    void handleContainerBackgroundColor() {
         Log.d(TAG, "handleContainerBackgroundColor");
         if (readModeSettings.isAutoStartReadMode()) {
             // reset to initial value
@@ -280,7 +283,7 @@ public class SeekBarController implements ColorDropdownObserver, CustomColorObse
     }
 
     @Override
-    public void onSettingsChanged(final Constants.SETTING_OPTIONS setting) {
+    public void onSettingsChanged(final @NonNull Constants.SETTING_OPTIONS setting) {
         switch (setting) {
             case AUTO_READ_MODE:
                 handleContainerBackgroundColor();

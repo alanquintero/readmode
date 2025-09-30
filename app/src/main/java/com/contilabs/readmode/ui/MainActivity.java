@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
     }
 
     @Override
-    public void onSettingsChanged(Constants.SETTING_OPTIONS setting) {
+    public void onSettingsChanged(@NonNull Constants.SETTING_OPTIONS setting) {
         if (Constants.SETTING_OPTIONS.RESET_APP_DATA.equals(setting)) {
             Log.w(TAG, "App data was reset");
             if (readModeManager != null) {

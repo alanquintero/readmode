@@ -3,6 +3,8 @@
  *****************************************************************/
 package com.contilabs.readmode.observer.settings;
 
+import androidx.annotation.NonNull;
+
 import com.contilabs.readmode.util.Constants;
 
 /**
@@ -16,5 +18,5 @@ public interface SettingsObserver {
     /**
      * Called when Settings has changed.
      */
-    void onSettingsChanged(Constants.SETTING_OPTIONS setting);
+    void onSettingsChanged(final @NonNull Constants.SETTING_OPTIONS setting);
 }
