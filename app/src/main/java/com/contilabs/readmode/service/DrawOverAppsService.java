@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.R;
@@ -68,16 +69,17 @@ public class DrawOverAppsService extends Service {
     private static final String TAG = DrawOverAppsService.class.getSimpleName();
 
     private boolean isReadModeEnabled = Constants.DEFAULT_IS_READ_MODE_ENABLED;
-    private @NonNull String screenColor = Constants.DEFAULT_COLOR_WHITE;
-    private int colorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
-    private int brightness = Constants.DEFAULT_BRIGHTNESS;
+    @VisibleForTesting @NonNull String screenColor = Constants.DEFAULT_COLOR_WHITE;
+    @VisibleForTesting int colorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
+    @VisibleForTesting int brightness = Constants.DEFAULT_BRIGHTNESS;
 
-    private View mView;
-    private WindowManager.LayoutParams mParams;
-    private WindowManager mWindowManager;
-    private PrefsHelper prefsHelper;
+    @VisibleForTesting View mView;
+    @VisibleForTesting WindowManager.LayoutParams mParams;
+    @VisibleForTesting WindowManager mWindowManager;
+    @VisibleForTesting PrefsHelper prefsHelper;
 
-    private static WeakReference<DrawOverAppsService> instanceRef;
+    @VisibleForTesting
+    static WeakReference<DrawOverAppsService> instanceRef;
 
     @Override
     public void onCreate() {
