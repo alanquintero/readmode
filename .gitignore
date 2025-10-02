@@ -1,21 +1,49 @@
-# Android Studio / IntelliJ
+# Gradle files
+.gradle/
+build/
+
+# Local configuration files
+local.properties
+
+# Android Studio and IntelliJ IDEA files
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
+*.iws
+*.ipr
 
-# Build / Output
-/build
-/captures
-.externalNativeBuild
+# Android Studio cache
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/gradle.xml
+.idea/usage.statistics.xml
+.idea/dictionaries/
+.idea/httpRequests/
 
-# Gradle Wrapper
-gradle-wrapper.jar
-gradle-wrapper.properties
+# Keystore files
+*.jks
+*.keystore
 
-# Misc
+# Log files
 *.log
-*.tmp
 
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build directories
+app/build/
+*/build/
+
+# Proguard configuration files
+proguard-rules.pro
+
+# Miscellaneous
+*.apk
+*.ap_
+*.dex
+*.class
+
+# Android NDK
+ndkBuild/
