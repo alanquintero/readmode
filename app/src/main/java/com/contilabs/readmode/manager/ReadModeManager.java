@@ -29,6 +29,7 @@ import com.contilabs.readmode.util.PrefsHelper;
 public class ReadModeManager {
 
     private static final String TAG = ReadModeManager.class.getSimpleName();
+    private static final String SERVICE_NAME = "com.contilabs.readmode.service.DrawOverAppsService";
 
     private final @NonNull Context context;
     private final @NonNull PrefsHelper prefsHelper;
@@ -42,6 +43,15 @@ public class ReadModeManager {
         this.prefsHelper = prefsHelper;
         this.readModeSubject = readModeSubject;
         this.readModeSettings = readModeSettings;
+
+        // If the MainActivity is destroyed while Read Mode is ON, the overlay will keep running
+        // since it is managed by the foreground service. When MainActivity is recreated, a new
+        // ReadModeManager instance is also created. At that point we must restore the correct
+        // state of `isReadModeServiceRunning` to ensure UI elements (e.g., Start/Stop button)
+        // reflect the actual Read Mode status.
+        if (readModeSettings.isReadModeOn() && isMyServiceRunning(SERVICE_NAME)) {
+            isReadModeServiceRunning = true;
+        }
     }
 
     /**
@@ -67,7 +77,7 @@ public class ReadModeManager {
         prefsHelper.tryToSaveColorSettingsProperty(readModeSettings);
 
         final Intent readModeIntent = new Intent(context, DrawOverAppsService.class);
-        if (!isMyServiceRunning(readModeIntent.getClass())) {
+        if (!isMyServiceRunning(readModeIntent.getClass().getName())) {
             Log.i(TAG, "Starting Read Mode...");
             context.startService(readModeIntent);
             readModeSettings.setReadModeIntent(readModeIntent);
@@ -117,10 +127,10 @@ public class ReadModeManager {
     /**
      * Checks if a specific service is currently running on the device.
      */
-    private boolean isMyServiceRunning(final @NonNull Class<?> serviceClass) {
+    private boolean isMyServiceRunning(final @NonNull String serviceClassName) {
         final ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
+        for (final ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClassName.equals(service.service.getClassName())) {
                 Log.d(TAG, "Service is running");
                 return true;
             }

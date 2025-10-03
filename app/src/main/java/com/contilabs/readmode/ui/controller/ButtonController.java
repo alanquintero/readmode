@@ -116,7 +116,7 @@ public class ButtonController implements ReadModeObserver, ColorDropdownObserver
     }
 
     @Override
-    public void onReadModeChanged(boolean isReadModeOn) {
+    public void onReadModeChanged(final boolean isReadModeOn) {
         applyStartStopButtonStyle(isReadModeOn);
     }
 

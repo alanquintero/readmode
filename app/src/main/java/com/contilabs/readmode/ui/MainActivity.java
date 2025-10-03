@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
     private final ReadModeSettings readModeSettings = ReadModeSettings.init();
     private PrefsHelper prefsHelper;
     private ReadModeManager readModeManager;
-    private GeneralReadModeCommand generalReadModeCommand;
     private ReadModeSubject readModeSubject;
     private SettingsSubject settingsSubject;
     private CustomColorSubject customColorSubject;
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
         customColorSubject = new CustomColorSubject();
         settingsSubject = new SettingsSubject();
         readModeManager = new ReadModeManager(this, prefsHelper, readModeSubject, readModeSettings);
-        generalReadModeCommand = new GeneralReadModeCommand(readModeManager, readModeSettings);
+        final GeneralReadModeCommand generalReadModeCommand = new GeneralReadModeCommand(readModeManager, readModeSettings);
         final SettingsReadModeCommand settingsReadModeCommand = new SettingsReadModeCommand(readModeManager, readModeSettings);
 
         /*
@@ -219,12 +218,14 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
 
     @Override
     protected void onDestroy() {
-        generalReadModeCommand.stopReadMode();
-        // unregister all observers
-        readModeSubject.unregisterAllObservers();
-        settingsSubject.unregisterAllObservers();
-        customColorSubject.unregisterAllObservers();
-        colorDropdownSubject.unregisterAllObservers();
+        // Clean only when the Read Mode is OFF
+        if (!readModeSettings.isReadModeOn()) {
+            // unregister all observers
+            readModeSubject.unregisterAllObservers();
+            settingsSubject.unregisterAllObservers();
+            customColorSubject.unregisterAllObservers();
+            colorDropdownSubject.unregisterAllObservers();
+        }
 
         super.onDestroy();
         Log.i(TAG, "Activity destroyed.");
