@@ -148,6 +148,10 @@ public class ColorDropdownController {
                 readModeCommand.updateReadMode();
             }
         }
+
+        if (readModeSettings.isAutoStartReadMode()) {
+            readModeCommand.updateReadMode();
+        }
     }
 
     /**
