@@ -2,15 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.contilabs.readmode">
 
+    <!-- FOREGROUND_SERVICE Permissions -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
+    <!-- Notification Permissions -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <!-- Permission to draw over other apps -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/moon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:logo="@mipmap/moon"
-        android:roundIcon="@mipmap/moon"
+        android:logo="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReadMode">
 
@@ -19,7 +26,7 @@
             android:name="com.contilabs.readmode.service.DrawOverAppsService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="mediaProjection" />
+            android:foregroundServiceType="dataSync" />
 
         <!-- Main launcher activity -->
         <activity

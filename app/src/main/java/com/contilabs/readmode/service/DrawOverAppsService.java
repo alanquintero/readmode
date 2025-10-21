@@ -3,8 +3,7 @@
  *****************************************************************/
 package com.contilabs.readmode.service;
 
-import android.util.Log;
-import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -16,15 +15,18 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
+import androidx.core.app.NotificationCompat;
 
-import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.R;
 import com.contilabs.readmode.ui.MainActivity;
+import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
 
 import java.lang.ref.WeakReference;
@@ -68,15 +70,26 @@ public class DrawOverAppsService extends Service {
 
     private static final String TAG = DrawOverAppsService.class.getSimpleName();
 
-    private boolean isReadModeEnabled = Constants.DEFAULT_IS_READ_MODE_ENABLED;
-    @VisibleForTesting @NonNull String screenColor = Constants.DEFAULT_COLOR_WHITE;
-    @VisibleForTesting int colorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
-    @VisibleForTesting int brightness = Constants.DEFAULT_BRIGHTNESS;
+    @RequiresApi(Build.VERSION_CODES.O)
+    private static final String CHANNEL_ID = "read_mode_channel";
 
-    @VisibleForTesting View mView;
-    @VisibleForTesting WindowManager.LayoutParams mParams;
-    @VisibleForTesting WindowManager mWindowManager;
-    @VisibleForTesting PrefsHelper prefsHelper;
+    private boolean isReadModeEnabled = Constants.DEFAULT_IS_READ_MODE_ENABLED;
+    @VisibleForTesting
+    @NonNull
+    String screenColor = Constants.DEFAULT_COLOR_WHITE;
+    @VisibleForTesting
+    int colorIntensity = Constants.DEFAULT_COLOR_INTENSITY;
+    @VisibleForTesting
+    int brightness = Constants.DEFAULT_BRIGHTNESS;
+
+    @VisibleForTesting
+    View mView;
+    @VisibleForTesting
+    WindowManager.LayoutParams mParams;
+    @VisibleForTesting
+    WindowManager mWindowManager;
+    @VisibleForTesting
+    PrefsHelper prefsHelper;
 
     @VisibleForTesting
     static WeakReference<DrawOverAppsService> instanceRef;
@@ -115,8 +128,8 @@ public class DrawOverAppsService extends Service {
             Log.d(TAG, "Read mode is OFF, adding overlay view");
             mView = new MyLoadView(this);
             mWindowManager.addView(mView, mParams);
-            startNotification();
         }
+        startNotification();
 
         instanceRef = new WeakReference<>(this);
 
@@ -185,21 +198,40 @@ public class DrawOverAppsService extends Service {
     }
 
     public void startNotification() {
-        Log.d(TAG, "Starting foreground notification");
-        final Intent notificationIntent = new Intent(this, MainActivity.class);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
+        Log.d(TAG, "startNotification method");
 
-        final String title = getString(R.string.app_name);
-        final String notificationMsg = getString(R.string.notification_msg);
-        final Notification notification = new Notification.Builder(this)
-                .setContentTitle(title)
-                .setContentText(notificationMsg)
-                .setSmallIcon(R.drawable.moon)
+        // Create PendingIntent to open MainActivity when notification is clicked
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE
+        );
+
+        // Create notification channel for Android 8+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Read Mode Notifications",
+                    NotificationManager.IMPORTANCE_LOW
+            );
+            channel.setDescription("Notifications for Read Mode overlay");
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            if (manager != null) {
+                manager.createNotificationChannel(channel);
+            }
+        }
+
+        // Build the notification using NotificationCompat
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText(getString(R.string.notification_msg))
+                .setSmallIcon(R.drawable.ic_stat_name) // Your status bar icon
                 .setContentIntent(pendingIntent)
-                .setTicker(notificationMsg)
-                .build();
+                .setTicker(getString(R.string.notification_msg))
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setOngoing(true); // Makes it persistent (can't swipe away)
 
-        startForeground(Constants.NOTIFICATION_ID, notification);
+        // Start the foreground service
+        startForeground(Constants.NOTIFICATION_ID, builder.build());
     }
 
     private void stopNotification() {

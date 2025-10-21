@@ -3,21 +3,26 @@
  *****************************************************************/
 package com.contilabs.readmode.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import android.provider.Settings;
-import android.util.Log;
-import android.view.View;
-
+import com.contilabs.readmode.R;
 import com.contilabs.readmode.command.GeneralReadModeCommand;
 import com.contilabs.readmode.command.SettingsReadModeCommand;
 import com.contilabs.readmode.manager.ReadModeManager;
@@ -33,7 +38,6 @@ import com.contilabs.readmode.ui.controller.MenuController;
 import com.contilabs.readmode.ui.controller.SeekBarController;
 import com.contilabs.readmode.ui.controller.StatusBarController;
 import com.contilabs.readmode.ui.controller.TextViewController;
-import com.contilabs.readmode.R;
 import com.contilabs.readmode.ui.dialog.CustomColorDialog;
 import com.contilabs.readmode.util.Constants;
 import com.contilabs.readmode.util.PrefsHelper;
@@ -74,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
                         Log.w(TAG, "No overlay permission granted, finishing the app");
                         finish();
                     } else {
-                        // Permission granted
-                        initUI();
+                        // Overlay permission granted, now check notification permission
+                        checkNotificationPermission();
                     }
                 }
         );
@@ -89,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
             );
             overlayPermissionLauncher.launch(intent);
         } else {
-            // Permission already granted or API < 23
-            initUI();
+            // Overlay permission already granted or API < 23
+            checkNotificationPermission();
         }
     }
 
@@ -241,6 +245,39 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
             final Constants.ThemeMode savedTheme = prefsHelper.getTheme();
             Utils.setAppTheme(savedTheme);
             initUI();
+        }
+    }
+
+    /**
+     * Check POST_NOTIFICATIONS permission on Android 13+
+     */
+    private void checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        1001); // request code
+            } else {
+                initUI();
+            }
+        } else {
+            initUI(); // permission not required
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1001) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                initUI();
+            } else {
+                Toast.makeText(this, "Notification permission is required for Read Mode", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
