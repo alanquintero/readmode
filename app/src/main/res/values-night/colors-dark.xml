@@ -9,7 +9,7 @@
     <color name="color_on_primary">#FFFFFF</color>
 
     <!-- Buttons (keep bright colors for affordance) -->
-    <color name="button_start">#4CAF50</color>
+    <color name="button_start">#005BA1</color>
     <color name="button_stop">#F44336</color>
     <color name="button_custom_color">#7F7F7F</color>
 
@@ -17,7 +17,6 @@
     <color name="banner_background">#1E1E1E</color>
     <color name="spinner_bg">#1E1E1E</color>
     <color name="container_border">#333333</color>
-    <color name="spinner_item_separator">#FFFFFF</color>
     <color name="spinner_item_stroke">#E0E0E0</color>
     <color name="spinner_selected_item">#424242</color>
 

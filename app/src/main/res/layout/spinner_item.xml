@@ -16,21 +16,15 @@
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/circle_icon_desc"
-            android:src="@drawable/circle" />
+            android:src="@drawable/color_circle" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
-
-    <!-- divider at bottom -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/spinner_item_separator" />
 
 </LinearLayout>

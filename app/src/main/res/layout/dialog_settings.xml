@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/info"
-            android:src="@drawable/baseline_info_24"
+            android:src="@drawable/icon_info"
             app:tint="?attr/colorOnSurface" />
     </LinearLayout>
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/info"
-            android:src="@drawable/baseline_info_24"
+            android:src="@drawable/icon_info"
             app:tint="?attr/colorOnSurface" />
     </LinearLayout>
 
