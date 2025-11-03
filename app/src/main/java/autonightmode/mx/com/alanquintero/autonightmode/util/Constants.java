@@ -17,30 +17,30 @@ import android.graphics.Color;
  */
 public class Constants {
     // ---------- Screen filter colors ----------
-    public static final String SOFT_BEIGE = "SOFT_BEIGE";
-    public static final String COLOR_SOFT_BEIGE = "#F5F5DC";
-    public static final String LIGHT_GRAY = "LIGHT_GRAY";
-    public static final String COLOR_LIGHT_GRAY = "#E6E6E6";
-    public static final String PALE_YELLOW = "PALE_YELLOW";
-    public static final String COLOR_PALE_YELLOW = "#FFFFD2";
-    public static final String WARM_SEPIA = "WARM_SEPIA";
-    public static final String COLOR_WARM_SEPIA = "#F4ECD3";
-    public static final String SOFT_BLUE = "SOFT_BLUE";
-    public static final String COLOR_SOFT_BLUE = "#DCEBFF";
+    public static final String YELLOW = "YELLOW";
+    public static final String COLOR_YELLOW = "#FFF176";
+    public static final String PINK = "PINK";
+    public static final String COLOR_PINK = "#FFD1DC";
+    public static final String GREEN = "GREEN";
+    public static final String COLOR_GREEN = "#A8E6CF";
+    public static final String GRAY = "GRAY";
+    public static final String COLOR_GRAY = "#B0BEC5";
+    public static final String WHITE = "WHITE";
+    public static final String COLOR_WHITE = "#FFFFFF";
     public static final String CUSTOM_COLOR = "CUSTOM_COLOR";
 
 
     // ---------- Colors ----------
-    public final static String[] COLOR_DROPDOWN_OPTIONS = new String[]{SOFT_BEIGE, LIGHT_GRAY, PALE_YELLOW, WARM_SEPIA, SOFT_BLUE, CUSTOM_COLOR};
+    public final static String[] COLOR_DROPDOWN_OPTIONS = new String[]{YELLOW, PINK, GREEN, GRAY, WHITE, CUSTOM_COLOR};
     // Color hex corresponding to each dropdown item
-    public static final String[] COLOR_HEX_ARRAY = {COLOR_SOFT_BEIGE, COLOR_LIGHT_GRAY, COLOR_PALE_YELLOW, COLOR_WARM_SEPIA, COLOR_SOFT_BLUE, CUSTOM_COLOR};
+    public static final String[] COLOR_HEX_ARRAY = {COLOR_YELLOW, COLOR_PINK, COLOR_GREEN, COLOR_GRAY, COLOR_WHITE, CUSTOM_COLOR};
     // Background color to each dropdown item for better visual distinction
     public static final int[] BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS = {
-            Color.parseColor(COLOR_SOFT_BEIGE),  // Soft Beige
-            Color.parseColor(COLOR_LIGHT_GRAY),  // Light Gray
-            Color.parseColor(COLOR_PALE_YELLOW),  // Pale Yellow
-            Color.parseColor(COLOR_WARM_SEPIA),  // Warm Sepia
-            Color.parseColor(COLOR_SOFT_BLUE),  // Soft Blue
+            Color.parseColor(COLOR_YELLOW),  // YELLOW
+            Color.parseColor(COLOR_PINK),  // PINK
+            Color.parseColor(COLOR_GREEN),  // GREEN
+            Color.parseColor(COLOR_GRAY),  // GRAY
+            Color.parseColor(COLOR_WHITE),  // WHITE
             Color.WHITE             // CUSTOM
     };
     public final static int CUSTOM_COLOR_DROPDOWN_POSITION = BACKGROUND_COLOR_FOR_DROPDOWN_ITEMS.length - 1;

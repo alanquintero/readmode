@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">रीड मोड</string>
-    <string name="color_soft_beige">सॉफ्ट बेज</string>
-    <string name="color_light_gray">लाइट ग्रे</string>
-    <string name="color_pale_yellow">पेल येलो</string>
-    <string name="color_warm_sepia">वार्म सेपिया</string>
-    <string name="color_soft_blue">सॉफ्ट ब्लू</string>
+    <string name="color_yellow">पीला</string>
+    <string name="color_pink">गुलाबी</string>
+    <string name="color_green">हरा</string>
+    <string name="color_gray">धूसर</string>
+    <string name="color_white">सफेद</string>
     <string name="color_custom">कस्टम</string>
     <string name="select_color">रंग चुनें</string>
     <string name="color_settings_label">रंग सेटिंग्स</string>

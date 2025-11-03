@@ -266,7 +266,7 @@ public class DrawOverAppsServiceTest {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(service)).thenReturn(mockPrefsHelper);
 
-            service.screenColor = Constants.COLOR_SOFT_BEIGE;
+            service.screenColor = Constants.COLOR_YELLOW;
             service.colorIntensity = 50;
             service.brightness = 30;
             service.prefsHelper = mockPrefsHelper;
@@ -338,19 +338,19 @@ public class DrawOverAppsServiceTest {
             prefsHelperStatic.when(() -> PrefsHelper.init(service)).thenReturn(mockPrefsHelper);
 
             final String[] colors = {
-                    Constants.COLOR_SOFT_BEIGE,
-                    Constants.COLOR_LIGHT_GRAY,
-                    Constants.COLOR_PALE_YELLOW,
-                    Constants.COLOR_WARM_SEPIA,
-                    Constants.COLOR_SOFT_BLUE
+                    Constants.COLOR_YELLOW,
+                    Constants.COLOR_PINK,
+                    Constants.COLOR_GREEN,
+                    Constants.COLOR_GRAY,
+                    Constants.COLOR_WHITE
             };
 
             final int[][] expectedRGB = {
-                    {245, 245, 220}, // SOFT_BEIGE
-                    {230, 230, 230}, // LIGHT_GRAY
-                    {255, 255, 210}, // PALE_YELLOW
-                    {244, 236, 211}, // WARM_SEPIA
-                    {220, 235, 255}  // SOFT_BLUE
+                    {255, 241, 118}, // YELLOW
+                    {255, 209, 220}, // PINK
+                    {168, 230, 207}, // GREEN
+                    {176, 190, 197}, // GRAY
+                    {255, 255, 255}  // WHITE
             };
 
             for (int i = 0; i < colors.length; i++) {

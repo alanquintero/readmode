@@ -3,11 +3,11 @@
     <string name="app_name">Modo Lectura</string>
 
     <!-- Colors -->
-    <string name="color_soft_beige">Beige suave</string>
-    <string name="color_light_gray">Gris claro</string>
-    <string name="color_pale_yellow">Amarillo pálido</string>
-    <string name="color_warm_sepia">Sepia cálido</string>
-    <string name="color_soft_blue">Azul suave</string>
+    <string name="color_yellow">Amarillo</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_green">Verde</string>
+    <string name="color_gray">Gris</string>
+    <string name="color_white">Blanco</string>
     <string name="color_custom">Personalizado</string>
 
     <!-- Labels -->

@@ -13,6 +13,7 @@ import androidx.annotation.VisibleForTesting;
 
 import autonightmode.mx.com.alanquintero.autonightmode.model.ColorSettings;
 import autonightmode.mx.com.alanquintero.autonightmode.model.ReadModeSettings;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -68,11 +69,11 @@ public class PrefsHelper {
         if (prefColorSettingsMap.isEmpty()) {
             Log.d(TAG, "prefColorSettingsMap is empty, initializing map...");
             // There is no pref saved, create the map with default settings
-            prefColorSettingsMap.put(Constants.SOFT_BEIGE, new ColorSettings(Constants.SOFT_BEIGE, Constants.COLOR_SOFT_BEIGE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
-            prefColorSettingsMap.put(Constants.LIGHT_GRAY, new ColorSettings(Constants.LIGHT_GRAY, Constants.COLOR_LIGHT_GRAY, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
-            prefColorSettingsMap.put(Constants.PALE_YELLOW, new ColorSettings(Constants.PALE_YELLOW, Constants.COLOR_PALE_YELLOW, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
-            prefColorSettingsMap.put(Constants.WARM_SEPIA, new ColorSettings(Constants.WARM_SEPIA, Constants.COLOR_WARM_SEPIA, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
-            prefColorSettingsMap.put(Constants.SOFT_BLUE, new ColorSettings(Constants.SOFT_BLUE, Constants.COLOR_SOFT_BLUE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            prefColorSettingsMap.put(Constants.YELLOW, new ColorSettings(Constants.YELLOW, Constants.COLOR_YELLOW, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            prefColorSettingsMap.put(Constants.PINK, new ColorSettings(Constants.PINK, Constants.COLOR_PINK, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            prefColorSettingsMap.put(Constants.GREEN, new ColorSettings(Constants.GREEN, Constants.COLOR_GREEN, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            prefColorSettingsMap.put(Constants.GRAY, new ColorSettings(Constants.GRAY, Constants.COLOR_GRAY, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
+            prefColorSettingsMap.put(Constants.WHITE, new ColorSettings(Constants.WHITE, Constants.COLOR_WHITE, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
             prefColorSettingsMap.put(Constants.CUSTOM_COLOR, new ColorSettings(Constants.CUSTOM_COLOR, Constants.CUSTOM_COLOR, Constants.DEFAULT_COLOR_INTENSITY, Constants.DEFAULT_BRIGHTNESS));
         } else {
             Log.d(TAG, "prefColorSettingsMap loaded from shared preferences!");

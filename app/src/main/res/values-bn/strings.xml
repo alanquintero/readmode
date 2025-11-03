@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">পড়া মোড</string>
-    <string name="color_soft_beige">নরম বেজ</string>
-    <string name="color_light_gray">হালকা ধূসর</string>
-    <string name="color_pale_yellow">ফ্যাকাশে হলুদ</string>
-    <string name="color_warm_sepia">উষ্ণ সেপিয়া</string>
-    <string name="color_soft_blue">নরম নীল</string>
+    <string name="color_yellow">হলুদ</string>
+    <string name="color_pink">গোলাপি</string>
+    <string name="color_green">সবুজ</string>
+    <string name="color_gray">ধূসর</string>
+    <string name="color_white">সাদা</string>
     <string name="color_custom">কাস্টম</string>
     <string name="select_color">একটি রং নির্বাচন করুন</string>
     <string name="color_settings_label">রং সেটিংস</string>

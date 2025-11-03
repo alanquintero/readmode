@@ -3,11 +3,11 @@
     <string name="app_name">Read Mode</string>
 
     <!-- Colors -->
-    <string name="color_soft_beige">Soft Beige</string>
-    <string name="color_light_gray">Light Gray</string>
-    <string name="color_pale_yellow">Pale Yellow</string>
-    <string name="color_warm_sepia">Warm Sepia</string>
-    <string name="color_soft_blue">Soft Blue</string>
+    <string name="color_yellow">Yellow</string>
+    <string name="color_pink">Pink</string>
+    <string name="color_green">Green</string>
+    <string name="color_gray">Gray</string>
+    <string name="color_white">White</string>
     <string name="color_custom">Custom</string>
 
     <!-- Labels -->

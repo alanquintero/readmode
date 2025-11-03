@@ -3,11 +3,11 @@
     <string name="app_name">מצב קריאה</string>
 
     <!-- Colors -->
-    <string name="color_soft_beige">בז\' רך</string>
-    <string name="color_light_gray">אפור בהיר</string>
-    <string name="color_pale_yellow">צהוב חיוור</string>
-    <string name="color_warm_sepia">סֶפִּיָה חם</string>
-    <string name="color_soft_blue">כחול רך</string>
+    <string name="color_yellow">צהוב</string>
+    <string name="color_pink">ורוד</string>
+    <string name="color_green">ירוק</string>
+    <string name="color_gray">אפור</string>
+    <string name="color_white">לבן</string>
     <string name="color_custom">מותאם אישית</string>
 
     <!-- Labels -->

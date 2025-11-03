@@ -192,13 +192,13 @@ public class MainActivity extends AppCompatActivity implements SettingsObserver 
      */
     private void initColorNames() {
         // Color names for the color dropdown
-        final String colorSoftBeige = getString(R.string.color_soft_beige);
-        final String colorLightGray = getString(R.string.color_light_gray);
-        final String colorPaleYellow = getString(R.string.color_pale_yellow);
-        final String colorWarmSepia = getString(R.string.color_warm_sepia);
-        final String colorSoftBlue = getString(R.string.color_soft_blue);
+        final String colorYellow = getString(R.string.color_yellow);
+        final String colorPink = getString(R.string.color_pink);
+        final String colorGreen = getString(R.string.color_green);
+        final String colorGray = getString(R.string.color_gray);
+        final String colorWhite = getString(R.string.color_white);
         final String colorCustom = getString(R.string.color_custom);
-        colorNames = new String[]{colorSoftBeige, colorLightGray, colorPaleYellow, colorWarmSepia, colorSoftBlue, colorCustom};
+        colorNames = new String[]{colorYellow, colorPink, colorGreen, colorGray, colorWhite, colorCustom};
     }
 
 

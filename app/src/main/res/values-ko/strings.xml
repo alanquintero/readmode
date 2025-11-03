@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">읽기 모드</string>
-    <string name="color_soft_beige">소프트 베이지</string>
-    <string name="color_light_gray">라이트 그레이</string>
-    <string name="color_pale_yellow">페일 옐로우</string>
-    <string name="color_warm_sepia">웜 세피아</string>
-    <string name="color_soft_blue">소프트 블루</string>
+    <string name="color_yellow">노랑</string>
+    <string name="color_pink">분홍색</string>
+    <string name="color_green">초록색</string>
+    <string name="color_gray">회색</string>
+    <string name="color_white">흰색</string>
     <string name="color_custom">사용자 정의</string>
     <string name="select_color">색상 선택</string>
     <string name="color_settings_label">색상 설정</string>

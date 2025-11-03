@@ -315,20 +315,20 @@ public class DrawOverAppsService extends Service {
 
             canvas.drawARGB(150 - brightness, 0, 0, 0);
             switch (screenColor) {
-                case Constants.COLOR_SOFT_BEIGE:
-                    canvas.drawARGB(120, 245, 245, 220 - colorIntensity);
+                case Constants.COLOR_YELLOW:
+                    canvas.drawARGB(120, 255, 241, 118 - colorIntensity);
                     break;
-                case Constants.COLOR_LIGHT_GRAY:
-                    canvas.drawARGB(120, 230, 230, 230 - colorIntensity);
+                case Constants.COLOR_PINK:
+                    canvas.drawARGB(120, 255, 209, 220 - colorIntensity);
                     break;
-                case Constants.COLOR_PALE_YELLOW:
-                    canvas.drawARGB(120, 255, 255, 210 - colorIntensity);
+                case Constants.COLOR_GREEN:
+                    canvas.drawARGB(120, 168, 230, 207 - colorIntensity);
                     break;
-                case Constants.COLOR_WARM_SEPIA:
-                    canvas.drawARGB(120, 244, 236, 211 - colorIntensity);
+                case Constants.COLOR_GRAY:
+                    canvas.drawARGB(120, 176, 190, 197 - colorIntensity);
                     break;
-                case Constants.COLOR_SOFT_BLUE:
-                    canvas.drawARGB(120, 220, 235, 255 - colorIntensity);
+                case Constants.COLOR_WHITE:
+                    canvas.drawARGB(120, 255, 255, 255 - colorIntensity);
                     break;
                 case Constants.CUSTOM_COLOR:
                     final String customColor = prefsHelper.getCustomColor();

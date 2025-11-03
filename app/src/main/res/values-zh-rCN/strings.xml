@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">阅读模式</string>
-    <string name="color_soft_beige">柔和米色</string>
-    <string name="color_light_gray">浅灰色</string>
-    <string name="color_pale_yellow">淡黄色</string>
-    <string name="color_warm_sepia">暖褐色</string>
-    <string name="color_soft_blue">柔和蓝色</string>
+    <string name="color_yellow">黄色</string>
+    <string name="color_pink">粉色</string>
+    <string name="color_green">绿色</string>
+    <string name="color_gray">灰色</string>
+    <string name="color_white">白色</string>
     <string name="color_custom">自定义</string>
     <string name="select_color">选择颜色</string>
     <string name="color_settings_label">颜色设置</string>

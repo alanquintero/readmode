@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Режим Чтения</string>
-    <string name="color_soft_beige">Мягкий Бежевый</string>
-    <string name="color_light_gray">Светло-Серый</string>
-    <string name="color_pale_yellow">Бледно-Желтый</string>
-    <string name="color_warm_sepia">Теплый Сепия</string>
-    <string name="color_soft_blue">Мягкий Синий</string>
+    <string name="color_yellow">Жёлтый</string>
+    <string name="color_pink">Розовый</string>
+    <string name="color_green">Зелёный</string>
+    <string name="color_gray">Серый</string>
+    <string name="color_white">Белый</string>
     <string name="color_custom">Пользовательский</string>
     <string name="select_color">Выбрать цвет</string>
     <string name="color_settings_label">Настройки цвета</string>

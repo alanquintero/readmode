@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mode Baca</string>
-    <string name="color_soft_beige">Beige Lembut</string>
-    <string name="color_light_gray">Abu-abu Muda</string>
-    <string name="color_pale_yellow">Kuning Pucat</string>
-    <string name="color_warm_sepia">Sepia Hangat</string>
-    <string name="color_soft_blue">Biru Lembut</string>
+    <string name="color_yellow">Kuning</string>
+    <string name="color_pink">Merah muda</string>
+    <string name="color_green">Hijau</string>
+    <string name="color_gray">Abu-abu</string>
+    <string name="color_white">Putih</string>
     <string name="color_custom">Kustom</string>
     <string name="select_color">Pilih warna</string>
     <string name="color_settings_label">Pengaturan warna</string>

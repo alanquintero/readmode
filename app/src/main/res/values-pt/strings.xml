@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Modo Leitura</string>
-    <string name="color_soft_beige">Bege Suave</string>
-    <string name="color_light_gray">Cinza Claro</string>
-    <string name="color_pale_yellow">Amarelo Pálido</string>
-    <string name="color_warm_sepia">Sépia Quente</string>
-    <string name="color_soft_blue">Azul Suave</string>
+    <string name="color_yellow">Amarelo</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_green">Verde</string>
+    <string name="color_gray">Cinza</string>
+    <string name="color_white">Branco</string>
     <string name="color_custom">Personalizado</string>
     <string name="select_color">Selecionar uma cor</string>
     <string name="color_settings_label">Configurações de cor</string>

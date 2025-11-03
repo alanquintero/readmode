@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">وضع القراءة</string>
-    <string name="color_soft_beige">بيج ناعم</string>
-    <string name="color_light_gray">رمادي فاتح</string>
-    <string name="color_pale_yellow">أصفر باهت</string>
-    <string name="color_warm_sepia">بني داكن دافئ</string>
-    <string name="color_soft_blue">أزرق ناعم</string>
+    <string name="color_yellow">أصفر</string>
+    <string name="color_pink">وردي</string>
+    <string name="color_green">أخضر</string>
+    <string name="color_gray">رمادي</string>
+    <string name="color_white">أبيض</string>
     <string name="color_custom">مخصص</string>
     <string name="select_color">اختر لون</string>
     <string name="color_settings_label">إعدادات اللون</string>

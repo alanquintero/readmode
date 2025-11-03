@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">読書モード</string>
-    <string name="color_soft_beige">ソフトベージュ</string>
-    <string name="color_light_gray">ライトグレー</string>
-    <string name="color_pale_yellow">ペールイエロー</string>
-    <string name="color_warm_sepia">ウォームセピア</string>
-    <string name="color_soft_blue">ソフトブルー</string>
+    <string name="color_yellow">黄色</string>
+    <string name="color_pink">ピンク</string>
+    <string name="color_green">緑</string>
+    <string name="color_gray">灰色</string>
+    <string name="color_white">白</string>
     <string name="color_custom">カスタム</string>
     <string name="select_color">色を選択</string>
     <string name="color_settings_label">色設定</string>

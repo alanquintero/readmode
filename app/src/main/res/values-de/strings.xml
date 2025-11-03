@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lese Modus</string>
-    <string name="color_soft_beige">Weiches Beige</string>
-    <string name="color_light_gray">Hellgrau</string>
-    <string name="color_pale_yellow">Blassgelb</string>
-    <string name="color_warm_sepia">Warmes Sepia</string>
-    <string name="color_soft_blue">Weiches Blau</string>
+    <string name="color_yellow">Gelb</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_green">Grün</string>
+    <string name="color_gray">Grau</string>
+    <string name="color_white">Weiß</string>
     <string name="color_custom">Benutzerdefiniert</string>
     <string name="select_color">Farbe auswählen</string>
     <string name="color_settings_label">Farb Einstellungen</string>

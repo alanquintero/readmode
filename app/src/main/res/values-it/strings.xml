@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Modalità Lettura</string>
-    <string name="color_soft_beige">Beige Tenue</string>
-    <string name="color_light_gray">Grigio Chiaro</string>
-    <string name="color_pale_yellow">Giallo Pallido</string>
-    <string name="color_warm_sepia">Seppia Caldo</string>
-    <string name="color_soft_blue">Blu Tenue</string>
+    <string name="color_yellow">Giallo</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_green">Verde</string>
+    <string name="color_gray">Grigio</string>
+    <string name="color_white">Bianco</string>
     <string name="color_custom">Personalizzato</string>
     <string name="select_color">Seleziona un colore</string>
     <string name="color_settings_label">Impostazioni colore</string>
