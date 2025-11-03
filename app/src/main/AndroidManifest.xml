@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.contilabs.readmode">
+    package="autonightmode.mx.com.alanquintero.autonightmode">
 
     <!-- FOREGROUND_SERVICE Permissions -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 
     <!-- Notification Permissions -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -23,14 +23,14 @@
 
         <!-- Service for drawing overlays -->
         <service
-            android:name="com.contilabs.readmode.service.DrawOverAppsService"
+            android:name="autonightmode.mx.com.alanquintero.autonightmode.service.DrawOverAppsService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="dataSync" />
+            android:foregroundServiceType="specialUse" />
 
         <!-- Main launcher activity -->
         <activity
-            android:name="com.contilabs.readmode.ui.MainActivity"
+            android:name="autonightmode.mx.com.alanquintero.autonightmode.ui.MainActivity"
             android:configChanges="uiMode|orientation|screenSize"
             android:exported="true">
             <intent-filter>

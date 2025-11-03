@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace "com.contilabs.readmode"
+    namespace "autonightmode.mx.com.alanquintero.autonightmode"
     compileSdk 36
     defaultConfig {
         applicationId "autonightmode.mx.com.alanquintero.autonightmode"
