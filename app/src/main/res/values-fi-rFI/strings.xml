@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lukutila</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Keltainen</string>
+    <string name="color_pink">Vaaleanpunainen</string>
+    <string name="color_green">Vihreä</string>
+    <string name="color_gray">Harmaa</string>
+    <string name="color_white">Valkoinen</string>
+    <string name="color_custom">Mukautettu</string>
+
+    <!-- Labels -->
+    <string name="select_color">Valitse väri</string>
+    <string name="color_settings_label">Väriasetukset</string>
+    <string name="color_settings_placeholder">Väriasetukset</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Värin voimakkuus</string>
+    <string name="brightness">Kirkkaus</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Valikko</string>
+    <string name="menu_settings">Asetukset</string>
+    <string name="menu_theme">Teema</string>
+    <string name="menu_donate">Lahjoita</string>
+    <string name="menu_feedback">Palaute</string>
+
+    <!-- Settings info -->
+    <string name="info">Tietoja</string>
+    <string name="info_same_intensity_brightness">Käytä samaa värin voimakkuutta ja kirkkautta kaikille väreille sen sijaan, että asetat ne erikseen.</string>
+    <string name="info_auto_start_read_mode">Käynnistä Lukutila automaattisesti, kun väri, voimakkuus tai kirkkaus muuttuu.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Sama voimakkuus ja kirkkaus kaikille väreille</string>
+    <string name="setting_auto_start_read_mode">Käynnistä Lukutila automaattisesti muutoksissa</string>
+    <string name="setting_reset_warning_info">Tämä poistaa kaikki asetukset ja palauttaa oletukset. Jatketaanko?</string>
+    <string name="setting_reset_warning_confirm">Haluatko varmasti poistaa tiedot?</string>
+    <string name="setting_reset_confirmation">Asetukset palautettu</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Automaattinen Lukutilan käynnistys</string>
+    <string name="title_same_intensity_brightness">Sama voimakkuus ja kirkkaus</string>
+    <string name="title_reset_app_data">Palauta sovellustiedot</string>
+    <string name="title_confirm_reset">Vahvista palautus</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Valitse teema</string>
+    <string name="theme_system_default">Järjestelmän oletus</string>
+    <string name="theme_dark">Tumma</string>
+    <string name="theme_light">Vaalea</string>
+
+    <!-- Button -->
+    <string name="start">Aloita</string>
+    <string name="stop">Pysäytä</string>
+    <string name="custom_color">Valitse mukautettu väri</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Valitse mukautettu väri</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Lukutila on käynnissä</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ympyrän kuvake</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">KYLLÄ</string>
+    <string name="confirm">VAHVISTA</string>
+    <string name="done">VALMIS</string>
+    <string name="cancel">Peruuta</string>
+</resources>

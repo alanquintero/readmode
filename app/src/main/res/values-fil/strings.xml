@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Read Mode</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Dilaw</string>
+    <string name="color_pink">Rosas</string>
+    <string name="color_green">Berde</string>
+    <string name="color_gray">Abo</string>
+    <string name="color_white">Puti</string>
+    <string name="color_custom">Custom</string>
+
+    <!-- Labels -->
+    <string name="select_color">Pumili ng kulay</string>
+    <string name="color_settings_label">Mga setting ng kulay</string>
+    <string name="color_settings_placeholder">Mga setting ng kulay</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Tindi ng kulay</string>
+    <string name="brightness">Liwanag</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Mga Setting</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Mag-donate</string>
+    <string name="menu_feedback">Feedback</string>
+
+    <!-- Settings info -->
+    <string name="info">Impormasyon</string>
+    <string name="info_same_intensity_brightness">Gamitin ang parehong tindi at liwanag ng kulay para sa lahat ng kulay sa halip na isa-isang itakda.</string>
+    <string name="info_auto_start_read_mode">Awtomatikong simulan ang Read Mode kapag binago ang kulay, tindi, o liwanag.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Parehong tindi at liwanag para sa lahat ng kulay</string>
+    <string name="setting_auto_start_read_mode">Awtomatikong simulan ang Read Mode kapag may pagbabago</string>
+    <string name="setting_reset_warning_info">Buburahin nito ang lahat ng iyong mga setting at ibabalik sa default. Magpapatuloy?</string>
+    <string name="setting_reset_warning_confirm">Sigurado ka bang gusto mong burahin ang data?</string>
+    <string name="setting_reset_confirmation">Na-reset ang mga setting</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Awtomatikong simulan ang Read Mode</string>
+    <string name="title_same_intensity_brightness">Parehong tindi at liwanag</string>
+    <string name="title_reset_app_data">I-reset ang data ng app</string>
+    <string name="title_confirm_reset">Kumpirmahin ang pag-reset</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Pumili ng Tema</string>
+    <string name="theme_system_default">Default ng System</string>
+    <string name="theme_dark">Madilim</string>
+    <string name="theme_light">Maliwanag</string>
+
+    <!-- Button -->
+    <string name="start">Simulan</string>
+    <string name="stop">Itigil</string>
+    <string name="custom_color">Pumili ng custom na kulay</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Pumili ng Custom na Kulay</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Tumatakbo ang Read Mode</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">bilog na icon</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">OO</string>
+    <string name="confirm">KUMPIRMAHIN</string>
+    <string name="done">TAPOS</string>
+    <string name="cancel">Kanselahin</string>
+</resources>

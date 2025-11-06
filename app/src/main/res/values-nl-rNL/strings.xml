@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Leesmodus</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Geel</string>
+    <string name="color_pink">Roze</string>
+    <string name="color_green">Groen</string>
+    <string name="color_gray">Grijs</string>
+    <string name="color_white">Wit</string>
+    <string name="color_custom">Aangepast</string>
+
+    <!-- Labels -->
+    <string name="select_color">Selecteer een kleur</string>
+    <string name="color_settings_label">Kleurinstellingen</string>
+    <string name="color_settings_placeholder">Kleurinstellingen</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Kleurintensiteit</string>
+    <string name="brightness">Helderheid</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Instellingen</string>
+    <string name="menu_theme">Thema</string>
+    <string name="menu_donate">Doneren</string>
+    <string name="menu_feedback">Feedback</string>
+
+    <!-- Settings info -->
+    <string name="info">Info</string>
+    <string name="info_same_intensity_brightness">Gebruik dezelfde kleurintensiteit en helderheid voor alle kleuren in plaats van elke kleur afzonderlijk in te stellen.</string>
+    <string name="info_auto_start_read_mode">Start automatisch Leesmodus wanneer de kleur, intensiteit of helderheid wordt gewijzigd.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Dezelfde intensiteit en helderheid voor alle kleuren</string>
+    <string name="setting_auto_start_read_mode">Leesmodus automatisch starten bij wijzigingen</string>
+    <string name="setting_reset_warning_info">Dit wist al je voorkeuren en herstelt de standaardinstellingen. Doorgaan?</string>
+    <string name="setting_reset_warning_confirm">Weet je zeker dat je de gegevens wilt verwijderen?</string>
+    <string name="setting_reset_confirmation">Voorkeuren hersteld</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Leesmodus automatisch starten</string>
+    <string name="title_same_intensity_brightness">Dezelfde intensiteit en helderheid</string>
+    <string name="title_reset_app_data">Appgegevens herstellen</string>
+    <string name="title_confirm_reset">Herstel bevestigen</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Kies thema</string>
+    <string name="theme_system_default">Systeemstandaard</string>
+    <string name="theme_dark">Donker</string>
+    <string name="theme_light">Licht</string>
+
+    <!-- Button -->
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="custom_color">Kies aangepaste kleur</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Kies aangepaste kleur</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Leesmodus is actief</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">cirkelpictogram</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">JA</string>
+    <string name="confirm">BEVESTIGEN</string>
+    <string name="done">GEREED</string>
+    <string name="cancel">Annuleren</string>
+</resources>

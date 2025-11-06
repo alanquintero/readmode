@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">របៀបអាន</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">លឿង</string>
+    <string name="color_pink">ផ្កាឈូក</string>
+    <string name="color_green">បៃតង</string>
+    <string name="color_gray">ប្រផេះ</string>
+    <string name="color_white">ស</string>
+    <string name="color_custom">ផ្ទាល់ខ្លួន</string>
+
+    <!-- Labels -->
+    <string name="select_color">ជ្រើសរើសពណ៌</string>
+    <string name="color_settings_label">ការកំណត់ពណ៌</string>
+    <string name="color_settings_placeholder">ការកំណត់ពណ៌</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">កម្រិតពណ៌</string>
+    <string name="brightness">ពន្លឺ</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">ម៉ឺនុយ</string>
+    <string name="menu_settings">ការកំណត់</string>
+    <string name="menu_theme">ស្បែក</string>
+    <string name="menu_donate">បរិច្ចាគ</string>
+    <string name="menu_feedback">មតិយោបល់</string>
+
+    <!-- Settings info -->
+    <string name="info">ព័ត៌មាន</string>
+    <string name="info_same_intensity_brightness">ប្រើកម្រិតពណ៌និងពន្លឺដូចគ្នាសម្រាប់ពណ៌ទាំងអស់ ជំនួសឲ្យកំណត់រៀងៗខ្លួន។</string>
+    <string name="info_auto_start_read_mode">ចាប់ផ្ដើមរបៀបអានដោយស្វ័យប្រវត្តិនៅពេលពណ៌ ឬពន្លឺផ្លាស់ប្តូរ។</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">កម្រិតពណ៌និងពន្លឺដូចគ្នាសម្រាប់ពណ៌ទាំងអស់</string>
+    <string name="setting_auto_start_read_mode">ចាប់ផ្ដើមរបៀបអានដោយស្វ័យប្រវត្តិនៅពេលមានការផ្លាស់ប្តូរ</string>
+    <string name="setting_reset_warning_info">វានឹងលុបការកំណត់ទាំងអស់របស់អ្នក និងស្ដារឡើងវិញទៅលំនាំដើម។ តើបន្តទេ?</string>
+    <string name="setting_reset_warning_confirm">តើអ្នកប្រាកដថាចង់លុបទិន្នន័យឬ?</string>
+    <string name="setting_reset_confirmation">បានស្ដារការកំណត់ឡើងវិញ</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">ចាប់ផ្ដើមរបៀបអានដោយស្វ័យប្រវត្តិ</string>
+    <string name="title_same_intensity_brightness">កម្រិតពណ៌និងពន្លឺដូចគ្នា</string>
+    <string name="title_reset_app_data">ស្ដារទិន្នន័យកម្មវិធីឡើងវិញ</string>
+    <string name="title_confirm_reset">បញ្ជាក់ការស្ដារឡើងវិញ</string>
+
+    <!-- Theme -->
+    <string name="title_theme">ជ្រើសស្បែក</string>
+    <string name="theme_system_default">លំនាំប្រព័ន្ធ</string>
+    <string name="theme_dark">ងងឹត</string>
+    <string name="theme_light">ភ្លឺ</string>
+
+    <!-- Button -->
+    <string name="start">ចាប់ផ្ដើម</string>
+    <string name="stop">បញ្ឈប់</string>
+    <string name="custom_color">ជ្រើសរើសពណ៌ផ្ទាល់ខ្លួន</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">ជ្រើសរើសពណ៌ផ្ទាល់ខ្លួន</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">របៀបអានកំពុងដំណើរការ</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">រូបតំណាងរង្វង់</string>
+
+    <!-- Common -->
+    <string name="ok">យល់ព្រម</string>
+    <string name="yes">បាទ/ចាស</string>
+    <string name="confirm">បញ្ជាក់</string>
+    <string name="done">រួចរាល់</string>
+    <string name="cancel">បោះបង់</string>
+</resources>

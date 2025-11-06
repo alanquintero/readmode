@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Λειτουργία ανάγνωσης</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Κίτρινο</string>
+    <string name="color_pink">Ροζ</string>
+    <string name="color_green">Πράσινο</string>
+    <string name="color_gray">Γκρι</string>
+    <string name="color_white">Λευκό</string>
+    <string name="color_custom">Προσαρμοσμένο</string>
+
+    <!-- Labels -->
+    <string name="select_color">Επιλέξτε ένα χρώμα</string>
+    <string name="color_settings_label">Ρυθμίσεις χρώματος</string> <!-- shown to user in UI -->
+    <string name="color_settings_placeholder">Ρυθμίσεις χρώματος</string> <!-- initial/default text -->
+    <string name="color_settings_format">%1$s - %2$s</string> <!-- final combined text -->
+    <string name="intensity">Ένταση χρώματος</string>
+    <string name="brightness">Φωτεινότητα</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Μενού</string>
+    <string name="menu_settings">Ρυθμίσεις</string>
+    <string name="menu_theme">Θέμα</string>
+    <string name="menu_donate">Δωρεά</string>
+    <string name="menu_feedback">Ανατροφοδότηση</string>
+    <!-- Settings info -->
+    <string name="info">Πληροφορίες</string>
+    <string name="info_same_intensity_brightness">Χρησιμοποιήστε την ίδια ένταση και φωτεινότητα για όλα τα χρώματα αντί να ρυθμίζετε κάθε χρώμα ξεχωριστά.</string>
+    <string name="info_auto_start_read_mode">Ξεκινήστε αυτόματα τη Λειτουργία ανάγνωσης όταν αλλάξει το χρώμα, η ένταση ή η φωτεινότητα.</string>
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Ίδια ένταση &amp; φωτεινότητα για όλα τα χρώματα</string>
+    <string name="setting_auto_start_read_mode">Αυτόματη εκκίνηση Λειτουργίας ανάγνωσης στις αλλαγές</string>
+    <string name="setting_reset_warning_info">Αυτό θα διαγράψει όλες τις προτιμήσεις σας και θα επαναφέρει τις προεπιλογές. Να συνεχίσω;</string>
+    <string name="setting_reset_warning_confirm">Είστε σίγουροι ότι θέλετε να διαγράψετε τα δεδομένα;</string>
+    <string name="setting_reset_confirmation">Οι προτιμήσεις επαναφέρθηκαν</string>
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Αυτόματη εκκίνηση Λειτουργίας ανάγνωσης</string>
+    <string name="title_same_intensity_brightness">Ίδια ένταση &amp; φωτεινότητα</string>
+    <string name="title_reset_app_data">Επαναφορά δεδομένων εφαρμογής</string>
+    <string name="title_confirm_reset">Επιβεβαίωση επαναφοράς</string>
+    <!-- Theme -->
+    <string name="title_theme">Επιλέξτε θέμα</string>
+    <string name="theme_system_default">Προεπιλογή συστήματος</string>
+    <string name="theme_dark">Σκούρο</string>
+    <string name="theme_light">Φωτεινό</string>
+
+    <!-- Button -->
+    <string name="start">Έναρξη</string>
+    <string name="stop">Διακοπή</string>
+    <string name="custom_color">Επιλέξτε προσαρμοσμένο χρώμα</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Επιλέξτε προσαρμοσμένο χρώμα</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Η Λειτουργία ανάγνωσης εκτελείται</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">εικόνισμα κύκλου</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">ΝΑΙ</string>
+    <string name="confirm">ΕΠΙΒΕΒΑΙΩΣΗ</string>
+    <string name="done">ΟΛΟΚΛΗΡΩΘΗΚΕ</string>
+    <string name="cancel">Ακύρωση</string>
+</resources>

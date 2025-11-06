@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Leshamur</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Gulur</string>
+    <string name="color_pink">Bleikur</string>
+    <string name="color_green">Grænn</string>
+    <string name="color_gray">Grár</string>
+    <string name="color_white">Hvítur</string>
+    <string name="color_custom">Sérsniðinn</string>
+
+    <!-- Labels -->
+    <string name="select_color">Veldu lit</string>
+    <string name="color_settings_label">Litatilföng</string>
+    <string name="color_settings_placeholder">Litatilföng</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Litstyrkur</string>
+    <string name="brightness">Birtustig</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Valmynd</string>
+    <string name="menu_settings">Stillingar</string>
+    <string name="menu_theme">Þema</string>
+    <string name="menu_donate">Styrkja</string>
+    <string name="menu_feedback">Endurgjöf</string>
+
+    <!-- Settings info -->
+    <string name="info">Upplýsingar</string>
+    <string name="info_same_intensity_brightness">Nota sama litstyrk og birtu fyrir alla liti í stað þess að stilla hvern lit fyrir sig.</string>
+    <string name="info_auto_start_read_mode">Ræsa lesham sjálfkrafa þegar litur, styrkur eða birta breytist.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Sami styrkur og birta fyrir alla liti</string>
+    <string name="setting_auto_start_read_mode">Sjálfvirk ræsing á lesham við breytingar</string>
+    <string name="setting_reset_warning_info">Þetta mun eyða öllum stillingum þínum og endurstilla sjálfgefnar stillingar. Halda áfram?</string>
+    <string name="setting_reset_warning_confirm">Ertu viss um að þú viljir eyða gögnunum?</string>
+    <string name="setting_reset_confirmation">Stillingar endurstilltar</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Sjálfvirk ræsing á lesham</string>
+    <string name="title_same_intensity_brightness">Sami styrkur og birta</string>
+    <string name="title_reset_app_data">Endurstilla gögn forrits</string>
+    <string name="title_confirm_reset">Staðfesta endurstillingu</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Veldu þema</string>
+    <string name="theme_system_default">Sjálfgefið kerfi</string>
+    <string name="theme_dark">Dökkt</string>
+    <string name="theme_light">Ljóst</string>
+
+    <!-- Button -->
+    <string name="start">Byrja</string>
+    <string name="stop">Stöðva</string>
+    <string name="custom_color">Veldu sérsniðinn lit</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Veldu sérsniðinn lit</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Leshamur er í gangi</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">hring tákn</string>
+
+    <!-- Common -->
+    <string name="ok">Í lagi</string>
+    <string name="yes">JÁ</string>
+    <string name="confirm">STAÐFESTA</string>
+    <string name="done">BÚIÐ</string>
+    <string name="cancel">Hætta við</string>
+</resources>

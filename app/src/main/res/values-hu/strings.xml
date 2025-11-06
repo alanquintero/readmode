@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Olvasási mód</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Sárga</string>
+    <string name="color_pink">Rózsaszín</string>
+    <string name="color_green">Zöld</string>
+    <string name="color_gray">Szürke</string>
+    <string name="color_white">Fehér</string>
+    <string name="color_custom">Egyéni</string>
+
+    <!-- Labels -->
+    <string name="select_color">Válasszon egy színt</string>
+    <string name="color_settings_label">Színbeállítások</string>
+    <string name="color_settings_placeholder">Színbeállítások</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Szín intenzitása</string>
+    <string name="brightness">Fényerő</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menü</string>
+    <string name="menu_settings">Beállítások</string>
+    <string name="menu_theme">Téma</string>
+    <string name="menu_donate">Adomány</string>
+    <string name="menu_feedback">Visszajelzés</string>
+
+    <!-- Settings info -->
+    <string name="info">Információ</string>
+    <string name="info_same_intensity_brightness">Használja ugyanazt az intenzitást és fényerőt minden színhez ahelyett, hogy mindegyiket külön állítaná be.</string>
+    <string name="info_auto_start_read_mode">Az Olvasási mód automatikus indítása, ha a szín, intenzitás vagy fényerő megváltozik.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Azonos intenzitás &amp; fényerő minden színhez</string>
+    <string name="setting_auto_start_read_mode">Olvasási mód automatikus indítása változásokkor</string>
+    <string name="setting_reset_warning_info">Ez törölni fogja az összes beállítását és visszaállítja az alapértelmezetteket. Folytatja?</string>
+    <string name="setting_reset_warning_confirm">Biztosan törölni szeretné az adatokat?</string>
+    <string name="setting_reset_confirmation">Beállítások visszaállítva</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Olvasási mód automatikus indítása</string>
+    <string name="title_same_intensity_brightness">Azonos intenzitás &amp; fényerő</string>
+    <string name="title_reset_app_data">Alkalmazásadatok visszaállítása</string>
+    <string name="title_confirm_reset">Visszaállítás megerősítése</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Téma kiválasztása</string>
+    <string name="theme_system_default">Rendszer alapértelmezett</string>
+    <string name="theme_dark">Sötét</string>
+    <string name="theme_light">Világos</string>
+
+    <!-- Button -->
+    <string name="start">Indítás</string>
+    <string name="stop">Leállítás</string>
+    <string name="custom_color">Egyéni szín kiválasztása</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Egyéni szín kiválasztása</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Az olvasási mód fut</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">kör ikon</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">IGEN</string>
+    <string name="confirm">Megerősítés</string>
+    <string name="done">KÉSZ</string>
+    <string name="cancel">Mégse</string>
+</resources>

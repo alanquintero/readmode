@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Način čitanja</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Žuta</string>
+    <string name="color_pink">Ružičasta</string>
+    <string name="color_green">Zelena</string>
+    <string name="color_gray">Siva</string>
+    <string name="color_white">Bijela</string>
+    <string name="color_custom">Prilagođeno</string>
+
+    <!-- Labels -->
+    <string name="select_color">Odaberite boju</string>
+    <string name="color_settings_label">Postavke boje</string>
+    <string name="color_settings_placeholder">Postavke boje</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Intenzitet boje</string>
+    <string name="brightness">Svjetlina</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Izbornik</string>
+    <string name="menu_settings">Postavke</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Doniraj</string>
+    <string name="menu_feedback">Povratne informacije</string>
+    <!-- Settings info -->
+    <string name="info">Informacije</string>
+    <string name="info_same_intensity_brightness">Koristi isti intenzitet i svjetlinu za sve boje umjesto da svaku postavljaš zasebno.</string>
+    <string name="info_auto_start_read_mode">Automatski pokreni Način čitanja kada se promijeni boja, intenzitet ili svjetlina.</string>
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Isti intenzitet &amp; svjetlina za sve boje</string>
+    <string name="setting_auto_start_read_mode">Automatski pokreni Način čitanja pri promjenama</string>
+    <string name="setting_reset_warning_info">Ovo će izbrisati sve tvoje postavke i vratiti zadane vrijednosti. Nastaviti?</string>
+    <string name="setting_reset_warning_confirm">Jesi li siguran da želiš izbrisati podatke?</string>
+    <string name="setting_reset_confirmation">Postavke su resetirane</string>
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Automatski pokreni Način čitanja</string>
+    <string name="title_same_intensity_brightness">Isti intenzitet &amp; svjetlina</string>
+    <string name="title_reset_app_data">Resetiraj podatke aplikacije</string>
+    <string name="title_confirm_reset">Potvrdi resetiranje</string>
+    <!-- Theme -->
+    <string name="title_theme">Odaberi temu</string>
+    <string name="theme_system_default">Zadano prema sustavu</string>
+    <string name="theme_dark">Tamna</string>
+    <string name="theme_light">Svijetla</string>
+
+    <!-- Button -->
+    <string name="start">Pokreni</string>
+    <string name="stop">Zaustavi</string>
+    <string name="custom_color">Odaberi prilagođenu boju</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Odaberi prilagođenu boju</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Način čitanja je aktivan</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ikona kruga</string>
+
+    <!-- Common -->
+    <string name="ok">U redu</string>
+    <string name="yes">DA</string>
+    <string name="confirm">POTVRDI</string>
+    <string name="done">GOTOVO</string>
+    <string name="cancel">Otkaži</string>
+</resources>

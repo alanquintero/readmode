@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Read Mode</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Yellow</string>
+    <string name="color_pink">Pink</string>
+    <string name="color_green">Green</string>
+    <string name="color_gray">Grey</string>
+    <string name="color_white">White</string>
+    <string name="color_custom">Custom</string>
+
+    <!-- Labels -->
+    <string name="select_color">Select a colour</string>
+    <string name="color_settings_label">Colour settings</string>
+    <string name="color_settings_placeholder">Colour settings</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Colour Intensity</string>
+    <string name="brightness">Brightness</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_theme">Theme</string>
+    <string name="menu_donate">Donate</string>
+    <string name="menu_feedback">Feedback</string>
+
+    <!-- Settings info -->
+    <string name="info">Info</string>
+    <string name="info_same_intensity_brightness">Use the same colour intensity and brightness for all colours instead of setting each one individually.</string>
+    <string name="info_auto_start_read_mode">Automatically start Read Mode when the colour, intensity, or brightness is changed.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Same intensity &amp; brightness for all colours</string>
+    <string name="setting_auto_start_read_mode">Auto-start Read Mode on changes</string>
+    <string name="setting_reset_warning_info">This will erase all your preferences and restore defaults. Continue?</string>
+    <string name="setting_reset_warning_confirm">Are you sure you want to delete the data?</string>
+    <string name="setting_reset_confirmation">Preferences reset</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Auto-start Read Mode</string>
+    <string name="title_same_intensity_brightness">Same intensity &amp; brightness</string>
+    <string name="title_reset_app_data">Reset app data</string>
+    <string name="title_confirm_reset">Confirm Reset</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Choose Theme</string>
+    <string name="theme_system_default">System Default</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+
+    <!-- Button -->
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="custom_color">Choose custom colour</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Choose Custom Colour</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Read Mode is running</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">circle icon</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">YES</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="done">DONE</string>
+    <string name="cancel">Cancel</string>
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lugemisrežiim</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Kollane</string>
+    <string name="color_pink">Roosa</string>
+    <string name="color_green">Roheline</string>
+    <string name="color_gray">Hall</string>
+    <string name="color_white">Valge</string>
+    <string name="color_custom">Kohandatud</string>
+
+    <!-- Labels -->
+    <string name="select_color">Vali värv</string>
+    <string name="color_settings_label">Värviseaded</string>
+    <string name="color_settings_placeholder">Värviseaded</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Värvi intensiivsus</string>
+    <string name="brightness">Heledus</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menüü</string>
+    <string name="menu_settings">Seaded</string>
+    <string name="menu_theme">Teema</string>
+    <string name="menu_donate">Annetus</string>
+    <string name="menu_feedback">Tagasiside</string>
+
+    <!-- Settings info -->
+    <string name="info">Teave</string>
+    <string name="info_same_intensity_brightness">Kasuta kõigi värvide jaoks sama intensiivsust ja heledust, selle asemel et määrata igaüks eraldi.</string>
+    <string name="info_auto_start_read_mode">Käivita lugemisrežiim automaatselt, kui värv, intensiivsus või heledus muutub.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Sama intensiivsus ja heledus kõigile värvidele</string>
+    <string name="setting_auto_start_read_mode">Käivita lugemisrežiim muudatustel automaatselt</string>
+    <string name="setting_reset_warning_info">See kustutab kõik sinu eelistused ja taastab vaikeseaded. Kas jätkata?</string>
+    <string name="setting_reset_warning_confirm">Kas oled kindel, et soovid andmed kustutada?</string>
+    <string name="setting_reset_confirmation">Eelistused lähtestatud</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Automaatne lugemisrežiimi käivitamine</string>
+    <string name="title_same_intensity_brightness">Sama intensiivsus ja heledus</string>
+    <string name="title_reset_app_data">Lähtesta rakenduse andmed</string>
+    <string name="title_confirm_reset">Kinnita lähtestamine</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Vali teema</string>
+    <string name="theme_system_default">Süsteemi vaikeväärtus</string>
+    <string name="theme_dark">Tume</string>
+    <string name="theme_light">Hele</string>
+
+    <!-- Button -->
+    <string name="start">Alusta</string>
+    <string name="stop">Peata</string>
+    <string name="custom_color">Vali kohandatud värv</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Vali kohandatud värv</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Lugemisrežiim on aktiivne</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ringi ikoon</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">JAH</string>
+    <string name="confirm">KINNITA</string>
+    <string name="done">VALMIS</string>
+    <string name="cancel">Tühista</string>
+</resources>

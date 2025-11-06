@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">კითხვის რეჟიმი</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">ყვითელი</string>
+    <string name="color_pink">ვარდისფერი</string>
+    <string name="color_green">მწვანე</string>
+    <string name="color_gray">ნაცრისფერი</string>
+    <string name="color_white">თეთრი</string>
+    <string name="color_custom">მორგებული</string>
+
+    <!-- Labels -->
+    <string name="select_color">აირჩიეთ ფერი</string>
+    <string name="color_settings_label">ფერის პარამეტრები</string> <!-- shown to user in UI -->
+    <string name="color_settings_placeholder">ფერის პარამეტრები</string> <!-- initial/default text -->
+    <string name="color_settings_format">%1$s - %2$s</string> <!-- final combined text -->
+    <string name="intensity">ფერის ინტენსივობა</string>
+    <string name="brightness">სიკაშკაშე</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">მენიუ</string>
+    <string name="menu_settings">პარამეტრები</string>
+    <string name="menu_theme">თემა</string>
+    <string name="menu_donate">დონაცია</string>
+    <string name="menu_feedback">ფიდბექი</string>
+    <!-- Settings info -->
+    <string name="info">ინფორმაცია</string>
+    <string name="info_same_intensity_brightness">გამოიყენეთ ყველა ფერისათვის ერთი და იგივე ინტენსივობა და სიკაშკაშე, ნაცვლად იმისა, რომ თითოეული ფერი ცალ-ცალკე დააყენოთ.</string>
+    <string name="info_auto_start_read_mode">ავტომატურად დაიწყეთ კითვის რეჟიმი, როდესაც შეიცვლება ფერი, ინტენსივობა ან სიკაშკაშე.</string>
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">ერთიდაიღივე ინტენსივობა &amp; სიკაშკაშე ყველა ფერისთვის</string>
+    <string name="setting_auto_start_read_mode">კითვის რეჟიმის ავტომატური დაწყება ცვლილებისას</string>
+    <string name="setting_reset_warning_info">ეს წაშლის ყველა თქვენს პარამეტრს და დააბრუნებს ნაგულისხმებს. გაგრძელება?</string>
+    <string name="setting_reset_warning_confirm">დარწმუნებული ხართ, რომ გსურთ მონაცემების წაშლა?</string>
+    <string name="setting_reset_confirmation">პარამეტრები გადატვირთულია</string>
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">კითვის რეჟიმის ავტომატური დაწყება</string>
+    <string name="title_same_intensity_brightness">ერთიდაიღივე ინტენსივობა &amp; სიკაშკაშე</string>
+    <string name="title_reset_app_data">აპლიკაციის მონაცემების გადატვირთვა</string>
+    <string name="title_confirm_reset">გადატვირთვის დადასტურება</string>
+    <!-- Theme -->
+    <string name="title_theme">აირჩიეთ თემა</string>
+    <string name="theme_system_default">სისტემის ნაგულისხმევი</string>
+    <string name="theme_dark">ბნელა</string>
+    <string name="theme_light">ცხელი</string>
+
+    <!-- Button -->
+    <string name="start">დაწყება</string>
+    <string name="stop">შეჩერება</string>
+    <string name="custom_color">მორგებული ფერის არჩევა</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">მორგებული ფერის არჩევა</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">კითხვის რეჟიმი ჩართულია</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">კუთხოვანი ხატი</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">დიახ</string>
+    <string name="confirm">დადასტურება</string>
+    <string name="done">შესრულებულია</string>
+    <string name="cancel">გაუქმება</string>
+</resources>

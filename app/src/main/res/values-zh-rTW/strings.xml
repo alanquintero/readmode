@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">閱讀模式</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">黃色</string>
+    <string name="color_pink">粉紅色</string>
+    <string name="color_green">綠色</string>
+    <string name="color_gray">灰色</string>
+    <string name="color_white">白色</string>
+    <string name="color_custom">自訂</string>
+
+    <!-- Labels -->
+    <string name="select_color">選擇顏色</string>
+    <string name="color_settings_label">顏色設定</string>
+    <string name="color_settings_placeholder">顏色設定</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">顏色強度</string>
+    <string name="brightness">亮度</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">選單</string>
+    <string name="menu_settings">設定</string>
+    <string name="menu_theme">主題</string>
+    <string name="menu_donate">捐款</string>
+    <string name="menu_feedback">回饋意見</string>
+    <!-- Settings info -->
+    <string name="info">資訊</string>
+    <string name="info_same_intensity_brightness">對所有顏色使用相同的顏色強度與亮度，而不是為每個顏色單獨設定。</string>
+    <string name="info_auto_start_read_mode">當顏色、強度或亮度變更時，自動啟動閱讀模式。</string>
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">所有顏色相同的強度 &amp; 亮度</string>
+    <string name="setting_auto_start_read_mode">變更時自動啟動閱讀模式</string>
+    <string name="setting_reset_warning_info">此操作將刪除所有偏好設定並恢復預設值。是否繼續？</string>
+    <string name="setting_reset_warning_confirm">確定要刪除資料嗎？</string>
+    <string name="setting_reset_confirmation">偏好設定已重設</string>
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">自動啟動閱讀模式</string>
+    <string name="title_same_intensity_brightness">相同強度與亮度</string>
+    <string name="title_reset_app_data">重設應用資料</string>
+    <string name="title_confirm_reset">確認重設</string>
+    <!-- Theme -->
+    <string name="title_theme">選擇主題</string>
+    <string name="theme_system_default">系統預設</string>
+    <string name="theme_dark">深色</string>
+    <string name="theme_light">淺色</string>
+
+    <!-- Button -->
+    <string name="start">開始</string>
+    <string name="stop">停止</string>
+    <string name="custom_color">選擇自訂顏色</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">選擇自訂顏色</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">閱讀模式正在執行中</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">圓形圖示</string>
+
+    <!-- Common -->
+    <string name="ok">確定</string>
+    <string name="yes">是</string>
+    <string name="confirm">確認</string>
+    <string name="done">完成</string>
+    <string name="cancel">取消</string>
+</resources>

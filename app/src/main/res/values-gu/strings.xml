@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">રીડ મોડ</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">પીળો</string>
+    <string name="color_pink">ગુલાબી</string>
+    <string name="color_green">લીલો</string>
+    <string name="color_gray">ભૂખરો</string>
+    <string name="color_white">સફેદ</string>
+    <string name="color_custom">કસ્ટમ</string>
+
+    <!-- Labels -->
+    <string name="select_color">રંગ પસંદ કરો</string>
+    <string name="color_settings_label">રંગ સેટિંગ્સ</string>
+    <string name="color_settings_placeholder">રંગ સેટિંગ્સ</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">રંગની તીવ્રતા</string>
+    <string name="brightness">પ્રકાશ</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">મેનુ</string>
+    <string name="menu_settings">સેટિંગ્સ</string>
+    <string name="menu_theme">થીમ</string>
+    <string name="menu_donate">દાન કરો</string>
+    <string name="menu_feedback">પ્રતિસાદ</string>
+
+    <!-- Settings info -->
+    <string name="info">માહિતી</string>
+    <string name="info_same_intensity_brightness">દરેક રંગને અલગથી સેટ કરવાની બદલે બધા રંગો માટે સમાન તીવ્રતા અને પ્રકાશનો ઉપયોગ કરો.</string>
+    <string name="info_auto_start_read_mode">જ્યારે રંગ, તીવ્રતા અથવા પ્રકાશ બદલાય ત્યારે આપમેળે રીડ મોડ શરૂ કરો.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">બધા રંગો માટે સમાન તીવ્રતા &amp; પ્રકાશ</string>
+    <string name="setting_auto_start_read_mode">ફેરફારો પર આપમેળે રીડ મોડ શરૂ કરો</string>
+    <string name="setting_reset_warning_info">આ તમારી બધી પસંદગીઓ કાઢી નાખશે અને મૂળભૂત પર પાછું લાવશે. ચાલુ રાખશો?</string>
+    <string name="setting_reset_warning_confirm">શું તમે ખરેખર ડેટા કાઢી નાખવા માંગો છો?</string>
+    <string name="setting_reset_confirmation">પસંદગીઓ ફરીથી સેટ થઈ ગઈ</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">આપમેળે રીડ મોડ શરૂ કરો</string>
+    <string name="title_same_intensity_brightness">સમાન તીવ્રતા &amp; પ્રકાશ</string>
+    <string name="title_reset_app_data">એપ ડેટા ફરીથી સેટ કરો</string>
+    <string name="title_confirm_reset">ફરીથી સેટ કરવાનું પુષ્ટિ કરો</string>
+
+    <!-- Theme -->
+    <string name="title_theme">થીમ પસંદ કરો</string>
+    <string name="theme_system_default">સિસ્ટમ ડિફોલ્ટ</string>
+    <string name="theme_dark">ડાર્ક</string>
+    <string name="theme_light">લાઇટ</string>
+
+    <!-- Button -->
+    <string name="start">શરૂ કરો</string>
+    <string name="stop">બંધ કરો</string>
+    <string name="custom_color">કસ્ટમ રંગ પસંદ કરો</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">કસ્ટમ રંગ પસંદ કરો</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">રીડ મોડ ચાલી રહ્યું છે</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">વર્તુળ ચિહ્ન</string>
+
+    <!-- Common -->
+    <string name="ok">ઓકે</string>
+    <string name="yes">હા</string>
+    <string name="confirm">પુષ્ટિ કરો</string>
+    <string name="done">પૂર્ણ થયું</string>
+    <string name="cancel">રદ કરો</string>
+</resources>

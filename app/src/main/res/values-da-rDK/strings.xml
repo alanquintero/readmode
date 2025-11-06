@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Læsetilstand</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Gul</string>
+    <string name="color_pink">Lyserød</string>
+    <string name="color_green">Grøn</string>
+    <string name="color_gray">Grå</string>
+    <string name="color_white">Hvid</string>
+    <string name="color_custom">Brugerdefineret</string>
+
+    <!-- Labels -->
+    <string name="select_color">Vælg en farve</string>
+    <string name="color_settings_label">Farveindstillinger</string>
+    <string name="color_settings_placeholder">Farveindstillinger</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Farveintensitet</string>
+    <string name="brightness">Lysstyrke</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Indstillinger</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Donér</string>
+    <string name="menu_feedback">Feedback</string>
+
+    <!-- Settings info -->
+    <string name="info">Info</string>
+    <string name="info_same_intensity_brightness">Brug samme farveintensitet og lysstyrke for alle farver i stedet for at indstille hver farve individuelt.</string>
+    <string name="info_auto_start_read_mode">Start automatisk Læsetilstand, når farve, intensitet eller lysstyrke ændres.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Samme intensitet og lysstyrke for alle farver</string>
+    <string name="setting_auto_start_read_mode">Start automatisk Læsetilstand ved ændringer</string>
+    <string name="setting_reset_warning_info">Dette vil slette alle dine præferencer og gendanne standardindstillinger. Fortsæt?</string>
+    <string name="setting_reset_warning_confirm">Er du sikker på, at du vil slette dataene?</string>
+    <string name="setting_reset_confirmation">Præferencer nulstillet</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Start automatisk Læsetilstand</string>
+    <string name="title_same_intensity_brightness">Samme intensitet og lysstyrke</string>
+    <string name="title_reset_app_data">Nulstil appdata</string>
+    <string name="title_confirm_reset">Bekræft nulstilling</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Vælg tema</string>
+    <string name="theme_system_default">Systemstandard</string>
+    <string name="theme_dark">Mørk</string>
+    <string name="theme_light">Lys</string>
+
+    <!-- Button -->
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="custom_color">Vælg brugerdefineret farve</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Vælg brugerdefineret farve</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Læsetilstand kører</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">cirkelikon</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">JA</string>
+    <string name="confirm">BEKRÆFT</string>
+    <string name="done">FÆRDIG</string>
+    <string name="cancel">Annuller</string>
+</resources>

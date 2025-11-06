@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Modo de lectura</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Amarelo</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_green">Verde</string>
+    <string name="color_gray">Gris</string>
+    <string name="color_white">Branco</string>
+    <string name="color_custom">Personalizado</string>
+
+    <!-- Labels -->
+    <string name="select_color">Selecciona unha cor</string>
+    <string name="color_settings_label">Axustes de cor</string>
+    <string name="color_settings_placeholder">Axustes de cor</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Intensidade da cor</string>
+    <string name="brightness">Brillo</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menú</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Doar</string>
+    <string name="menu_feedback">Comentarios</string>
+
+    <!-- Settings info -->
+    <string name="info">Información</string>
+    <string name="info_same_intensity_brightness">Usar a mesma intensidade e brillo para todas as cores en lugar de configuralas individualmente.</string>
+    <string name="info_auto_start_read_mode">Iniciar automaticamente o Modo de lectura cando cambie a cor, intensidade ou brillo.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Mesma intensidade e brillo para todas as cores</string>
+    <string name="setting_auto_start_read_mode">Inicio automático do Modo de lectura nos cambios</string>
+    <string name="setting_reset_warning_info">Isto borrará todas as túas preferencias e restaurará os valores predeterminados. Continuar?</string>
+    <string name="setting_reset_warning_confirm">Estás seguro de que queres eliminar os datos?</string>
+    <string name="setting_reset_confirmation">Preferencias restablecidas</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Inicio automático do Modo de lectura</string>
+    <string name="title_same_intensity_brightness">Mesma intensidade e brillo</string>
+    <string name="title_reset_app_data">Restablecer datos da aplicación</string>
+    <string name="title_confirm_reset">Confirmar restablecemento</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Escolle un tema</string>
+    <string name="theme_system_default">Predeterminado do sistema</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="theme_light">Claro</string>
+
+    <!-- Button -->
+    <string name="start">Iniciar</string>
+    <string name="stop">Deter</string>
+    <string name="custom_color">Escoller cor personalizada</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Escoller cor personalizada</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">O Modo de lectura está en execución</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">icona circular</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">SI</string>
+    <string name="confirm">CONFIRMAR</string>
+    <string name="done">FEITO</string>
+    <string name="cancel">Cancelar</string>
+</resources>

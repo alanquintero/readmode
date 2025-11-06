@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mode de lectura</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Groc</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_green">Verd</string>
+    <string name="color_gray">Gris</string>
+    <string name="color_white">Blanc</string>
+    <string name="color_custom">Personalitzat</string>
+
+    <!-- Labels -->
+    <string name="select_color">Selecciona un color</string>
+    <string name="color_settings_label">Configuració del color</string> <!-- shown to user in UI -->
+    <string name="color_settings_placeholder">Configuració del color</string> <!-- initial/default text -->
+    <string name="color_settings_format">%1$s - %2$s</string> <!-- final combined text -->
+    <string name="intensity">Intensitat del color</string>
+    <string name="brightness">Brillantor</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menú</string>
+    <string name="menu_settings">Configuració</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Dona</string>
+    <string name="menu_feedback">Comentaris</string>
+    <!-- Settings info -->
+    <string name="info">Informació</string>
+    <string name="info_same_intensity_brightness">Utilitza la mateixa intensitat i brillantor per a tots els colors en lloc de configurar cada color individualment.</string>
+    <string name="info_auto_start_read_mode">Inicia automàticament el Mode de lectura quan es canvia el color, la intensitat o la brillantor.</string>
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Mateixa intensitat &amp; brillantor per a tots els colors</string>
+    <string name="setting_auto_start_read_mode">Inici automàtic del Mode de lectura en canvis</string>
+    <string name="setting_reset_warning_info">Això esborrarà totes les teves preferències i restablirà els valors predeterminats. Continuar?</string>
+    <string name="setting_reset_warning_confirm">Estàs segur que vols eliminar les dades?</string>
+    <string name="setting_reset_confirmation">Preferències restablertes</string>
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Inici automàtic del Mode de lectura</string>
+    <string name="title_same_intensity_brightness">Mateixa intensitat &amp; brillantor</string>
+    <string name="title_reset_app_data">Restablir dades de l\'aplicació</string>
+    <string name="title_confirm_reset">Confirma restabliment</string>
+    <!-- Theme -->
+    <string name="title_theme">Tria un tema</string>
+    <string name="theme_system_default">Predeterminat del sistema</string>
+    <string name="theme_dark">Fosc</string>
+    <string name="theme_light">Clar</string>
+
+    <!-- Button -->
+    <string name="start">Iniciar</string>
+    <string name="stop">Aturar</string>
+    <string name="custom_color">Tria un color personalitzat</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Tria un color personalitzat</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Mode de lectura en funcionament</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">icona de cercle</string>
+
+    <!-- Common -->
+    <string name="ok">D\'acord</string>
+    <string name="yes">SÍ</string>
+    <string name="confirm">CONFIRMA</string>
+    <string name="done">FET</string>
+    <string name="cancel">Cancel·la</string>
+</resources>

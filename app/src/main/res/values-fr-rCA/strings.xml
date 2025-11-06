@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mode lecture</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Jaune</string>
+    <string name="color_pink">Rose</string>
+    <string name="color_green">Vert</string>
+    <string name="color_gray">Gris</string>
+    <string name="color_white">Blanc</string>
+    <string name="color_custom">Personnalisé</string>
+
+    <!-- Labels -->
+    <string name="select_color">Sélectionner une couleur</string>
+    <string name="color_settings_label">Paramètres de couleur</string>
+    <string name="color_settings_placeholder">Paramètres de couleur</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Intensité de la couleur</string>
+    <string name="brightness">Luminosité</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="menu_theme">Thème</string>
+    <string name="menu_donate">Faire un don</string>
+    <string name="menu_feedback">Commentaires</string>
+
+    <!-- Settings info -->
+    <string name="info">Info</string>
+    <string name="info_same_intensity_brightness">Utiliser la même intensité et luminosité pour toutes les couleurs au lieu de les définir individuellement.</string>
+    <string name="info_auto_start_read_mode">Démarre automatiquement le Mode lecture lorsque la couleur, l’intensité ou la luminosité est modifiée.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Même intensité et luminosité pour toutes les couleurs</string>
+    <string name="setting_auto_start_read_mode">Démarrage automatique du Mode lecture lors des changements</string>
+    <string name="setting_reset_warning_info">Cela effacera toutes vos préférences et restaurera les valeurs par défaut. Continuer ?</string>
+    <string name="setting_reset_warning_confirm">Voulez-vous vraiment supprimer les données ?</string>
+    <string name="setting_reset_confirmation">Préférences réinitialisées</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Démarrage automatique du Mode lecture</string>
+    <string name="title_same_intensity_brightness">Même intensité et luminosité</string>
+    <string name="title_reset_app_data">Réinitialiser les données de l’application</string>
+    <string name="title_confirm_reset">Confirmer la réinitialisation</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Choisir un thème</string>
+    <string name="theme_system_default">Par défaut du système</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_light">Clair</string>
+
+    <!-- Button -->
+    <string name="start">Démarrer</string>
+    <string name="stop">Arrêter</string>
+    <string name="custom_color">Choisir une couleur personnalisée</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Choisir une couleur personnalisée</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Le Mode lecture est en cours d’exécution</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">icône en cercle</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">OUI</string>
+    <string name="confirm">CONFIRMER</string>
+    <string name="done">TERMINÉ</string>
+    <string name="cancel">Annuler</string>
+</resources>

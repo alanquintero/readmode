@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ಓದು ಮೋಡ್</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">ಹಳದಿ</string>
+    <string name="color_pink">ಗುಲಾಬಿ</string>
+    <string name="color_green">ಹಸಿರು</string>
+    <string name="color_gray">ಬೂದು</string>
+    <string name="color_white">ಬಿಳಿ</string>
+    <string name="color_custom">ಕಸ್ಟಮ್</string>
+
+    <!-- Labels -->
+    <string name="select_color">ಬಣ್ಣ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="color_settings_label">ಬಣ್ಣ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="color_settings_placeholder">ಬಣ್ಣ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">ಬಣ್ಣದ ತೀವ್ರತೆ</string>
+    <string name="brightness">ಪ್ರಕಾಶಮಾನತೆ</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">ಮೆನು</string>
+    <string name="menu_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="menu_theme">ಥೀಮ್</string>
+    <string name="menu_donate">ದಾನ ಮಾಡಿ</string>
+    <string name="menu_feedback">ಪ್ರತಿಕ್ರಿಯೆ</string>
+
+    <!-- Settings info -->
+    <string name="info">ಮಾಹಿತಿ</string>
+    <string name="info_same_intensity_brightness">ಪ್ರತಿಯೊಂದು ಬಣ್ಣಕ್ಕೂ ಪ್ರತ್ಯೇಕವಾಗಿ ಹೊಂದಿಸುವ ಬದಲಿಗೆ ಎಲ್ಲಾ ಬಣ್ಣಗಳಿಗೆ ಒಂದೇ ತೀವ್ರತೆ ಮತ್ತು ಪ್ರಕಾಶಮಾನತೆಯನ್ನು ಬಳಸಿ.</string>
+    <string name="info_auto_start_read_mode">ಬಣ್ಣ, ತೀವ್ರತೆ ಅಥವಾ ಪ್ರಕಾಶಮಾನತೆ ಬದಲಾದಾಗ ಓದು ಮೋಡ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">ಎಲ್ಲಾ ಬಣ್ಣಗಳಿಗೆ ಒಂದೇ ತೀವ್ರತೆ ಮತ್ತು ಪ್ರಕಾಶಮಾನತೆ</string>
+    <string name="setting_auto_start_read_mode">ಬದಲಾವಣೆಗಳ ಮೇಲೆ ಓದು ಮೋಡ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ</string>
+    <string name="setting_reset_warning_info">ಇದು ನಿಮ್ಮ ಎಲ್ಲಾ ಆದ್ಯತೆಗಳನ್ನು ಅಳಿಸಿ, ಪೂರ್ವನಿಯೋಜಿತ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸುತ್ತದೆ. ಮುಂದುವರಿಸಬೇಕೇ?</string>
+    <string name="setting_reset_warning_confirm">ನೀವು ಖಚಿತವಾಗಿ ಡೇಟಾವನ್ನು ಅಳಿಸಲು ಬಯಸುವಿರಾ?</string>
+    <string name="setting_reset_confirmation">ಆದ್ಯತೆಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">ಓದು ಮೋಡ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಾರಂಭಿಸಿ</string>
+    <string name="title_same_intensity_brightness">ಒಂದೇ ತೀವ್ರತೆ ಮತ್ತು ಪ್ರಕಾಶಮಾನತೆ</string>
+    <string name="title_reset_app_data">ಅಪ್ಲಿಕೇಶನ್ ಡೇಟಾವನ್ನು ಮರುಸ್ಥಾಪಿಸಿ</string>
+    <string name="title_confirm_reset">ಮರುಸ್ಥಾಪನೆ ದೃಢೀಕರಿಸಿ</string>
+
+    <!-- Theme -->
+    <string name="title_theme">ಥೀಮ್ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="theme_system_default">ಸಿಸ್ಟಮ್ ಪೂರ್ವನಿಯೋಜಿತ</string>
+    <string name="theme_dark">ಡಾರ್ಕ್</string>
+    <string name="theme_light">ಲೈಟ್</string>
+
+    <!-- Button -->
+    <string name="start">ಪ್ರಾರಂಭಿಸಿ</string>
+    <string name="stop">ನಿಲ್ಲಿಸಿ</string>
+    <string name="custom_color">ಕಸ್ಟಮ್ ಬಣ್ಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">ಕಸ್ಟಮ್ ಬಣ್ಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">ಓದು ಮೋಡ್ ನಡೆಯುತ್ತಿದೆ</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ವೃತ್ತ ಚಿಹ್ನೆ</string>
+
+    <!-- Common -->
+    <string name="ok">ಸರಿ</string>
+    <string name="yes">ಹೌದು</string>
+    <string name="confirm">ದೃಢೀಕರಿಸಿ</string>
+    <string name="done">ಮುಗಿಯಿತು</string>
+    <string name="cancel">ರದ್ದುಮಾಡಿ</string>
+</resources>
