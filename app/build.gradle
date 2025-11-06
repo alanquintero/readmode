@@ -10,10 +10,19 @@ android {
         applicationId "autonightmode.mx.com.alanquintero.autonightmode"
         minSdkVersion 21
         targetSdkVersion 36
-        versionCode 7
+        versionCode 10
         versionName "2.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+
+            proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"))
+        }
     }
     testOptions {
         unitTests {
