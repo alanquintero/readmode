@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tryb czytania</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Żółty</string>
+    <string name="color_pink">Różowy</string>
+    <string name="color_green">Zielony</string>
+    <string name="color_gray">Szary</string>
+    <string name="color_white">Biały</string>
+    <string name="color_custom">Niestandardowy</string>
+
+    <!-- Labels -->
+    <string name="select_color">Wybierz kolor</string>
+    <string name="color_settings_label">Ustawienia koloru</string>
+    <string name="color_settings_placeholder">Ustawienia koloru</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Intensywność koloru</string>
+    <string name="brightness">Jasność</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Ustawienia</string>
+    <string name="menu_theme">Motyw</string>
+    <string name="menu_donate">Wesprzyj</string>
+    <string name="menu_feedback">Opinie</string>
+
+    <!-- Settings info -->
+    <string name="info">Informacje</string>
+    <string name="info_same_intensity_brightness">Użyj tej samej intensywności i jasności dla wszystkich kolorów zamiast ustawiać każdy osobno.</string>
+    <string name="info_auto_start_read_mode">Automatycznie uruchom Tryb czytania po zmianie koloru, intensywności lub jasności.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Ta sama intensywność i jasność dla wszystkich kolorów</string>
+    <string name="setting_auto_start_read_mode">Automatyczne uruchamianie Trybu czytania przy zmianach</string>
+    <string name="setting_reset_warning_info">Spowoduje to usunięcie wszystkich preferencji i przywrócenie ustawień domyślnych. Kontynuować?</string>
+    <string name="setting_reset_warning_confirm">Czy na pewno chcesz usunąć dane?</string>
+    <string name="setting_reset_confirmation">Ustawienia zresetowane</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Automatyczne uruchamianie Trybu czytania</string>
+    <string name="title_same_intensity_brightness">Ta sama intensywność i jasność</string>
+    <string name="title_reset_app_data">Zresetuj dane aplikacji</string>
+    <string name="title_confirm_reset">Potwierdź reset</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Wybierz motyw</string>
+    <string name="theme_system_default">Domyślny systemowy</string>
+    <string name="theme_dark">Ciemny</string>
+    <string name="theme_light">Jasny</string>
+
+    <!-- Button -->
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="custom_color">Wybierz niestandardowy kolor</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Wybierz niestandardowy kolor</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Tryb czytania jest aktywny</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ikona koła</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">TAK</string>
+    <string name="confirm">POTWIERDŹ</string>
+    <string name="done">GOTOWE</string>
+    <string name="cancel">Anuluj</string>
+</resources>

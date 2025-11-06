@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">రెడ్ మోడ్</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">పసుపు</string>
+    <string name="color_pink">పింక్</string>
+    <string name="color_green">ఆకుపచ్చ</string>
+    <string name="color_gray">బూడిద</string>
+    <string name="color_white">తెలుపు</string>
+    <string name="color_custom">అనుకూల</string>
+
+    <!-- Labels -->
+    <string name="select_color">రంగును ఎంచుకోండి</string>
+    <string name="color_settings_label">రంగు సెట్టింగులు</string>
+    <string name="color_settings_placeholder">రంగు సెట్టింగులు</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">రంగు తీవ్రత</string>
+    <string name="brightness">ప్రకాశం</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">మెనూ</string>
+    <string name="menu_settings">సెట్టింగులు</string>
+    <string name="menu_theme">థీమ్</string>
+    <string name="menu_donate">దానం చేయండి</string>
+    <string name="menu_feedback">ఫీడ్‌బ్యాక్</string>
+
+    <!-- Settings info -->
+    <string name="info">సమాచారం</string>
+    <string name="info_same_intensity_brightness">ప్రతి రంగును వేర్వేరు గా సెట్ చేయడం కంటే అన్ని రంగులకు అదే తీవ్రత మరియు ప్రకాశం ఉపయోగించండి.</string>
+    <string name="info_auto_start_read_mode">రంగు, తీవ్రత లేదా ప్రకాశం మార్చినప్పుడు ఆటోమాటిక్‌గా రీడ్ మోడ్ ప్రారంభిస్తుంది.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">అన్ని రంగులకు అదే తీవ్రత &amp; ప్రకాశం</string>
+    <string name="setting_auto_start_read_mode">మార్పులపై ఆటోమేటిక్‌గా రీడ్ మోడ్ ప్రారంభించండి</string>
+    <string name="setting_reset_warning_info">ఇది మీ అన్ని ప్రిఫరెన్సులను తొలగించి డిఫాల్ట్‌ను పునరుద్ధరిస్తుంది. కొనసాగించాలా?</string>
+    <string name="setting_reset_warning_confirm">డేటాను తొలగించాలనుకుంటున్నారని మీరు నిశ్చయించుకున్నారా?</string>
+    <string name="setting_reset_confirmation">ప్రిఫరెన్స్‌లు రీసెట్ చేయబడ్డాయి</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">ఆటోమేటిక్‌గా రీడ్ మోడ్ ప్రారంభించండి</string>
+    <string name="title_same_intensity_brightness">అதே తీవ్రత &amp; ప్రకాశం</string>
+    <string name="title_reset_app_data">యాప్ డేటాను రీసెట్ చేయండి</string>
+    <string name="title_confirm_reset">రిసెట్‌ను ధృవీకరించండి</string>
+
+    <!-- Theme -->
+    <string name="title_theme">థీమ్ ఎంచుకోండి</string>
+    <string name="theme_system_default">సిస్టమ్ డిఫాల్ట్</string>
+    <string name="theme_dark">గాఢం</string>
+    <string name="theme_light">తీక్ష్ణంగా</string>
+
+    <!-- Button -->
+    <string name="start">ప్రారంభించు</string>
+    <string name="stop">నిలిపి వేయండి</string>
+    <string name="custom_color">అనుకూల రంగును ఎంచుకోండి</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">అనుకూల రంగును ఎంచుకోండి</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">రీడ్ మోడ్ నడుస్తోంది</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">చక్రం చిహ్నం</string>
+
+    <!-- Common -->
+    <string name="ok">సరే</string>
+    <string name="yes">అవును</string>
+    <string name="confirm">ధృవీకరించండి</string>
+    <string name="done">పూర్తయింది</string>
+    <string name="cancel">రద్దు చేయండి</string>
+</resources>

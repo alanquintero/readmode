@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">කියවීමේ ප්‍රකාරය</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">කහ</string>
+    <string name="color_pink">රෝස</string>
+    <string name="color_green">කොළ</string>
+    <string name="color_gray">අළු</string>
+    <string name="color_white">සුදු</string>
+    <string name="color_custom">රිසිකළ</string>
+
+    <!-- Labels -->
+    <string name="select_color">වර්ණයක් තෝරන්න</string>
+    <string name="color_settings_label">වර්ණ සැකසුම්</string>
+    <string name="color_settings_placeholder">වර්ණ සැකසුම්</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">වර්ණ තීව්‍රතාවය</string>
+    <string name="brightness">ප්‍රභාශීලතාව</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">මෙනුව</string>
+    <string name="menu_settings">සැකසුම්</string>
+    <string name="menu_theme">තේමාව</string>
+    <string name="menu_donate">පරිත්‍යාග කරන්න</string>
+    <string name="menu_feedback">ප්‍රතිචාර</string>
+
+    <!-- Settings info -->
+    <string name="info">තොරතුරු</string>
+    <string name="info_same_intensity_brightness">එක් එක් වර්ණය වෙන වෙනම සැකසීම වෙනුවට සියලු වර්ණ සඳහා එකම තීව්‍රතාවය හා ප්‍රභාශීලතාවය භාවිතා කරන්න.</string>
+    <string name="info_auto_start_read_mode">වර්ණය, තීව්‍රතාවය හෝ ප්‍රභාශීලතාවය වෙනස් වන විට ස්වයංක්‍රීයව කියවීමේ ප්‍රකාරය ආරම්භ කරන්න.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">සියලු වර්ණ සඳහා එකම තීව්‍රතාවය සහ ප්‍රභාශීලතාවය</string>
+    <string name="setting_auto_start_read_mode">වෙනස්කම් සිදු වූ විට ස්වයංක්‍රීයව කියවීමේ ප්‍රකාරය ආරම්භ කරන්න</string>
+    <string name="setting_reset_warning_info">මෙය ඔබගේ සියලුම අභිරුචි මකා ස්වභාවික සැකසුම් නැවත සකස් කරයි. ඉදිරියට යන්නද?</string>
+    <string name="setting_reset_warning_confirm">දත්ත මැකීමට ඔබට විශ්වාසද?</string>
+    <string name="setting_reset_confirmation">අභිරුචි නැවත සකස් කරන ලදි</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">ස්වයංක්‍රීයව කියවීමේ ප්‍රකාරය ආරම්භ කරන්න</string>
+    <string name="title_same_intensity_brightness">එකම තීව්‍රතාවය සහ ප්‍රභාශීලතාවය</string>
+    <string name="title_reset_app_data">ඇප් දත්ත නැවත සකස් කරන්න</string>
+    <string name="title_confirm_reset">නැවත සකස් කිරීම තහවුරු කරන්න</string>
+
+    <!-- Theme -->
+    <string name="title_theme">තේමාව තෝරන්න</string>
+    <string name="theme_system_default">පද්ධති පෙරනිමිය</string>
+    <string name="theme_dark">අඳුරු</string>
+    <string name="theme_light">ආලෝකමත්</string>
+
+    <!-- Button -->
+    <string name="start">ආරම්භ කරන්න</string>
+    <string name="stop">නවත්වන්න</string>
+    <string name="custom_color">රිසිකළ වර්ණයක් තෝරන්න</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">රිසිකළ වර්ණයක් තෝරන්න</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">කියවීමේ ප්‍රකාරය ක්‍රියාත්මක වේ</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">වෘත්තීය නිරූපකය</string>
+
+    <!-- Common -->
+    <string name="ok">හරි</string>
+    <string name="yes">ඔව්</string>
+    <string name="confirm">තහවුරු කරන්න</string>
+    <string name="done">අවසන්</string>
+    <string name="cancel">අවලංගු කරන්න</string>
+</resources>

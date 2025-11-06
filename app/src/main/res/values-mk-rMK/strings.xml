@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Режим за читање</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Жолта</string>
+    <string name="color_pink">Розова</string>
+    <string name="color_green">Зелена</string>
+    <string name="color_gray">Сива</string>
+    <string name="color_white">Бела</string>
+    <string name="color_custom">Прилагодена</string>
+
+    <!-- Labels -->
+    <string name="select_color">Изберете боја</string>
+    <string name="color_settings_label">Поставки за боја</string>
+    <string name="color_settings_placeholder">Поставки за боја</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Интензитет на боја</string>
+    <string name="brightness">Светлина</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Мени</string>
+    <string name="menu_settings">Поставки</string>
+    <string name="menu_theme">Тема</string>
+    <string name="menu_donate">Донирај</string>
+    <string name="menu_feedback">Повратни информации</string>
+
+    <!-- Settings info -->
+    <string name="info">Информации</string>
+    <string name="info_same_intensity_brightness">Користете ист интензитет и светлина за сите бои, наместо да ја поставувате секоја посебно.</string>
+    <string name="info_auto_start_read_mode">Автоматски започнете го режимот за читање кога ќе се промени бојата, интензитетот или светлината.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Ист интензитет и светлина за сите бои</string>
+    <string name="setting_auto_start_read_mode">Автоматски започни режим за читање при промени</string>
+    <string name="setting_reset_warning_info">Ова ќе ги избрише сите ваши поставки и ќе ги врати стандардните. Продолжи?</string>
+    <string name="setting_reset_warning_confirm">Дали сте сигурни дека сакате да ги избришете податоците?</string>
+    <string name="setting_reset_confirmation">Поставките се ресетирани</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Автоматски започни режим за читање</string>
+    <string name="title_same_intensity_brightness">Ист интензитет и светлина</string>
+    <string name="title_reset_app_data">Ресетирај податоци на апликацијата</string>
+    <string name="title_confirm_reset">Потврди ресетирање</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Изберете тема</string>
+    <string name="theme_system_default">Системски стандард</string>
+    <string name="theme_dark">Темна</string>
+    <string name="theme_light">Светла</string>
+
+    <!-- Button -->
+    <string name="start">Почни</string>
+    <string name="stop">Стопирај</string>
+    <string name="custom_color">Изберете прилагодена боја</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Изберете прилагодена боја</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Режимот за читање е активен</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">икона круг</string>
+
+    <!-- Common -->
+    <string name="ok">Во ред</string>
+    <string name="yes">Да</string>
+    <string name="confirm">Потврди</string>
+    <string name="done">Готово</string>
+    <string name="cancel">Откажи</string>
+</resources>

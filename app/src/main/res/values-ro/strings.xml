@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mod de citire</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Galben</string>
+    <string name="color_pink">Roz</string>
+    <string name="color_green">Verde</string>
+    <string name="color_gray">Gri</string>
+    <string name="color_white">Alb</string>
+    <string name="color_custom">Personalizat</string>
+
+    <!-- Labels -->
+    <string name="select_color">Selectează o culoare</string>
+    <string name="color_settings_label">Setări culoare</string>
+    <string name="color_settings_placeholder">Setări culoare</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Intensitatea culorii</string>
+    <string name="brightness">Luminozitate</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Meniu</string>
+    <string name="menu_settings">Setări</string>
+    <string name="menu_theme">Temă</string>
+    <string name="menu_donate">Donează</string>
+    <string name="menu_feedback">Feedback</string>
+
+    <!-- Settings info -->
+    <string name="info">Informații</string>
+    <string name="info_same_intensity_brightness">Folosește aceeași intensitate și luminozitate pentru toate culorile în loc să setezi fiecare culoare individual.</string>
+    <string name="info_auto_start_read_mode">Pornește automat Modul de citire când culoarea, intensitatea sau luminozitatea se schimbă.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Aceeași intensitate și luminozitate pentru toate culorile</string>
+    <string name="setting_auto_start_read_mode">Pornește automat Modul de citire la modificări</string>
+    <string name="setting_reset_warning_info">Aceasta va șterge toate preferințele și va restabili valorile implicite. Continui?</string>
+    <string name="setting_reset_warning_confirm">Ești sigur că vrei să ștergi datele?</string>
+    <string name="setting_reset_confirmation">Preferințele au fost resetate</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Pornește automat Modul de citire</string>
+    <string name="title_same_intensity_brightness">Aceeași intensitate și luminozitate</string>
+    <string name="title_reset_app_data">Resetează datele aplicației</string>
+    <string name="title_confirm_reset">Confirmă resetarea</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Alege tema</string>
+    <string name="theme_system_default">Implicit sistem</string>
+    <string name="theme_dark">Întunecat</string>
+    <string name="theme_light">Luminos</string>
+
+    <!-- Button -->
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="custom_color">Alege culoare personalizată</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Alege culoare personalizată</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Modul de citire este activ</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">pictogramă cerc</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">DA</string>
+    <string name="confirm">CONFIRMĂ</string>
+    <string name="done">GATA</string>
+    <string name="cancel">Anulează</string>
+</resources>

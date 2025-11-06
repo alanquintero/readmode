@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ਰੀਡ ਮੋਡ</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">ਪੀਲਾ</string>
+    <string name="color_pink">ਗੁਲਾਬੀ</string>
+    <string name="color_green">ਹਰਾ</string>
+    <string name="color_gray">ਸਲੇਟੀ</string>
+    <string name="color_white">ਚਿੱਟਾ</string>
+    <string name="color_custom">ਕਸਟਮ</string>
+
+    <!-- Labels -->
+    <string name="select_color">ਇੱਕ ਰੰਗ ਚੁਣੋ</string>
+    <string name="color_settings_label">ਰੰਗ ਸੈਟਿੰਗਾਂ</string>
+    <string name="color_settings_placeholder">ਰੰਗ ਸੈਟਿੰਗਾਂ</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">ਰੰਗ ਦੀ ਤੀਬਰਤਾ</string>
+    <string name="brightness">ਚਮਕ</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">ਮੇਨੂ</string>
+    <string name="menu_settings">ਸੈਟਿੰਗਾਂ</string>
+    <string name="menu_theme">ਥੀਮ</string>
+    <string name="menu_donate">ਦਾਨ ਕਰੋ</string>
+    <string name="menu_feedback">ਫੀਡਬੈਕ</string>
+
+    <!-- Settings info -->
+    <string name="info">ਜਾਣਕਾਰੀ</string>
+    <string name="info_same_intensity_brightness">ਸਾਰੇ ਰੰਗਾਂ ਲਈ ਇੱਕੋ ਜਿਹੀ ਤੀਬਰਤਾ ਅਤੇ ਚਮਕ ਵਰਤੋ, ਹਰ ਰੰਗ ਵੱਖਰੇ ਤੌਰ \'ਤੇ ਸੈੱਟ ਕਰਨ ਦੀ ਬਜਾਏ।</string>
+    <string name="info_auto_start_read_mode">ਜਦੋਂ ਰੰਗ, ਤੀਬਰਤਾ ਜਾਂ ਚਮਕ ਬਦਲਦੀ ਹੈ ਤਾਂ ਆਪਣੇ ਆਪ ਰੀਡ ਮੋਡ ਸ਼ੁਰੂ ਕਰੋ।</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">ਸਾਰੇ ਰੰਗਾਂ ਲਈ ਇੱਕੋ ਤੀਬਰਤਾ ਅਤੇ ਚਮਕ</string>
+    <string name="setting_auto_start_read_mode">ਬਦਲਾਅ \'ਤੇ ਆਪਣੇ ਆਪ ਰੀਡ ਮੋਡ ਸ਼ੁਰੂ ਕਰੋ</string>
+    <string name="setting_reset_warning_info">ਇਹ ਤੁਹਾਡੀਆਂ ਸਾਰੀਆਂ ਪਸੰਦਾਂ ਨੂੰ ਮਿਟਾ ਦੇਵੇਗਾ ਅਤੇ ਡਿਫਾਲਟ ਮੁੜ ਸੈੱਟ ਕਰੇਗਾ। ਜਾਰੀ ਰੱਖਣਾ ਹੈ?</string>
+    <string name="setting_reset_warning_confirm">ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ \'ਤੇ ਡਾਟਾ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="setting_reset_confirmation">ਪਸੰਦਾਂ ਮੁੜ ਸੈੱਟ ਕੀਤੀਆਂ ਗਈਆਂ</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">ਆਪਣੇ ਆਪ ਰੀਡ ਮੋਡ ਸ਼ੁਰੂ ਕਰੋ</string>
+    <string name="title_same_intensity_brightness">ਇੱਕੋ ਤੀਬਰਤਾ ਅਤੇ ਚਮਕ</string>
+    <string name="title_reset_app_data">ਐਪ ਡਾਟਾ ਰੀਸੈੱਟ ਕਰੋ</string>
+    <string name="title_confirm_reset">ਰੀਸੈੱਟ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
+
+    <!-- Theme -->
+    <string name="title_theme">ਥੀਮ ਚੁਣੋ</string>
+    <string name="theme_system_default">ਸਿਸਟਮ ਡਿਫਾਲਟ</string>
+    <string name="theme_dark">ਗੂੜ੍ਹਾ</string>
+    <string name="theme_light">ਹਲਕਾ</string>
+
+    <!-- Button -->
+    <string name="start">ਸ਼ੁਰੂ ਕਰੋ</string>
+    <string name="stop">ਰੋਕੋ</string>
+    <string name="custom_color">ਕਸਟਮ ਰੰਗ ਚੁਣੋ</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">ਕਸਟਮ ਰੰਗ ਚੁਣੋ</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">ਰੀਡ ਮੋਡ ਚੱਲ ਰਿਹਾ ਹੈ</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ਗੋਲ ਆਈਕਨ</string>
+
+    <!-- Common -->
+    <string name="ok">ਠੀਕ ਹੈ</string>
+    <string name="yes">ਹਾਂ</string>
+    <string name="confirm">ਪੁਸ਼ਟੀ ਕਰੋ</string>
+    <string name="done">ਮੁਕੰਮਲ</string>
+    <string name="cancel">ਰੱਦ ਕਰੋ</string>
+</resources>

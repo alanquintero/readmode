@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ໂໝດອ່ານ</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">ເຫຼືອງ</string>
+    <string name="color_pink">ຊົມພູ</string>
+    <string name="color_green">ຂຽວ</string>
+    <string name="color_gray">ເທົາ</string>
+    <string name="color_white">ຂາວ</string>
+    <string name="color_custom">ກຳນົດເອງ</string>
+
+    <!-- Labels -->
+    <string name="select_color">ເລືອກສີ</string>
+    <string name="color_settings_label">ການຕັ້ງຄ່າສີ</string>
+    <string name="color_settings_placeholder">ການຕັ້ງຄ່າສີ</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">ຄວາມເຂັ້ມຂອງສີ</string>
+    <string name="brightness">ຄວາມສະຫວ່າງ</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">ເມນູ</string>
+    <string name="menu_settings">ການຕັ້ງຄ່າ</string>
+    <string name="menu_theme">ຮູບແບບ</string>
+    <string name="menu_donate">ບໍລິຈາກ</string>
+    <string name="menu_feedback">ຄຳຕິຊົມ</string>
+
+    <!-- Settings info -->
+    <string name="info">ຂໍ້ມູນ</string>
+    <string name="info_same_intensity_brightness">ໃຊ້ຄ່າຄວາມເຂັ້ມແລະຄວາມສະຫວ່າງດຽວກັນສຳລັບທຸກສີແທນທີ່ຈະຕັ້ງຄ່າແຕ່ລະສີແຍກກັນ.</string>
+    <string name="info_auto_start_read_mode">ເລີ່ມໂໝດອ່ານອັດຕະໂນມັດເມື່ອສີ ຫຼືຄ່າສະຫວ່າງມີການປ່ຽນແປງ.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">ຄວາມເຂັ້ມແລະຄວາມສະຫວ່າງດຽວກັນສຳລັບທຸກສີ</string>
+    <string name="setting_auto_start_read_mode">ເລີ່ມໂໝດອ່ານອັດຕະໂນມັດເມື່ອມີການປ່ຽນແປງ</string>
+    <string name="setting_reset_warning_info">ນີ້ຈະລຶບການຕັ້ງຄ່າທັງໝົດແລະຟື້ນຄືນຄ່າເລີ່ມຕົ້ນ. ຈະດຳເນີນຕໍ່ບໍ?</string>
+    <string name="setting_reset_warning_confirm">ແນ່ໃຈບໍວ່າຈະລຶບຂໍ້ມູນ?</string>
+    <string name="setting_reset_confirmation">ຟື້ນຄືນການຕັ້ງຄ່າສຳເລັດ</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">ເລີ່ມໂໝດອ່ານອັດຕະໂນມັດ</string>
+    <string name="title_same_intensity_brightness">ຄວາມເຂັ້ມແລະຄວາມສະຫວ່າງດຽວກັນ</string>
+    <string name="title_reset_app_data">ຟື້ນຄືນຂໍ້ມູນແອັບ</string>
+    <string name="title_confirm_reset">ຢືນຢັນການຟື້ນຄືນ</string>
+
+    <!-- Theme -->
+    <string name="title_theme">ເລືອກຮູບແບບ</string>
+    <string name="theme_system_default">ຄ່າເລີ່ມຕົ້ນລະບົບ</string>
+    <string name="theme_dark">ມືດ</string>
+    <string name="theme_light">ສວ່າງ</string>
+
+    <!-- Button -->
+    <string name="start">ເລີ່ມ</string>
+    <string name="stop">ຢຸດ</string>
+    <string name="custom_color">ເລືອກສີກຳນົດເອງ</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">ເລືອກສີກຳນົດເອງ</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">ໂໝດອ່ານກຳລັງເຮັດວຽກ</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ໄອຄອນຮູບວົງມົນ</string>
+
+    <!-- Common -->
+    <string name="ok">ຕົກລົງ</string>
+    <string name="yes">ແມ່ນ</string>
+    <string name="confirm">ຢືນຢັນ</string>
+    <string name="done">ສຳເລັດ</string>
+    <string name="cancel">ຍົກເລີກ</string>
+</resources>

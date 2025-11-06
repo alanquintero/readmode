@@ -12,8 +12,8 @@
 
     <!-- Labels -->
     <string name="select_color">Selecciona un color</string>
-    <string name="color_settings_label">Configuración de color</string>
-    <string name="color_settings_placeholder">Configuración de color</string>
+    <string name="color_settings_label">Ajustes de color</string>
+    <string name="color_settings_placeholder">Ajustes de color</string>
     <string name="color_settings_format">%1$s - %2$s</string>
     <string name="intensity">Intensidad del color</string>
     <string name="brightness">Brillo</string>
@@ -22,7 +22,7 @@
 
     <!-- Menu -->
     <string name="menu_desc">Menú</string>
-    <string name="menu_settings">Configuración</string>
+    <string name="menu_settings">Ajustes</string>
     <string name="menu_theme">Tema</string>
     <string name="menu_donate">Donar</string>
     <string name="menu_feedback">Comentarios</string>
@@ -35,14 +35,14 @@
     <!-- Settings -->
     <string name="setting_same_intensity_brightness">Misma intensidad y brillo para todos los colores</string>
     <string name="setting_auto_start_read_mode">Inicio automático del modo de lectura al cambiar</string>
-    <string name="setting_reset_warning_info">Esto borrará todas tus preferencias y restaurará los valores predeterminados. ¿Continuar?</string>
-    <string name="setting_reset_warning_confirm">¿Estás seguro de que deseas eliminar los datos?</string>
+    <string name="setting_reset_warning_info">Esto borrará todas tus preferencias y restaurará los valores predeterminados. ¿Deseas continuar?</string>
+    <string name="setting_reset_warning_confirm">¿Seguro que quieres eliminar los datos?</string>
     <string name="setting_reset_confirmation">Preferencias restablecidas</string>
 
     <!-- Settings titles -->
     <string name="title_auto_start_read_mode">Inicio automático del modo de lectura</string>
     <string name="title_same_intensity_brightness">Misma intensidad y brillo</string>
-    <string name="title_reset_app_data">Restablecer datos de la app</string>
+    <string name="title_reset_app_data">Restablecer datos de la aplicación</string>
     <string name="title_confirm_reset">Confirmar restablecimiento</string>
 
     <!-- Theme -->
@@ -66,9 +66,9 @@
     <string name="circle_icon_desc">icono de círculo</string>
 
     <!-- Common -->
-    <string name="ok">OK</string>
+    <string name="ok">Aceptar</string>
     <string name="yes">SÍ</string>
     <string name="confirm">CONFIRMAR</string>
-    <string name="done">LISTO</string>
+    <string name="done">HECHO</string>
     <string name="cancel">Cancelar</string>
 </resources>

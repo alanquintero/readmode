@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mod da lectura</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Mellen</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_green">Verd</string>
+    <string name="color_gray">Gri</string>
+    <string name="color_white">Alv</string>
+    <string name="color_custom">Persunalisà</string>
+
+    <!-- Labels -->
+    <string name="select_color">Tscherna ina colur</string>
+    <string name="color_settings_label">Parameters da colur</string>
+    <string name="color_settings_placeholder">Parameters da colur</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Intensitad da colur</string>
+    <string name="brightness">Clerezza</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Parameters</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Far ina donaziun</string>
+    <string name="menu_feedback">Recensiun</string>
+
+    <!-- Settings info -->
+    <string name="info">Infurmaziuns</string>
+    <string name="info_same_intensity_brightness">Utilisescha la medema intensitad e clerezza per tut las colurs empè da definir mintga colur separadamain.</string>
+    <string name="info_auto_start_read_mode">Avia automaticamain il Modus da lectura cura che la colur, l’intensitad u la clerezza sa midan.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Medema intensitad e clerezza per tut las colurs</string>
+    <string name="setting_auto_start_read_mode">Avia automaticamain il Modus da lectura tar midadas</string>
+    <string name="setting_reset_warning_info">Quai stizzarà tut las preferenzas e restaurarà las valurs da standard. Vuls cuntinuar?</string>
+    <string name="setting_reset_warning_confirm">Es ti segir che ti vuls stizzar las datas?</string>
+    <string name="setting_reset_confirmation">Preferenzas restauradas</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Avia automaticamain il Modus da lectura</string>
+    <string name="title_same_intensity_brightness">Medema intensitad e clerezza</string>
+    <string name="title_reset_app_data">Restaurar datas da l’app</string>
+    <string name="title_confirm_reset">Confermar restauraziun</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Tscherna il tema</string>
+    <string name="theme_system_default">Standard dal sistem</string>
+    <string name="theme_dark">Stgir</string>
+    <string name="theme_light">Cler</string>
+
+    <!-- Button -->
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="custom_color">Tscherna colur persunalisada</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Tscherna colur persunalisada</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Modus da lectura è activ</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">icona da cerc</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">GEA</string>
+    <string name="confirm">CONFERMAR</string>
+    <string name="done">FINÌ</string>
+    <string name="cancel">Interrumper</string>
+</resources>

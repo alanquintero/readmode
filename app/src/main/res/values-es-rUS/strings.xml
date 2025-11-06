@@ -36,7 +36,7 @@
     <string name="setting_same_intensity_brightness">Misma intensidad y brillo para todos los colores</string>
     <string name="setting_auto_start_read_mode">Inicio automático del modo de lectura al cambiar</string>
     <string name="setting_reset_warning_info">Esto borrará todas tus preferencias y restaurará los valores predeterminados. ¿Continuar?</string>
-    <string name="setting_reset_warning_confirm">¿Estás seguro de que deseas eliminar los datos?</string>
+    <string name="setting_reset_warning_confirm">¿Estás seguro de que quieres eliminar los datos?</string>
     <string name="setting_reset_confirmation">Preferencias restablecidas</string>
 
     <!-- Settings titles -->

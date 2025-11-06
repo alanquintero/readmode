@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Režim čítania</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Žltá</string>
+    <string name="color_pink">Ružová</string>
+    <string name="color_green">Zelená</string>
+    <string name="color_gray">Sivá</string>
+    <string name="color_white">Biela</string>
+    <string name="color_custom">Vlastná</string>
+
+    <!-- Labels -->
+    <string name="select_color">Vyber farbu</string>
+    <string name="color_settings_label">Nastavenia farieb</string>
+    <string name="color_settings_placeholder">Nastavenia farieb</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Intenzita farby</string>
+    <string name="brightness">Jas</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Ponuka</string>
+    <string name="menu_settings">Nastavenia</string>
+    <string name="menu_theme">Téma</string>
+    <string name="menu_donate">Darovať</string>
+    <string name="menu_feedback">Spätná väzba</string>
+
+    <!-- Settings info -->
+    <string name="info">Informácie</string>
+    <string name="info_same_intensity_brightness">Použi rovnakú intenzitu a jas pre všetky farby namiesto nastavovania každej farby samostatne.</string>
+    <string name="info_auto_start_read_mode">Automaticky spusti režim čítania, keď sa zmení farba, intenzita alebo jas.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Rovnaká intenzita a jas pre všetky farby</string>
+    <string name="setting_auto_start_read_mode">Automaticky spustiť režim čítania pri zmenách</string>
+    <string name="setting_reset_warning_info">Toto vymaže všetky tvoje preferencie a obnoví predvolené nastavenia. Pokračovať?</string>
+    <string name="setting_reset_warning_confirm">Naozaj chceš vymazať údaje?</string>
+    <string name="setting_reset_confirmation">Preferencie boli obnovené</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Automaticky spustiť režim čítania</string>
+    <string name="title_same_intensity_brightness">Rovnaká intenzita a jas</string>
+    <string name="title_reset_app_data">Obnoviť údaje aplikácie</string>
+    <string name="title_confirm_reset">Potvrdiť obnovenie</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Vyber tému</string>
+    <string name="theme_system_default">Predvolené systému</string>
+    <string name="theme_dark">Tmavá</string>
+    <string name="theme_light">Svetlá</string>
+
+    <!-- Button -->
+    <string name="start">Spustiť</string>
+    <string name="stop">Zastaviť</string>
+    <string name="custom_color">Vyber vlastnú farbu</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Vyber vlastnú farbu</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Režim čítania je aktívny</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ikona kruhu</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">ÁNO</string>
+    <string name="confirm">POTVRDIŤ</string>
+    <string name="done">HOTOVO</string>
+    <string name="cancel">Zrušiť</string>
+</resources>

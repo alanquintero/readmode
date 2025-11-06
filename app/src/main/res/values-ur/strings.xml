@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ریڈ موڈ</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">پیلا</string>
+    <string name="color_pink">گلابی</string>
+    <string name="color_green">سبز</string>
+    <string name="color_gray">سرمئی</string>
+    <string name="color_white">سفید</string>
+    <string name="color_custom">حسب مرضی</string>
+
+    <!-- Labels -->
+    <string name="select_color">رنگ منتخب کریں</string>
+    <string name="color_settings_label">رنگ کی ترتیبات</string>
+    <string name="color_settings_placeholder">رنگ کی ترتیبات</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">رنگ کی شدت</string>
+    <string name="brightness">روشنائی</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">مینیو</string>
+    <string name="menu_settings">ترتیبات</string>
+    <string name="menu_theme">تھیم</string>
+    <string name="menu_donate">عطیہ کریں</string>
+    <string name="menu_feedback">رائے</string>
+
+    <!-- Settings info -->
+    <string name="info">معلومات</string>
+    <string name="info_same_intensity_brightness">تمام رنگوں کے لیے ایک جیسی شدت اور روشنائی استعمال کریں بجائے اس کے کہ ہر رنگ کو الگ سے ترتیب دیں۔</string>
+    <string name="info_auto_start_read_mode">جب رنگ، شدت یا روشنائی تبدیل ہو تو ریڈ موڈ خود بخود شروع ہو جائے۔</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">تمام رنگوں کے لیے ایک جیسی شدت اور روشنائی</string>
+    <string name="setting_auto_start_read_mode">تبدیلیوں پر ریڈ موڈ خود بخود شروع کریں</string>
+    <string name="setting_reset_warning_info">یہ آپ کی تمام ترتیبات حذف کر دے گا اور ڈیفالٹ بحال کر دے گا۔ کیا جاری رکھنا چاہتے ہیں؟</string>
+    <string name="setting_reset_warning_confirm">کیا آپ واقعی ڈیٹا حذف کرنا چاہتے ہیں؟</string>
+    <string name="setting_reset_confirmation">ترتیبات دوبارہ ترتیب دی گئی</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">ریڈ موڈ خود بخود شروع کریں</string>
+    <string name="title_same_intensity_brightness">ایک جیسی شدت اور روشنائی</string>
+    <string name="title_reset_app_data">ایپ کے ڈیٹا کو ری سیٹ کریں</string>
+    <string name="title_confirm_reset">ری سیٹ کی تصدیق کریں</string>
+
+    <!-- Theme -->
+    <string name="title_theme">تھیم منتخب کریں</string>
+    <string name="theme_system_default">سسٹم ڈیفالٹ</string>
+    <string name="theme_dark">ڈارک</string>
+    <string name="theme_light">لائٹ</string>
+
+    <!-- Button -->
+    <string name="start">شروع کریں</string>
+    <string name="stop">روکیں</string>
+    <string name="custom_color">حسب مرضی رنگ منتخب کریں</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">حسب مرضی رنگ منتخب کریں</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">ریڈ موڈ فعال ہے</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">دائرہ آئیکن</string>
+
+    <!-- Common -->
+    <string name="ok">ٹھیک ہے</string>
+    <string name="yes">ہاں</string>
+    <string name="confirm">تصدیق کریں</string>
+    <string name="done">مکمل</string>
+    <string name="cancel">منسوخ کریں</string>
+</resources>

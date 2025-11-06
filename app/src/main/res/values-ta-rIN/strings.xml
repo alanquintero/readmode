@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">படிப்பு முறை</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">மஞ்சள்</string>
+    <string name="color_pink">பிங்க்</string>
+    <string name="color_green">பச்சை</string>
+    <string name="color_gray">சாம்பல்</string>
+    <string name="color_white">வெள்ளை</string>
+    <string name="color_custom">தனிப்பயன்</string>
+
+    <!-- Labels -->
+    <string name="select_color">ஒரு நிறத்தை தேர்வு செய்யவும்</string>
+    <string name="color_settings_label">நிற அமைப்புகள்</string>
+    <string name="color_settings_placeholder">நிற அமைப்புகள்</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">நிற தீவிரம்</string>
+    <string name="brightness">பிரகாசம்</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">மெனு</string>
+    <string name="menu_settings">அமைப்புகள்</string>
+    <string name="menu_theme">தீம்</string>
+    <string name="menu_donate">நன்கொடையிட</string>
+    <string name="menu_feedback">கருத்து</string>
+
+    <!-- Settings info -->
+    <string name="info">தகவல்</string>
+    <string name="info_same_intensity_brightness">ஒவ்வொரு நிறத்தையும் தனியாக அமைக்காமல், அனைத்து நிறங்களுக்கும் ஒரே தீவிரத்தையும் பிரகாசத்தையும் பயன்படுத்தவும்.</string>
+    <string name="info_auto_start_read_mode">நிறம், தீவிரம் அல்லது பிரகாசம் மாற்றப்பட்டால் படிப்பு முறையை தானாக தொடங்கும்.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">அனைத்து நிறங்களுக்கும் ஒரே தீவிரம் &amp; பிரகாசம்</string>
+    <string name="setting_auto_start_read_mode">மாற்றங்களில் படிப்பு முறையை தானாகத் தொடங்கு</string>
+    <string name="setting_reset_warning_info">இது உங்கள் அனைத்து முன்னுரிமைகளையும் அழித்து இயல்புநிலை அமைப்புகளை மீட்டமைக்கும். தொடர்வீர்களா?</string>
+    <string name="setting_reset_warning_confirm">தரவை நீக்க நீங்கள் உறுதியாக இருக்கிறீர்களா?</string>
+    <string name="setting_reset_confirmation">முன்னுரிமைகள் மீட்டமைக்கப்பட்டன</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">படிப்பு முறையை தானாகத் தொடங்கு</string>
+    <string name="title_same_intensity_brightness">ஒரே தீவிரம் &amp; பிரகாசம்</string>
+    <string name="title_reset_app_data">ஆப் தரவை மீட்டமை</string>
+    <string name="title_confirm_reset">மீட்டமைப்பை உறுதிப்படுத்தவும்</string>
+
+    <!-- Theme -->
+    <string name="title_theme">தீம் தேர்வு செய்யவும்</string>
+    <string name="theme_system_default">சிஸ்டம் இயல்புநிலை</string>
+    <string name="theme_dark">கருப்பு</string>
+    <string name="theme_light">ஒளி</string>
+
+    <!-- Button -->
+    <string name="start">தொடங்கு</string>
+    <string name="stop">நிறுத்து</string>
+    <string name="custom_color">தனிப்பயன் நிறம் தேர்வு செய்யவும்</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">தனிப்பயன் நிறம் தேர்வு செய்யவும்</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">படிப்பு முறை இயங்குகிறது</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">வட்ட சின்னம்</string>
+
+    <!-- Common -->
+    <string name="ok">சரி</string>
+    <string name="yes">ஆம்</string>
+    <string name="confirm">உறுதிப்படுத்தவும்</string>
+    <string name="done">முடிந்தது</string>
+    <string name="cancel">ரத்து செய்</string>
+</resources>

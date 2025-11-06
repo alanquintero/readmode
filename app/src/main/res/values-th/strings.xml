@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">โหมดอ่าน</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">เหลือง</string>
+    <string name="color_pink">ชมพู</string>
+    <string name="color_green">เขียว</string>
+    <string name="color_gray">เทา</string>
+    <string name="color_white">ขาว</string>
+    <string name="color_custom">กำหนดเอง</string>
+
+    <!-- Labels -->
+    <string name="select_color">เลือกสี</string>
+    <string name="color_settings_label">การตั้งค่าสี</string>
+    <string name="color_settings_placeholder">การตั้งค่าสี</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">ความเข้มสี</string>
+    <string name="brightness">ความสว่าง</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">เมนู</string>
+    <string name="menu_settings">การตั้งค่า</string>
+    <string name="menu_theme">ธีม</string>
+    <string name="menu_donate">บริจาค</string>
+    <string name="menu_feedback">ข้อเสนอแนะ</string>
+
+    <!-- Settings info -->
+    <string name="info">ข้อมูล</string>
+    <string name="info_same_intensity_brightness">ใช้ความเข้มและความสว่างเดียวกันสำหรับทุกสี แทนการตั้งค่าสีแต่ละสีแยกกัน</string>
+    <string name="info_auto_start_read_mode">เริ่มโหมดอ่านโดยอัตโนมัติเมื่อมีการเปลี่ยนสี ความเข้ม หรือความสว่าง</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">ความเข้ม &amp; ความสว่างเดียวกันสำหรับทุกสี</string>
+    <string name="setting_auto_start_read_mode">เริ่มโหมดอ่านโดยอัตโนมัติเมื่อมีการเปลี่ยนแปลง</string>
+    <string name="setting_reset_warning_info">การดำเนินการนี้จะลบการตั้งค่าทั้งหมดและคืนค่าเริ่มต้น ดำเนินการต่อหรือไม่?</string>
+    <string name="setting_reset_warning_confirm">คุณแน่ใจหรือว่าต้องการลบข้อมูล?</string>
+    <string name="setting_reset_confirmation">รีเซ็ตการตั้งค่าเรียบร้อยแล้ว</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">เริ่มโหมดอ่านอัตโนมัติ</string>
+    <string name="title_same_intensity_brightness">ความเข้ม &amp; ความสว่างเดียวกัน</string>
+    <string name="title_reset_app_data">รีเซ็ตข้อมูลแอป</string>
+    <string name="title_confirm_reset">ยืนยันการรีเซ็ต</string>
+
+    <!-- Theme -->
+    <string name="title_theme">เลือกธีม</string>
+    <string name="theme_system_default">ค่าเริ่มต้นระบบ</string>
+    <string name="theme_dark">มืด</string>
+    <string name="theme_light">สว่าง</string>
+
+    <!-- Button -->
+    <string name="start">เริ่ม</string>
+    <string name="stop">หยุด</string>
+    <string name="custom_color">เลือกสีที่กำหนดเอง</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">เลือกสีที่กำหนดเอง</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">โหมดอ่านกำลังทำงาน</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ไอคอนวงกลม</string>
+
+    <!-- Common -->
+    <string name="ok">ตกลง</string>
+    <string name="yes">ใช่</string>
+    <string name="confirm">ยืนยัน</string>
+    <string name="done">เสร็จแล้ว</string>
+    <string name="cancel">ยกเลิก</string>
+</resources>

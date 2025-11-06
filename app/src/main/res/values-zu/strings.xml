@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Imodi yokufunda</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Okuphuzi</string>
+    <string name="color_pink">Okupinki</string>
+    <string name="color_green">Okuhlaza</string>
+    <string name="color_gray">Okumpunga</string>
+    <string name="color_white">Okuhlaza mhlophe</string>
+    <string name="color_custom">Ngokwezifiso</string>
+
+    <!-- Labels -->
+    <string name="select_color">Khetha umbala</string>
+    <string name="color_settings_label">Izilungiselelo zombala</string>
+    <string name="color_settings_placeholder">Izilungiselelo zombala</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Amandla wombala</string>
+    <string name="brightness">Ukukhanya</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Imenyu</string>
+    <string name="menu_settings">Izilungiselelo</string>
+    <string name="menu_theme">Isihloko</string>
+    <string name="menu_donate">Nikeza</string>
+    <string name="menu_feedback">Impendulo</string>
+
+    <!-- Settings info -->
+    <string name="info">Ulwazi</string>
+    <string name="info_same_intensity_brightness">Sebenzisa amandla nokukhanya okufanayo kuwo wonke imibala kunokumisa umbala ngamunye ngokwehlukana.</string>
+    <string name="info_auto_start_read_mode">Qala ngokuzenzakalelayo Imodi yokufunda uma umbala, amandla, noma ukukhanya kushintsha.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Amandla nokukhanya okufanayo kuwo wonke imibala</string>
+    <string name="setting_auto_start_read_mode">Qala ngokuzenzakalelayo Imodi yokufunda uma kushintsha</string>
+    <string name="setting_reset_warning_info">Lokhu kuzosisula zonke izintandokazi zakho futhi kubuyisele izilungiselelo zokuqala. Qhubeka?</string>
+    <string name="setting_reset_warning_confirm">Uqinisekile ukuthi ufuna ukususa idatha?</string>
+    <string name="setting_reset_confirmation">Izintandokazi sezisethwe kabusha</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Qala ngokuzenzakalelayo Imodi yokufunda</string>
+    <string name="title_same_intensity_brightness">Amandla nokukhanya okufanayo</string>
+    <string name="title_reset_app_data">Setha kabusha idatha ye-app</string>
+    <string name="title_confirm_reset">Qinisekisa ukusetha kabusha</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Khetha Isihloko</string>
+    <string name="theme_system_default">Okuzenzakalelayo kwesistimu</string>
+    <string name="theme_dark">Okumnyama</string>
+    <string name="theme_light">Okukhanyayo</string>
+
+    <!-- Button -->
+    <string name="start">Qala</string>
+    <string name="stop">Misa</string>
+    <string name="custom_color">Khetha umbala ngokwezifiso</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Khetha umbala ngokwezifiso</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Imodi yokufunda isebenza</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">isithonjana somjikelezo</string>
+
+    <!-- Common -->
+    <string name="ok">KULUNGILE</string>
+    <string name="yes">Yebo</string>
+    <string name="confirm">QINISELA</string>
+    <string name="done">SEKUPHELE</string>
+    <string name="cancel">Khansela</string>
+</resources>

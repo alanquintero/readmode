@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hali ya Kusoma</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Njano</string>
+    <string name="color_pink">Pink</string>
+    <string name="color_green">Kijani</string>
+    <string name="color_gray">Kijivu</string>
+    <string name="color_white">Nyeupe</string>
+    <string name="color_custom">Maalum</string>
+
+    <!-- Labels -->
+    <string name="select_color">Chagua rangi</string>
+    <string name="color_settings_label">Mipangilio ya rangi</string>
+    <string name="color_settings_placeholder">Mipangilio ya rangi</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Ukali wa rangi</string>
+    <string name="brightness">Mwanga</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menyu</string>
+    <string name="menu_settings">Mipangilio</string>
+    <string name="menu_theme">Mandhari</string>
+    <string name="menu_donate">Changia</string>
+    <string name="menu_feedback">Maoni</string>
+
+    <!-- Settings info -->
+    <string name="info">Taarifa</string>
+    <string name="info_same_intensity_brightness">Tumia ukali na mwanga sawa kwa rangi zote badala ya kuweka kila moja kando.</string>
+    <string name="info_auto_start_read_mode">Anza kiotomatiki Hali ya Kusoma wakati rangi, ukali au mwanga vitakapobadilishwa.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Ukali na mwanga sawa kwa rangi zote</string>
+    <string name="setting_auto_start_read_mode">Anza Hali ya Kusoma kiotomatiki kwa mabadiliko</string>
+    <string name="setting_reset_warning_info">Hii itafuta mapendeleo yote na kurejesha chaguo-msingi. Endelea?</string>
+    <string name="setting_reset_warning_confirm">Je, una uhakika unataka kufuta data?</string>
+    <string name="setting_reset_confirmation">Mapendeleo yamewekwa upya</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Anza Hali ya Kusoma kiotomatiki</string>
+    <string name="title_same_intensity_brightness">Ukali na mwanga sawa</string>
+    <string name="title_reset_app_data">Weka upya data ya programu</string>
+    <string name="title_confirm_reset">Thibitisha upya</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Chagua mandhari</string>
+    <string name="theme_system_default">Chaguo-msingi la mfumo</string>
+    <string name="theme_dark">Giza</string>
+    <string name="theme_light">Mwanga</string>
+
+    <!-- Button -->
+    <string name="start">Anza</string>
+    <string name="stop">Simamisha</string>
+    <string name="custom_color">Chagua rangi maalum</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Chagua rangi maalum</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Hali ya Kusoma inaendeshwa</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">alama ya duara</string>
+
+    <!-- Common -->
+    <string name="ok">Sawa</string>
+    <string name="yes">NDIYO</string>
+    <string name="confirm">THIBITISHA</string>
+    <string name="done">IMEKAMILIKA</string>
+    <string name="cancel">Ghairi</string>
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Оку режими</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Сары</string>
+    <string name="color_pink">Кызгылт</string>
+    <string name="color_green">Жашыл</string>
+    <string name="color_gray">Сарык</string>
+    <string name="color_white">Ак</string>
+    <string name="color_custom">Ыңгайлаштырылган</string>
+
+    <!-- Labels -->
+    <string name="select_color">Түс тандаңыз</string>
+    <string name="color_settings_label">Түс жөндөөлөрү</string>
+    <string name="color_settings_placeholder">Түс жөндөөлөрү</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Түс интенсивдүүлүгү</string>
+    <string name="brightness">Жаркырактык</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Меню</string>
+    <string name="menu_settings">Жөндөөлөр</string>
+    <string name="menu_theme">Тема</string>
+    <string name="menu_donate">Кайрымдуулук</string>
+    <string name="menu_feedback">Пикир</string>
+
+    <!-- Settings info -->
+    <string name="info">Маалымат</string>
+    <string name="info_same_intensity_brightness">Ар бир түстү өзүнчө жөндөөнүн ордуна бардык түстөр үчүн бирдей интенсивдүүлүк жана жарыкты колдонуу.</string>
+    <string name="info_auto_start_read_mode">Түс, интенсивдүүлүк же жарык өзгөргөндө окуу режимин автоматтык түрдө иштетүү.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Бардык түстөр үчүн бирдей интенсивдүүлүк жана жарыктык</string>
+    <string name="setting_auto_start_read_mode">Өзгөрүүлөрдө окуу режимин авто баштоо</string>
+    <string name="setting_reset_warning_info">Бул бардык жөндөөлөрүңүздү тазалап, демейки абалга келтирет. Улантууну каалайсызбы?</string>
+    <string name="setting_reset_warning_confirm">Маалыматты чын эле өчүргүңүз келеби?</string>
+    <string name="setting_reset_confirmation">Жөндөөлөр баштапкы абалга келтирилди</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Окуу режимин авто баштоо</string>
+    <string name="title_same_intensity_brightness">Бирдей интенсивдүүлүк жана жарыктык</string>
+    <string name="title_reset_app_data">Тиркеменин маалыматтарын баштапкы абалга келтирүү</string>
+    <string name="title_confirm_reset">Калыбына келтирүүнү тастыктоо</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Теманы тандаңыз</string>
+    <string name="theme_system_default">Системанын демейкиси</string>
+    <string name="theme_dark">Караңгы</string>
+    <string name="theme_light">Жарык</string>
+
+    <!-- Button -->
+    <string name="start">Баштоо</string>
+    <string name="stop">Токтотуу</string>
+    <string name="custom_color">Ыңгайлаштырылган түстү тандаңыз</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Ыңгайлаштырылган түстү тандаңыз</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Окуу режими иштеп жатат</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">тегерек белги</string>
+
+    <!-- Common -->
+    <string name="ok">ОК</string>
+    <string name="yes">ООБА</string>
+    <string name="confirm">ТАСТЫКТОО</string>
+    <string name="done">ДАЯР</string>
+    <string name="cancel">Жокко чыгаруу</string>
+</resources>

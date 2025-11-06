@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chế độ đọc</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Vàng</string>
+    <string name="color_pink">Hồng</string>
+    <string name="color_green">Xanh lá</string>
+    <string name="color_gray">Xám</string>
+    <string name="color_white">Trắng</string>
+    <string name="color_custom">Tùy chỉnh</string>
+
+    <!-- Labels -->
+    <string name="select_color">Chọn màu</string>
+    <string name="color_settings_label">Cài đặt màu</string>
+    <string name="color_settings_placeholder">Cài đặt màu</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Cường độ màu</string>
+    <string name="brightness">Độ sáng</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Cài đặt</string>
+    <string name="menu_theme">Giao diện</string>
+    <string name="menu_donate">Quyên góp</string>
+    <string name="menu_feedback">Phản hồi</string>
+
+    <!-- Settings info -->
+    <string name="info">Thông tin</string>
+    <string name="info_same_intensity_brightness">Sử dụng cùng cường độ và độ sáng cho tất cả các màu thay vì đặt từng màu riêng lẻ.</string>
+    <string name="info_auto_start_read_mode">Tự động bật Chế độ đọc khi màu, cường độ hoặc độ sáng thay đổi.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Cùng cường độ &amp; độ sáng cho tất cả màu</string>
+    <string name="setting_auto_start_read_mode">Tự động bật Chế độ đọc khi thay đổi</string>
+    <string name="setting_reset_warning_info">Hành động này sẽ xóa tất cả tùy chọn của bạn và khôi phục mặc định. Tiếp tục?</string>
+    <string name="setting_reset_warning_confirm">Bạn có chắc chắn muốn xóa dữ liệu không?</string>
+    <string name="setting_reset_confirmation">Đã đặt lại tùy chọn</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Tự động bật Chế độ đọc</string>
+    <string name="title_same_intensity_brightness">Cùng cường độ &amp; độ sáng</string>
+    <string name="title_reset_app_data">Đặt lại dữ liệu ứng dụng</string>
+    <string name="title_confirm_reset">Xác nhận đặt lại</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Chọn giao diện</string>
+    <string name="theme_system_default">Mặc định hệ thống</string>
+    <string name="theme_dark">Tối</string>
+    <string name="theme_light">Sáng</string>
+
+    <!-- Button -->
+    <string name="start">Bắt đầu</string>
+    <string name="stop">Dừng</string>
+    <string name="custom_color">Chọn màu tùy chỉnh</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Chọn màu tùy chỉnh</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Chế độ đọc đang chạy</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">biểu tượng hình tròn</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">CÓ</string>
+    <string name="confirm">XÁC NHẬN</string>
+    <string name="done">XONG</string>
+    <string name="cancel">Hủy</string>
+</resources>

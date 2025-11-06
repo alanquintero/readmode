@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Läsläge</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Gul</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_green">Grön</string>
+    <string name="color_gray">Grå</string>
+    <string name="color_white">Vit</string>
+    <string name="color_custom">Anpassad</string>
+
+    <!-- Labels -->
+    <string name="select_color">Välj en färg</string>
+    <string name="color_settings_label">Färginställningar</string>
+    <string name="color_settings_placeholder">Färginställningar</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Färgintensitet</string>
+    <string name="brightness">Ljusstyrka</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Meny</string>
+    <string name="menu_settings">Inställningar</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Donera</string>
+    <string name="menu_feedback">Feedback</string>
+
+    <!-- Settings info -->
+    <string name="info">Information</string>
+    <string name="info_same_intensity_brightness">Använd samma färgintensitet och ljusstyrka för alla färger istället för att ställa in varje färg separat.</string>
+    <string name="info_auto_start_read_mode">Starta automatiskt läsläge när färg, intensitet eller ljusstyrka ändras.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Samma intensitet och ljusstyrka för alla färger</string>
+    <string name="setting_auto_start_read_mode">Starta automatiskt läsläge vid ändringar</string>
+    <string name="setting_reset_warning_info">Detta raderar alla dina inställningar och återställer standardvärdena. Vill du fortsätta?</string>
+    <string name="setting_reset_warning_confirm">Är du säker på att du vill ta bort data?</string>
+    <string name="setting_reset_confirmation">Inställningarna har återställts</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Starta automatiskt läsläge</string>
+    <string name="title_same_intensity_brightness">Samma intensitet och ljusstyrka</string>
+    <string name="title_reset_app_data">Återställ appdata</string>
+    <string name="title_confirm_reset">Bekräfta återställning</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Välj tema</string>
+    <string name="theme_system_default">Systemets standard</string>
+    <string name="theme_dark">Mörkt</string>
+    <string name="theme_light">Ljust</string>
+
+    <!-- Button -->
+    <string name="start">Starta</string>
+    <string name="stop">Stoppa</string>
+    <string name="custom_color">Välj anpassad färg</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Välj anpassad färg</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Läsläge är aktivt</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">cirkelikon</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">JA</string>
+    <string name="confirm">BEKRÄFTA</string>
+    <string name="done">KLART</string>
+    <string name="cancel">Avbryt</string>
+</resources>

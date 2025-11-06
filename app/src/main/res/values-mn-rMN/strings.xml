@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Унших горим</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Шар</string>
+    <string name="color_pink">Ягаан</string>
+    <string name="color_green">Ногоон</string>
+    <string name="color_gray">Саарал</string>
+    <string name="color_white">Цагаан</string>
+    <string name="color_custom">Тохируулсан</string>
+
+    <!-- Labels -->
+    <string name="select_color">Өнгө сонгох</string>
+    <string name="color_settings_label">Өнгөний тохиргоо</string>
+    <string name="color_settings_placeholder">Өнгөний тохиргоо</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Өнгөний эрчим</string>
+    <string name="brightness">Гэрэлтэлт</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Цэс</string>
+    <string name="menu_settings">Тохиргоо</string>
+    <string name="menu_theme">Сэдэв</string>
+    <string name="menu_donate">Хандивлах</string>
+    <string name="menu_feedback">Санал хүсэлт</string>
+
+    <!-- Settings info -->
+    <string name="info">Мэдээлэл</string>
+    <string name="info_same_intensity_brightness">Бүх өнгөнд ижил эрчим ба гэрэлтэлт ашиглаарай, тус бүрийг тусад нь тохируулахын оронд.</string>
+    <string name="info_auto_start_read_mode">Өнгө, эрчим эсвэл гэрэлтэлт өөрчлөгдөхөд унших горимыг автоматаар эхлүүлэх.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Бүх өнгөнд ижил эрчим ба гэрэлтэлт</string>
+    <string name="setting_auto_start_read_mode">Өөрчлөлтөд унших горимыг автоматаар эхлүүлэх</string>
+    <string name="setting_reset_warning_info">Энэ нь таны бүх тохиргоог устгаж, анхны байдалд оруулна. Үргэлжлүүлэх үү?</string>
+    <string name="setting_reset_warning_confirm">Та өгөгдлийг устгахдаа итгэлтэй байна уу?</string>
+    <string name="setting_reset_confirmation">Тохиргоо дахин тохируулагдсан</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Автоматаар унших горим эхлүүлэх</string>
+    <string name="title_same_intensity_brightness">Ижил эрчим ба гэрэлтэлт</string>
+    <string name="title_reset_app_data">Апп өгөгдлийг дахин тохируулах</string>
+    <string name="title_confirm_reset">Дахин тохируулахыг батлах</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Сэдэв сонгох</string>
+    <string name="theme_system_default">Системийн анхны тохиргоо</string>
+    <string name="theme_dark">Харанхуй</string>
+    <string name="theme_light">Гэгээлэг</string>
+
+    <!-- Button -->
+    <string name="start">Эхлэх</string>
+    <string name="stop">Зогсоох</string>
+    <string name="custom_color">Өөрийн өнгө сонгох</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Өөрийн өнгө сонгох</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Унших горим ажиллаж байна</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">дугуй дүрс</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">Тийм</string>
+    <string name="confirm">Батлах</string>
+    <string name="done">Дууссан</string>
+    <string name="cancel">Цуцлах</string>
+</resources>

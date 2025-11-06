@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Okuma Modu</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Sarı</string>
+    <string name="color_pink">Pembe</string>
+    <string name="color_green">Yeşil</string>
+    <string name="color_gray">Gri</string>
+    <string name="color_white">Beyaz</string>
+    <string name="color_custom">Özel</string>
+
+    <!-- Labels -->
+    <string name="select_color">Bir renk seçin</string>
+    <string name="color_settings_label">Renk ayarları</string>
+    <string name="color_settings_placeholder">Renk ayarları</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Renk yoğunluğu</string>
+    <string name="brightness">Parlaklık</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menü</string>
+    <string name="menu_settings">Ayarlar</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Bağış Yap</string>
+    <string name="menu_feedback">Geri Bildirim</string>
+
+    <!-- Settings info -->
+    <string name="info">Bilgi</string>
+    <string name="info_same_intensity_brightness">Her rengi ayrı ayrı ayarlamak yerine tüm renkler için aynı yoğunluk ve parlaklığı kullanın.</string>
+    <string name="info_auto_start_read_mode">Renk, yoğunluk veya parlaklık değiştirildiğinde Okuma Modu otomatik olarak başlatılır.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Tüm renkler için aynı yoğunluk &amp; parlaklık</string>
+    <string name="setting_auto_start_read_mode">Değişikliklerde Okuma Modunu otomatik başlat</string>
+    <string name="setting_reset_warning_info">Bu, tüm tercihlerinizi silecek ve varsayılanları geri yükleyecektir. Devam edilsin mi?</string>
+    <string name="setting_reset_warning_confirm">Verileri silmek istediğinizden emin misiniz?</string>
+    <string name="setting_reset_confirmation">Tercihler sıfırlandı</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Okuma Modunu otomatik başlat</string>
+    <string name="title_same_intensity_brightness">Aynı yoğunluk &amp; parlaklık</string>
+    <string name="title_reset_app_data">Uygulama verilerini sıfırla</string>
+    <string name="title_confirm_reset">Sıfırlamayı onayla</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Tema Seç</string>
+    <string name="theme_system_default">Sistem Varsayılanı</string>
+    <string name="theme_dark">Koyu</string>
+    <string name="theme_light">Açık</string>
+
+    <!-- Button -->
+    <string name="start">Başlat</string>
+    <string name="stop">Durdur</string>
+    <string name="custom_color">Özel renk seçin</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Özel renk seçin</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Okuma Modu çalışıyor</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">daire simgesi</string>
+
+    <!-- Common -->
+    <string name="ok">Tamam</string>
+    <string name="yes">EVET</string>
+    <string name="confirm">ONAYLA</string>
+    <string name="done">BİTTİ</string>
+    <string name="cancel">İptal</string>
+</resources>

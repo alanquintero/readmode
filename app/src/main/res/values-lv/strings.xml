@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lasīšanas režīms</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Dzeltens</string>
+    <string name="color_pink">Rozā</string>
+    <string name="color_green">Zaļš</string>
+    <string name="color_gray">Pelēks</string>
+    <string name="color_white">Balts</string>
+    <string name="color_custom">Pielāgots</string>
+
+    <!-- Labels -->
+    <string name="select_color">Izvēlieties krāsu</string>
+    <string name="color_settings_label">Krāsu iestatījumi</string>
+    <string name="color_settings_placeholder">Krāsu iestatījumi</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Krāsas intensitāte</string>
+    <string name="brightness">Spilgtums</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Izvēlne</string>
+    <string name="menu_settings">Iestatījumi</string>
+    <string name="menu_theme">Tēma</string>
+    <string name="menu_donate">Ziedot</string>
+    <string name="menu_feedback">Atsauksmes</string>
+
+    <!-- Settings info -->
+    <string name="info">Informācija</string>
+    <string name="info_same_intensity_brightness">Izmantojiet vienādu krāsas intensitāti un spilgtumu visām krāsām, nevis iestatiet katru atsevišķi.</string>
+    <string name="info_auto_start_read_mode">Automātiski sākt lasīšanas režīmu, kad tiek mainīta krāsa, intensitāte vai spilgtums.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Vienāda intensitāte un spilgtums visām krāsām</string>
+    <string name="setting_auto_start_read_mode">Automātiski sākt lasīšanas režīmu, mainot iestatījumus</string>
+    <string name="setting_reset_warning_info">Tas izdzēsīs visus jūsu iestatījumus un atjaunos noklusējumus. Turpināt?</string>
+    <string name="setting_reset_warning_confirm">Vai esat pārliecināts, ka vēlaties dzēst datus?</string>
+    <string name="setting_reset_confirmation">Iestatījumi atiestatīti</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Automātiski sākt lasīšanas režīmu</string>
+    <string name="title_same_intensity_brightness">Vienāda intensitāte un spilgtums</string>
+    <string name="title_reset_app_data">Atiestatīt lietotnes datus</string>
+    <string name="title_confirm_reset">Apstiprināt atiestatīšanu</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Izvēlieties tēmu</string>
+    <string name="theme_system_default">Sistēmas noklusējums</string>
+    <string name="theme_dark">Tumšs</string>
+    <string name="theme_light">Gaišs</string>
+
+    <!-- Button -->
+    <string name="start">Sākt</string>
+    <string name="stop">Apturēt</string>
+    <string name="custom_color">Izvēlieties pielāgotu krāsu</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Izvēlieties pielāgotu krāsu</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Lasīšanas režīms darbojas</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">apļa ikona</string>
+
+    <!-- Common -->
+    <string name="ok">Labi</string>
+    <string name="yes">Jā</string>
+    <string name="confirm">Apstiprināt</string>
+    <string name="done">Pabeigts</string>
+    <string name="cancel">Atcelt</string>
+</resources>

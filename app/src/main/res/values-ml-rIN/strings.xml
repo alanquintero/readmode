@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">വായന മോഡ്</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">മഞ്ഞ</string>
+    <string name="color_pink">പിങ്ക്</string>
+    <string name="color_green">പച്ച</string>
+    <string name="color_gray">ചാരനിറം</string>
+    <string name="color_white">വെള്ള</string>
+    <string name="color_custom">ഇഷ്ടാനുസൃതം</string>
+
+    <!-- Labels -->
+    <string name="select_color">ഒരു നിറം തിരഞ്ഞെടുക്കുക</string>
+    <string name="color_settings_label">നിറ ക്രമീകരണങ്ങൾ</string>
+    <string name="color_settings_placeholder">നിറ ക്രമീകരണങ്ങൾ</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">നിറ തീവ്രത</string>
+    <string name="brightness">പ്രകാശം</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">മെനു</string>
+    <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
+    <string name="menu_theme">തീം</string>
+    <string name="menu_donate">സംഭാവന</string>
+    <string name="menu_feedback">പ്രതികരണം</string>
+
+    <!-- Settings info -->
+    <string name="info">വിവരം</string>
+    <string name="info_same_intensity_brightness">ഓരോ നിറത്തിനും പ്രത്യേകം ക്രമീകരണങ്ങൾ നൽകുന്നതിനുപകരം എല്ലാ നിറങ്ങൾക്കും ഒരേ തീവ്രതയും പ്രകാശവും ഉപയോഗിക്കുക.</string>
+    <string name="info_auto_start_read_mode">നിറം, തീവ്രത, അല്ലെങ്കിൽ പ്രകാശം മാറ്റുമ്പോൾ വായന മോഡ് സ്വയമേവ ആരംഭിക്കുക.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">എല്ലാ നിറങ്ങൾക്കും ഒരേ തീവ്രതയും പ്രകാശവും</string>
+    <string name="setting_auto_start_read_mode">മാറ്റങ്ങളിൽ വായന മോഡ് സ്വയമേവ ആരംഭിക്കുക</string>
+    <string name="setting_reset_warning_info">ഇത് നിങ്ങളുടെ എല്ലാ മുൻഗണനകളും ഇല്ലാതാക്കി ഡിഫോൾട്ടുകൾ പുനസ്ഥാപിക്കും. തുടരണമോ?</string>
+    <string name="setting_reset_warning_confirm">ഡാറ്റ നീക്കം ചെയ്യാൻ നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
+    <string name="setting_reset_confirmation">മുൻഗണനകൾ പുനഃക്രമീകരിച്ചു</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">സ്വയം വായന മോഡ് ആരംഭിക്കുക</string>
+    <string name="title_same_intensity_brightness">ഒരേ തീവ്രതയും പ്രകാശവും</string>
+    <string name="title_reset_app_data">ആപ്പ് ഡാറ്റ റീസെറ്റ് ചെയ്യുക</string>
+    <string name="title_confirm_reset">റീസെറ്റ് സ്ഥിരീകരിക്കുക</string>
+
+    <!-- Theme -->
+    <string name="title_theme">തീം തിരഞ്ഞെടുക്കുക</string>
+    <string name="theme_system_default">സിസ്റ്റം ഡിഫോൾട്ട്</string>
+    <string name="theme_dark">ഇരുണ്ട</string>
+    <string name="theme_light">ഇളം</string>
+
+    <!-- Button -->
+    <string name="start">ആരംഭിക്കുക</string>
+    <string name="stop">നിർത്തുക</string>
+    <string name="custom_color">ഇഷ്ടാനുസൃത നിറം തിരഞ്ഞെടുക്കുക</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">ഇഷ്ടാനുസൃത നിറം തിരഞ്ഞെടുക്കുക</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">വായന മോഡ് പ്രവർത്തിക്കുന്നു</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">വൃത്ത ഐക്കൺ</string>
+
+    <!-- Common -->
+    <string name="ok">ശരി</string>
+    <string name="yes">അതെ</string>
+    <string name="confirm">സ്ഥിരീകരിക്കുക</string>
+    <string name="done">പൂർത്തിയായി</string>
+    <string name="cancel">റദ്ദാക്കുക</string>
+</resources>

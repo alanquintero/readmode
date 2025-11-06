@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Режим читання</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Жовтий</string>
+    <string name="color_pink">Рожевий</string>
+    <string name="color_green">Зелений</string>
+    <string name="color_gray">Сірий</string>
+    <string name="color_white">Білий</string>
+    <string name="color_custom">Власний</string>
+
+    <!-- Labels -->
+    <string name="select_color">Виберіть колір</string>
+    <string name="color_settings_label">Налаштування кольору</string>
+    <string name="color_settings_placeholder">Налаштування кольору</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Інтенсивність кольору</string>
+    <string name="brightness">Яскравість</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Меню</string>
+    <string name="menu_settings">Налаштування</string>
+    <string name="menu_theme">Тема</string>
+    <string name="menu_donate">Пожертвувати</string>
+    <string name="menu_feedback">Відгук</string>
+
+    <!-- Settings info -->
+    <string name="info">Інформація</string>
+    <string name="info_same_intensity_brightness">Використовуйте однакову інтенсивність і яскравість для всіх кольорів замість того, щоб налаштовувати кожен окремо.</string>
+    <string name="info_auto_start_read_mode">Автоматично запускати Режим читання при зміні кольору, інтенсивності або яскравості.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Однакова інтенсивність і яскравість для всіх кольорів</string>
+    <string name="setting_auto_start_read_mode">Автозапуск Режиму читання при змінах</string>
+    <string name="setting_reset_warning_info">Це видалить усі ваші налаштування та відновить значення за замовчуванням. Продовжити?</string>
+    <string name="setting_reset_warning_confirm">Ви впевнені, що хочете видалити дані?</string>
+    <string name="setting_reset_confirmation">Налаштування скинуто</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Автозапуск Режиму читання</string>
+    <string name="title_same_intensity_brightness">Однакова інтенсивність і яскравість</string>
+    <string name="title_reset_app_data">Скинути дані додатку</string>
+    <string name="title_confirm_reset">Підтвердити скидання</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Вибрати тему</string>
+    <string name="theme_system_default">Системна за замовчуванням</string>
+    <string name="theme_dark">Темна</string>
+    <string name="theme_light">Світла</string>
+
+    <!-- Button -->
+    <string name="start">Старт</string>
+    <string name="stop">Стоп</string>
+    <string name="custom_color">Вибрати власний колір</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Вибрати власний колір</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Режим читання активний</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">іконка кола</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">ТАК</string>
+    <string name="confirm">ПІДТВЕРДИТИ</string>
+    <string name="done">ГОТОВО</string>
+    <string name="cancel">Скасувати</string>
+</resources>

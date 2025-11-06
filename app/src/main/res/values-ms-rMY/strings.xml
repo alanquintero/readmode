@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mod Baca</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Kuning</string>
+    <string name="color_pink">Merah jambu</string>
+    <string name="color_green">Hijau</string>
+    <string name="color_gray">Kelabu</string>
+    <string name="color_white">Putih</string>
+    <string name="color_custom">Tersuai</string>
+
+    <!-- Labels -->
+    <string name="select_color">Pilih warna</string>
+    <string name="color_settings_label">Tetapan warna</string>
+    <string name="color_settings_placeholder">Tetapan warna</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Keamatan warna</string>
+    <string name="brightness">Kecerahan</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Menu</string>
+    <string name="menu_settings">Tetapan</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_donate">Derma</string>
+    <string name="menu_feedback">Maklum balas</string>
+
+    <!-- Settings info -->
+    <string name="info">Maklumat</string>
+    <string name="info_same_intensity_brightness">Gunakan keamatan dan kecerahan warna yang sama untuk semua warna dan bukannya menetapkan setiap satu secara berasingan.</string>
+    <string name="info_auto_start_read_mode">Mulakan Mod Baca secara automatik apabila warna, keamatan, atau kecerahan ditukar.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Keamatan &amp; kecerahan yang sama untuk semua warna</string>
+    <string name="setting_auto_start_read_mode">Mulakan Mod Baca secara automatik apabila ada perubahan</string>
+    <string name="setting_reset_warning_info">Ini akan memadam semua keutamaan anda dan mengembalikan tetapan asal. Teruskan?</string>
+    <string name="setting_reset_warning_confirm">Adakah anda pasti mahu padam data?</string>
+    <string name="setting_reset_confirmation">Keutamaan telah ditetapkan semula</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Mulakan Mod Baca secara automatik</string>
+    <string name="title_same_intensity_brightness">Keamatan &amp; kecerahan yang sama</string>
+    <string name="title_reset_app_data">Tetapkan semula data aplikasi</string>
+    <string name="title_confirm_reset">Sahkan Tetapan Semula</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Pilih Tema</string>
+    <string name="theme_system_default">Lalai Sistem</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="theme_light">Cerah</string>
+
+    <!-- Button -->
+    <string name="start">Mula</string>
+    <string name="stop">Henti</string>
+    <string name="custom_color">Pilih warna tersuai</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Pilih Warna Tersuai</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Mod Baca sedang berjalan</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">ikon bulatan</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="yes">YA</string>
+    <string name="confirm">SAHKAN</string>
+    <string name="done">SELESAI</string>
+    <string name="cancel">Batal</string>
+</resources>

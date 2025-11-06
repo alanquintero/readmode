@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">पढ्ने मोड</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">पहेंलो</string>
+    <string name="color_pink">गुलाबी</string>
+    <string name="color_green">हरियो</string>
+    <string name="color_gray">खैरो</string>
+    <string name="color_white">सेतो</string>
+    <string name="color_custom">अनुकूल</string>
+
+    <!-- Labels -->
+    <string name="select_color">रंग चयन गर्नुहोस्</string>
+    <string name="color_settings_label">रंग सेटिङहरू</string>
+    <string name="color_settings_placeholder">रंग सेटिङहरू</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">रंग तीव्रता</string>
+    <string name="brightness">उज्यालो</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">मेनु</string>
+    <string name="menu_settings">सेटिङहरू</string>
+    <string name="menu_theme">थिम</string>
+    <string name="menu_donate">दान गर्नुहोस्</string>
+    <string name="menu_feedback">प्रतिक्रिया</string>
+
+    <!-- Settings info -->
+    <string name="info">जानकारी</string>
+    <string name="info_same_intensity_brightness">हरेक रंग अलग सेट गर्नुको सट्टा सबै रंगहरूको लागि एउटै तीव्रता र उज्यालो प्रयोग गर्नुहोस्।</string>
+    <string name="info_auto_start_read_mode">रंग, तीव्रता वा उज्यालो परिवर्तन हुँदा पढ्ने मोड स्वचालित रूपमा सुरु गर्नुहोस्।</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">सबै रंगहरूको लागि एउटै तीव्रता र उज्यालो</string>
+    <string name="setting_auto_start_read_mode">परिवर्तनमा पढ्ने मोड स्वत: सुरु गर्नुहोस्</string>
+    <string name="setting_reset_warning_info">यसले सबै प्राथमिकता मेटाएर डिफल्ट पुनर्स्थापित गर्नेछ। जारी राख्नुहुन्छ?</string>
+    <string name="setting_reset_warning_confirm">के तपाईं निश्चित रूपमा डाटा मेटाउन चाहनुहुन्छ?</string>
+    <string name="setting_reset_confirmation">प्राथमिकता रिसेट गरियो</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">स्वचालित रूपमा पढ्ने मोड सुरु गर्नुहोस्</string>
+    <string name="title_same_intensity_brightness">एउटै तीव्रता र उज्यालो</string>
+    <string name="title_reset_app_data">एप डाटा रिसेट गर्नुहोस्</string>
+    <string name="title_confirm_reset">रिसेट पुष्टि गर्नुहोस्</string>
+
+    <!-- Theme -->
+    <string name="title_theme">थिम चयन गर्नुहोस्</string>
+    <string name="theme_system_default">सिस्टम डिफल्ट</string>
+    <string name="theme_dark">कालो</string>
+    <string name="theme_light">सेतो</string>
+
+    <!-- Button -->
+    <string name="start">सुरु गर्नुहोस्</string>
+    <string name="stop">रोक्नुहोस्</string>
+    <string name="custom_color">अनुकूल रंग चयन गर्नुहोस्</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">अनुकूल रंग चयन गर्नुहोस्</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">पढ्ने मोड चलिरहेको छ</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">गोल आइकन</string>
+
+    <!-- Common -->
+    <string name="ok">ठिक छ</string>
+    <string name="yes">हो</string>
+    <string name="confirm">पुष्टि गर्नुहोस्</string>
+    <string name="done">पूरा भयो</string>
+    <string name="cancel">रद्द गर्नुहोस्</string>
+</resources>
