@@ -205,50 +205,50 @@ public class DrawOverAppsService extends Service {
     public void startNotification() {
         Log.d(TAG, "startNotification method");
 
-        // Create PendingIntent to open MainActivity when notification is clicked
-        final Intent notificationIntent = new Intent(this, MainActivity.class);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(
-                this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE
-        );
-
-        // Create notification channel for Android 8+
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            final NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "Read Mode Notifications",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
-            channel.setDescription("Notifications for Read Mode overlay");
-            final NotificationManager manager = getSystemService(NotificationManager.class);
-            if (manager != null) {
-                manager.createNotificationChannel(channel);
-            }
-        }
-
-        // Build the notification using NotificationCompat
-        NotificationCompat.Builder builder = null; // Makes it persistent (can't swipe away)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText(getString(R.string.notification_msg))
-                    .setSmallIcon(R.drawable.ic_notification) // Your status bar icon
-                    .setContentIntent(pendingIntent)
-                    .setTicker(getString(R.string.notification_msg))
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setOngoing(true);
-        } else {
-            builder = new NotificationCompat.Builder(this)
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText(getString(R.string.notification_msg))
-                    .setSmallIcon(R.drawable.ic_notification) // Your status bar icon
-                    .setContentIntent(pendingIntent)
-                    .setTicker(getString(R.string.notification_msg))
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setOngoing(true);
-        }
-
-        // Start the foreground service
         try {
+            // Create PendingIntent to open MainActivity when notification is clicked
+            final Intent notificationIntent = new Intent(this, MainActivity.class);
+            final PendingIntent pendingIntent = PendingIntent.getActivity(
+                    this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE
+            );
+
+            // Create notification channel for Android 8+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                final NotificationChannel channel = new NotificationChannel(
+                        CHANNEL_ID,
+                        "Read Mode Notifications",
+                        NotificationManager.IMPORTANCE_HIGH
+                );
+                channel.setDescription("Notifications for Read Mode overlay");
+                final NotificationManager manager = getSystemService(NotificationManager.class);
+                if (manager != null) {
+                    manager.createNotificationChannel(channel);
+                }
+            }
+
+            // Build the notification using NotificationCompat
+            NotificationCompat.Builder builder = null; // Makes it persistent (can't swipe away)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText(getString(R.string.notification_msg))
+                        .setSmallIcon(R.drawable.ic_notification_img)
+                        .setContentIntent(pendingIntent)
+                        .setTicker(getString(R.string.notification_msg))
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setOngoing(true);
+            } else {
+                builder = new NotificationCompat.Builder(this)
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText(getString(R.string.notification_msg))
+                        .setSmallIcon(R.drawable.ic_notification_img)
+                        .setContentIntent(pendingIntent)
+                        .setTicker(getString(R.string.notification_msg))
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setOngoing(true);
+            }
+
+            // Start the foreground service
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) { // Android 14+
                 startForeground(Constants.NOTIFICATION_ID, builder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
