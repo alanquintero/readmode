@@ -3,8 +3,6 @@
  *****************************************************************/
 package autonightmode.mx.com.alanquintero.autonightmode.ui.controller;
 
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
@@ -103,26 +101,6 @@ public class ColorDropdownControllerTest {
     }
 
     @Test
-    public void handleColorSelection_whenUserSelectionFalse_doesNothing() {
-        try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
-            // Given
-            prefsHelperStatic.when(() -> PrefsHelper.init(mockContext)).thenReturn(mockPrefsHelper);
-
-            ColorDropdownController controller = new ColorDropdownController(
-                    mockContext, mockActivity, mockRootView, mockCustomColorDialog,
-                    mockColorDropdownSubject, mockReadModeCommand, mockReadModeSettings, colorNames
-            );
-
-            // When
-            controller.handleColorSelection(1, false); // Not a user selection
-
-            // Then
-            verify(mockReadModeSettings, never()).setColorDropdownPosition(anyInt());
-            verify(mockPrefsHelper, never()).saveProperty(anyString(), anyInt());
-        }
-    }
-
-    @Test
     public void handleColorSelection_whenNonCustomColor_updatesSettingsAndPreferences() {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
@@ -134,7 +112,7 @@ public class ColorDropdownControllerTest {
             );
 
             // When - Select non-custom color (position 1)
-            controller.handleColorSelection(1, true);
+            controller.handleColorSelection(1);
 
             // Then
             verify(mockReadModeSettings).setColorDropdownPosition(1);
@@ -157,7 +135,7 @@ public class ColorDropdownControllerTest {
             );
 
             // When
-            controller.handleColorSelection(1, true);
+            controller.handleColorSelection(1);
 
             // Then
             verify(mockReadModeCommand).updateReadMode();
@@ -177,7 +155,7 @@ public class ColorDropdownControllerTest {
             );
 
             // When
-            controller.handleColorSelection(1, true);
+            controller.handleColorSelection(1);
 
             // Then
             verify(mockReadModeCommand, never()).updateReadMode();
@@ -197,7 +175,7 @@ public class ColorDropdownControllerTest {
 
             // When - Select custom color position
             int customPosition = Constants.CUSTOM_COLOR_DROPDOWN_POSITION;
-            controller.handleColorSelection(customPosition, true);
+            controller.handleColorSelection(customPosition);
 
             // Then
             verify(mockCustomColorDialog).show(mockFragmentManager, "CustomColorDialogOpenedFromDropdown");

@@ -98,23 +98,12 @@ public class ColorDropdownController {
      * Sets up the selection listener for the color spinner
      */
     private void setupSelectionListener() {
-        // Flag to ignore initial selection
-        final boolean[] isColorDropdownInitializing = {true};
-
         // Listen for selection
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "Position selected: " + position);
-
-                if (isColorDropdownInitializing[0]) {
-                    // Ignore the initial selection triggered by setSelection
-                    isColorDropdownInitializing[0] = false;
-                    Log.d(TAG, "Ignoring the initial selection triggered by setSelection");
-                    return;
-                }
-
-                handleColorSelection(position, true);
+                handleColorSelection(position);
             }
 
             @Override
@@ -128,13 +117,8 @@ public class ColorDropdownController {
      * Handles color selection logic - extracted for testability
      *
      * @param position        The selected position
-     * @param isUserSelection Whether this was a user selection (vs initial selection)
      */
-    public void handleColorSelection(final int position, final boolean isUserSelection) {
-        if (!isUserSelection) {
-            return;
-        }
-
+    public void handleColorSelection(final int position) {
         readModeSettings.setColorDropdownPosition(position);
         colorDropdownSubject.setCurrentColorDropdownPosition(position);
         prefsHelper.saveProperty(Constants.PREF_COLOR_DROPDOWN, position);

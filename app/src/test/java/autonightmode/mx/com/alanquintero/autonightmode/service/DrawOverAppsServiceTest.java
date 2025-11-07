@@ -261,7 +261,7 @@ public class DrawOverAppsServiceTest {
     }
 
     @Test
-    public void myLoadView_onDraw_withSoftBeigeColor_drawsCorrectColor() {
+    public void myLoadView_onDraw_withYellowColor_drawsCorrectColor() {
         try (MockedStatic<PrefsHelper> prefsHelperStatic = mockStatic(PrefsHelper.class)) {
             // Given
             prefsHelperStatic.when(() -> PrefsHelper.init(service)).thenReturn(mockPrefsHelper);
@@ -279,7 +279,7 @@ public class DrawOverAppsServiceTest {
 
             // Then
             verify(mockCanvas).drawARGB(150 - 30, 0, 0, 0); // Brightness adjustment
-            verify(mockCanvas).drawARGB(120, 245, 245, 220 - 50); // Soft beige with intensity
+            verify(mockCanvas).drawARGB(120, 255, 241, 118 - 50); // Yellow with intensity
         }
     }
 
