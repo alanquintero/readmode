@@ -18,7 +18,6 @@
     <string name="menu_desc">Menu</string>
     <string name="menu_settings">Paramètres</string>
     <string name="menu_theme">Thème</string>
-    <string name="menu_donate">Faire un don</string>
     <string name="menu_feedback">Retour</string>
     <string name="info">Info</string>
     <string name="info_same_intensity_brightness">Utiliser la même intensité de couleur et luminosité pour toutes les couleurs au lieu de les définir individuellement.</string>

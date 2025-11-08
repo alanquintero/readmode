@@ -18,7 +18,6 @@
     <string name="menu_desc">मेनू</string>
     <string name="menu_settings">सेटिंग्स</string>
     <string name="menu_theme">थीम</string>
-    <string name="menu_donate">दान करें</string>
     <string name="menu_feedback">फीडबैक</string>
     <string name="info">जानकारी</string>
     <string name="info_same_intensity_brightness">प्रत्येक रंग को अलग-अलग सेट करने के बजाय सभी रंगों के लिए समान रंग तीव्रता और चमक का उपयोग करें।</string>

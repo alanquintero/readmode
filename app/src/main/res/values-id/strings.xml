@@ -18,7 +18,6 @@
     <string name="menu_desc">Menu</string>
     <string name="menu_settings">Pengaturan</string>
     <string name="menu_theme">Tema</string>
-    <string name="menu_donate">Donasi</string>
     <string name="menu_feedback">Umpan Balik</string>
     <string name="info">Info</string>
     <string name="info_same_intensity_brightness">Gunakan intensitas warna dan kecerahan yang sama untuk semua warna alih-alih mengatur setiap warna secara individual.</string>

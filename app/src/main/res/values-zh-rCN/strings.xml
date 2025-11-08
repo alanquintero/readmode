@@ -18,7 +18,6 @@
     <string name="menu_desc">菜单</string>
     <string name="menu_settings">设置</string>
     <string name="menu_theme">主题</string>
-    <string name="menu_donate">捐赠</string>
     <string name="menu_feedback">反馈</string>
     <string name="info">信息</string>
     <string name="info_same_intensity_brightness">对所有颜色使用相同的颜色强度和亮度，而不是单独设置每个颜色。</string>

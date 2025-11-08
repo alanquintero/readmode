@@ -19,7 +19,6 @@
     <string name="menu_desc">القائمة</string>
     <string name="menu_settings">الإعدادات</string>
     <string name="menu_theme">السمة</string>
-    <string name="menu_donate">تبرع</string>
     <string name="menu_feedback">ملاحظات</string>
     <string name="info">معلومات</string>
     <string name="info_same_intensity_brightness">استخدم نفس شدة اللون والسطوع لجميع الألوان بدلاً من تعيين كل لون على حدة.</string>

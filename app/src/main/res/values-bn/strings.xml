@@ -18,7 +18,6 @@
     <string name="menu_desc">মেনু</string>
     <string name="menu_settings">সেটিংস</string>
     <string name="menu_theme">থিম</string>
-    <string name="menu_donate">দান করুন</string>
     <string name="menu_feedback">ফিডব্যাক</string>
     <string name="info">তথ্য</string>
     <string name="info_same_intensity_brightness">প্রতিটি রং আলাদাভাবে সেট করার পরিবর্তে সব রং এর জন্য একই রং তীব্রতা এবং উজ্জ্বলতা ব্যবহার করুন।</string>

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Oxuma rejimi</string>
+
+    <!-- Colors -->
     <string name="color_yellow">Sarı</string>
     <string name="color_pink">Çəhrayı</string>
     <string name="color_green">Yaşıl</string>
     <string name="color_gray">Boz</string>
     <string name="color_white">Ağ</string>
     <string name="color_custom">Fərdi</string>
+
+    <!-- Labels -->
     <string name="select_color">Rəng seçin</string>
     <string name="color_settings_label">Rəng tənzimləmələri</string>
     <string name="color_settings_placeholder">Rəng tənzimləmələri</string>
@@ -15,33 +19,48 @@
     <string name="brightness">Parlaqlıq</string>
     <string name="brightness_level">( %1$d )</string>
     <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
     <string name="menu_desc">Menyu</string>
     <string name="menu_settings">Tənzimləmələr</string>
     <string name="menu_theme">Mövzu</string>
-    <string name="menu_donate">İanə et</string>
     <string name="menu_feedback">Rəy</string>
+    <!-- Settings info -->
     <string name="info">Məlumat</string>
     <string name="info_same_intensity_brightness">Bütün rənglər üçün eyni intensivlik və parlaqlıqdan istifadə et.</string>
     <string name="info_auto_start_read_mode">Dəyişiklik olduqda Oxuma rejimini avtomatik başlat.</string>
+    <!-- Settings -->
     <string name="setting_same_intensity_brightness">Eyni intensivlik və parlaqlıq</string>
     <string name="setting_auto_start_read_mode">Oxuma rejimini avtomatik başlat</string>
     <string name="setting_reset_warning_info">Bu, bütün üstünlükləri siləcək. Davam edilsin?</string>
     <string name="setting_reset_warning_confirm">Məlumatı silmək istədiyinizə əminsiniz?</string>
     <string name="setting_reset_confirmation">Üstünlüklər sıfırlandı</string>
+    <!-- Settings titles -->
     <string name="title_auto_start_read_mode">Avtomatik başlat</string>
     <string name="title_same_intensity_brightness">Eyni intensivlik &amp; parlaqlıq</string>
     <string name="title_reset_app_data">Tətbiq məlumatlarını sıfırla</string>
     <string name="title_confirm_reset">Sıfırlamayı təsdiqlə</string>
+    <!-- Theme -->
     <string name="title_theme">Mövzu seçin</string>
     <string name="theme_system_default">Sistem standartı</string>
     <string name="theme_dark">Tünd</string>
     <string name="theme_light">Açıq</string>
+
+    <!-- Button -->
     <string name="start">Başla</string>
     <string name="stop">Dayan</string>
+
+    <!-- Custom Color Dialog -->
     <string name="custom_color">Fərdi rəng seçin</string>
     <string name="choose_custom_color">Fərdi rəng seçin</string>
+
+    <!-- Notification -->
     <string name="notification_msg">Oxuma rejimi işləyir</string>
+
+    <!-- contentDescription -->
     <string name="circle_icon_desc">dairə ikonu</string>
+
+    <!-- Common -->
     <string name="ok">OK</string>
     <string name="yes">BƏLİ</string>
     <string name="confirm">TƏSDİQLƏ</string>

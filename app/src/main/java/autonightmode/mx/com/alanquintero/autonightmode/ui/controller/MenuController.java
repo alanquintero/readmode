@@ -55,7 +55,6 @@ public class MenuController {
             final PowerMenu powerMenu = new PowerMenu.Builder(context)
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_settings), false, R.drawable.menu_settings))
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_theme), false, R.drawable.menu_theme))
-                    .addItem(new PowerMenuItem(context.getString(R.string.menu_donate), false, R.drawable.menu_donate))
                     .addItem(new PowerMenuItem(context.getString(R.string.menu_feedback), false, R.drawable.menu_feedback))
                     .setMenuRadius(10f)
                     .setMenuShadow(10f)
