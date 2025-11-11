@@ -21,6 +21,7 @@ import autonightmode.mx.com.alanquintero.autonightmode.model.ReadModeSettings;
 import autonightmode.mx.com.alanquintero.autonightmode.observer.settings.SettingsSubject;
 import autonightmode.mx.com.alanquintero.autonightmode.ui.dialog.SettingsDialog;
 import autonightmode.mx.com.alanquintero.autonightmode.ui.dialog.ThemeDialog;
+
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
@@ -82,12 +83,7 @@ public class MenuController {
                                     final ThemeDialog themeDialog = new ThemeDialog();
                                     themeDialog.show(activity.getSupportFragmentManager(), "themeDialog");
                                     break;
-                                case 2: // Support
-                                    Log.d(TAG, "Support selected");
-                                    final Intent supportIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.buymeacoffee.com/alanquintero"));
-                                    context.startActivity(supportIntent);
-                                    break;
-                                case 3: // Feedback
+                                case 2: // Feedback
                                     Log.d(TAG, "Feedback selected");
                                     final Intent feedbackIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/3BcGuBZyWer7m8Gx5"));
                                     context.startActivity(feedbackIntent);
