@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">حالت مطالعه</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">زرد</string>
+    <string name="color_pink">صورتی</string>
+    <string name="color_green">سبز</string>
+    <string name="color_gray">خاکستری</string>
+    <string name="color_white">سفید</string>
+    <string name="color_custom">سفارشی</string>
+
+    <!-- Labels -->
+    <string name="select_color">یک رنگ انتخاب کنید</string>
+    <string name="color_settings_label">تنظیمات رنگ</string>
+    <string name="color_settings_placeholder">تنظیمات رنگ</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">شدت رنگ</string>
+    <string name="brightness">روشنایی</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">منو</string>
+    <string name="menu_settings">تنظیمات</string>
+    <string name="menu_theme">طرح زمینه</string>
+    <string name="menu_feedback">بازخورد</string>
+
+    <!-- Settings info -->
+    <string name="info">اطلاعات</string>
+    <string name="info_same_intensity_brightness">از شدت رنگ و روشنایی یکسان برای تمام رنگ‌ها استفاده کنید به جای تنظیم جداگانه برای هر رنگ.</string>
+    <string name="info_auto_start_read_mode">زمانی که رنگ، شدت یا روشنایی تغییر کند، حالت مطالعه را به طور خودکار فعال کنید.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">شدت و روشنایی یکسان برای همه رنگ‌ها</string>
+    <string name="setting_auto_start_read_mode">فعال‌سازی خودکار حالت مطالعه هنگام تغییرات</string>
+    <string name="setting_reset_warning_info">این کار همه تنظیمات شما را حذف کرده و حالت پیش‌فرض را بازمی‌گرداند. ادامه دهید؟</string>
+    <string name="setting_reset_warning_confirm">آیا مطمئن هستید که می‌خواهید داده‌ها را حذف کنید؟</string>
+    <string name="setting_reset_confirmation">تنظیمات بازنشانی شد</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">فعال‌سازی خودکار حالت مطالعه</string>
+    <string name="title_same_intensity_brightness">شدت و روشنایی یکسان</string>
+    <string name="title_reset_app_data">بازنشانی داده‌های برنامه</string>
+    <string name="title_confirm_reset">تأیید بازنشانی</string>
+
+    <!-- Theme -->
+    <string name="title_theme">انتخاب طرح زمینه</string>
+    <string name="theme_system_default">پیش‌فرض سیستم</string>
+    <string name="theme_dark">تیره</string>
+    <string name="theme_light">روشن</string>
+
+    <!-- Button -->
+    <string name="start">شروع</string>
+    <string name="stop">توقف</string>
+    <string name="custom_color">انتخاب رنگ سفارشی</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">انتخاب رنگ سفارشی</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">حالت مطالعه فعال است</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">نماد دایره</string>
+
+    <!-- Common -->
+    <string name="ok">تأیید</string>
+    <string name="yes">بله</string>
+    <string name="confirm">تأیید</string>
+    <string name="done">انجام شد</string>
+    <string name="cancel">لغو</string>
+</resources>

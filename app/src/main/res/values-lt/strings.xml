@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Skaitymo režimas</string>
+
+    <!-- Colors -->
+    <string name="color_yellow">Geltona</string>
+    <string name="color_pink">Rožinė</string>
+    <string name="color_green">Žalia</string>
+    <string name="color_gray">Pilka</string>
+    <string name="color_white">Balta</string>
+    <string name="color_custom">Pasirinktinis</string>
+
+    <!-- Labels -->
+    <string name="select_color">Pasirinkite spalvą</string>
+    <string name="color_settings_label">Spalvų nustatymai</string>
+    <string name="color_settings_placeholder">Spalvų nustatymai</string>
+    <string name="color_settings_format">%1$s - %2$s</string>
+    <string name="intensity">Spalvos intensyvumas</string>
+    <string name="brightness">Ryškumas</string>
+    <string name="brightness_level">( %1$d )</string>
+    <string name="color_intensity">( %1$d )</string>
+
+    <!-- Menu -->
+    <string name="menu_desc">Meniu</string>
+    <string name="menu_settings">Nustatymai</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_feedback">Atsiliepimai</string>
+
+    <!-- Settings info -->
+    <string name="info">Informacija</string>
+    <string name="info_same_intensity_brightness">Naudokite tą patį spalvos intensyvumą ir ryškumą visoms spalvoms, užuot nustatę kiekvieną atskirai.</string>
+    <string name="info_auto_start_read_mode">Automatiškai įjunkite skaitymo režimą, kai pakeičiama spalva, intensyvumas ar ryškumas.</string>
+
+    <!-- Settings -->
+    <string name="setting_same_intensity_brightness">Vienodas intensyvumas ir ryškumas visoms spalvoms</string>
+    <string name="setting_auto_start_read_mode">Automatiškai įjungti skaitymo režimą keičiant</string>
+    <string name="setting_reset_warning_info">Tai ištrins visus jūsų nustatymus ir atkurs numatytuosius. Tęsti?</string>
+    <string name="setting_reset_warning_confirm">Ar tikrai norite ištrinti duomenis?</string>
+    <string name="setting_reset_confirmation">Nustatymai atkurti</string>
+
+    <!-- Settings titles -->
+    <string name="title_auto_start_read_mode">Automatiškai įjungti skaitymo režimą</string>
+    <string name="title_same_intensity_brightness">Vienodas intensyvumas ir ryškumas</string>
+    <string name="title_reset_app_data">Atkurti programos duomenis</string>
+    <string name="title_confirm_reset">Patvirtinti atkūrimą</string>
+
+    <!-- Theme -->
+    <string name="title_theme">Pasirinkite temą</string>
+    <string name="theme_system_default">Numatytoji sistemos</string>
+    <string name="theme_dark">Tamsi</string>
+    <string name="theme_light">Šviesi</string>
+
+    <!-- Button -->
+    <string name="start">Pradėti</string>
+    <string name="stop">Sustabdyti</string>
+    <string name="custom_color">Pasirinkite spalvą</string>
+
+    <!-- Custom Color Dialog -->
+    <string name="choose_custom_color">Pasirinkite pasirinktą spalvą</string>
+
+    <!-- Notification -->
+    <string name="notification_msg">Skaitymo režimas veikia</string>
+
+    <!-- contentDescription -->
+    <string name="circle_icon_desc">apskritimo piktograma</string>
+
+    <!-- Common -->
+    <string name="ok">GERAI</string>
+    <string name="yes">TAIP</string>
+    <string name="confirm">PATVIRTINTI</string>
+    <string name="done">BAIGTA</string>
+    <string name="cancel">Atšaukti</string>
+</resources>
