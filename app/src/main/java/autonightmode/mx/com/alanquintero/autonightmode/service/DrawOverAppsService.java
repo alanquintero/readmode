@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.provider.Settings;
+import android.service.notification.StatusBarNotification;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -94,6 +95,10 @@ public class DrawOverAppsService extends Service {
     @VisibleForTesting
     PrefsHelper prefsHelper;
 
+    private final Handler handler = new Handler(Looper.getMainLooper());
+
+    private Runnable notificationMonitor;
+
     @VisibleForTesting
     static WeakReference<DrawOverAppsService> instanceRef;
 
@@ -139,6 +144,7 @@ public class DrawOverAppsService extends Service {
         startNotification();
 
         instanceRef = new WeakReference<>(this);
+        monitorNotification();
     }
 
     @Override
@@ -175,6 +181,9 @@ public class DrawOverAppsService extends Service {
         }
 
         stopNotification();
+        if (notificationMonitor != null) {
+            handler.removeCallbacks(notificationMonitor);
+        }
 
         instanceRef = null;
 
@@ -271,6 +280,39 @@ public class DrawOverAppsService extends Service {
 
     public static DrawOverAppsService getInstance() {
         return instanceRef != null ? instanceRef.get() : null;
+    }
+
+    private void monitorNotification() {
+        notificationMonitor = new Runnable() {
+            @Override
+            public void run() {
+                NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                StatusBarNotification[] active = null;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    active = manager.getActiveNotifications();
+                }
+
+                boolean isNotificationActive = false;
+                if (active != null) {
+                    for (StatusBarNotification sbn : active) {
+                        if (sbn.getId() == Constants.NOTIFICATION_ID) {
+                            isNotificationActive = true;
+                            break;
+                        }
+                    }
+                }
+
+                // If user closed it but Read Mode is ON -> recreate it
+                if (!isNotificationActive && prefsHelper.isReadModeOn()) {
+                    Log.w(TAG, "Notification was removed — recreating...");
+                    startNotification();
+                }
+
+                // check every 5 seconds
+                handler.postDelayed(this, 5000);
+            }
+        };
+        handler.postDelayed(notificationMonitor, 5000);
     }
 
     /**
